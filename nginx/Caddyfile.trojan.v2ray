@@ -1,0 +1,9 @@
+dongxishijie.xyz:80 {
+	root /var/www/html
+	gzip
+	browse
+	proxy /xcuYGtq localhost:51988 {
+		     websocket
+		     header_upstream -Origin
+	     }
+}
