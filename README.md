@@ -69,3 +69,48 @@ Import "Add_PS1_Run_as_administrator.reg" to your registry to enable context men
     - My Office
     - FitbitCoach
     - Netflix
+
+
+## Proxy
+
+### Nginx
+
+解释一下这些虚拟主机的一些细节：第一个server接收来自Trojan的流量，与上面Trojan配置文件对应；第二个server也是接收来自Trojan的流量，但是这个流量尝试使用IP而不是域名访问服务器，所以将其认为是异常流量，并重定向到域名；第三个server接收除127.0.0.1:80外的所有80端口的流量并重定向到443端口，这样便开启了全站https，可有效的防止恶意探测。注意到，第一个和第二个server对应综述部分原理图中的蓝色数据流，第三个server对应综述部分原理图中的红色数据流，综述部分原理图中的绿色数据流不会流到Nginx。
+
+```
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+}
+
+
+# Virtual Host configuration for example.com
+#
+# You can move that to a different file under sites-available/ and symlink that
+# to sites-enabled/ to enable it.
+#
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name dongxishijie.xyz;
+
+	root /var/www/example.com;
+	index index.html;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+```

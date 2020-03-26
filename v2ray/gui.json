@@ -1,0 +1,113 @@
+{
+  "inbound": [
+    {
+      "localPort": 10843,
+      "protocol": "socks",
+      "udpEnabled": true,
+      "sniffingEnabled": true
+    }
+  ],
+  "logEnabled": false,
+  "loglevel": "warning",
+  "index": 3,
+  "vmess": [
+    {
+      "configVersion": 2,
+      "address": "dongxishijie.xyz",
+      "port": 51988,
+      "id": "8c3bf008-f114-4e02-b48a-6ba13a7def77",
+      "alterId": 0,
+      "security": "auto",
+      "network": "ws",
+      "remarks": "dongxishijie-v2ray-deny-gfw",
+      "headerType": "none",
+      "requestHost": "",
+      "path": "/xcuYGtq",
+      "streamSecurity": "tls",
+      "allowInsecure": "true",
+      "configType": 1,
+      "testResult": "",
+      "subid": ""
+    },
+    {
+      "configVersion": 2,
+      "address": "127.0.0.1",
+      "port": 10888,
+      "id": "mm123456",
+      "alterId": 0,
+      "security": "",
+      "network": "",
+      "remarks": "dongxishijie-drojan-allow-gfw",
+      "headerType": "",
+      "requestHost": "",
+      "path": "",
+      "streamSecurity": "",
+      "allowInsecure": "",
+      "configType": 4,
+      "testResult": "",
+      "subid": ""
+    },
+    {
+      "configVersion": 2,
+      "address": "dongxishijie.xyz",
+      "port": 44274,
+      "id": "tswc0916",
+      "alterId": 0,
+      "security": "chacha20-ietf-poly1305",
+      "network": "",
+      "remarks": "dongxishijie-sss--deny-by-gfw",
+      "headerType": "",
+      "requestHost": "",
+      "path": "",
+      "streamSecurity": "",
+      "allowInsecure": "",
+      "configType": 3,
+      "testResult": "",
+      "subid": ""
+    },
+    {
+      "configVersion": 2,
+      "address": "dongxishijie.xyz",
+      "port": 443,
+      "id": "8c3bf008-f114-4e02-b48a-6ba13a7def77",
+      "alterId": 0,
+      "security": "auto",
+      "network": "ws",
+      "remarks": "dongxishijie-ws-tls-allow-gfw",
+      "headerType": "none",
+      "requestHost": "",
+      "path": "/xcuYGtq",
+      "streamSecurity": "tls",
+      "allowInsecure": "true",
+      "configType": 1,
+      "testResult": "",
+      "subid": ""
+    }
+  ],
+  "muxEnabled": true,
+  "domainStrategy": "IPIfNonMatch",
+  "routingMode": "0",
+  "useragent": [],
+  "userdirect": [],
+  "userblock": [],
+  "kcpItem": {
+    "mtu": 1350,
+    "tti": 50,
+    "uplinkCapacity": 12,
+    "downlinkCapacity": 100,
+    "congestion": false,
+    "readBufferSize": 2,
+    "writeBufferSize": 2
+  },
+  "listenerType": 0,
+  "urlGFWList": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
+  "allowLANConn": false,
+  "enableStatistics": false,
+  "statisticsFreshRate": 2000,
+  "remoteDNS": "",
+  "subItem": [],
+  "uiItem": {
+    "mainQRCodeWidth": 600
+  },
+  "userPacRule": []
+}
