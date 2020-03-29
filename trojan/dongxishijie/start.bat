@@ -1,0 +1,1 @@
+start /min trojan -c config.json
