@@ -73,7 +73,7 @@ Import `Add_PS1_Run_as_administrator.reg` to your registry to enable context men
 
 解释一下这些虚拟主机的一些细节：第一个 server 接收来自 Trojan 的流量，与上面 Trojan 配置文件对应；第二个 server 也是接收来自 Trojan 的流量，但是这个流量尝试使用 IP 而不是域名访问服务器，所以将其认为是异常流量，并重定向到域名；第三个 server 接收除 127.0.0.1:80 外的所有 80 端口的流量并重定向到 443 端口，这样便开启了全站 https，可有效的防止恶意探测。注意到，第一个和第二个 server 对应综述部分原理图中的蓝色数据流，第三个 server 对应综述部分原理图中的红色数据流，综述部分原理图中的绿色数据流不会流到 Nginx。
 
-```
+```json
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -113,7 +113,7 @@ server {
 
 ### Setting with caddy
 
-```sh
+```json
 dongxishijie.xyz:80 {
     root /var/www/html
     gzip
@@ -127,7 +127,7 @@ dongxishijie.xyz:80 {
 
 ### Setting trojan as backend server
 
-```
+```json
 {
     "run_type": "server",
     "local_addr": "0.0.0.0",
