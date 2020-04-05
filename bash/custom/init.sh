@@ -6,6 +6,12 @@
 # For example: add yourself some shortcuts to projects you often work on.
 #
 
+
+alias db="cd ~/Dropbox"
+alias ws="cd ~/workspace"
+alias bashconfig="emacsclient -c ~/.bashrc"
+alias ohmybash="emacsclient -c ~/.oh-my-bash"
+
 workspace=/var/www/html
 cd $workspace
 #
