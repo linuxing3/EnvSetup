@@ -1,4 +1,8 @@
-opkg update && opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk
+opkg update
+
+opkg list-upgradable | cut -f 1 -d ' ' | xargs opkg upgrade 
+
+opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk
 
 mkfs.ext4 /dev/sda1
 
