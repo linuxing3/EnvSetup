@@ -34,7 +34,7 @@ for opt in "$@"; do
       help
       exit 0
       ;;
-    --install)       _all=1    ;;
+    --install)       _install=1    ;;
     --remove)        _remove=1 ;;
     *)
       echo "unknown option: $opt"
@@ -137,11 +137,9 @@ bootstrap() {
       else
         bash ~/EnvSetup/bootstrap.sh
       fi
-      break
       ;;
     1)
       echo "Not bootstrap"
-      break
       ;;
     *)
       echo "Please answer 0, 1 or 2"
