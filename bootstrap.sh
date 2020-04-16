@@ -29,9 +29,9 @@ sh EnvSetup/bash/bin/bash.sh
 cd
 cat > .bashrc <<-EOF
 export OSH=~/.oh-my-bash
-OSH_THEME=\"mairan\"
-CASE_SENSITIVE=\"true\"
-ENABLE_CORRECTION=\"true\"
+OSH_THEME="mairan"
+CASE_SENSITIVE="true"
+ENABLE_CORRECTION="true"
 OSH_CUSTOM=~/EnvSetup/bash/custom
 completions=(
   git
@@ -93,6 +93,33 @@ sh EnvSetup/bash/bin/nvm.sh
 cd
 }
 
+function install_caddy(){
+green "======================="
+blue "Installing caddy"
+green "======================="
+cd
+sh EnvSetup/bash/bin/install-caddy.sh
+cd
+}
+
+function install_trojan(){
+green "======================="
+blue "Installing trojan"
+green "======================="
+cd
+sh EnvSetup/bash/bin/install-trojan.sh
+cd
+}
+
+function install_v2ray(){
+green "======================="
+blue "Installing v2ray"
+green "======================="
+cd
+sh EnvSetup/bash/bin/install-v2ray.sh
+cd
+}
+
 start_menu(){
 
     clear
@@ -108,6 +135,9 @@ start_menu(){
     green " 4. tmux"
     red " 5. python"
     red " 6. nvm+npm"
+    red " 7. caddy"
+    red " 8. trojan"
+    red " 9. v2ray"
     blue " 0. 退出脚本"
     echo
     read -p "请输入数字:" num
@@ -129,6 +159,15 @@ start_menu(){
     ;;
     6)
     install_nvm
+    ;;
+    7)
+    install_caddy
+    ;;
+    8)
+    install_trojan
+    ;;
+    9)
+    install_v2ray
     ;;
     0)
     exit 1
