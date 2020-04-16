@@ -14,13 +14,13 @@ sudo ln -s /usr/bin/pip3 /usr/bin/pip
 cd
 # using pyenv
 pip3 install --user --no-warn-script-location pyenv
-echo "export PATH=$PATH:/home/vagrant/.pyenv/bin" >> /home/vagrant/.bashrc
+echo "export PATH=$PATH:$HOME/.pyenv/bin" >> $HOME/.bashrc
 
 # using ansible
 pip3 install --user --no-warn-script-location ansible
 # using pipenv
 pip3 install --user --no-warn-script-location pipenv
 
-echo "export PATH=$PATH:/home/vagrant/.local/bin" >> /home/vagrant/.bashrc
+echo "export PATH=$PATH:$HOME/.local/bin" >> $HOME/.bashrc
 
-source /home/vagrant/.bashrc
+source $HOME/.bashrc

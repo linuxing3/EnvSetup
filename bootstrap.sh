@@ -1,137 +1,145 @@
 #!/usr/bin/env bash
 
-remote_repo=https://github.com/linuxing3/bestdotfiles.git
-local_repo=$HOME/dotfiles
-
-version() {
-  echo "$(basename $0) 0.6.3 by linuxing3 <linuxing3@qq.com>"
-  echo "https://github.com/linuxing3/bestdotfiles"
+blue(){
+    echo -e "\033[34m\033[01m$1\033[0m"
+}
+green(){
+    echo -e "\033[32m\033[01m$1\033[0m"
+}
+red(){
+    echo -e "\033[31m\033[01m$1\033[0m"
 }
 
-doIt() {
-	cd "$(dirname "${BASH_SOURCE}")";
-    #git clone https://gitcafe.com/linuxing3/dotvim ~/.vim
-    #ln -s ~/.vim/.vimrc ~/.vimrc
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
-		--exclude "README.md" --exclude "LICENSE-MIT.txt" --exclude ".w3m/" \
-		--exclude ".calcurse" --exclude ".gitignore" \
-                --exclude ".gitmodules" --exclude ".hgignore" --exclude ".ssh/" \
-		--exclude "init/" --exclude "bin/" --exclude "docker/" --exclude "data/" --exclude "doc/" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
+function install_vim(){
+green "======================="
+blue "Installing space-vim for you"
+green "======================="
+cd
+sh EnvSetup/bash/bin/vim.sh
+cd
 }
 
-local(){
-	if [ "$1" == "--force" -o "$1" == "-f" ]; then
-		doIt;
-	else
-		read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-		echo "";
-		if [[ $REPLY =~ ^[Yy]$ ]]; then
-			doIt;
-		fi;
-	fi;
-	unset doIt;
-}
+function install_bash(){
+green "======================="
+blue "Installing oh-my-bash for you"
+green "======================="
+cd
+sh EnvSetup/bash/bin/bash.sh
 
-usage() {
-    version
-cat << EOF >&2
-
-easily bootstrap local dot files tools with Git
-
-Usage:
-    $(basename $0) [options]
-
-Example:
-    $(basename $0) redis
-
-Options:
-    -l, --local              Rsyncronize locally to your home folder
-    -r, --remote             Deploy to your remote git repository
-    -u, --upgrade            Upgrade from remote git repository 
-    -d, --remove             Stop and remove all dot files in home folder
-    -h, --help               Display this help text
-    -v, --version            Display current script version
+cd
+cat > .bashrc <<-EOF
+export OSH=~/.oh-my-bash
+OSH_THEME=\"mairan\"
+CASE_SENSITIVE=\"true\"
+ENABLE_CORRECTION=\"true\"
+OSH_CUSTOM=~/EnvSetup/bash/custom
+completions=(
+  git
+  composer
+  ssh
+  system
+)
+aliases=(
+  general
+  vim
+)
+plugins=(
+  git
+  emacs
+  vim
+  bashmarks
+)
+source \$OSH/oh-my-bash.sh
+export LANG=en_US.UTF-8
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 EOF
 }
 
-# cloning from remote repositry
-clone() {
-  if [ $1 -a $1 = '--silently' ]; then
-    git clone -q "$remote_repo" "$local_repo"
-  else
-    echo "Cloning $remote_repo to $local_repo"
-    git clone "$remote_repo" "$local_repo"
-  fi
+function install_tmux(){
+green "======================="
+blue "Installing oh-my-tmux for you"
+green "======================="
+cd
+sh EnvSetup/bash/bin/tmux.sh
+cd
+}
+
+function install_emacs(){
+green "======================="
+blue "Installing doom emacs for you"
+green "======================="
+cd
+sh EnvSetup/bash/bin/emacs.sh
+cd
 }
 
 
-upgrade() {
-  if [ ! -e "$local_repo/.git" ]; then
-    clone
-  else
-    cd "$local_repo"
-    git pull origin master
-  fi
+function install_python(){
+green "======================="
+blue "Installing python+pyenv+pipenv+ansible"
+green "======================="
+cd
+sh EnvSetup/bash/bin/python.sh
+cd
 }
 
 
-init() {
-  if [ ! -e "$local_repo/.git" ]; then
-    clone $1
-  fi
+function install_nvm(){
+green "======================="
+blue "Installing nvm+npm"
+green "======================="
+cd
+sh EnvSetup/bash/bin/nvm.sh
+cd
 }
 
-remote() {
-	echo Deploying your dotfiles to remote reposity
-	#deploy "continious update"
-	#doing the following steps
-	 git add .
-	 git commit -m "continious updating"
-	 git push -u origin master
-}
+start_menu(){
 
-remove() {
-  echo "Removing all dotfiles in your home directory"
-  cd ~/
-}
-# --- Main entry point ----------------------
-if [ $# -eq 0 ]; then
-  usage
-  exit 0
-fi
+    clear
+    green " ===================================="
+    green " Vps 一键安装自动脚本 2020-2-27 更新 "
+    green " 系统：centos7+/debian9+/ubuntu16.04+"
+    green " 网站：https://xingwenju.netlify.com"
+    green " ===================================="
+    echo
+    green " 1. vim"
+    red " 2. bash"
+    green " 3. emacs"
+    green " 4. tmux"
+    red " 5. python"
+    red " 6. nvm+npm"
+    blue " 0. 退出脚本"
+    echo
+    read -p "请输入数字:" num
+    case "$num" in
+    1)
+    install_vim
+    ;;
+    2)
+    install_bash
+    ;;
+    3)
+    install_emacs
+    ;;
+    4)
+    install_tmux
+    ;;
+    5)
+    install_python
+    ;;
+    6)
+    install_nvm
+    ;;
+    0)
+    exit 1
+    ;;
+    *)
+    clear
+    red "请输入正确数字"
+    sleep 1s
+    start_menu
+    ;;
+    esac
+ }
 
-## Parse comand-line options
-while [ $# -gt 0 ]; do
-  case $1 in
-    -v | --version )
-      version
-      exit 1
-      ;;
-    -l | --local)
-      local
-      exit
-      ;;
-    -r | --remote )
-      remote
-      exit
-      ;;
-    -h | --help )
-      usage
-      exit 1
-      ;;
-    -u | --upgrade )
-      upgrade
-      exit
-      ;;
-    -d | --remove )
-      remove
-      exit
-      ;;
-    * ) # default case
-      start $1
-      ;;
-  esac
-  shift
-done
+start_menu
