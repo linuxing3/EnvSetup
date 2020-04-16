@@ -1,5 +1,5 @@
 # Path to your oh-my-bash installation.
-export OSH=/home/vagrant/.oh-my-bash
+export OSH=~/.oh-my-bash
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -51,7 +51,6 @@ completions=(
   git
   composer
   ssh
-  pip3
   npm
   system
 )
@@ -71,7 +70,6 @@ aliases=(
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  python
   emacs
   vim
   bashmarks
@@ -124,13 +122,6 @@ fi
 if [ -d "$HOME/.pyenv/bin" ] ; then
     PATH="$HOME/.pyenv/bin:$PATH"
 fi
-
-export ANACONDA_HOME="~/.pyenv/versions/anaconda3-5.3.1"
-# Load nvm 
-export NVM_DIR="$HOME/.nvm"
-export NVM_NODEJS_ORG_MIRROR="https://unofficial-builds.nodejs.org/download/release"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Load fzf 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
