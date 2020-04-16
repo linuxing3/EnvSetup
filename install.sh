@@ -158,8 +158,7 @@ install() {
     msg "\\nThanks for using \\033[1;31m$app_name\\033[0m. Enjoy!"
     return
   else
-    msg "Quit!"
-    return
+    help
   fi
 }
 
