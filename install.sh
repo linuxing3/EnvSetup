@@ -148,14 +148,17 @@ bootstrap() {
 }
 
 install() {
+  if [ ! -z "$_remove" ]; then
+    remove
+    return
+  fi
   if [ ! -z "$_install" ]; then
     sync_repo
     bootstrap
     msg "\\nThanks for using \\033[1;31m$app_name\\033[0m. Enjoy!"
     return
-  fi
-  if [ ! -z "$_remove" ]; then
-    remove
+  else
+    msg "Quit!"
     return
   fi
 }
