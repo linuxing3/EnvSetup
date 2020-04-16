@@ -13,5 +13,5 @@ alias bashconfig="emacsclient -c ~/.bashrc"
 alias ohmybash="emacsclient -c ~/.oh-my-bash"
 
 workspace=/var/www/html
-cd $workspace
+# cd $workspace
 #
