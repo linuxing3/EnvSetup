@@ -7,6 +7,7 @@ sudo apt-get -y update
 sudo apt-get install -y tmux
 sudo apt-get install -y git
 sudo apt-get install -y wget curl elinks
+sudo apt-get install -y bash bat fg
 
 echo "Install build tools"
 sudo apt-get install -y build-essential

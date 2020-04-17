@@ -7,5 +7,5 @@ alias fzfvim="vim \$(fzf)"
 alias fzfgit="git checkout \$(git branch -r | fzf)"
 alias fzfdir="cd \$(find * -type d | fzf)"
 
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(bat --theme zenburn {}) 2> /dev/null | head -500'"
 export FZ_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
