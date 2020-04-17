@@ -1,0 +1,5 @@
+hostname = mail.mfa.gov.cn:25
+sender xing_wenju@mfa.gov.cn
+username = "xing_wenju"
+password = ""
+mda="/usr/bin/procmail -d %T"

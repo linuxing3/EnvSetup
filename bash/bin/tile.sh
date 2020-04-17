@@ -20,8 +20,6 @@ if [ $? != 0 ]; then
   $cmd new -d -n bash -t $session "bash"
   $cmd new -n -n ranger -t $session "ranger"
   $cmd new -d -n vim -s $session "vim ."
-  $cmd neww -n w3m -t $session "w3m -B -bookmark ~/dotfiles/data/bookmark.html -config ~/dotfiles/.w3m/config"
-  $cmd neww -n calcurse -t $session "calcurse -D /root/dotfiles/.calcurse"
   $cmd neww -n bash-horizonal -t $session "bash"
   $cmd splitw -p 30 -t $session "bash"
   $cmd neww -n bash-vertical -t $session "bash"
