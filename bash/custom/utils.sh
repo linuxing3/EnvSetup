@@ -1,6 +1,18 @@
 ###############################
 ## Basic tools
 ###############################
+blue(){
+    echo -e "\033[34m\033[01m$1\033[0m"
+}
+
+green(){
+    echo -e "\033[32m\033[01m$1\033[0m"
+}
+
+red(){
+    echo -e "\033[31m\033[01m$1\033[0m"
+}
+
 msg() {
   printf '%b\n' "$1" >&2
 }
@@ -20,6 +32,23 @@ exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
+backup() {
+  if [ -e "$1" ]; then
+    echo
+    msg "\\033[1;34m==>\\033[0m Attempting to back up your original vim configuration"
+    today=$(date +%Y%m%d_%s)
+    mv -v "$1" "$1.$today"
+
+    ret="$?"
+    success "Your original configuration has been backed up"
+  fi
+}
+
+check_git() {
+  if ! exists "git"; then
+    error "You must have 'git' installed to continue"
+  fi
+}
 
 ###############################
 # Simple calculator

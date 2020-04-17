@@ -124,16 +124,21 @@ function config_app(){
   green "======================="
   blue "Configure app"
   green "======================="
-  read -p "Input your usename and password, separate with space" username password
-  CONFIG_FILES="authinfo condarc esmtprc fbtermrc getmailrc gitconfig msmtprc offlineimaprc procmail xinitrc"
+  read -p "Input your usename:   " username 
+  read -p "Input your password:   " password
+  CONFIG_FILES="authinfo condarc esmtprc fbtermrc getmailrc msmtprc offlineimaprc procmail xinitrc"
 
   cd
   for FILE in $CONFIG_FILES
   do
-    echo "Configuring $FILE for you"
-    cp EnvSetup/config/$FILE ".$FILE"
-    sed -e "s/USERNAME/$username/" ".$FILE"
-    sed -e "s/PASSWORD/$password/" ".$FILE"
+      echo "Backup $FILE in .dotfiles for you"
+      mkdir -p .dotfiles
+      mv -f ".$FILE" ".dotfiles/$FILE-$(date +%Y%m%d_%s)"
+
+      echo "Add new $FILE for you"
+      cp EnvSetup/config/$FILE ".$FILE"
+      sed -i "s/USERNAME/$username/g" ".$FILE"
+      sed -i "s/PASSWORD/$password/g" ".$FILE"
   done
   cd
 }
@@ -157,6 +162,7 @@ start_menu(){
   red " 7. caddy"
   red " 8. trojan"
   red " 9. v2ray"
+  red " 10. config app"
   blue " 0. 退出脚本"
   echo
   read -p "请输入数字:" num
@@ -188,7 +194,7 @@ start_menu(){
   9)
   install_v2ray
   ;;
-  9)
+  10)
   config_app
   ;;
   0)

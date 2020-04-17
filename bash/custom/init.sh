@@ -6,7 +6,7 @@
 # For example: add yourself some shortcuts to projects you often work on.
 #
 
-
+alias reload="source ~/.bashrc"
 alias db="cd ~/Dropbox"
 alias ws="cd ~/workspace"
 alias bashconfig="emacsclient -c ~/.bashrc"
