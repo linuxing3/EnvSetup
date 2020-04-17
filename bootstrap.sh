@@ -50,18 +50,8 @@ plugins=(
   bashmarks
 )
 source \$OSH/oh-my-bash.sh
-export LANG=en_US.UTF-8
-if [ -d "\$HOME/bin" ] ; then
-    PATH="\$HOME/bin:\$PATH"
-fi
-if [ -d "\$HOME/.local/bin" ] ; then
-    PATH="\$HOME/.local/bin:\$PATH"
-fi
-if [ -d "\$HOME/EnvSetup/bash/bin" ] ; then
-    PATH="\$HOME/EnvSetup/bash/bin:\$PATH"
-fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-  EOF
+EOF
 }
 
 function install_tmux(){
@@ -129,6 +119,27 @@ function install_v2ray(){
   cd
 }
 
+
+function config_app(){
+  green "======================="
+  blue "Configure app"
+  green "======================="
+  read -p "Input your usename" username
+  read -p "Input your password" password
+  CONFIG_FILES="authinfo condarc esmtprc fbtermrc getmailrc gitconfig msmtprc offlineimaprc procmail xinitrc"
+
+  cd
+  for FILE in $CONFIG_FILES
+  do
+    echo "Configuring $FILE for you"
+    cp EnvSetup/config/$FILE ".$FILE"
+    sed -e "s/USERNAME/$username/g" ".$FILE"
+    sed -e "s/PASSWORD/$password/g" ".$FILE"
+  done
+  cd
+}
+
+
 start_menu(){
 
   clear
@@ -177,6 +188,9 @@ start_menu(){
   ;;
   9)
   install_v2ray
+  ;;
+  9)
+  config_app
   ;;
   0)
   exit 1
