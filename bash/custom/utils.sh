@@ -1,6 +1,30 @@
-# Simple calculator
+###############################
+## Basic tools
+###############################
+msg() {
+  printf '%b\n' "$1" >&2
+}
 
-function calc() {
+success() {
+  if [ "$ret" -eq '0' ]; then
+    msg "\\33[32m[✔]\\33[0m ${1}${2}"
+  fi
+}
+
+error() {
+  msg "\\33[31m[✘]\\33[0m ${1}${2}"
+  exit 1
+}
+
+exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+
+###############################
+# Simple calculator
+###############################
+calc() {
 	local result="";
 	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
 	#                       └─ default (when `--mathlib` is used) is 20
@@ -17,72 +41,10 @@ function calc() {
 	printf "\n";
 }
 
-# Create a new directory and enter it
-function mkd() {
-	mkdir -p "$@" && cd "$@";
-}
-
-function touchexe() {
-	touch "$@" && chmod +x "$@";
-}
-
-# Change working directory to the top-most Finder window location
-function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
-}
-
-# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
-function targz() {
-	local tmpFile="${@%/}.tar";
-	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
-
-	size=$(
-		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
-		stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
-	);
-
-	local cmd="";
-	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
-		cmd="zopfli";
-	else
-		if hash pigz 2> /dev/null; then
-			cmd="pigz";
-		else
-			cmd="gzip";
-		fi;
-	fi;
-
-	echo "Compressing .tar using \`${cmd}\`…";
-	"${cmd}" -v "${tmpFile}" || return 1;
-	[ -f "${tmpFile}" ] && rm "${tmpFile}";
-	echo "${tmpFile}.gz created successfully.";
-}
-
-# Determine size of a file or total size of a directory
-function fs() {
-	if du -b /dev/null > /dev/null 2>&1; then
-		local arg=-sbh;
-	else
-		local arg=-sh;
-	fi
-	if [[ -n "$@" ]]; then
-		du $arg -- "$@";
-	else
-		du $arg .[^.]* *;
-	fi;
-}
-
-# Use Git’s colored diff when available
-hash git &>/dev/null;
-if [ $? -eq 0 ]; then
-	function diff() {
-		git diff --no-index --color-words "$@";
-	}
-fi;
-
+###############################
 # Create a data URL from a file
-function dataurl() {
+###############################
+dataurl() {
 	local mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
@@ -90,8 +52,10 @@ function dataurl() {
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
+###############################
 # Create a git.io short URL
-function gitio() {
+###############################
+gitio() {
 	if [ -z "${1}" -o -z "${2}" ]; then
 		echo "Usage: \`gitio slug url\`";
 		return 1;
@@ -99,8 +63,10 @@ function gitio() {
 	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
 }
 
+###############################
 # Start an HTTP server from a directory, optionally specifying the port
-function server() {
+###############################
+server() {
 	# local port="${1:-8000}";
 	# sleep 1 && open "http://localhost:${port}/" &
 	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
@@ -109,14 +75,18 @@ function server() {
 	http-server -o . && lt -s xingwenju -p 8080
 }
 
+###############################
 # Quick convert from decimal to binary
-function dec2bin(){
+###############################
+dec2bin(){
 	python -c $'bin($1)';
 }
 
+###############################
 # Start a PHP server from a directory, optionally specifying the port
 # (Requires PHP 5.4.0+.)
-function phpserver() {
+###############################
+phpserver() {
 	local port="${1:-4000}";
 	local ip=$(ifconfig getifaddr en1);
 	sleep 1 && open "http://${ip}:${port}/" &
@@ -124,9 +94,11 @@ function phpserver() {
 }
 
 
+###############################
 # Compare original and gzipped file size
 # Compare original and gzipped file size
-function gz() {
+###############################
+gz() {
 	local origsize=$(wc -c < "$1");
 	local gzipsize=$(gzip -c "$1" | wc -c);
 	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
@@ -134,23 +106,10 @@ function gz() {
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
-# Syntax-highlight JSON strings or files
-# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
-function json() {
-	if [ -t 0 ]; then # argument
-		python -mjson.tool <<< "$*" | pygmentize -l javascript;
-	else # pipe
-		python -mjson.tool | pygmentize -l javascript;
-	fi;
-}
-
-# Run `dig` and display the most useful info
-#function digga() {
-	#dig +nocmd "$1" any +multiline +noall +answer;
-#}
-
+###############################
 # UTF-8-encode a string of Unicode symbols
-function escape() {
+###############################
+escape() {
 	printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
 	# print a newline unless we’re piping the output to another program
 	if [ -t 1 ]; then
@@ -158,8 +117,10 @@ function escape() {
 	fi;
 }
 
+###############################
 # Decode \x{ABCD}-style Unicode escape sequences
-function unidecode() {
+###############################
+unidecode() {
 	perl -e "binmode(STDOUT, ':utf8'); print \"$@\"";
 	# print a newline unless we’re piping the output to another program
 	if [ -t 1 ]; then
@@ -167,8 +128,10 @@ function unidecode() {
 	fi;
 }
 
+###############################
 # Get a character’s Unicode code point
-function codepoint() {
+###############################
+codepoint() {
 	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
 	# print a newline unless we’re piping the output to another program
 	if [ -t 1 ]; then
@@ -176,9 +139,11 @@ function codepoint() {
 	fi;
 }
 
+###############################
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
-function getcertnames() {
+###############################
+getcertnames() {
 	if [ -z "${1}" ]; then
 		echo "ERROR: No domain specified.";
 		return 1;
@@ -210,56 +175,21 @@ function getcertnames() {
 	fi;
 }
 
-# `s` with no arguments opens the current directory in vscode, otherwise
-# opens the given location
-function vsc() {
-	if [ $# -eq 0 ]; then
-		code .;
-	else
-		code "$@";
-	fi;
-}
-
-# `a` with no arguments opens the current directory in Atom Editor, otherwise
-# opens the given location
-function a() {
-	if [ $# -eq 0 ]; then
-		atom .;
-	else
-		atom "$@";
-	fi;
-}
-
-# `v` with no arguments opens the current directory in Vim, otherwise opens the
-# given location
-function v() {
-	if [ $# -eq 0 ]; then
-		nvim .;
-	else
-		nvim "$@";
-	fi;
-}
-
-# `o` with no arguments opens the current directory, otherwise opens the given
-# location
-function o() {
-	if [ $# -eq 0 ]; then
-		open .;
-	else
-		open "$@";
-	fi;
-}
-
+###############################
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
-function tre() {
+###############################
+tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
+###############################
 # Compile and execute a C source on the fly
+###############################
 EC() { echo -e '\e[1;33m'code $?'\e[m\n'; }
+
 csource() {
         [[ $1 ]]    || { echo "Missing operand" >&2; return 1; }
         [[ -r $1 ]] || { printf "File %s does not exist or is not readable\n" "$1" >&2; return 1; }
@@ -304,7 +234,9 @@ extract() {
     return "$e"
 }
 
+###############################
 # cd and ls in one
+###############################
 cl() {
     dir=$1
     if [[ -z "$dir" ]]; then
@@ -321,43 +253,44 @@ cl() {
 note () {
     # if file doesn't exist, create it
     if [[ ! -f $HOME/.notes ]]; then
-        touch "$HOME/dotfiles/data/.notes"
+        touch "$HOME/Dropbox/org/.notes"
     fi
 
     if ! (($#)); then
         # no arguments, print file
-        cat "$HOME/dotfiles/data/.notes"
+        cat "$HOME/Dropbox/org/.notes"
     elif [[ "$1" == "-c" ]]; then
         # clear file
-        > "$HOME/dotfiles/data/.notes"
+        > "$HOME/Dropbox/org/.notes"
     else
         # add all arguments to file
-        printf "%s\n" "$*" >> "$HOME/dotfiles/data/.notes"
+        printf "%s\n" "$*" >> "$HOME/Dropbox/org/.notes"
     fi
 }
 
 todo() {
     if [[ ! -f $HOME/.todo ]]; then
-        touch "$HOME/dotfiles/data/.todo"
+        touch "$HOME/Dropbox/org/.todo"
     fi
 
     if ! (($#)); then
-        cat "$HOME/dotfiles/data/.todo"
+        cat "$HOME/Dropbox/org/.todo"
     elif [[ "$1" == "-l" ]]; then
-        nl -b a "$HOME/dotfiles/data/.todo"
+        nl -b a "$HOME/Dropbox/org/.todo"
     elif [[ "$1" == "-c" ]]; then
-        > "$HOME/dotfiles/data/.todo"
+        > "$HOME/Dropbox/org/.todo"
     elif [[ "$1" == "-r" ]]; then
-        nl -b a "$HOME/dotfiles/data/.todo"
+        nl -b a "$HOME/Dropbox/org/.todo"
         printf "----------------------------\n"
         read -p "Type a number to remove: " number
-        ex -sc "${number}d" "$HOME/dotfiles/data/.todo"
+        ex -sc "${number}d" "$HOME/Dropbox/org/.todo"
     else
-        printf "%s\n" "$*" >> "$HOME/dotfiles/data/.todo"
+        printf "%s\n" "$*" >> "$HOME/Dropbox/org/.todo"
     fi
 }
 
-docview () {
+###############################
+docview() {
     if [[ -f $1 ]] ; then
         case $1 in
             *.pdf)       evince   "$1" ;;
@@ -375,97 +308,49 @@ docview () {
     fi
 }
 
-# trap EC ERR
 
-# autocd
-#shopt -s autocd
-
-# zsh help
-
+###############################
 # handle proxies
+###############################
 #export http_proxy=http://127.0.0.1:3127
 #export ftp_proxy=http://127.0.0.1:3127
 #export https_proxy=http://127.0.0.1:3127
-assignProxy(){
+###############################
+assignProxy() {
    PROXY_ENV="http_proxy ftp_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY"
    for envar in $PROXY_ENV
    do
      export $envar=$1
    done
- }
+}
 
-clrProxy(){
+clrProxy() {
    assignProxy "" # This is what 'unset' does.
- }
+}
 
-mfaProxy(){
+mfaProxy() {
    export no_proxy="10.0.*,localhost,127.0.0.1,localaddress,.localdomain.com"
    #user=YourUserName
    #read -p "Password: " -s pass &&  echo -e " "
    #proxy_value="http://$user:$pass@ProxyServerAddress:Port"
    proxy_value="http://192.168.5.55:80"
-   assignProxy $proxy_value  
- }
-
-cntlmProxy(){
-   export no_proxy="10.0.*,localhost,127.0.0.1,localaddress,.localdomain.com"
-   proxy_value="http://10.0.2.1:3127"
-   assignProxy $proxy_value  
- }
-wallProxy(){
-   export no_proxy="10.0.*,localhost,127.0.0.1,localaddress,.localdomain.com"
-   proxy_value="http://127.0.0.1:8087"
-   assignProxy $proxy_value  
- }
-
-#push and pull from git.oschina.net
-gitPush(){
-	git add .
-	git commit -m "autopush"  
-	git push
-}
-
-gitPull(){
-	git pull origin master
-}
-
-gitHelp(){
-	echo This is the help of Quick Git Commands
-	echo --------------------------------------
-	echo 1. cloneosa wiki101
-	echo 2. clonegh mongoblog
-	echo 3. addremote url
-	echo 4. orphan branch_name
-	echo 5. clean
-	echo 6. gitproxy 127.0.0.1:3127
-	echo 7. gitautologin
-	echo --------------------------------------
-	echo End of help
+   assignProxy $proxy_value
 }
 
 
-# Start a nginx server from a directory, optionally specifying the port
-# (Requires openresty)
-runresty(){
-    MENU="default currentDir"
-    select opt in $MENU;do
-        if [ "$opt" = "default" ]; then
-            echo Stopping resty server
-            /usr/local/openresty/nginx/sbin/nginx -s stop
-            echo Starting resty server on default directory
-            /usr/local/openresty/nginx/sbin/nginx
-            break
-        elif [ "$opt" = "currentDir" ]; then
-            echo Stopping resty server
-            /usr/local/openresty/nginx/sbin/nginx -s stop
-            echo Starting resty server on current directory
-            /usr/local/openresty/nginx/sbin/nginx -p . -c nginx.conf
-            break
-        fi
-    done
+###############################
+#push and pull
+###############################
+deploy() {
+
+  today=$(date +%Y%m%d_%s)
+
+  git add .
+  git commit -m "$today"
+  git push
 }
 
-dockerMenu(){
+dk() {
     MENU="start pull push run img ps rml rma" 
     select opt in $MENU; do 
 		if [ "$opt" = "start" ]; then 
@@ -498,32 +383,30 @@ dockerMenu(){
 	done
 }
 
-startGAE(){
-	echo Starting GAE Proxy Server on 127.0.0.1:8087
-	systemctl stop goagent
-	systemctl start goagent
-	ps aux|grep [g]oagent
-	echo Done
-}  
 
-startJdc(){
-	echo Setting environment of jdc for you
-	export ACCESS_KEY='258c3aef428148408f38a5ff87e96b6a'
-	export SECRET_KEY='c083a32ffde645a9a49662b3013e58d9wbmmT1iX'
+###############################
+## FS tools
+###############################
+
+#  dir and cd into it   
+mcd() {  
+    mkdir -pv "$@"  
+    cd "$@"  
+} 
+
+# Create a new directory and enter it
+mkd() {
+	mkdir -p "$@" && cd "$@";
 }
 
-startdocker(){
-	echo Starting Docker
-	#if [ /var/run/docker.sock ]; then
-		#echo Docker Daemon started already! Skipping!
-	#else
-		docker -d &
-	#fi
+touchexe() {
+	touch "$@" && chmod +x "$@";
 }
 
-mktar(){ tar cvf  "${1%%/}.tar"     "${1%%/}/"; }  
-mktgz(){ tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }  
-mktbz(){ tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
+# Change working directory to the top-most Finder window location
+cdf() { # short for `cdfinder`
+	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+}
 
 ck() {  
   while true; do  
@@ -544,17 +427,57 @@ fix() {
   fi  
 }  
 
-#  dir and cd into it   
-mcd(){  
-    mkdir -pv "$@"  
-    cd "$@"  
-} 
+###############################
+## zip tools
+###############################
+# Create a .tar
+mktar(){ tar cvf  "${1%%/}.tar"     "${1%%/}/"; }  
 
-put(){
-    source ~/env.sh
-    qboxrsctl put -c $1 $2 $2;
+# Create a .tar.gz
+mktgz(){ tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }  
+
+# Create a .tar.bz2
+mktbz(){ tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
+
+# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
+mktgz2() {
+	local tmpFile="${@%/}.tar";
+	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
+
+	size=$(
+		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
+		stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
+	);
+
+	local cmd="";
+	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
+		# the .tar file is smaller than 50 MB and Zopfli is available; use it
+		cmd="zopfli";
+	else
+		if hash pigz 2> /dev/null; then
+			cmd="pigz";
+		else
+			cmd="gzip";
+		fi;
+	fi;
+
+	echo "Compressing .tar using \`${cmd}\`…";
+	"${cmd}" -v "${tmpFile}" || return 1;
+	[ -f "${tmpFile}" ] && rm "${tmpFile}";
+	echo "${tmpFile}.gz created successfully.";
 }
-# init commands
-# mfaProxy
-# startdocker
+
+# Determine size of a file or total size of a directory
+fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh;
+	else
+		local arg=-sh;
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@";
+	else
+		du $arg .[^.]* *;
+	fi;
+}
 
