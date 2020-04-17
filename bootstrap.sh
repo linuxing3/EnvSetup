@@ -124,8 +124,7 @@ function config_app(){
   green "======================="
   blue "Configure app"
   green "======================="
-  read -p "Input your usename" username
-  read -p "Input your password" password
+  read -p "Input your usename and password, separate with space" username password
   CONFIG_FILES="authinfo condarc esmtprc fbtermrc getmailrc gitconfig msmtprc offlineimaprc procmail xinitrc"
 
   cd
@@ -133,8 +132,8 @@ function config_app(){
   do
     echo "Configuring $FILE for you"
     cp EnvSetup/config/$FILE ".$FILE"
-    sed -e "s/USERNAME/$username/g" ".$FILE"
-    sed -e "s/PASSWORD/$password/g" ".$FILE"
+    sed -e "s/USERNAME/$username/" ".$FILE"
+    sed -e "s/PASSWORD/$password/" ".$FILE"
   done
   cd
 }
