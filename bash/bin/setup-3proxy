@@ -1,0 +1,12 @@
+#!/usr/sbin/3proxy
+timeouts 1 5 30 60 180 1800 15 60
+log /usr/local/etc/3proxy/logs/3proxy.log D
+logformat "- +_L%t.%.  %N.%p %E %U %C:%c %R:%r %O %I %h %T"
+archiver rar rar a -df -inul %A %F
+rotate 30
+daemon
+external 190.78.193.224
+internal 192.168.0.100
+auth iponly
+proxy -a -p1234
+socks -a -p1235
