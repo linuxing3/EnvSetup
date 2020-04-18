@@ -16,3 +16,25 @@ function search() {
   sed -n "1,\$p" $1 | grep -m10 -nF $2
 }
 
+function init-org-home-directory() {
+
+  today=$(date +%Y-%m-%d-%s)
+  cd
+  tar cvf "org.$today.tar" org
+  rm -rf ~/org
+  mkdir -p org
+  cd org
+  for dir in attach journal roam brain
+  do
+    rm -f $dir
+    mkdir -p $dir
+  done
+
+  for file in inbox links snippets tutorials projects
+  do
+    rm -f "$file.org"
+    touch "$file.org"
+    echo "* $file org file created $today\n" >> "$file.org" 
+  done
+  echo "Done! Created org home directory!"
+}
