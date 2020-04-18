@@ -1,7 +1,6 @@
 set nocompatible
 set nowrap
 set cursorline
-set colorcolumn
 set hlsearch
 set norelativenumber
 set go=gt

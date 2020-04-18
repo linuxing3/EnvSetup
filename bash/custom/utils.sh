@@ -28,10 +28,11 @@ error() {
   exit 1
 }
 
+# Usage: exists git
 exists() {
   command -v "$1" >/dev/null 2>&1
 }
-
+# Usage: backup fileone 
 backup() {
   if [ -e "$1" ]; then
     echo
@@ -50,6 +51,62 @@ check_git() {
   fi
 }
 
+# Usage: ask "    - action?"
+ask() {
+  while true; do
+    read -p "$1 ([y]/n) " -r
+    REPLY=${REPLY:-"y"}
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      return 1
+    elif [[ $REPLY =~ ^[Nn]$ ]]; then
+      return 0
+    fi
+  done
+}
+
+# Usage: remove_line filename \
+#           "line contents"
+remove_line() {
+  # find the src file from use input
+  src=$(readlink "$1")
+  if [ $? -eq 0 ]; then
+    echo "Remove from $1 ($src):"
+  else
+    src=$1
+    echo "Remove from $1:"
+  fi
+
+  shift
+  line_no=1
+  match=0
+  while [ -n "$1" ]; do
+    # 1. locate the line
+    line=$(sed -n "$line_no,\$p" "$src" | \grep -m1 -nF "$1")
+    if [ $? -ne 0 ]; then
+      shift
+      line_no=1
+      continue
+    fi
+    # 2. get line number
+    line_no=$(( $(sed 's/:.*//' <<< "$line") + line_no - 1 ))
+    # 3. get line contents
+    content=$(sed 's/^[0-9]*://' <<< "$line")
+    match=1
+    echo    "  - Line #$line_no: $content"
+    # 4. double check?
+    [ "$content" = "$1" ] || ask "    - Remove?"
+    if [ $? -eq 0 ]; then
+      awk -v n=$line_no 'NR == n {next} {print}' "$src" > "$src.bak" &&
+        mv "$src.bak" "$src" || break
+      echo  "      - Removed"
+    else
+      echo  "      - Skipped"
+      line_no=$(( line_no + 1 ))
+    fi
+  done
+  [ $match -eq 0 ] && echo "  - Nothing found"
+  echo
+}
 ###############################
 # Simple calculator
 ###############################

@@ -12,3 +12,7 @@ alias ws="cd ~/workspace"
 alias bashconfig="emacsclient -c ~/.bashrc"
 alias ohmybash="emacsclient -c ~/.oh-my-bash"
 
+function search() {
+  sed -n "1,\$p" $1 | grep -m10 -nF $2
+}
+
