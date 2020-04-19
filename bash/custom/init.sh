@@ -12,29 +12,19 @@ alias ws="cd ~/workspace"
 alias bashconfig="emacsclient -c ~/.bashrc"
 alias ohmybash="emacsclient -c ~/.oh-my-bash"
 
-function search() {
-  sed -n "1,\$p" $1 | grep -m10 -nF $2
-}
+alias nis="npm install --save "
+alias svim='sudo vim'
 
-function init-org-home-directory() {
+alias install='sudo apt get install'
+alias update='sudo apt-get update; sudo apt-get upgrade'
 
-  today=$(date +%Y-%m-%d-%s)
-  cd
-  tar cvf "org.$today.tar" org
-  rm -rf ~/org
-  mkdir -p org
-  cd org
-  for dir in attach journal roam brain
-  do
-    rm -f $dir
-    mkdir -p $dir
-  done
+alias ..="cd .."
+alias ...="cd ..; cd .."
 
-  for file in inbox links snippets tutorials projects
-  do
-    rm -f "$file.org"
-    touch "$file.org"
-    echo "* $file org file created $today\n" >> "$file.org" 
-  done
-  echo "Done! Created org home directory!"
-}
+alias www='python -m SimpleHTTPServer 8000'
+
+alias sock5='ssh -D 8080 -q -C -N -f root@xunqinji.top'
+
+alias caddystatus="ssh root@xunqinji.top 'bash -s' < local.script.sh"
+alias trojanstatus="ssh root@xunqinji.top ARG1="arg1" ARG2="arg2" 'bash -s' < local_script.sh"
+

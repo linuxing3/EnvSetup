@@ -1,6 +1,16 @@
 ###############################
 ## Basic tools
 ###############################
+RCol='\e[0m'   
+Bla='\e[0;30m';     BBla='\e[1;30m';    UBla='\e[4;30m';    IBla='\e[0;90m';    BIBla='\e[1;90m';   On_Bla='\e[40m';    On_IBla='\e[0;100m';
+Red='\e[0;31m';     BRed='\e[1;31m';    URed='\e[4;31m';    IRed='\e[0;91m';    BIRed='\e[1;91m';   On_Red='\e[41m';    On_IRed='\e[0;101m';
+Gre='\e[0;32m';     BGre='\e[1;32m';    UGre='\e[4;32m';    IGre='\e[0;92m';    BIGre='\e[1;92m';   On_Gre='\e[42m';    On_IGre='\e[0;102m';
+Yel='\e[0;33m';     BYel='\e[1;33m';    UYel='\e[4;33m';    IYel='\e[0;93m';    BIYel='\e[1;93m';   On_Yel='\e[43m';    On_IYel='\e[0;103m';
+Blu='\e[0;34m';     BBlu='\e[1;34m';    UBlu='\e[4;34m';    IBlu='\e[0;94m';    BIBlu='\e[1;94m';   On_Blu='\e[44m';    On_IBlu='\e[0;104m';
+Pur='\e[0;35m';     BPur='\e[1;35m';    UPur='\e[4;35m';    IPur='\e[0;95m';    BIPur='\e[1;95m';   On_Pur='\e[45m';    On_IPur='\e[0;105m';
+Cya='\e[0;36m';     BCya='\e[1;36m';    UCya='\e[4;36m';    ICya='\e[0;96m';    BICya='\e[1;96m';   On_Cya='\e[46m';    On_ICya='\e[0;106m';
+Whi='\e[0;37m';     BWhi='\e[1;37m';    UWhi='\e[4;37m';    IWhi='\e[0;97m';    BIWhi='\e[1;97m';   On_Whi='\e[47m';    On_IWhi='\e[0;107m';
+
 blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
@@ -13,27 +23,27 @@ red(){
     echo -e "\033[31m\033[01m$1\033[0m"
 }
 
-msg() {
+function msg() {
   printf '%b\n' "$1" >&2
 }
 
-success() {
+function success() {
   if [ "$ret" -eq '0' ]; then
     msg "\\33[32m[✔]\\33[0m ${1}${2}"
   fi
 }
 
-error() {
+function error() {
   msg "\\33[31m[✘]\\33[0m ${1}${2}"
   exit 1
 }
 
 # Usage: exists git
-exists() {
+function exists() {
   command -v "$1" >/dev/null 2>&1
 }
 # Usage: backup fileone 
-backup() {
+function backup() {
   if [ -e "$1" ]; then
     echo
     msg "\\033[1;34m==>\\033[0m Attempting to back up your original vim configuration"
@@ -52,7 +62,7 @@ check_git() {
 }
 
 # Usage: ask "    - action?"
-ask() {
+function ask() {
   while true; do
     read -p "$1 ([y]/n) " -r
     REPLY=${REPLY:-"y"}
@@ -64,49 +74,6 @@ ask() {
   done
 }
 
-# Usage: remove_line filename \
-#           "line contents"
-remove_line() {
-  # find the src file from use input
-  src=$(readlink "$1")
-  if [ $? -eq 0 ]; then
-    echo "Remove from $1 ($src):"
-  else
-    src=$1
-    echo "Remove from $1:"
-  fi
-
-  shift
-  line_no=1
-  match=0
-  while [ -n "$1" ]; do
-    # 1. locate the line
-    line=$(sed -n "$line_no,\$p" "$src" | \grep -m1 -nF "$1")
-    if [ $? -ne 0 ]; then
-      shift
-      line_no=1
-      continue
-    fi
-    # 2. get line number
-    line_no=$(( $(sed 's/:.*//' <<< "$line") + line_no - 1 ))
-    # 3. get line contents
-    content=$(sed 's/^[0-9]*://' <<< "$line")
-    match=1
-    echo    "  - Line #$line_no: $content"
-    # 4. double check?
-    [ "$content" = "$1" ] || ask "    - Remove?"
-    if [ $? -eq 0 ]; then
-      awk -v n=$line_no 'NR == n {next} {print}' "$src" > "$src.bak" &&
-        mv "$src.bak" "$src" || break
-      echo  "      - Removed"
-    else
-      echo  "      - Skipped"
-      line_no=$(( line_no + 1 ))
-    fi
-  done
-  [ $match -eq 0 ] && echo "  - Nothing found"
-  echo
-}
 ###############################
 # Simple calculator
 ###############################
