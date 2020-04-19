@@ -1,0 +1,26 @@
+Host xunqinji
+     HostName xunqinji.top
+     User root
+Host dongxishijie
+     HostName dongxishijie.xyz
+     User root
+Host lenovo
+     HostName 192.168.1.2
+     User root
+Host xiaomi
+     HostName 192.168.1.1
+     User root
+Host huawei
+     HostName 192.168.1.189
+     Port 8022
+     User u0_a101
+Host pi
+     HostName 192.168.1.200
+     User pi
+Host dulce
+     HostName 192.168.1.1
+     User root
+Host vagrant
+     HostName 127.0.0.1
+     User vagrant
+     Port 2222
