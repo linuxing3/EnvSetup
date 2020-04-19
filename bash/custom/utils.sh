@@ -88,7 +88,7 @@ calc() {
 ###############################
 # Create a data URL from a file
 ###############################
-dataurl() {
+function dataurl() {
 	local mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
@@ -122,7 +122,7 @@ server() {
 ###############################
 # Quick convert from decimal to binary
 ###############################
-dec2bin(){
+function dec2bin(){
 	python -c $'bin($1)';
 }
 
@@ -303,7 +303,7 @@ note () {
     if ! (($#)); then
         # no arguments, print file
         cat "$HOME/Dropbox/org/.notes"
-    elif [[ "$1" == "-c" ]]; then
+    elif [[ "$2" == "-c" ]]; then
         # clear file
         > "$HOME/Dropbox/org/.notes"
     else
@@ -512,7 +512,7 @@ mktgz2() {
 }
 
 # Determine size of a file or total size of a directory
-fs() {
+function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
 		local arg=-sbh;
 	else
@@ -614,6 +614,10 @@ function init-org-home-directory() {
   done
   echo "Done! Created org home directory!"
 }
+
+###############################
+## ssh tools
+###############################
 
 alias xqj="ssh -X -l root xunqinji.top -L 22:127.0.0.1:2222"
 alias dx="ssh -X -l root dongxishijie.xyz -L 22:127.0.0.1:2221"
