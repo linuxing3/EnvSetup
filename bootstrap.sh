@@ -88,7 +88,7 @@ function install_nvm(){
   blue "Installing nvm+npm"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/nvm.sh
+  sh EnvSetup/bash/bin/nodejs.sh
   cd
 }
 

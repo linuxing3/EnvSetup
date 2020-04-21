@@ -13,7 +13,7 @@ sudo ln -s /usr/bin/pip3 /usr/bin/pip
 
 cd
 # using pyenv
-pip3 install --user --no-warn-script-location pyenv
+curl https://pyenv.run | bash
 echo "export PATH=$PATH:$HOME/.pyenv/bin" >> $HOME/.bashrc
 
 # using ansible
