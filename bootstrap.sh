@@ -88,7 +88,7 @@ function install_nvm(){
   blue "Installing nvm+npm"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/nvm.sh
+  sh EnvSetup/bash/bin/nodejs.sh
   cd
 }
 
@@ -143,6 +143,13 @@ function config_app(){
   cd
 }
 
+function config_network(){
+  green "======================="
+  blue "Configure network"
+  green "======================="
+  bash ~/EnvSetup/bash/bin/setup-wifi-debian.sh
+}
+
 
 start_menu(){
 
@@ -163,6 +170,7 @@ start_menu(){
   red " 8. trojan"
   red " 9. v2ray"
   red " 10. config app"
+  red " 11. config network"
   blue " 0. 退出脚本"
   echo
   read -p "请输入数字:" num
@@ -196,6 +204,9 @@ start_menu(){
   ;;
   10)
   config_app
+  ;;
+  11)
+  config_network
   ;;
   0)
   exit 1
