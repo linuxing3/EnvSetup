@@ -40,26 +40,26 @@
 ! URxvt theme
 !==========================================================================
 !! urxvt color set 1
-URxvt.background:   white
-URxvt.foreground:   black
-URxvt.colorBD:red
-URxvt.colorUL:blue
-XRxvt*color0:                  S_base02
-XRxvt*color1:                  S_red
-XRxvt*color2:                  S_green
-XRxvt*color3:                  S_yellow
-XRxvt*color4:                  S_blue
-XRxvt*color5:                  S_magenta
-XRxvt*color6:                  S_cyan
-XRxvt*color7:                  S_base2
-XRxvt*color9:                  S_orange
-XRxvt*color8:                  S_base03
-XRxvt*color10:                 S_base01
-XRxvt*color11:                 S_base00
-XRxvt*color12:                 S_base0
-XRxvt*color13:                 S_violet
-XRxvt*color14:                 S_base1
-XRxvt*color15:                 S_base3
+!URxvt.background:   white
+!URxvt.foreground:   black
+!URxvt.colorBD:red
+!URxvt.colorUL:blue
+!XRxvt.color0:                  S_base02
+!XRxvt.color1:                  S_red
+!XRxvt.color2:                  S_green
+!XRxvt.color3:                  S_yellow
+!XRxvt.color4:                  S_blue
+!XRxvt.color5:                  S_magenta
+!XRxvt.color6:                  S_cyan
+!XRxvt.color7:                  S_base2
+!XRxvt.color9:                  S_orange
+!XRxvt.color8:                  S_base03
+!XRxvt.color10:                 S_base01
+!XRxvt.color11:                 S_base00
+!XRxvt.color12:                 S_base0
+!XRxvt.color13:                 S_violet
+!XRxvt.color14:                 S_base1
+!XRxvt.color15:                 S_base3
 !URxvt.color0: #000000
 !URxvt.color1: #CC0000
 !URxvt.color2: #4E9A06
@@ -80,47 +80,47 @@ XRxvt*color15:                 S_base3
 ! urxvt color set 2
 !URxvt . depth : 32
 ! enable pseudo - transparency
-!URxvt . transparent : true
+!URxvt.transparent : true
 ! opacity
 !URxvt . shading : 15
 ! background
-!URxvt . background : #000000
-!URxvt . foreground : #c0c0c0
+!URxvt.background : #000000
+!URxvt.foreground : #c0c0c0
 ! black
-!URxvt . color0 : #000000
-!URxvt . color8 : #2C2C2C
+!URxvt.color0 : #000000
+!URxvt.color8 : #2C2C2C
 ! red
-!URxvt . color1 : #C42B2B
-!URxvt . color9 : #FF2929
+!URxvt.color1 : #C42B2B
+!URxvt.color9 : #FF2929
 ! green
-!URxvt . color2 : #3BD93B
-!URxvt . color10 : #28FC28
+!URxvt.color2 : #3BD93B
+!URxvt.color10 : #28FC28
 ! yellow
-!URxvt . color3 : #E3E336
-!URxvt . color11 : #FFEA1E
+!URxvt.color3 : #E3E336
+!URxvt.color11 : #FFEA1E
 ! blue
-!URxvt . color4 : #4747BB
-!URxvt . color12 : #2121DE
+!URxvt.color4 : #4747BB
+!URxvt.color12 : #2121DE
 ! magenta
-!URxvt . color5 : #CB40CB
-!URxvt . color13 : #FF00FF
+!URxvt.color5 : #CB40CB
+!URxvt.color13 : #FF00FF
 ! cyan
-!URxvt . color6 : #6FD2D2
-!URxvt . color14 : #00FFFF
+!URxvt.color6 : #6FD2D2
+!URxvt.color14 : #00FFFF
 ! white
-!URxvt . color7 : #C0C0C0
-!URxvt . color15 : #FFFFFF
+!URxvt.color7 : #C0C0C0
+!URxvt.color15 : #FFFFFF
 
 ! urxvt color set 3
-!URxvt.foreground:#ffffff
-!URxvt.background:[90]#000000
-!URxvt.colorBD:Gray95
-!URxvt.colorUL:Green
-!URxvt.color1:Red2
-!URxvt.color4:RoyalBlue
-!URxvt.color5:Magenta2
-!URxvt.color8:Gray50
-!URxvt.color10:Green2
+URxvt.foreground:#ffffff
+URxvt.background:[90]#000000
+URxvt.colorBD:Gray95
+URxvt.colorUL:Green
+URxvt.color1:Red2
+URxvt.color4:RoyalBlue
+URxvt.color5:Magenta2
+URxvt.color8:Gray50
+URxvt.color10:Green2
 ! scroll set 
 URxvt.scrollBar:false
 URxvt.scrollBar_right:false
@@ -131,15 +131,17 @@ URxvt.saveLines:5000
 
 ! font set
 Xft.dpi:96
-URxvt.font:xft:Dejavu Sans Mono:pixelsize=24:antialias=false,xft:Dejavu Sans Mono:pixelsize=24
-URxvt.boldFont:xft:Dejavu Sans Mono:pixelsize=24:antialias=false:Bold,xft:Dejavu Sans Mono:pixelsize=24:Bold
+URxvt.font:xft:Monospace:size=12:antialias=true:style=Regular,xft:WenQuanYi Micro Hei Mono:size=12:antialias=true:style=Regular
+URxvt.boldFont:xft:Monospace:size=12:antialias=true:style=Bold, xft:WenQuanYi Micro Hei Mono:size=12:antialias=true:style=Bold
 
-! Input Method set 
+!URxvt.letterSpace: 0
+
+! Input Method set
 URxvt.inputMethod:fcitx
-URxvt.imFont:Dejavu Sans Mono
+URxvt.imFont: Monospace
 URxvt.preeditType: Root
 
-! window geometry set 
+! window geometry set
 URxvt.geometry:80x30
 URxvt.title:Rxvt-Unicode-linuxing3
 
@@ -195,10 +197,19 @@ solarizedBrightXTerm*color15:                 S_base3
 
 XTerm*locale: true
 XTerm*utf8Title: true
+
+XTerm*foreground: #ffffff
+XTerm*background: #000000
+XTerm*color1: Red2
+XTerm*color4: RoyalBlue
+XTerm*color5: Magenta2
+XTerm*color8: Gray50
+XTerm*color10: Green2
+
 XTerm*fontMenu*fontdefault*Label: Default
 !XTerm*faceName: Courier 10 Pitch:antialias=True:pixelsize=23
-XTerm*faceName: DejaVu Sans Mono:antialias=True:pixelsize=22
-XTerm*faceNameDoublesize: DejaVu Sans Mono:antialias=True:pixelsize=22
+XTerm*faceName: Monospace:antialias=True:size=12
+XTerm*faceNameDoublesize: Monospace:antialias=True:size=12
 XTerm*faceSize: 20
 XTerm*faceSize1: 20
 XTerm*faceSize2: 20
@@ -211,4 +222,15 @@ XTerm*scrollBar: true
 XTerm*rightScrollBar: true
 XTerm*jumpScroll:  true
 XTerm*SaveLines: 1000
+XTerm*fontMenu*fontdefault*Label: Default
 
+
+UXTerm*faceName: Monospace:antialias=True:size=12
+UXTerm*faceNameDoublesize: Monospace:antialias=True:size=12
+UXTerm*foreground: #ffffff
+UXTerm*background: #000000
+UXTerm*color1: Red2
+UXTerm*color4: RoyalBlue
+UXTerm*color5: Magenta2
+UXTerm*color8: Gray50
+UXTerm*color10: Green2
