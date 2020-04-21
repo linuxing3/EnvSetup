@@ -30,3 +30,9 @@ if [ -x "$HOME/.pyenv/bin/pyenv" ]; then
   eval "$($HOME/.pyenv/bin/pyenv init -)"
   eval "$($HOME/.pyenv/bin/pyenv virtualenv-init -)"
 fi
+
+# set go environment
+export GOROOT=/usr/lib/go
+export GOPATH=$HOME/workspace/go-project
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export GO111MODULE="on"
