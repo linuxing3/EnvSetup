@@ -32,7 +32,7 @@ if [ -x "$HOME/.pyenv/bin/pyenv" ]; then
 fi
 
 # set go environment
- if exists "go"; then
+if command -v "go" >/dev/null 2>&1; then
   if [ ! -d "$HOME/workspace/go-project" ]; then
     mkdir -p "$HOME/workspace/go-project"
   fi
@@ -40,4 +40,4 @@ fi
   export GOROOT=/usr/lib/go
   export GOPATH=$HOME/workspace/go-project
   export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
- fi
+fi
