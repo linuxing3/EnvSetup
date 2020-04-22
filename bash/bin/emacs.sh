@@ -3,29 +3,41 @@ echo "installing emacs 26, another of the best editors"
 echo "==========================================================="
 sudo apt-get install -y emacs-nox ripgrep
 
-read -p "Install the doom configuation[y/n]?" doom
 
-if [ eq $doom "y"]; then
+install_doom_emacs() {
   cd
   echo "installing doom emacs"
   git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
   echo "Done with doom-emacs!"
-else
-  echo "Skipped installing doom emacs"
-fi
+}
 
-read -p "Install the private doom configuation[y/n]?" private
-
-if [ eq $private "y"]; then
+install_doom_private() {
   echo "installing private doom setting for linuxing3"
   cd
   git clone https://github.com/linuxing3/doom-emacs-private ~/.doom.d
   echo "Boostrap with doom install"
   cd ~/.emacs.d/bin
   ./doom install
-else
-  echo "Skipped installing private doom setting for linuxing3"
-fi
+}
 
-doom=
-private=
+while true; do
+  read -r -p "    Install [0]doom-emacs [1]private doom [2]both: " opt
+  case $opt in
+    0)
+      install_doom_emacs
+      break
+      ;;
+    1)
+      install_doom_private
+      break
+      ;;
+    2)
+      install_doom_emacs
+      install_doom_private
+      break
+      ;;
+    *)
+      echo "Please answer 0, 1 or 2"
+      ;;
+  esac
+done

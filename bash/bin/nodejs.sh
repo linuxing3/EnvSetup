@@ -11,11 +11,29 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | b
 # sudo apt-get udpate
 # sudo apt-get install -y nodejs
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-export NVM_NODEJS_ORG_MIRROR="https://unofficial-builds.nodejs.org/download/release"
+
+while true; do
+  read -r -p "    Install from [0]official [1]unofficial: " opt
+  case $opt in
+    0)
+      echo "update NVM_NODEJS_ORG_MIRROR to https://unofficial-builds.nodejs.org/download/release"
+      export NVM_NODEJS_ORG_MIRROR="https://unofficial-builds.nodejs.org/download/release"
+      break
+      ;;
+    1)
+      echo "use default NVM_NODEJS_ORG_MIRROR https://nodejs.org/dist"
+      break
+      ;;
+    *)
+      echo "Please answer 0, 1"
+      ;;
+  esac
+done
 
 echo "Testing nvm dir exists"
+echo "If you can't run nvm, you may update sh with:"
+echo "source ~/.bashrc"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-source ~/.bashrc
 
 echo "installing latest"
 nvm install node
