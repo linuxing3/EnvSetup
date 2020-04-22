@@ -24,13 +24,6 @@ if [[ -d "$HOME/.nvm" ]]; then
     export PATH="$HOME/.nvm/bin:$PATH"
 fi
 
-<<<<<<< HEAD
-# set PATH so it includes user's pyenv bin if it exists
-if [[ -d "$HOME/.pyenv" ]]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-fi
-
-=======
 # set pyenv virtual init environment 
 if [ -x "$HOME/.pyenv/bin/pyenv" ]; then
   export PATH="$HOME/.pyenv/bin:$PATH"
@@ -39,8 +32,12 @@ if [ -x "$HOME/.pyenv/bin/pyenv" ]; then
 fi
 
 # set go environment
-export GOROOT=/usr/lib/go
-export GOPATH=$HOME/workspace/go-project
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-export GO111MODULE="on"
->>>>>>> 2c123cda9b6af5570ba1f79f15c7b7e4085b908f
+ if exists "go"; then
+  if [ ! -d "$HOME/workspace/go-project" ]; then
+    mkdir -p "$HOME/workspace/go-project"
+  fi
+  export GO111MODULE="on"
+  export GOROOT=/usr/lib/go
+  export GOPATH=$HOME/workspace/go-project
+  export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+ fi

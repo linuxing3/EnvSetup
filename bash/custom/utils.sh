@@ -387,10 +387,10 @@ mfaProxy() {
 ###############################
 deploy() {
 
-  today=$(date +%Y%m%d_%s)
+  today=$(date + %Y%m%d %H %M)
 
   git add .
-  git commit -m "$today"
+  git commit -m "Commited by $USER from $PWD on $today"
   git push
 }
 
