@@ -7,9 +7,9 @@ cd
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
 PS3='Please enter your choice: '
-select opt in "y" "n"; do
+select opt in "Install" "Skip"; do
     case $opt in
-        "y")
+        "Install")
         echo "==========================================================="
         echo "installing bash-it"
         echo "==========================================================="
@@ -21,19 +21,19 @@ select opt in "y" "n"; do
         echo "==========================================================="
         echo "installing ncdu htop fd-find rip-grep bat prettyping"
         echo "==========================================================="
-        sudo apt install ncdu
-        sudo apt install htop
-        sudo apt install fd-find
-        sudo apt install rip-grep
+        sudo apt install ncdu -y
+        sudo apt install htop -y
+        sudo apt install fd-find fd -y
+        sudo apt install rip-grep -y
 
         version=$(dpkg --print-architecture)
         wget https://github.com/sharkdp/bat/releases/download/v0.13.0/bat_0.13.0_${version}.deb
         sudo dpkg -i bat_0.13.0_${version}.deb
-        rm bat_0.13.0_i386*.deb
+        rm bat_0.13.0_${version}*.deb
 
-        wget https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping
-        mv prettyping EnvSetup/bash/bin/
-        chmod +x EnvSetup/bash/bin/prettyping
+        echo "wget https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping"
+        echo "mv prettyping EnvSetup/bash/bin/"
+        echo "chmod +x EnvSetup/bash/bin/prettyping"
 
         echo "==========================================================="
         echo "Others: like taskbook"
@@ -41,9 +41,13 @@ select opt in "y" "n"; do
         echo "npm install --global taskbook"
         break
         ;;
-        *) 
-        echo "Skipped installing additional tools" 
-        break;
+        *)
+        echo "Skipped installing additional tools"
+        break
+        ;;
+        *)
+        echo "Quit"
+        break
         ;;
     esac
 done
