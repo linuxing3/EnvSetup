@@ -14,27 +14,27 @@ red(){
     echo -e "\033[31m\033[01m$1\033[0m"
 }
 
-function msg() {
+msg() {
   printf '%b\n' "$1" >&2
 }
 
-function success() {
+success() {
   if [ "$ret" -eq '0' ]; then
     msg "\\33[32m[✔]\\33[0m ${1}${2}"
   fi
 }
 
-function error() {
+error() {
   msg "\\33[31m[✘]\\33[0m ${1}${2}"
   exit 1
 }
 
 # Usage: exists git
-function exists() {
+exists() {
   command -v "$1" >/dev/null 2>&1
 }
 # Usage: backup fileone 
-function backup() {
+backup() {
   if [ -e "$1" ]; then
     echo
     msg "\\033[1;34m==>\\033[0m Attempting to back up your original vim configuration"
@@ -53,7 +53,7 @@ check_git() {
 }
 
 # Usage: ask "    - action?"
-function ask() {
+ ask() {
   while true; do
     read -p "$1 ([y]/n) " -r
     REPLY=${REPLY:-"y"}
@@ -88,7 +88,7 @@ calc() {
 ###############################
 # Create a data URL from a file
 ###############################
-function dataurl() {
+ dataurl() {
 	local mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
@@ -122,7 +122,7 @@ server() {
 ###############################
 # Quick convert from decimal to binary
 ###############################
-function dec2bin(){
+ dec2bin(){
 	python -c $'bin($1)';
 }
 
@@ -387,7 +387,7 @@ mfaProxy() {
 ###############################
 deploy() {
 
-  today=$(date + %Y%m%d %H %M)
+  today=$(date +%Y-%m-%d-%H-%M)
 
   git add .
   git commit -m "Commited by $USER from $PWD on $today"
@@ -512,7 +512,7 @@ mktgz2() {
 }
 
 # Determine size of a file or total size of a directory
-function fs() {
+ fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
 		local arg=-sbh;
 	else
@@ -526,7 +526,7 @@ function fs() {
 }
 
 
-function params() {
+ params() {
   while [ "$1" != "" ]; do
       case $1 in
           -s  )   shift
@@ -535,7 +535,7 @@ function params() {
                   DATE=$1 ;;
           --paramter|p ) shift
                   PARAMETER=$1;;
-          -h|help  )   usage # function call
+          -h|help  )   usage #  call
                   exit ;;
           * )     usage # All other parameters
                   exit 1
@@ -545,7 +545,7 @@ function params() {
 }
 
 
-function selectmenu() {
+ selectmenu() {
   PS3='Please enter your choice: '
   options=("Option 1" "Option 2" "Option 3" "Quit")
   select opt in "${options[@]}"
@@ -569,7 +569,7 @@ function selectmenu() {
 }
 
 
-function abspath() {
+ abspath() {
   FILE="$0"
   while [[ -h ${FILE} ]]; do
       FILE="`readlink "${FILE}"`"
@@ -580,7 +580,7 @@ function abspath() {
 }
 
 
-function gnudate() {
+ gnudate() {
     if hash gdate 2> /dev/null; then
         gdate "$@"
     else
@@ -588,11 +588,11 @@ function gnudate() {
     fi
 }
 
-function search() {
+ search() {
   sed -n "1,\$p" $1 | grep -m10 -nF $2
 }
 
-function init-org-home-directory() {
+ init-org-home-directory() {
 
   today=$(date +%Y-%m-%d-%s)
   cd
