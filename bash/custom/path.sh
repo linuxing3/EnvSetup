@@ -24,3 +24,8 @@ if [[ -d "$HOME/.nvm" ]]; then
     export PATH="$HOME/.nvm/bin:$PATH"
 fi
 
+# set PATH so it includes user's pyenv bin if it exists
+if [[ -d "$HOME/.pyenv" ]]; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+fi
+
