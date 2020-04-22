@@ -53,7 +53,7 @@ check_git() {
 }
 
 # Usage: ask "    - action?"
- ask() {
+ask() {
   while true; do
     read -p "$1 ([y]/n) " -r
     REPLY=${REPLY:-"y"}
