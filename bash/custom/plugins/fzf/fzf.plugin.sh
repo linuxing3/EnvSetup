@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
-# Setup fzf, the path must be set in .bashrc instead of this file
-# ---------
-if [[ ! "$PATH" == */home/vagrant/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/home/vagrant/.fzf/bin"
-fi
+export FZF_DEFAULT_COMMAND='fdfind --type f'
 
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "/home/vagrant/.fzf/shell/completion.bash" 2> /dev/null
+export FZF_DEFAULT_OPTS="--height 40% --layout reverse --border\
+--preview 'bat --style=numbers --color=always {} || cat {} || file {} || head -100 {}' "
 
-# Key bindings
-# ------------
-source "/home/vagrant/.fzf/shell/key-bindings.bash"
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='~~'
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
