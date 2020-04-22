@@ -15,7 +15,7 @@ function install_vim(){
   blue "Installing space-vim for you"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/vim.sh
+  bash EnvSetup/bash/bin/vim.sh
   cd
 }
 
@@ -24,7 +24,7 @@ function install_bash(){
   blue "Installing oh-my-bash for you"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/bash.sh
+  bash EnvSetup/bash/bin/bash.sh
 
   cd
   cat > .bashrc <<-EOF
@@ -59,7 +59,7 @@ function install_tmux(){
   blue "Installing oh-my-tmux for you"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/tmux.sh
+  bash EnvSetup/bash/bin/tmux.sh
   cd
 }
 
@@ -68,7 +68,7 @@ function install_emacs(){
   blue "Installing doom emacs for you"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/emacs.sh
+  bash EnvSetup/bash/bin/emacs.sh
   cd
 }
 
@@ -78,7 +78,7 @@ function install_python(){
   blue "Installing python+pyenv+pipenv+ansible"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/python.sh
+  bash EnvSetup/bash/bin/python.sh
   cd
 }
 
@@ -88,7 +88,7 @@ function install_nvm(){
   blue "Installing nvm+npm"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/nodejs.sh
+  bash EnvSetup/bash/bin/nodejs.sh
   cd
 }
 
@@ -97,7 +97,7 @@ function install_caddy(){
   blue "Installing caddy"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/install-caddy.sh
+  bash EnvSetup/bash/bin/install-caddy.sh
   cd
 }
 
@@ -106,7 +106,7 @@ function install_trojan(){
   blue "Installing trojan"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/install-trojan.sh
+  bash EnvSetup/bash/bin/install-trojan.sh
   cd
 }
 
@@ -115,7 +115,7 @@ function install_v2ray(){
   blue "Installing v2ray"
   green "======================="
   cd
-  sh EnvSetup/bash/bin/install-v2ray.sh
+  bash EnvSetup/bash/bin/install-v2ray.sh
   cd
 }
 
@@ -213,7 +213,7 @@ start_menu(){
   ;;
   *)
   clear
-  red "请输入正确数字"
+  read "请输入正确数字"
   sleep 1s
   start_menu
   ;;
