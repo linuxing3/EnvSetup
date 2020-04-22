@@ -88,7 +88,7 @@ calc() {
 ###############################
 # Create a data URL from a file
 ###############################
- dataurl() {
+dataurl() {
 	local mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
@@ -122,7 +122,7 @@ server() {
 ###############################
 # Quick convert from decimal to binary
 ###############################
- dec2bin(){
+dec2bin(){
 	python -c $'bin($1)';
 }
 
@@ -512,7 +512,7 @@ mktgz2() {
 }
 
 # Determine size of a file or total size of a directory
- fs() {
+fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
 		local arg=-sbh;
 	else
@@ -526,7 +526,7 @@ mktgz2() {
 }
 
 
- params() {
+params() {
   while [ "$1" != "" ]; do
       case $1 in
           -s  )   shift
@@ -545,7 +545,7 @@ mktgz2() {
 }
 
 
- selectmenu() {
+selectmenu() {
   PS3='Please enter your choice: '
   options=("Option 1" "Option 2" "Option 3" "Quit")
   select opt in "${options[@]}"
@@ -569,7 +569,7 @@ mktgz2() {
 }
 
 
- abspath() {
+abspath() {
   FILE="$0"
   while [[ -h ${FILE} ]]; do
       FILE="`readlink "${FILE}"`"
@@ -580,7 +580,7 @@ mktgz2() {
 }
 
 
- gnudate() {
+gnudate() {
     if hash gdate 2> /dev/null; then
         gdate "$@"
     else
@@ -588,11 +588,11 @@ mktgz2() {
     fi
 }
 
- search() {
+search() {
   sed -n "1,\$p" $1 | grep -m10 -nF $2
 }
 
- init-org-home-directory() {
+init-org-home-directory() {
 
   today=$(date +%Y-%m-%d-%s)
   cd
