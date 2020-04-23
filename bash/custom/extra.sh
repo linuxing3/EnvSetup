@@ -11,7 +11,7 @@ load_one() {
   single_type=$(echo "$file_type" | sed -e "s/completions$/completion/g" | sed -e "s/plugins$/plugin/g")
   file_to_enable="${BASH_IT}/${file_type}/available/${just_the_name}.${single_type}.bash"
   if [ -e $file_to_enable ]; then
-    echo "Bash-it Plugin enabled: $file_to_enable"
+    # echo "Bash-it Plugin enabled: $file_to_enable"
     source $file_to_enable
   fi
 }
