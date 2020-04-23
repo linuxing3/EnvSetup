@@ -67,20 +67,30 @@ EOF
 echo "-----------------------------"
 echo "Installing caddy"
 echo "curl https://getcaddy.com | bash -s personal"
-touch /usr/local/bin/caddy
+
+echo "Installing nginx"
+sudo apt install -y nginx
+
+curl https://getcaddy.com | bash -s personal
+
+echo "-----------------------------"
 #root拥有caddy文件防止其他账户修改
+touch /usr/local/bin/caddy
 chown root:root /usr/local/bin/caddy
+
 #修改权限为755，root可读写执行，其他账户不可写
 chmod 755 /usr/local/bin/caddy
 #Caddy不会由root运行，使用setcap允许caddy作为用户进程绑定低号端口（服务器需要80和443）
 setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
+echo "-----------------------------"
 echo "检查名为www-data的组和用户是否已经存在"
 cat /etc/group | grep www-data
 cat /etc/passwd | grep www-data
 groupadd -g 33 www-data
 useradd -g www-data --no-user-group --home-dir /var/www --no-create-home --shell /usr/sbin/nologin --system --uid 33 www-data
 
+echo "-----------------------------"
 echo "创建文件夹存储Caddy的配置文件"
 mkdir /etc/caddy
 chown -R root:root /etc/caddy
@@ -114,7 +124,7 @@ xunqinji.top:80
 }
 EOF
 
-echo "1）tro.abcdef.com：要改为你自己的域名，若是这样的二级域名，其正确解析请参考前文【自己搭建代理服务器：域名购买及设置与ip服务器关联】；
+echo "1）domain.com：要改为你自己的域名，若是这样的二级域名，其正确解析请参考前文【自己搭建代理服务器：域名购买及设置与ip服务器关联】；
 2）12345@gmail.com：要改为你自己的邮箱，Caddy将自动与Let's Encrypt联系以获取SSL证书并在90天到期后自动更新证书；
 3）Caddy将自动与Let's Encrypt联系以获取SSL证书。它将证书和密钥放在“/etc/ssl/caddy/acme/acme-v02.api.letsencrypt.org/sites/你自己的域名/” 目录中；
 4）此文件保存后，Caddy会随即向Let's Encrypt发出SSL证书申请，一般很快在一分钟就可完成，但可能有人会遇到特殊情况比较久一些才会完成。"
@@ -131,9 +141,7 @@ chown root:www-data /var/log/caddy.log
 
 echo "-----------------------------"
 echo "加入Caddy服务配置文件"
-echo "wget https://raw.githubusercontent.com/caddyserver/caddy/master/dist/init/linux-systemd/caddy.service
-caddy"
-
+echo "wget https://raw.githubusercontent.com/caddyserver/caddy/master/dist/init/linux-systemd/caddy.service"
 
 touch /etc/systemd/system/caddy.service
 chown root:root /etc/systemd/system/caddy.service
@@ -191,14 +199,17 @@ ReadWriteDirectories=/etc/ssl/caddy
 
 [Install]
 WantedBy=multi-user.target
-"
+" >> /etc/systemd/system/caddy.service
 
 systemctl daemon-reload
 
+echo "-----------------------------"
 echo "赋予Caddy配置文件权限"
 chown root:root /etc/caddy/Caddyfile
 chmod 644 /etc/caddy/Caddyfile
 
+
+echo "Caddy启动"
 systemctl stop caddy
 systemctl start caddy
 
