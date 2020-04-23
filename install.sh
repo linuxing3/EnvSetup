@@ -291,6 +291,6 @@ dialog --title "Pre Installation" --infobox "Installing \`dialog\` and \`git\`."
 check_commands
 #
 dialog --title "Installation" --infobox "Installing..." 5 70
-installationloop
+install 
 #
 #finalize
