@@ -622,3 +622,9 @@ init-org-home-directory() {
 alias xqj="ssh -X -l root xunqinji.top -L 22:127.0.0.1:2222"
 alias dx="ssh -X -l root dongxishijie.xyz -L 22:127.0.0.1:2221"
 alias vag="ssh -X -l root -p 2222 localhost -L 2222:127.0.0.1:22"
+
+alias stop_watching1="ssh -l root xunqinji.top '/bin/systemctl stop trojan && /bin/systemctl stop v2ray'"
+alias start_watching1="ssh -l root xunqinji.top '/bin/systemctl restart trojan && /bin/systemctl restart v2ray'"
+
+alias stop_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl stop trojan && /bin/systemctl stop v2ray'"
+alias start_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl restart trojan && /bin/systemctl restart v2ray'"
