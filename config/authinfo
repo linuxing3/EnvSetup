@@ -1,2 +1,2 @@
-machine smtp.gmail.com login xingwenju@gmail.com password
-machine imap.gmail.com login xingwenju@gmail.com port 993 password
+machine smtp.gmail.com login USER@gmail.com PASSWORD
+machine imap.gmail.com login USER@gmail.com port 993 PASSWORD

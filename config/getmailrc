@@ -3,7 +3,7 @@ type = SimplePOP3SSLRetriever
 server = mail.mfa.gov.cn
 port = 995
 username = xing_wenju
-password = Tswc#19780916
+password = password
 
 [destination]
 type = Maildir
