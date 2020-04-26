@@ -1,5 +1,0 @@
-#+TITLE: Journal Entry - Wednesday, 02/14/2018
-#+AUTHOR: xing wenju
-#+IRC: linuxing3 on freenode
-#+EMAIL: xingwenju@gmail.com
-#+STARTUP: overview

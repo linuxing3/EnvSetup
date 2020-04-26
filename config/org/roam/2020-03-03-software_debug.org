@@ -1,8 +1,0 @@
-#+DATE: write your date
-#+AUTHOR: linuxing
-#+EXCERPT: emacs
-#+TITLE: software debug
-
-Go back to inbox: [[file:2020-03-02.org][Other Brain Inbox]]
-* Software debug
-** debug with #vscode#
