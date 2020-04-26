@@ -1,0 +1,55 @@
+#+TITLE: Inbox
+#+AUTHOR: Xing Wenju
+#+EMAIL:  xingwenju@gmail.com
+#+DATE:   2017 Nov 15
+#+STARTUP: overview
+#+STARTUP: hidestars
+#+STARTUP: logdone
+#+PROPERTY: Effort_ALL  0:10 0:20 0:30 1:00 2:00 4:00 6:00 8:00
+#+COLUMNS: %38ITEM(Details) %TAGS(Context) %7TODO(To Do) %5Effort(Time){:} %6CLOCKSUM
+#+PROPERTY: Effort_ALL 0 0:10 0:20 0:30 1:00 2:00 3:00 4:00 8:00
+#+TAGS: { @office(o) @home(h) } COMPUTER(c) PROJECT(p) READING(r)
+#+TAGS: PLEASURE(d) LUNCHTIME(l)
+#+FILETAGS: REFILE
+#+SEQ_TODO: TODO(t) IN-PROGRESS(i) NEXT(n) | DONE(d) CANCELLED(c)
+#+BEGIN_QUOTE
+This section will hold the capture tasks
+
+1) All tasks is a todo.
+2) Project is more tasks.
+
+3) Tasks can be refiled or archived.
+
+Using the =GTD= flow to control the work procedure.
+
+1) Press =F9= to capture task, save it to =inbox= file
+2) Press =SPC-m-r= to refile
+3) Use =my-journal-file-today= to add a new journal, then
+=my-journal-file-insert= to get template.
+
+All information will be stored with =Dropbox=
+#+END_QUOTE
+* Tasks
+#+CATEGORY: Tasks
+[[tag:TODO][All Todos]]
+* Calendar
+#+CATEGORY: Calendar
+** DONE Almorzo con Korea
+CLOSED: [2020-03-13 Fri 23:41] SCHEDULED: <2020-03-13 Fri 12:00>
+[2020-03-02 Mon 19:16]
+* Projects
+#+CATEGORY: Projects
+** 配置openwrt科学上网
+[[file:roam/20200303210029_virtualization.org][scientific internet surf]]
+* Financial
+#+CATEGORY: Financial
+* Chrome
+[[file:d:/Dropbox/shared/chrome_bookmarks.html][chrome bookmarks]]
+* News
+ [[https://feedly.com/][Feedly, News Empowered]]
+* TODO 买菜
+[2020-03-14 Sat 11:46]
+
+芹菜
+面包片
+猕猴桃

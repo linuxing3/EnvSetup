@@ -1,0 +1,72 @@
+#+title: Frontend Technology Roadmap
+#+author: Xing Wenju
+#+except: Review the technology stack of 2018
+#+date: 2018-12-08
+
+Today is saturday. While my son is learning playing piano with the venezuelan
+master, I will make a short review about the frontend technology map in this
+year.
+
+As mentioned some online courses, You will become comfortable using the below
+skills and you will be able to put these on your resume:
+
+** SSH
+** React + Redux
+** Webpack4 + Parcel
+** Node.js + Express
+** Front End Performance Optimizations
+** Back End Performance Optimization
+** Progressive Web Apps
+** Typescript
+** Software Testing
+** Server Side Rendering and Client Side Rendering
+** Front End Security Optimizations
+** Back End Security Optimizations
+** Docker
+** Redis
+** Sessions + JWT
+** Amazon Web Services
+** Serverless Architecture
+** Continuous Integration
+** Continuous Delivery
+** Continuous Deployment
+
+* 2018 I tried the following:
+- Create a =vue-cli-plugin= with =nedb= and =lowdb= integration
+- Publish my first =npm= package
+- Do the =jest= test and apply the =TDD=
+- Apply =Orm= with =vuex=
+- Try =graphql= with =prisma=
+- Build a =electron= program
+- Do basic =CI= and publish =releases= in =github=
+- Create =template= with =hygen= for production ready approach
+- Using =typescript= as main programming language
+- Borrow beautiful themes with =vuetify=
+- Writing blogs with =gatsby= and =gridsome=
+- Try static site generator with =netlify=
+- Try services like =now= and =surge=
+
+Even through there are many challenges and problems, I feel I dive deeper in the
+fronten development ecosystem with self-learning and knowledge-sharing.
+
+https://cdn-images-1.medium.com/max/1000/1*V7TMAzvhW7_cn9FbkKqOcQ.png
+
+https://cdn-images-1.medium.com/max/1000/1*0kf59M9bNuEIRNDaj54QvQ.png
+
+* Todos in 2019:
+
+So I am asking myself the following questions. You don't want to be a Junior Web
+Developer anymore You want to become a Senior Developer one day and earn a
+higher salary You want to learn best practices and build scalable applications
+professionally You know HTML, CSS and Javascript but want to expand your skills
+and do more You want to start your own business or become a freelancer You want
+to learn advanced industry skills that are necessary in 2018 to get hired as a
+web developer You want one course to teach you everything in one place from a
+Senior Developer that works in the industry
+
+- Create a =vscode= extension
+- Create a =chrome= extension
+- Create a =vuex= plugin
+
+You may check the status when I write the journal [[../attach/20181208_split
+window edting in emacs.png]]

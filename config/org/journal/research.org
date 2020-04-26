@@ -1,0 +1,14 @@
+#+TITLE: Research
+#+LATEX_CLASS: elsarticle
+#+LATEX_CLASS_OPTIONS: [authoryear,preprint,11pt]
+#+SETUPFILE: paper.setup
+#+LATEX_HEADER:\bibliography{./ref/Publications-research}
+#+EXCLUDE_TAGS: thesis noexport
+
+* Frontmatter :ignore:journal:
+#+LATEX: \begin{frontmatter}
+** Author List :ignore:
+** Abstract :ignore:
+** Keywords :ignore:
+#+LATEX: \end{frontmatter}
+* Introductionresearch

@@ -1,0 +1,28 @@
+#+TITLE: Other Brain Inbox with Roam
+
+My roam brain starts from tody, Mon Mar  2 17:09:45 2020, and the roam method is
+useful to build knowledge networks with links among points
+
+First, use this with org will give you power to enhance your knowledge
+organization.
+
+
+* About Frontend
+[[file:2020-03-02-frontend_roadmap.org][frontend roadmap]]
+
+* About Backend
+[[file:2020-03-02-backend_roadmap.org][backend roadmap]]
+
+* About Editors
+[[file:20200303205837_editor_skills.org][editor skills]]
+
+* About OS
+[[file:2020-03-03-hardware.org][hardware]]
+[[file:20200303210029_virtualization.org][Virtualization]]
+
+* About proect engeneering
+[[file:20200303210149_project_engeneering.org][project engeneering]]
+
+* About debug and test
+[[file:2020-03-03-software_testing.org][software testing]]
+[[file:2020-03-03-software_debug.org][software debug]]

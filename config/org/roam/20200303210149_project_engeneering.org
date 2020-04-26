@@ -1,0 +1,40 @@
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+HUGO_SLUG: project_engeneering
+#+TITLE: project engeneering
+Go back to inbox: [[file:2020-03-02.org][Other Brain Inbox]]
+
+* Webpack
+** DONE [#B] Webpack config
+https://webpack.docschina.org/configuration/
+* Bundler
+* Gulp
+* Others
+** NEXT [#B] Manage dotfiles** SSH
+*** makedir
+#+BEGIN_SRC sh :mkdirp yes :tangle ~/.ssh/config
+("")
+#+END_SRC
+*** tangle dotfiles
+** Git
+  :PROPERTIES:
+  :tangle:   ~/.gitconfig   # <- all src blocks under this 'Git' subtree will be written to ~/.gitconfig
+  :END:
+*** personal information
+#+BEGIN_SRC conf
+  [user]
+  name = linuxing3
+  email = linuxing3@qq.com
+#+END_SRC
+*** push settings
+#+BEGIN_SRC conf
+  [push]
+  default = upstream
+#+END_SRC
+*** credential helper
+#+BEGIN_SRC conf
+  [credential]
+  helper=store
+#+END_SRC
+** NEXT [#B] 自动化构建
+https://upload-images.jianshu.io/upload_images/2636400-4dac1fe21724c316.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/651

@@ -1,0 +1,128 @@
+#+begin_src yaml :exports results :results value html
+---
+title: Use vue-cli to bootstrap vue project
+author: Xing Wenju
+excerpt: Use vue-cli to bootstrap vue project
+date: 2018-12-11
+---
+#+end_src
+
+
+* vue-cli 3.0 入门介绍
+** 环境安装
+全新版本的脚手架、逼格非常高、 记住这个名字 @vue/cli ，对就是这个 你npm 或者yarn 安装就行了，先保证全局环境有它。
+
+#+BEGIN_SRC shell
+   npm install -g @vue/cli
+   yarn add global @vue/cli
+#+END_SRC
+** 创建项目
+这里对比下以前2.X之前的版本 ，新版本把插件以及模板等 移植到命令行界面了.
+
+旧版	创建命令
+
+#+BEGIN_SRC shell
+2.x	vue init <template-name> <project-name>
+3.x	vue create <project-name>
+#+END_SRC
+
+来一张图把 ，这里已经有几个默认配好的模板了，我们选最后的Manually select features
+
+vue-cli3.0在你创建后会有一个保存当前配置的功能
+
+** 配置项目插件和功能
+这里就很傻瓜了， 你要集成什么 就选就行了。我这里选个我比较常用的。
+
+- TypeScript
+- PWA
+- Vue-router
+- Vuex
+- CSS预处理
+- eslint prettier
+- 自动化测试单元测试 、e2e
+- clipboard.png
+
+我选LESS 这里我选eslint + prettier
+
+选择语法检查的方式 保存就检查 还是fix和commit时候检查，我就默认选第一个了
+
+单元测试插件我选jest
+
+是把babel,postcss,eslint这些配置文件放哪
+
+** 独立文件放置
+放package.json里, 最后就是选择 是否记录一下？
+
+启动项目进入目录,启动项目 这里 vue-cli 3.x 默认会打开浏览器 地址也会打在控制台。
+
+#+BEGIN_SRC shell
+   yarn serve
+   npm run serve
+#+END_SRC
+
+* 项目分析
+去掉了2.x build和config等目录 ,大部分配置 都集成到vue.config.js这里了
+
+vue.config.js里大概包括了配置 常用的输出路径名、跟目录、预处理、devServer配置、pwa、dll、第三方插件等等
+详细配置可以看官方文档 详细config配置
+
+* 如何随心所欲
+
+1. 服务器配置修改
+这里我先改个端口, 修改vue.config.js 然后重新启动工程 , 可以看到已经改成5999端口了
+
+#+BEGIN_SRC javascript
+module.exports = {
+  lintOnSave: false,
+  devServer: {
+    port: 5999
+  }
+}
+#+END_SRC
+1. 常用webpack配置修改
+webpack的配置在这个属性里修改configureWebpack
+
+包括plugins也可以自己扩展 ，本身尤大已经把常用的都封装了 ，不满足可以自行扩展。
+
+
+这里改个webpack devtool输出方式、默认那个我属实不知道怎么跟踪代码
+
+#+BEGIN_SRC javascript
+configureWebpack: config => {
+    if (process.env.NODE_ENV === 'development') {
+        config.devtool = 'source-map'
+        // mutate config for production...
+    }
+}
+#+END_SRC
+其他配置 就不一一介绍了 具体可以看这里webpack
+
+3. 全局变量的设置
+在项目根目录 创建二个文件
+
+- .env.development
+- .env.production
+
+里面配置键值对就行了
+
+但要注意 这里必须以VUE_APP开头 这样我们就可以自定义个全局变量在某个模式下
+
+VUE_APP_MOCK_URL = 'http://xxxx.xxx.xx.xx/mockjs/'
+比如这样在axios中就可以配置根路径了
+
+
+#+BEGIN_SRC javascript
+const service = axios.create({
+    baseURL: process.env.VUE_APP_MOCK_URL
+})
+
+#+END_SRC
+
+* 总结
+本文使用vue-cli3.x 从环境、到创建、到配置、和常用项目技巧进行了简单介绍，希望可以帮助到刚使用的人 。
+
+
+#+title: Use vue-cli to bootstrap vue project
+#+author: Xing Wenju
+#+excerpt: Use vue-cli to bootstrap vue project
+#+date: 2018-12-11

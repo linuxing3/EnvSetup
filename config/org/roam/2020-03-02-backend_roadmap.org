@@ -1,0 +1,21 @@
+#+DATE: write your date
+#+AUTHOR: linuxing
+#+EXCERPT: emacs
+#+TITLE: backend roadmap
+
+
+Go back to inbox: [[file:2020-03-02.org][Other Brain Inbox]]
+Go to frontend section: [[file:2020-03-02-frontend_roadmap.org][frontend roadmap]]
+
+* Python
+** 从 Zero 到 Hero ，一文掌握 Python
+[2017-12-10 Sun 23:28]
+http://mp.weixin.qq.com/s/jnTGVTd-SiizDcAGwmyqBw
+** Python environment with Pipenv, Jupyter, and EIN · Matt's programming blog
+[2018-12-08 Sat 21:19]
+https://matthewbilyeu.com/blog/python-environment-with-pipenv-jupyter-and-ein/
+** Pipenv & 虚拟环境
+[2018-12-08 Sat 17:06]
+https://docs.python-guide.org/dev/virtualenvs/
+
+— The Hitchhiker's Guide to Python

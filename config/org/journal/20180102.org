@@ -1,0 +1,56 @@
+#+TITLE: Journal Entry - #+TITLE: Journal Entry-  2 一月 2018 (星期二)
+#+AUTHOR: xing wenju
+#+IRC: linuxing3 on freenode
+#+EMAIL: xingwenju@gmail.com
+#+STARTUP: overview
+
+
+* Tasks
+
+** 马杜罗国情咨文
+
+** 全代会主席团选举
+
+** 朝野对话
+
+** 石油币发行
+
+** 总统大选
+   
+** 国外制裁
+
+** 反对派登记
+
+** 总统访华
+
+** 高委会开会
+
+** 马杜罗其人其事
+
+** 石油领域合作
+
+** 融资领域合作
+
+** 社会项目合作
+
+** 民生领域合作
+
+** 外交理念
+
+** 21世纪社会主义
+
+** 一带一路看法
+
+** 对重大国际和地区问题的看法
+
+
+* Src block
+  
+#+srcname: arrow
+#+begin_src python :results output
+  import arrow
+  now = arrow.now()
+  now
+#+end_src
+
+#+RESULTS: arrow

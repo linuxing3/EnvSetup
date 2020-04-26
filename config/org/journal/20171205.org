@@ -1,0 +1,200 @@
+#+TITLE: Journal Entry-  5 Dec 2017 (Tuesday)
+#+AUTHOR: xing wenjuIRC: linuxing3 on freenode
+#+EMAIL: xingwenju@gmail.com
+#+STARTUP: overview
+
+#+BEGIN_COMMENT
+.. title:
+.. slug:
+.. date: 2017-11-16 11:08:38 UTC-04:00
+.. tags:
+.. category: emacs
+.. link:
+.. description:
+.. type:
+#+END_COMMENT
+
+* Daily News
+
+** Maduro anunció la creación de sistema de criptomonedas para Venezuela
+
+   El presidente de la República, Nicolás Maduro, anunció este domingo
+   que el gobierno iniciará el desarrollo de un sistema de criptomonedas
+   para buscar nuevas formas de financiamiento y así tener una
+   alternativa para rescatar la economía nacional.
+
+   Detalló que el valor de esta nueva moneda digital, llamada “el Petro”,
+   será respaldado por las reservas de oro petróleo, gas y diamantes.
+
+   "El nuevo sistema de criptomoneda estará basado a partir de las
+   reservas de los recursos naturales para avanzar en el desarrollo
+   económico del país", dijo en una emisión de su programa semanal.
+
+   Afirmó que este sistema permitirá que los ciudadanos realicen
+   distintas transacciones.
+
+   Justificó la creación de esta moneda ante el supuesto “bloqueo
+   financiero internacional” de países potencias del mundo contra
+   Venezuela.
+
+
+** Lo que debe conocer sobre el mercado de las criptomonedas en Venezuela
+
+   Distintos analistas subrayan en que el valor de las criptomonedas, en
+   general, se determina en función de la confianza de las personas que
+   las utilizan y no en bienes físicos, es decir, se trata de una forma
+   de dinero fiduciario en el mundo digital; además, añaden que estas
+   monedas no están reguladas por los gobiernos.
+
+   Caracas.- Las criptomonedas –que han ganado popularidad en los últimos
+   años en Venezuela– son monedas virtuales que basan su seguridad en el
+   uso de la criptografía. En la actualidad, la totalidad de las
+   operaciones que se realizan con este tipo de dinero digital se basan
+   en un protocolo denominado “blockchain” o cadena de bloques (en
+   español).
+
+   ¿Tienes algo que decir?
+
+   Inicia la conversación y sé el primero en comentar.
+
+   Ese sistema es una especie de libro de contabilidad compartido que se
+   mantiene actualizado gracias a la actividad que realizan los llamados
+   “mineros” a través de computadoras que realizan operaciones complejas
+   y quienes reciben un pago, generalmente en las mismas criptomonedas,
+   por realizar esas transacciones.
+
+   El concepto de las criptomonedas se originó en el 2009 con la creación
+   del Bitcoin (una de las tantas monedas virtuales) por un sujeto que
+   utiliza el seudónimo de Satoshi Nakamoto. Esa persona presentó su
+   proyecto a la comunidad mediante un documento llamado "Bitcoin: un
+   sistema de efectivo electrónico peer to peer (P2P)".
+
+   El bitcoin fue la primera criptomoneda basada en el blockchain. Entre
+   las monedas más populares que poseen estas características están
+   bitcoin legacy, tradicionalmente conocida como "bitcoin" a secas;
+   ethereum, enfocada a contratos inteligentes; y bitcoin cash, una
+   escisión de bitcoin legacy que comenzó a existir el 1 de agosto de
+   este año.
+
+   Estas monedas virtuales reciben el valor por su utilidad. En general
+   son monedas fiduciarias, se les evalúa en función a la confianza que
+   las personas que las utilizan depositan en ellas. Tienen la
+   peculiaridad de estar sometidas al libre mercado y son “resistentes” a
+   las leyes de control de precios.
+
+   La posesión de las criptomonedas se adjudica a una firma digital
+   pública, que implica un monedero electrónico en el cual se contiene el
+   valor acumulado de la moneda virtual. Por ejemplo, cualquier poseedor
+   de un bitcoin cuenta también con una clave privada asignada a su
+   monedero digital, que le permite realizar transacciones por internet
+   con esa moneda.
+
+   Para uno de los principales miembros de la comunidad Bitcoin
+   Venezuela, el bitcoin es la criptomoneda “más popular”, sin embargo,
+   dijo no estar seguro de que “siga siendo la más usada”.
+
+   “Hasta donde sé, el bitcoin ha tenido una fuerte contracción en el
+   número de transacciones que con ella se hacen por lo caras de sus
+   transacciones, y ethereum se ha acercado mucho a superarla en ese
+   sentido, si es que ya no lo ha hecho. Es por eso que muchos usuarios
+   hemos puesto el ojo en bitcoin cash, una versión de bitcoin con
+   comisiones más bajas”, acotó, quien pidió no ser identificado, durante
+   una entrevista a El Universal.
+
+   Economistas y personas vinculadas a las criptomonedas se pronuncian en
+   contra del petro
+
+   Diversos economistas y personas vinculadas al mundo de las monedas
+   virtuales han percibido de forma negativa el anuncio del presidente de
+   la República, Nicolás Maduro, sobre la creación del petro, una
+   criptomoneda que estaría respaldada en las reservas naturales de la
+   nación como el petróleo, el gas, el oro y el diamante.
+
+   Los analistas contrastan en que el valor de las criptomonedas, en
+   general, se determina en función de la confianza de las personas que
+   las utilizan y no en bienes físicos, es decir, se trata de una forma
+   de dinero fiduciario en el mundo digital; además, añaden que estas
+   monedas no están reguladas por los gobiernos.
+
+   El director de Econométrica, Henkel García, consideró como una
+   contradicción que el Ejecutivo nacional mantenga un esquema de
+   “control cambiario” sobre la economía y anuncie la creación del petro.
+
+   “Las criptomonedas son impulsadas precisamente para no tener ningún
+   tipo de contacto o no estar bajo la regulación, la supervisión o la
+   aprobación del sistema bancario tradicional o de algún Gobierno”,
+   añadió García durante una entrevista a El Universal.
+
+   Sin embargo, mencionó que si el petro llegase a funcionar con las
+   características de las criptomonedas tradicionales que se generan por
+   un proceso de blockchain y sin intervención del Estado, entonces
+   “nacería” una relación petro-bitcoin que, a su vez, permitiría
+   “calcular una relación bolívar-dólar y que tendría indirectamente el
+   reconocimiento del Gobierno venezolano”.
+
+   Por su parte, el director de Datánalisis, Luis Vicente León, afirmó
+   que el petro no entra en la definición de criptomoneda porque, a su
+   juicio, estas últimas “están basadas en el internet de valor y
+   respaldadas en la confianza que tienen los tenedores de que servirán
+   como instrumento de intercambio”.
+
+   A través de su cuenta en la red social Twitter, señaló que para que el
+   petro sea una opción “real”, el Gobierno nacional debe “recuperar” la
+   confianza de los mercados internacionales y locales. “Necesitaría
+   entonces un cambio severo en su modelo económico. Y en ese caso no
+   necesitaría cambiar la moneda”, acotó.
+
+   El presidente de la Comisión de Finanzas de la Asamblea Nacional (AN),
+   diputado José Guera, aseveró que las reservas petroleras no se pueden
+   utilizar como garantía para el respaldo de la moneda virtual anunciada
+   por el jefe de Estado. “Las reservas petroleras, según la
+   Constitución, no son enajenables”, expresó el también economista
+   durante una entrevista a Unión Radio.
+
+   Randy Brito, creador de la página web Bitcoin Venezuela, expresó que
+   las características del petro apuntan más a una especie de “bono del
+   Estado”, debido a que el Gobierno, según dijo, quiere emitir una
+   criptomoneda para vendérsela a personas específicas que se van a
+   convertir en sus acreedores.
+
+   Otro integrante de esa comunidad virtual, entrevistado por El
+   Universal, manifestó su escepticismo sobre el anuncio hecho por
+   Maduro, indicó que el hecho de respaldar la moneda virtual en recursos
+   naturales demuestra la “poca confiabilidad” del Gobierno, pues “las
+   criptomonedas en sí mismas no necesitan estar respaldadas en otros
+   activos”.
+
+   Igualmente, manifestó que la creación del Observatorio de Blockchain
+   de Venezuela, que sería la instancia encargada del lanzamiento del
+   petro, puede causar “preocupación” en las comunidades de criptomonedas
+   en Venezuela, debido a que “esto pudiera dar pie a acciones
+   intervencionistas en contra de otras monedas digitales: como la
+   prohibición, el intento de controlar sus precios o el ataque a las
+   casas de cambio locales”.
+
+
+* Today's tips
+
+ Create new =snippet= with =M-x yas-new-snippet=
+
+#+BEGIN_SRC emacs-lisp
+    # -*- mode: snippet -*-
+    # name: nikola-title
+    # key: nt
+    # --
+
+    #+BEGIN_COMMENT
+    .. title: $0
+    .. slug: $1
+    .. date: 2017-11-16 11:08:38 UTC-04:00
+    .. tags: $2
+    .. category: emacs
+    .. link: $3
+    .. description: $4
+    .. type: $5
+    #+END_COMMENT
+#+END_SRC
+
+ Use =reg-replace= to change
+
+ Use =keyboard-macro= to record macro

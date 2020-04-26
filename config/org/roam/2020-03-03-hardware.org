@@ -1,0 +1,5 @@
+#+DATE: write your date
+#+AUTHOR: linuxing
+#+EXCERPT: emacs
+#+TITLE: hardware
+Go back to inbox: [[file:2020-03-02.org][Other Brain Inbox]]

@@ -1,0 +1,329 @@
+#+TITLE: Journal Entry - Wednesday, 02/07/2018
+#+AUTHOR: xing wenju
+#+IRC: linuxing3 on freenode
+#+EMAIL: xingwenju@gmail.com
+#+STARTUP: overview
+
+* News
+
+** [[http://www.ultimasnoticias.com.ve/noticias/comunidad/poca-nubosidad-este-martes-gran-parte-del-pais/][Poca nubosidad este martes en gran parte del país]]
+Published: 6 febrero, 2018 7:57 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/deportes/kikito-dangelo-ya-tomo-la-vanguardia-en-la-rinconada/][“Kikito“ D’Angelo ya tomó la vanguardia en La Rinconada]]
+Published: 6 febrero, 2018 8:17 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider-inferior/criollos-caguas-aplasto-caribes/][Criollos de Caguas aplastó a Caribes]]
+Published: 6 febrero, 2018 8:54 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/deportes/claves-del-exito-caribes-la-serie-del-caribe-2018/][Claves del éxito de Caribes en la Serie del Caribe 2018]]
+Published: 6 febrero, 2018 9:59 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider-inferior/5-500-pacientes-les-llegaron-medicinas/][A 5.500 pacientes les llegaron sus medicinas]]
+Published: 6 febrero, 2018 5:50 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/camara-industriales-rechaza-adelanto-presidenciales/][Cámara de industriales de Carabobo rechaza adelanto de presidenciales]]
+Published: 5 febrero, 2018 6:50 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider/reencauchado-una-opcion-transporte/][El reencauchado es una opción para el transporte]]
+Published: 6 febrero, 2018 6:10 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/psuv-acciones-los-ee-uu-afectan-los-empresarios-venezolanos/][Psuv: Acciones de los EE.UU afectan a los empresarios venezolanos]]
+Published: 5 febrero, 2018 5:48 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/maduro-esta-todo-dado-para-firmar-acuerdo-con-la-oposicion/][Maduro: Está todo dado para firmar acuerdo con la oposición]]
+Published: 6 febrero, 2018 9:30 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/presidente-maduro-recuerda-natalicio-del-lider-fabricio-ojeda/][Jefe de Estado recuerda el natalicio del líder Fabricio Ojeda]]
+Published: 6 febrero, 2018 11:09 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/cne-esta-sesion-permanente-definir-cronograma-electoral/][CNE está en sesión permanente para definir cronograma electoral]]
+Published: 6 febrero, 2018 10:00 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/gobierno-nacional-y-oposicion-se-veran-las-caras-este-martes/][Gobierno Nacional y oposición se verán las caras este martes]]
+Published: 6 febrero, 2018 11:40 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/maduro-asistira-la-viii-cumbre-las-america-peru/][Maduro asistirá a la VIII cumbre de las Américas en Perú]]
+Published: 6 febrero, 2018 12:00 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/maduro-venezuela-esta-preparada-superar-cualquier-embargo-petrolero/][Maduro: Venezuela está preparada para superar cualquier embargo petrolero]]
+Published: 6 febrero, 2018 6:15 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/wall-street-acelero-perdidas-dow-jones-cayo-46/][Wall Street aceleró pérdidas y el Dow Jones cayó 4,6%]]
+Published: 5 febrero, 2018 7:38 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/tasa-la-primera-subasta-dicom-se-ubico-bs-30-9875-euro/][Tasa de la primera subasta Dicom se ubicó en Bs. 30.987,5 por euro]]
+Published: 6 febrero, 2018 8:42 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/mas-de-778-mil-familias-han-recibido-el-bono-hogares-de-la-patria/][Más de 778 mil familias han recibido el Bono Hogares de la Patria]]
+Published: 5 febrero, 2018 1:26 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider/venezuela-propondra-a-productores-de-crudo-ampliar-comite-de-monitoreo/][Venezuela propondrá a productores de crudo ampliar comité de monitoreo]]
+Published: 5 febrero, 2018 5:11 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/gobierno-firma-acuerdo-atuneros-optimizar-distribucion-del-rubro/][Gobierno firma acuerdo con atuneros para optimizar distribución del rubro]]
+Published: 6 febrero, 2018 9:13 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/empresas-brasilenas-aceptaran-petro-forma-pago/][Empresas brasileñas aceptarán el Petro como forma de pago]]
+Published: 6 febrero, 2018 10:26 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/cesta-opep-cerro-lunes-6570-dolares/][Cesta Opep cerró el lunes en 65,70 dólares]]
+Published: 6 febrero, 2018 10:30 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/venezuela-dice-presente-la-conferencia-mineria-2018/][Venezuela dice presente en la Conferencia de Minería 2018]]
+Published: 6 febrero, 2018 10:35 am 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/rodriguez-venezuela-esta-preparada-para-enfrentar-cualquier-agresion-petrolera/][Rodríguez: Venezuela está preparada para enfrentar cualquier agresión petrolera]]
+Published: 5 febrero, 2018 2:33 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/proponen-incrementar-remesas-los-bancos/][Proponen incrementar remesas a los bancos]]
+Published: 5 febrero, 2018 6:28 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/farias-presidenciales-deben-realizarse-para-alcanzar-un-consenso-politico-y-economico/][Jesús Faría: Presidenciales deben realizarse para alcanzar un consenso político y económico]]
+Published: 5 febrero, 2018 4:24 pm 
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider/gobierno-oposicion-acordaron-mision-observacion-electoral-internacional/][Gobierno y oposición acordaron misión de observación electoral internacional]]
+Published: 5 febrero, 2018 4:56 pm 
+
+** [[http://www.el-nacional.com/noticias/asamblea-nacional/asamblea-rechaza-haya-para-discutir-sobre-esequibo_222161][
+                  ]]
+Published: 2018-02-38T12:33:00-0400
+
+** [[http://www.el-nacional.com/noticias/politica/oposicion-dialogo-hay-ningun-acuerdo-con-gobierno_222117][
+                  ]]
+Published: 2018-02-37T08:46:22-0400
+
+** [[http://www.el-nacional.com/noticias/politica/oposicion-perdera-mas-590000-votos-debido-diaspora_221968][
+                  ]]
+Published: 2018-02-37T10:46:02-0400
+
+** [[http://www.el-nacional.com/noticias/oposicion/maria-beatriz-martinez-gobierno-pretende-acabar-con-aparato-productivo_222148][
+                  ]]
+Published: 2018-02-37T10:20:50-0400
+
+** [[http://www.el-nacional.com/noticias/gobierno/jorge-rodriguez-aseguro-que-hay-acuerdo-definitivo-dialogo_222099][
+                  ]]
+Published: 2018-02-37T05:50:33-0400
+
+** [[http://www.el-nacional.com/noticias/politica/julio-borges-puede-haber-mesa-boligrafo-pero-falta-verdad_222125][
+                  ]]
+Published: 2018-02-37T08:45:41-0400
+
+** [[http://www.el-nacional.com/noticias/politica/armando-armas-masacre-oscar-perez-ordeno-habana_222128][
+                  ]]
+Published: 2018-02-37T08:15:45-0400
+
+** [[http://www.el-nacional.com/noticias/economia/aerolinea-tame-dejo-volar-venezuela_221857][
+                  ]]
+Published: 2018-02-36T07:31:21-0400
+
+** [[http://www.el-nacional.com/noticias/sucesos/terreno-baldio-macaracuay-delincuentes-ocultan-reparten-botin_221605][
+                  ]]
+Published: 2018-02-36T07:17:27-0400
+
+** [[http://www.el-nacional.com/noticias/servicios/funcionarios-del-saime-cobran-hasta-10000-por-gestionar-pasaportes_221859][
+                  ]]
+Published: 2018-02-37T04:20:33-0400
+
+** [[http://www.el-nacional.com/noticias/sociedad/unidades-dialisis-quiebran-por-falta-liquidez_221844][
+                  ]]
+Published: 2018-02-36T07:14:57-0400
+
+** [[http://www.el-nacional.com/noticias/politica/sip-repudio-intimidacion-periodistas-venezolanos-con-demandas-judiciales_222166][
+                  ]]
+Published: 2018-02-37T10:36:51-0400
+
+** [[http://www.eluniversal.com/politica][
+			
+		]]
+** [[http://www.eluniversal.com/noticias/politica/maduro-ratifico-compromiso-con-avances-del-dialogo-dominicana_686371][Maduro ratificó compromiso con avances del diálogo en Dominicana]]
+Published: 31 de enero de 2018 18:07 PM
+
+** [[http://www.eluniversal.com/noticias/politica/chile-amenaza-con-retirarse-indefinidamente-del-dialogo_686360][Chile amenaza con retirarse indefinidamente del diálogo]]
+Published: 31 de enero de 2018 18:12 PM
+
+** [[http://www.eluniversal.com/galerias/politica/largas-colas-interior-del-pais-para-consulta-popular_4520][Largas colas en el interior del país para la consulta popular]]
+Published: 16 de julio de 2017 20:36 PM
+
+** [[http://www.eluniversal.com/noticias/politica/arreaza-inicia-cuba-gira-por-america-latina-caribe_686386][Arreaza inicia en Cuba gira por América Latina y el Caribe]]
+Published: 01 de febrero de 2018 22:50 PM
+
+** [[http://www.eluniversal.com/noticias/politica/cidh-insta-venezuela-proteger-poblacion-del-hambre_686396][CIDH insta a Venezuela a proteger a su población del hambre]]
+Published: 02 de febrero de 2018 00:04 AM
+
+** [[http://www.eluniversal.com/galerias/politica/primeras-horas-votacion-asamblea-constituyente_4529][Primeras horas de la votación a la Asamblea Constituyente]]
+Published: 30 de julio de 2017 10:20 AM
+
+** [[http://www.eluniversal.com/noticias/politica/580-delegados-nacionales-participaran-congreso-del-psuv_686403][580 delegados nacionales participarán en el congreso del PSUV]]
+Published: 02 de febrero de 2018 08:48 AM
+
+** [[http://www.eluniversal.com/noticias/politica/borges-desmiente-que-maduro-tenga-una-fotocopia-del-acta-del-dialogo_686381][Borges desmiente que Maduro tenga una "fotocopia" del acta del diálogo]]
+Published: 01 de febrero de 2018 19:39 PM
+
+** [[http://www.eluniversal.com/videos/politica/dias-minuto_549967][7 días en 1 minuto]]
+Published: 19 de enero de 2018 16:27 PM
+
+** [[http://www.eluniversal.com/noticias/politica/tillerson-queremos-cambio-pacifico-venezuela_686397][Tillerson: Queremos un cambio pacífico en Venezuela]]
+Published: 01 de febrero de 2018 23:48 PM
+
+** [[http://www.eluniversal.com/videos/politica/enero-1958-anos-caida-del-dictador_550395][23 de enero de 1958: 60 años de la caída del dictador]]
+Published: 23 de enero de 2018 07:30 AM
+
+** [[http://www.eluniversal.com/noticias/politica/covri-rechaza-remision-corte-internacional-caso-del-esequibo_686358][COVRI rechaza remisión a la Corte Internacional el caso del Esequibo]]
+Published: 31 de enero de 2018 17:30 PM
+
+** [[http://www.eluniversal.com/videos/politica/dias-minutos_551083][7 días en 3 minutos]]
+Published: 26 de enero de 2018 16:54 PM
+
+** [[http://www.eluniversal.com/noticias/internacional/desvian-vuelo-moscu-cuba-estados-unidos-por-problemas-combustible_686395][Desvían vuelo Moscú-Cuba a Estados Unidos por problemas de combustible]]
+Published: 01 de febrero de 2018 23:50 PM
+
+** [[http://www.eluniversal.com/noticias/economia/bcv-dio-conocer-imagen-los-nuevos-billetes_630345][BCV dio a conocer imagen de los nuevos billetes]]
+Published: 07 de diciembre de 2016 12:18 PM
+
+** [[http://www.eluniversal.com/noticias/economia/hoy-corre-primera-subasta-con-nuevo-dicom_686370][Hoy se corre la primera subasta con nuevo Dicom]]
+Published: 01 de febrero de 2018 04:30 AM
+
+** [[http://www.eluniversal.com/noticias/economia/maduro-aumento-salario-minimo-integral-65056_431532][Maduro aumentó salario mínimo integral a Bs. 65.056]]
+Published: 13 de agosto de 2016 14:30 PM
+
+** [[http://www.eluniversal.com/galerias/politica/asi-desarrollo-jornada-electoral-del-30j_4530][Así se desarrolló la jornada electoral del 30J]]
+Published: 30 de julio de 2017 18:55 PM
+
+** [[http://www.eluniversal.com/noticias/economia/presidente-maduro-ordena-dejar-sin-efecto-billete-100-bolivares_630922][Presidente Maduro ordena dejar sin efecto el billete de 100 bolívares]]
+Published: 11 de diciembre de 2016 14:30 PM
+
+** [[http://www.eluniversal.com/noticias/economia/ars-ddb-organiza-subasta-beneficio-sociedad-anticancerosa_680060][ARS DDB organiza subasta a beneficio de la Sociedad Anticancerosa]]
+Published: 05 de diciembre de 2017 14:57 PM
+
+** [[http://www.eluniversal.com/noticias/economia/500-familias-beneficiaran-con-monto-recaudado-subasta-xii-fundana_679684][500 familias se beneficiarán con monto recaudado de subasta XII de Fundana]]
+Published: 01 de diciembre de 2017 15:39 PM
+
+** [[http://www.eluniversal.com/noticias/universo-empresarial/excelsior-gama-presento-resultados-gestion-social-venezuela_680228][Excelsior Gama presentó resultados de su gestión social en Venezuela]]
+Published: 06 de diciembre de 2017 17:32 PM
+
+** [[http://www.eluniversal.com/noticias/economia/jornada-solidaria-impulsada-por-banesco-directv-unicasa_680354][Jornada solidaria impulsada por Banesco, Directv y Unicasa]]
+Published: 07 de diciembre de 2017 16:50 PM
+
+** [[http://www.eluniversal.com/noticias/economia/venezuela-invita-universitarios-programa-ceo-challenge_680359][P&G Venezuela invita a universitarios al programa CEO Challenge]]
+Published: 07 de diciembre de 2017 17:09 PM
+
+** [[http://www.eluniversal.com/noticias/economia/900-aumento-precio-los-huevos-los-ultimos-cuatro-meses_684993][900% aumentó el precio de los huevos en los últimos cuatro meses]]
+Published: 21 de enero de 2018 05:30 AM
+
+** [[http://www.eluniversal.com/noticias/economia/guarino-calificadoras-pueden-declarar-pais-default_685342][Guarino: Calificadoras no pueden declarar al país en default]]
+Published: 23 de enero de 2018 05:30 AM
+
+** [[http://www.eluniversal.com/noticias/economia/cartera-creditos-dirigidos-aumento-5828-ano_685664][Cartera de créditos dirigidos aumentó en 582,8% en un año]]
+Published: 26 de enero de 2018 05:30 AM
+
+** [[http://www.eluniversal.com/audios/economia/william-contreras-vincula-polar-con-personas-que-desvian-alimentos_290984][William Contreras vincula a Polar con personas que desvían alimentos]]
+Published: 26 de mayo de 2016 12:04 PM
+
+** [[http://www.eluniversal.com/noticias/economia/fmi-caida-exportaciones-petroleras-incidio-economia-venezolana_685649][FMI: Caída de exportaciones petroleras incidió en economía venezolana]]
+Published: 26 de enero de 2018 05:30 AM
+
+** [[http://www.eluniversal.com/infografias/economia/los-nuevos-billetes_480131][Los nuevos billetes]]
+Published: 08 de diciembre de 2016 19:12 PM
+
+** [[http://www.eluniversal.com/infografias/economia/control-cambiario_225914][Control Cambiario]]
+Published: 05 de abril de 2016 17:01 PM
+
+** [[http://www.eluniversal.com/audios/economia/fedecamaras-aumento-salarial-afectara-mediana-pequenas-empresas_372438][Fedecamaras: aumento salarial afectará mediana y pequeñas empresas]]
+Published: 15 de agosto de 2016 15:14 PM
+
+** [[http://www.eluniversal.com/galerias/economia/pronostican-lluvias-finales-mes-para-detener-descenso-guri_2864][Pronostican lluvias a finales de mes para detener descenso de Guri]]
+Published: 14 de abril de 2016 10:31 AM
+
+** [[http://www.eluniversal.com/audios/economia/marcos-quinto-coca-cola-confia-futuro-venezuela_300071][Marcos de Quinto: Coca-Cola confía en el futuro de Venezuela]]
+Published: 10 de julio de 2016 07:00 AM
+
+** [[http://www.eluniversal.com/infografias/economia/arcominero_286867][Arcominero]]
+Published: 08 de mayo de 2016 05:30 AM
+
+** [[http://www.eluniversal.com/galerias/economia/conozca-panal-moneda-comunal-paralela-disenada-enero_4558][Conozca "el panal" moneda comunal paralela diseñada en el 23 de Enero]]
+Published: 18 de diciembre de 2017 05:30 AM
+
+** [[http://www.eluniversal.com/galerias/economia/asi-estuvo-viernes-bcv-con-las-colas-para-canje-billetes_4329][Así estuvo el viernes el BCV con las colas para el canje de billetes]]
+Published: 16 de diciembre de 2016 17:33 PM
+
+** [[http://www.eluniversal.com/videos/economia/parroquia-levanta-sistema-comercial-propio-ante-las-adversidades_545713][Parroquia levanta un sistema comercial propio ante las adversidades]]
+Published: 17 de diciembre de 2017 12:17 PM
+
+** [[http://www.eluniversal.com/noticias/economia/produciran-60000-toneladas-roca-fosfatica-este-ano_686281][Producirán 60.000 toneladas de roca fosfática este año]]
+Published: 31 de enero de 2018 10:37 AM
+
+** [[http://www.eluniversal.com/videos/economia/que-inflacion-hiperinflacion_547182][¿Qué es la inflación y la hiperinflación?]]
+Published: 28 de diciembre de 2017 12:10 PM
+
+** [[http://www.eluniversal.com/noticias/economia/gobierno-nacional-activo-pagina-web-del-petro_686306][Gobierno Nacional activó página web del petro]]
+Published: 31 de enero de 2018 12:12 PM
+
+** [[http://www.eluniversal.com/videos/economia/maduro-anuncio-ajuste-salario-minimo-integral-pensiones_547460][Maduro anunció ajuste de salario mínimo integral y pensiones]]
+Published: 31 de diciembre de 2017 13:50 PM
+
+** [[http://www.eluniversal.com/noticias/economia/venezuela-turquia-estrechan-cooperacion-economica-comercial_686314][Venezuela y Turquía estrechan cooperación económica y comercial]]
+Published: 31 de enero de 2018 13:22 PM
+
+** [[http://www.eluniversal.com/noticias/economia/petro-dispondra-824-millones-unidades-para-oferta-inicial_686377][Petro dispondrá de 82,4 millones de unidades para oferta inicial]]
+Published: 31 de enero de 2018 19:33 PM
+
+** [[http://www.eluniversal.com/noticias/economia/mastercard-anuncia-lanzamiento-pagos-sin-contacto_686318][Mastercard anuncia lanzamiento de pagos sin contacto]]
+Published: 31 de enero de 2018 13:48 PM
+
+** [[http://www.eluniversal.com/noticias/economia/sostienen-que-convenio-cambiario-establece-cambio-unico_686354][Sostienen que convenio cambiario 39 establece el cambio único]]
+Published: 01 de febrero de 2018 04:30 AM
+
+** [[http://www.eluniversal.com/noticias/economia/patrimonio-mercantil-aumento-4994-diciembre-2017_686355][Patrimonio de Mercantil aumentó 499,4% en diciembre de 2017]]
+Published: 01 de febrero de 2018 05:00 AM
+
+** [[http://www.eluniversal.com/noticias/economia/bolsa-valores-caracas-cerro-366780-puntos-este-miercoles_686356][Bolsa de Valores de Caracas cerró en 3.667,80 puntos este miércoles]]
+Published: 31 de enero de 2018 17:35 PM
+
+** [[http://www.eluniversal.com/noticias/politica/minuto-minuto-elecciones-asamblea-nacional-constituyente_663495][Minuto a minuto de elecciones a la Asamblea Nacional Constituyente]]
+Published: 30 de julio de 2017 19:00 PM
+
+** [[http://www.eluniversal.com/noticias/politica/maduro-declaro-abril-dia-laborable-por-ahorro-energetico_288316][Maduro declaró el 18 de abril "día no laborable" por ahorro energético]]
+Published: 15 de abril de 2016 07:00 AM
+
+** [[http://www.eluniversal.com/noticias/politica/colombia-anunciara-medidas-para-los-venezolanos-febrero_686401][Colombia anunciará medidas para los venezolanos el 8 de febrero]]
+Published: 02 de febrero de 2018 08:40 AM
+
+** [[http://www.eluniversal.com/noticias/politica/gobierno-decreta-febrero-como-dia-laborable_637365][Gobierno decreta 1 de febrero como "día no laborable"]]
+Published: 30 de enero de 2017 08:40 AM
+
+** [[http://www.eluniversal.com/economia][
+			
+		]]
+** [[http://www.eluniversal.com/noticias/politica/runrunes_662142][Runrunes]]
+Published: 20 de julio de 2017 00:01 AM
+
+** [[http://www.eluniversal.com/noticias/politica/venezolanos-exterior-podran-firmar-para-enmienda-revocatorio_193073][Venezolanos en el exterior podrán firmar para enmienda o revocatorio]]
+Published: 12 de marzo de 2016 15:29 PM
+
+** [[http://www.eluniversal.com/noticias/politica/holguin-las-solicitudes-refugio-venezolanos-son-bajas_686304][Holguín: Las solicitudes de refugio de venezolanos son bajas]]
+Published: 31 de enero de 2018 12:15 PM
+
+** [[http://www.eluniversal.com/noticias/politica/runrunes_661830][Runrunes]]
+Published: 18 de julio de 2017 00:01 AM
+
+** [[http://www.eluniversal.com/noticias/politica/runrunes_664105][Runrunes]]
+Published: 03 de agosto de 2017 00:01 AM
+
+** [[http://www.eluniversal.com/infografias/politica/situacion-actual-del-sistema-electrico-nacional_186561][SITUACIÓN ACTUAL DEL SISTEMA ELÉCTRICO NACIONAL]]
+Published: 21 de febrero de 2016 00:00 AM
+
+** [[http://www.eluniversal.com/infografias/politica/tres-quinquenios-construccion-viviendas_186558][TRES QUINQUENIOS EN LA CONSTRUCCIÓN DE VIVIENDAS]]
+Published: 14 de febrero de 2016 00:00 AM
+
+** [[http://www.eluniversal.com/audios/politica/cafetal-organizan-para-brindar-transporte-los-electores_536543][En El Cafetal se organizan para brindar transporte a los electores]]
+Published: 15 de octubre de 2017 09:14 AM
+
+** [[http://www.eluniversal.com/infografias/politica/estado-las-represas-venezuela_186563][ESTADO DE LAS REPRESAS EN VENEZUELA]]
+Published: 07 de febrero de 2016 00:00 AM
+
+** [[http://www.eluniversal.com/audios/politica/diputado-stalin-gonzalez-llamo-manifestar-pacificamente_505514][Diputado Stalin González llamó a manifestar pacíficamente]]
+Published: 24 de abril de 2017 17:43 PM
+
+** [[http://www.eluniversal.com/audios/politica/elector-explica-situacion-tras-ser-reubicado-otro-centro-votacion_536545][Elector explica su situación tras ser reubicado en otro centro de votación]]
+Published: 15 de octubre de 2017 09:49 AM
+

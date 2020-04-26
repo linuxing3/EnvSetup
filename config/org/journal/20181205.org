@@ -1,0 +1,8 @@
+#+TITLE: Setting the jupyter notebook
+
+* ein
+
+第一步，进入 =Dropbox/org= 目录。
+第二步，建立一个 =notebook= 目录。
+第三步, 启动 =ein= 服务器
+第四步，链接 =notebook=, 目前仍然失败，因为数据格式不对？

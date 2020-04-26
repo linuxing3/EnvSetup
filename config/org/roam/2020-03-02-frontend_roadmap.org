@@ -1,0 +1,46 @@
+#+TITLE: frontend roadmap
+
+Go back to inbox: [[file:2020-03-02.org][Other Brain Inbox]]
+
+Go to backend section: [[file:2020-03-02-backend_roadmap.org][backend roadmap]]
+
+* Links
+[[file:d:/Dropbox/shared/chrome_bookmarks.html][chrome bookmarks]]
+** cheetsheets
+[[img:http://www.visibone.com/javascript/jr1_850.jpg][javascript basics]]
+[[http://www.cheat-sheets.org/#JavaScript][JS Cheetsheat]]
+** TypeScript 2.4: Dynamic import() Expressions | Marius Schulz
+[[https://blog.mariusschulz.com/2018/01/14/typescript-2-4-dynamic-import-expressions][Dynamic import]]
+** TypeScript 2.2: The object Type | Marius Schulz
+[[https://blog.mariusschulz.com/2017/02/24/typescript-2-2-the-object-type][typescript obgeto type]]
+** Build a Todo App with Electron – codeburst
+[[https://codeburst.io/build-a-todo-app-with-electron-d6c61f58b55a][electron]]
+*** TODO [#B] 使用 CI 构建和发布全平台 Electron 应用
+[2020-02-29 Sat 23:04]
+https://juejin.im/entry/5995599a6fb9a0249f6a131b
+** Ant Design Pro使用手记
+*** 各种坑
+关于启动
+#+BEGIN_SRC sh
+npm start:dev // 启动，没有模拟数据
+npm start:pre // 启动，预览，有模拟数据
+yarn add @umijs/preset-ui -D // 安装umi-ui
+umi dev // 启动，同时启动ui管理界面
+#+END_SRC
+
+关于安装包
++ 更改plugin后，需要删除 =src/.umi= 文件夹，否则缓存 =plugin= 出错
++ 如果不启动 =ui= ，需要安装 =preset-ui=
+  如果报无法需要添加 =blocks=，安装 =@umijis/plugin-ui-blocks= ，因为
+  =src/.umi/umi.ts= 中需要直接加载这个包
+  但是安装了，会出现 =register= 错误，因为该包已经包含在 =@umijs/preset-ui=
+  中，WTF
++ 如果不启动 =pre=, 将无法登录
+
+关于新下载区块
++ 下载后冲突
+
+[[https://juejin.im/post/5d75c1e3f265da03a715fa16][Antd Pro的权限组件]]
+[[https://juejin.im/post/5e59f6806fb9a07ca45347ad][And 4]]
+[[https://juejin.im/post/5cbad757f265da0359486f1d][一个较为完备的可视化编辑器]]
+[[https://pro.ant.design/docs/block-cn][Using Blocks]]

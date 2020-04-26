@@ -1,0 +1,23 @@
+#+title: Optimizing Org Settings
+#+author: Xing Wenju
+#+except: Tweak the org-mode settings of my doom
+#+date: 2018-12-07
+
+* Org Mode
+> Tips: using =M-o= to follow the link and =C-o= to jump back
+** Submodules
+*** Org-trello
+*** Org-medium
+*** Org-brain
+*** Org-Journal
+- [ ] Open journal today
+  [[doom-modules:../../.doom.d/modules/private/org/autoload/org.el][Private setting of org autoloads]]
+- [ ] Open journal yesterday
+- [ ] Insert title
+- [ ] Insert src block
+- [ ] Babel typescript
+- [ ] Babel ein
+- [ ] Org export epub
+- [ ] Org export pdf
+- [ ] Org export blog
+*** Autoloads

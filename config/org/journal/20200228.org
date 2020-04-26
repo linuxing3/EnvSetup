@@ -1,0 +1,121 @@
+---
+#+TITLE: Journal Entry 2020-02-28
+#+AUTHOR: Xing Wenju
+#+DATE: 2020-02-28
+#+EXCERPT: org journal 
+---
+
+
+* Doom org keymaps
+
+#+BEGIN_SRC emacs-lisp
+(map! :map org-mode-map
+        "C-c C-S-l"  #'+org/remove-link
+        "C-c C-i"    #'org-toggle-inline-images
+        ;; textmate-esque newline insertion
+        [C-return]   #'+org/insert-item-below
+        [C-S-return] #'+org/insert-item-above
+        [C-M-return] #'org-insert-subheading
+        (:when IS-MAC
+          [s-return]   #'+org/insert-item-below
+          [s-S-return] #'+org/insert-item-above
+          [s-M-return] #'org-insert-subheading)
+        ;; Org-aware C-a/C-e
+        [remap doom/backward-to-bol-or-indent]          #'org-beginning-of-line
+        [remap doom/forward-to-last-non-comment-or-eol] #'org-end-of-line
+
+        :localleader
+        "'" #'org-edit-special
+        "," #'org-switchb
+        "." #'org-goto
+        (:when (featurep! :completion ivy)
+          "." #'counsel-org-goto
+          "/" #'counsel-org-goto-all)
+        (:when (featurep! :completion helm)
+          "." #'helm-org-in-buffer-headings
+          "/" #'helm-org-agenda-files-headings)
+        "A" #'org-archive-subtree
+        "d" #'org-deadline
+        "e" #'org-export-dispatch
+        "f" #'org-footnote-new
+        "h" #'org-toggle-heading
+        "i" #'org-toggle-item
+        "I" #'org-toggle-inline-images
+        "n" #'org-store-link
+        "o" #'org-set-property
+        "p" #'org-priority
+        "q" #'org-set-tags-command
+        "s" #'org-schedule
+        "t" #'org-todo
+        "T" #'org-todo-list
+        (:prefix ("a" . "attachments")
+          "a" #'org-attach
+          "d" #'org-attach-delete-one
+          "D" #'org-attach-delete-all
+          "f" #'+org/find-file-in-attachments
+          "l" #'+org/attach-file-and-insert-link
+          "n" #'org-attach-new
+          "o" #'org-attach-open
+          "O" #'org-attach-open-in-emacs
+          "r" #'org-attach-reveal
+          "R" #'org-attach-reveal-in-emacs
+          "u" #'org-attach-url
+          "s" #'org-attach-set-directory
+          "S" #'org-attach-sync
+          (:when (featurep! +dragndrop)
+            "c" #'org-download-screenshot
+            "y" #'org-download-yank))
+        (:prefix ("b" . "tables")
+          "-" #'org-table-insert-hline
+          "a" #'org-table-align
+          "c" #'org-table-create-or-convert-from-region
+          "e" #'org-table-edit-field
+          "h" #'org-table-field-info
+          (:when (featurep! +gnuplot)
+            "p" #'org-plot/gnuplot))
+        (:prefix ("c" . "clock")
+          "c" #'org-clock-in
+          "C" #'org-clock-out
+          "d" #'org-clock-mark-default-task
+          "e" #'org-clock-modify-effort-estimate
+          "E" #'org-set-effort
+          "l" #'org-clock-in-last
+          "g" #'org-clock-goto
+          "G" (λ! (org-clock-goto 'select))
+          "r" #'org-clock-report
+          "x" #'org-clock-cancel
+          "=" #'org-clock-timestamps-up
+          "-" #'org-clock-timestamps-down)
+        (:prefix ("g" . "goto")
+          "g" #'org-goto
+          (:when (featurep! :completion ivy)
+            "g" #'counsel-org-goto
+            "G" #'counsel-org-goto-all)
+          (:when (featurep! :completion helm)
+            "g" #'helm-org-in-buffer-headings
+            "G" #'helm-org-agenda-files-headings)
+          "c" #'org-clock-goto
+          "C" (λ! (org-clock-goto 'select))
+          "i" #'org-id-goto
+          "r" #'org-refile-goto-last-stored
+          "v" #'+org/goto-visible
+          "x" #'org-capture-goto-last-stored)
+        (:prefix ("l" . "links")
+          "c" #'org-cliplink
+          "l" #'org-insert-link
+          "L" #'org-insert-all-links
+          "s" #'org-store-link
+          "S" #'org-insert-last-stored-link
+          "i" #'org-id-store-link
+          "d" #'+org/remove-link)
+        (:prefix ("r" . "refile")
+          "." #'+org/refile-to-current-file
+          "c" #'+org/refile-to-running-clock
+          "l" #'+org/refile-to-last-location
+          "f" #'+org/refile-to-file
+          "o" #'+org/refile-to-other-window
+          "O" #'+org/refile-to-other-buffer
+          "v" #'+org/refile-to-visible
+          "r" #'org-refile))
+
+#+END_SRC

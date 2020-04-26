@@ -1,0 +1,158 @@
+#+SETUPFILE:./hugo_setup.org
+#+HUGO_SECTION: zettels
+#+HUGO_SLUG: editor_skills
+#+TITLE: editor skills
+
+Go back to inbox: [[file:2020-03-02.org][Other Brain Inbox]]
+
+* Emacs
+** About org mode
+[[doom-docs:getting_started.org][Doom docs to start with org]]
+[[help:org-mode][org mode]]
+[[file:d:/Dropbox/org/links.org][Links with tutorials]]
+[[file:20200302141115_blog_gridsome_with_org.org][blog-gridsome-with-org]]
+
+** About _org-roam-mode_
+[[file:20200302164058_first_time_roam.org][first time roam]]
+
+** About babel coding and literate coding
+[[file:20200302164957_literate_coding.org][literate_coding]]
+
+** Links
+*** Tutorial spacemacs
+[2017-12-06 Wed 19:44]
+https://scarletsky.github.io/2016/01/22/spacemacs-usage/
+*** Code Snippets in Spacemacs | Jake Trent
+[2017-12-06 Wed 23:56]
+https://jaketrent.com/post/code-snippets-spacemacs/
+*** Three Awesome Spacemacs Features: Plugins that Keep Me Hooked
+[2017-12-06 Wed 23:44]
+https://spin.atomicobject.com/2017/08/31/awesome-spacemacs-features/
+*** Space layer logic
+[2017-12-07 Thu 19:30]
+http://spacemacs.org/doc/LAYERS.html
+*** Code blocks - Org Babel reference card
+[2017-12-08 周五 21:34]
+https://org-babel.readthedocs.io/en/latest/eval/
+*** Emacs org-mode examples and cookbook
+[2017-12-10 Sun 09:21]
+http://ehneilsen.net/notebook/orgExamples/org-examples.html
+*** Dealing repeated tasks
+[2017-12-11 Mon 14:54]
+http://orgmode.org/manual/Repeated-tasks.html#Repeated-tasks
+*** Scrapy glance
+[2017-12-12 Tue 08:31]
+https://doc.scrapy.org/en/latest/intro/overview.html
+*** Parcel bundler
+CLOSED: [2017-12-18 周一 16:32]
+[2017-12-12 Tue 08:26]
+https://parceljs.org/assets.html
+*** awesome-python-cn
+[2017-12-27 Wed 10:27]
+https://github.com/jobbole/awesome-python-cn/blob/master/README.md
+*** quick capture
+[2018-06-16 Sat 10:23]
+- [[file:~/minecraft/doom/.doom.d/modules/private/org/+quick-capture.el::"*%20TODO%20%25^{Title}\n%20%25U%20\n%20-%20%25:annotation"]]
+*** agenda setting
+[2018-06-16 Sat 10:27]
+- [[file:~/minecraft/doom/.doom.d/modules/private/org/+agenda.el][file:~/minecraft/doom/.doom.d/modules/private/org/+agenda.el]]
+*** todo priority
+[2018-06-19 Tue 08:50]
+- [[info:org#Priorities][info:org#Priorities]]
+*** Capture link in chrome with emacs
+[2018-06-22 Fri 07:53]
+- [[https://blog.aaronbieber.com/2016/11/24/org-capture-from-anywhere-on-your-mac.html][org catpure from any where]]
+*** Capture link in windows
+[2018-06-22 Fri 07:55]
+- [[http://sachachua.com/blog/2015/11/capturing-links-quickly-with-emacsclient-org-protocol-and-chrome-shortcut-manager-on-microsoft-windows-8/][Using capture in windows]]
+- [[https://www.diegoberrocal.com/blog/2015/08/19/org-protocol/][Ultimate Chrome Org Capture]]
+*** capture everything
+[[https://www.diegoberrocal.com/blog/2015/08/19/org-protocol/][chrome ultimate capture]]
+*** Spreadsheet of Org Mode
+[2018-06-22 Fri 21:59]
+
+[[https://www.jianshu.com/p/3b184915c8a3][Org-mode的电子表格的简明教程]]
+*** Org Spreadsheet
+:PROPERTIES:
+:tags:     org
+:END:
+[2018-06-22 Fri 22:03]
+
+[[https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html][Org Spreadsheet]]
+*** Doom Autoloads +org/dwim-at-point
+[2018-06-24 Sun 14:08]
+- [[file:~/.emacs.d/modules/lang/org/autoload/org.el::(defun%20+org/dwim-at-point%20()]] :COMPUTER:
+*** Doom +org|setup-evil
+[2018-06-24 Sun 14:00]
+- [[file:~/.emacs.d/modules/lang/org/config.el::(defun%20+org|setup-evil%20(&rest%20_)]]
+*** Doom +org|setup-ui
+[2018-06-24 Sun 14:02]
+- [[file:~/.emacs.d/modules/lang/org/config.el::(defun%20+org|setup-ui%20()]]
+*** Doom +org|setup-agenda
+[2018-06-24 Sun 14:02]
+- [[file:~/.emacs.d/modules/lang/org/config.el::(defun%20+org|setup-agenda%20()]]
+*** Doom devar org-capture-templates
+[2018-06-24 Sun 14:03]
+- [[file:~/.emacs.d/modules/lang/org/+capture.el::(defvar%20org-capture-templates]]
+*** Doom def-package! ox-reveal
+[2018-06-24 Sun 14:05]
+- [[file:~/.emacs.d/modules/lang/org/+present.el::(def-package!%20ox-reveal]]
+*** Bookfere.com
+[20124 Sun 15:16]
+- ht/bookfere.com/ebook
+*** Useful capture tutorial by zmonster
+[20124 Sun 15:18]
+- htwww.zmonster.me/2018/02/28/org-mode-capture.html
+*** Using Emacs to create Beamer Presentation
+[20124 Sun 15:36]
+- ht/orgmode.org/worg/exporters/beamer/presentation.html
+*** World of Org Mode
+[20124 Sun 15:40]
+- ht/orgmode.org/worg/
+*** Keybindings for Org Mode
+[20124 Sun 15:41]
+- ht/orgmode.org/worg/orgcard.html
+*** GTD Workflow Examples
+[2018-06-24 Sun 15:47]
+- http://members.optusnet.com.au/~charles57/GTD/gtd_workflow.html
+*** org-mode 手册
+[2017-12-09 Sat 10:49]
+http://monodon.coding.me/zemacs/org
+*** Org-mode | Emacs 菜鸡教程
+[2017-12-09 Sat 10:53]
+https://bohao.gitbooks.io/emacs-tutorials/chapter1.html
+*** 批量indent 所有子目录下的 C 源程序
+[2017-12-09 Sat 11:00]
+http://ann77.emacser.com/Emacs/EmacsBatchIndentC.html
+*** Org-mode
+[2017-12-20 Wed 08:16]
+https://bohao.gitbooks.io/emacs-tutorials/chapter1.html
+| Emacs 菜鸡教程
+*** chrome
+[2018-01-25 Thu 21:49]
+http://csbun.github.io/blog/2017/09/puppeteer/
+*** org capture from shell
+ [2018-12-11 Tue 22:52]
+ -
+** Org mode export md
+https://blog.yuantops.com/tech/emacs-orgmode-hugo-with-oxpandoc/
+** Setting lsp in doom-emacs
+
++ 启用doom中的来lsp功能 (:editor lsp)
+ [[file:c:/Users/wjb/.doom.d/init.el][doom private init]]
++ 启用python的lsp功能 (python +lsp)
+ [[file:c:/Users/wjb/.doom.d/init.el][doom private init]]
++ 安装语言服务器 =lsp-install-server=
+=install python language server= 在win32系统上，直接调用 =lsp-install-server= 会报错，
+因为自动下载了64位服务器。一个方法是使用vscode下载 _python language server_ ，在
+=C:\Users\\wjb\AppData\\Local\Microsoft\\Python\\ Language Server=, 然后建立一个快捷方
+式到 =emacs.d/.local/etc/lsp/mspyls/=
+[[file:c:/Users/wjb/appdata/local/Microsoft/Python Language Server/][Python language server in User Local AppData]]
+[[file:c:/Users/wjb/.emacs.d/.local/etc/lsp/mspyls.lnk][mspyls link]]
+* VScode
+* Vim
+* Atom
+* nano
+
+[[file:20200302141115_blog_gridsome_with_org.org][Blog Gridsome With Org]]
+[[file:20200302164957_literate_coding.org][literate coding]]

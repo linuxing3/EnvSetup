@@ -1,0 +1,72 @@
+#+TITLE: Journal Entry - Friday, February 16 2018
+#+AUTHOR: xing wenju
+#+IRC: linuxing3 on freenode
+#+EMAIL: xingwenju@gmail.com
+#+STARTUP: overview
+
+* News
+** [[http://www.ultimasnoticias.com.ve/noticias/sin-categoria/maduro-ordeno-reabrir-consulado-venezolano-miami/][Maduro ordenó reabrir consulado venezolano en Miami]]
+Published: 15 febrero, 2018 2:33 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/maduro-llegare-la-cumbre-las-americas-la-verdad-venezuela/][Maduro: Llegaré a la Cumbre de las Américas con la verdad de Venezuela]]
+Published: 15 febrero, 2018 2:55 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/venezolanos-residencia-legal-podran-sufragar-extranjero/][Venezolanos con residencia legal podrán sufragar en el extranjero]]
+Published: 15 febrero, 2018 4:05 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/peru-retira-invitacion-maduro-cumbre-las-americas/][Perú retira invitación a Maduro para Cumbre de las Américas]]
+Published: 16 febrero, 2018 8:21 am
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider/fanb-cne-coordinan-plan-seguridad-presidenciales/][Fanb y CNE coordinan plan de seguridad para presidenciales]]
+Published: 15 febrero, 2018 6:31 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider-inferior/foto-esta-la-carta-le-envio-santos-maduro/][FOTO | Esta es la carta que le envió Santos a Maduro]]
+Published: 15 febrero, 2018 3:13 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/venezuela-egipto-evaluan-proyectos-petroleo-gas/][Venezuela y Egipto evalúan proyectos de petróleo y gas]]
+Published: 14 febrero, 2018 9:08 am
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/cartera-turismo-del-banco-del-tesoro-registro-incremento-interanual-14598/][Cartera de turismo del Banco del Tesoro registró incremento interanual de 145,98 %]]
+Published: 14 febrero, 2018 6:25 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider/plataforma-del-banco-venezuela-esta-temporalmente-suspendida/][Plataforma del Banco de Venezuela está temporalmente suspendida]]
+Published: 14 febrero, 2018 12:01 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/pdvsa-ha-incrementado-250-mil-barriles-petroleo-2018/][Pdvsa ha incrementado 250 mil barriles de petróleo en 2018]]
+Published: 15 febrero, 2018 1:56 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider/infografia-bonos-ayudan-soportar-aguacero/][INFOGRAFÍA | Bonos ayudan a soportar el aguacero]]
+Published: 15 febrero, 2018 6:15 am
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider/este-lunes-25-millones-jovenes-recibiran-bono-protector/][Este lunes 2,5 millones de jóvenes recibirán bono protector]]
+Published: 12 febrero, 2018 3:17 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/petro-sera-una-las-criptomonedas-mas-seguras/][El petro será una de las criptomonedas más seguras]]
+Published: 13 febrero, 2018 12:52 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/quevedo-asegura-gobierno-ha-fomentado-la-cooperacion-mercado-petrolero/][Quevedo asegura que el Gobierno ha fomentado la cooperación en el mercado petrolero]]
+Published: 13 febrero, 2018 11:19 am
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/banco-de-venezuela-restablece-sus-servicios/][Banco de Venezuela restablece sus servicios]]
+Published: 16 febrero, 2018 8:25 am
+
+** [[http://www.ultimasnoticias.com.ve/noticias/economia/buscan-impulsar-mineria-no-metalica-pais/][Buscan impulsar minería no metálica en el país]]
+Published: 16 febrero, 2018 5:45 am
+
+** [[http://www.ultimasnoticias.com.ve/noticias/slider/12-organizaciones-politicas-podran-registrar-candidatos-las-presidenciales/][12 organizaciones políticas podrán registrar a sus candidatos en las presidenciales]]
+Published: 15 febrero, 2018 10:15 am
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/foto-esta-la-carta-invitacion-maduro-la-cumbre-las-americas/][FOTO | Esta es la carta de invitación a Maduro a la Cumbre de las Américas]]
+Published: 15 febrero, 2018 2:06 pm
+
+** [[http://www.ultimasnoticias.com.ve/noticias/politica/ejecutivo-asegura-que-presidenciales-tienen-amplias-y-absolutas-garantias/][Ejecutivo asegura que presidenciales tienen amplias y absolutas garantías]]
+Published: 15 febrero, 2018 12:27 pm
+
+
+* Codes
+
+
+
+* Todos
+
+* Misc
