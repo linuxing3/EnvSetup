@@ -120,6 +120,8 @@ alias poweroff='sudo /sbin/poweroff'
 alias halt='sudo /sbin/halt'
 alias shutdown='sudo /sbin/shutdown'
 
+
+## 21. git alias
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcoo='git fetch && git checkout'
@@ -163,3 +165,14 @@ alias gf="git ls-files | grep -i"
 alias ggr='git grep -Ii'
 
 alias gla='git config -l | grep alias | cut -c 7-'
+
+# 22. run npc in pi and nps in debian
+pi-npc(){
+	cd ~/npc
+	nohup ./npc &
+}
+
+debian-nps(){
+	cd ~/nps
+	nohup ./nps &
+}
