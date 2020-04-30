@@ -226,4 +226,10 @@ start_menu(){
   esac
 }
 
+if ! command -v "dialog" >/dev/null 2>&1; then
+  sudo apt install -y dialog
+else
+  echo "Dialog installed!"
+fi
+
 start_menu

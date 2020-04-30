@@ -11,6 +11,11 @@ elif [[ "${a}" == "armv7l" ]]; then
 fi
 echo "Your system architecture is ${a}, downloading ${version} version"
 
+if ! command -v "dialog" >/dev/null 2>&1; then
+  sudo apt install -y dialog
+else
+  echo "Dialog installed!"
+fi
 
 install_nps() {
 	echo " install nps tunnel server "
@@ -54,6 +59,7 @@ install_nps() {
 install_npc() {
 	echo "----------------------------------------------------------"
 	echo "Trying to install npc"
+  
 	cd
 	rm -rf npc
 	mkdir npc
@@ -73,7 +79,7 @@ EOF
 [common]
 server_addr=35.235.80.5:8024
 conn_type=tcp
-vkey=qqyzkzldrxycbdzwwsgh
+vkey=13901229638
 auto_reconnection=true
 max_conn=1000
 flow_limit=1000
@@ -87,14 +93,25 @@ compress=true
 
 [tcp]
 mode=tcp
-server_port=11115
+server_port=11116
 target_addr=127.0.0.1:22
 EOF
 
-	echo "Run npc in background"
-  sudo ./npc install -config "/home/${whoami}/npc/conf/npc.conf"
+  user=$(whoami)
+  dir=""
+  if [[ "${user}" == "root" ]]; then
+    dir="/root"
+  else
+    dir="/home/${user}"
+  fi
+	echo "Uninstall npc is" 
+  sudo systemctl stop Npc
+  sudo ./npc uninstall
+
+  sudo ./npc install -config "${dir}/npc/conf/npc.conf"
   sudo systemctl enable Npc
 	echo "Testing npc is running"
+  sudo systemctl stop Npc
   sudo systemctl start Npc
   sudo systemctl status Npc
   echo "Checkout ~/npc/conf/npc.default.conf for more examples"

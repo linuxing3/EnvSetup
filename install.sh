@@ -74,14 +74,16 @@ if type xbps-install >/dev/null 2>&1; then
 	installpkg(){ xbps-install -y "$1" >/dev/null 2>&1 ;}
 	grepseq="\"^[PGV]*,\""
 elif type apt >/dev/null 2>&1; then
-	installpkg(){ apt-get install -y "$1" >/dev/null 2>&1 ;}
-	grepseq="\"^[PGU]*,\""
+	distro="debian"
+	installpkg(){ sudo apt-get install -y "$1" >/dev/null 2>&1 ;}
+	grepseq="\"^[PGA]*,\""
 elif type apk >/dev/null 2>&1; then
-	installpkg(){ apk add -y "$1" >/dev/null 2>&1 ;}
-	grepseq="\"^[PGU]*,\""
+	distro="alpine"
+	installpkg(){ sudo apk add -y "$1" >/dev/null 2>&1 ;}
+	grepseq="\"^[PGA]*,\""
 else
 	distro="arch"
-	installpkg(){ pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 ;}
+	installpkg(){ sudo pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 ;}
 	grepseq="\"^[PGA]*,\""
 fi
 
@@ -157,18 +159,17 @@ backup() {
 
 check_commands() {
   if ! exists "git"; then
-    error "You must have 'git' installed to continue"
+    msg "You must have 'git' installed to continue"
     installpkg git
   fi
   if ! exists "curl"; then
-    error "You must have 'curl' installed to continue"
+    msg "You must have 'curl' installed to continue"
     installpkg curl
   fi
   if ! exists "dialog"; then
-    error "You must have 'dialog' installed to continue"
+    msg "You must have 'dialog' installed to continue"
     installpkg dialog
   fi
-  echo "Git curl and dialog all installed!"
 }
 
 
@@ -274,6 +275,9 @@ finalize(){ \
 ###############################
 ##  main
 ###############################
+
+check_commands
+
 # Welcome user and pick dotfiles.
 # welcomemsg || error "User exited."
 
@@ -289,9 +293,9 @@ preinstallmsg || error "User exited."
 #### The rest of the script requires no user input.
 #
 #adduserandpass || error "Error adding username and/or password."
+
 dialog --title "Pre Installation" --infobox "Installing \`dialog\` and \`git\`." 5 70
 
-check_commands
 #
 dialog --title "Installation" --infobox "Installing..." 5 70
 install 
