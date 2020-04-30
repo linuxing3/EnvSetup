@@ -123,6 +123,14 @@ function install_v2ray(){
   cd
 }
 
+function install_nps(){
+  green "======================="
+  blue "Installing v2ray"
+  green "======================="
+  cd
+  bash EnvSetup/bash/bin/install-nps.sh
+  cd
+}
 
 function config_app(){
   green "======================="
@@ -169,6 +177,7 @@ start_menu(){
     "caddy" "Caddy Web Server" 0 \
     "trojan" "Trojan proxy Server" 0 \
     "v2ray" "V2ray proxy Server" 0 \
+    "nps" "Nps server and client" 0 \
     "app" "Configure some command tools" 0 \
     "network" "Configure network" 0 \
     3>&1 1>&2 2>&3 3>&1)
@@ -201,14 +210,14 @@ start_menu(){
     v2ray)
     install_v2ray
     ;;
+    nps)
+    install_nps
+    ;;
     app)
     config_app
     ;;
     network)
     config_network
-    ;;
-    0)
-    exit 1
     ;;
     *)
     clear
