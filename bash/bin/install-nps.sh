@@ -26,29 +26,23 @@ install_nps() {
 	sed -i 's/http_proxy_port=.*$/http_proxy_port=8081/g' conf/nps.conf
 	sed -i 's/https_proxy_port=.*$/https_proxy_port=8443/g' conf/nps.conf
 
-
 	#web
-	sed -i 's/web_host=.*$/web_host=xuqinji.top/g ' conf/nps.conf
+	sed -i 's/web_host=.*$/web_host=localhost/g ' conf/nps.conf
 	sed -i 's/web_username=.*$/web_username=admin/g' conf/nps.conf
 	sed -i 's/web_password=.*$/web_password=mm123456/g ' conf/nps.conf
 	sed -i 's/web_port = 8090/web_port=8090/g' conf/nps.conf
 
 	echo "----------------------------------------------------------"
 	echo "Server Setting Examples"
-	cat conf/nps.conf 
+  sudo mkdir -p /etc/nps/conf
+	sudo cp conf/*.* /etc/nps/conf/
 
-	echo "----------------------------------------------------------"
-	echo "Client Setting Examples"
-	echo "[Thinkpad] # 这个就是remark字段，随意填写"
-	echo "host=nps.xunqinji.top # 映射域名"
-	echo "target_addr=192.168.1.2:80 # 内网ip，多个之间使用","分隔"
-
-	./nps install
+	sudo ./nps install
 
 	echo "----------------------------------------------------------"
 	echo "Trying to start nps"
-	nps stop
-	nps start
+	sudo nps stop
+	sudo nps start
 
 	ps ax | grep nps
 	if [[ ! -z $? ]];then
@@ -98,7 +92,7 @@ target_addr=127.0.0.1:22
 EOF
 
 	echo "Run npc in background"
-  sudo ./npc install -config /home/${whoami}/npc/conf/npc.conf
+  sudo ./npc install -config "/home/${whoami}/npc/conf/npc.conf"
   sudo systemctl enable Npc
 	echo "Testing npc is running"
   sudo systemctl start Npc
@@ -125,4 +119,20 @@ main() {
 	fi
 }
 
-main
+ui() {
+  num=$(dialog --title " Nps 一键安装自动脚本" \
+    --checklist "请输入:" 20 70 5 \
+    "nps" "NPS Server" 0 \
+    "npc" "NPC Client" 0 \
+    3>&1 1>&2 2>&3 3>&1)
+  case $num in
+    nps)
+      install_nps
+    ;;
+    npc)
+      install_npc
+      ;;
+  esac
+}
+
+ui
