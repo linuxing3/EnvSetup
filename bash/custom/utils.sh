@@ -628,3 +628,12 @@ alias start_watching1="ssh -l root xunqinji.top '/bin/systemctl restart trojan &
 
 alias stop_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl stop trojan && /bin/systemctl stop v2ray'"
 alias start_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl restart trojan && /bin/systemctl restart v2ray'"
+
+show_ports() {
+  local ports=$(netstat -ntlp | grep "${1:nps}" | awk '{ print $4}' | sed 's/://g')
+  for p in $ports
+  do
+    echo "===================================="
+    netcat -z -v -w 1 -n 127.0.0.1 $p
+  done
+}
