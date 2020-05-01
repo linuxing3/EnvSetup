@@ -162,6 +162,20 @@ function config_network(){
   bash ~/EnvSetup/bash/bin/setup-wifi-debian.sh
 }
 
+function config_locale(){
+
+  green "Setting the console font"
+  sudo sed -i 's/^FONTFACE=.*$/FONTFACE=\"Terminus\"\n/g' /etc/default/console-setup
+  sudo sed -i 's/^FONTSIZE=.*$/FONTSIZE=\"12x24\"\n/g' /etc/default/console-setup
+  sudo /etc/init.d/console-setup.sh
+
+  green "Setting system locale"
+  sudo apt install -y locales-all fbterm
+  sudo localectl set-locales LANG="zh_CN.UTF-8" LANGUAGE="zh_CN:zh"
+  source /etc/default/locale
+  green $LANG
+}
+
 
 start_menu(){
 
@@ -180,6 +194,7 @@ start_menu(){
     "nps" "Nps server and client" 0 \
     "app" "Configure some command tools" 0 \
     "network" "Configure network" 0 \
+    "locale" "Configure locale" 0 \
     3>&1 1>&2 2>&3 3>&1)
   green "Your choosed the ${num}"
   case "$num" in
@@ -218,6 +233,9 @@ start_menu(){
     ;;
     network)
     config_network
+    ;;
+    locale)
+    config_locale
     ;;
     *)
     clear

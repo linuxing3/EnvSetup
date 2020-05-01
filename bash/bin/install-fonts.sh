@@ -18,3 +18,7 @@ sudo cp /tmp/type-master/fonts/*/desktop/pc/*.ttf /usr/share/fonts/truetype/ibm-
 sudo cp /tmp/type-master/fonts/*/desktop/mac/*.otf /usr/share/fonts/opentype/ibm-plex/.
 
 sudo fc-cache -fv
+
+git clone "https://github.com/ryanoasis/nerd-fonts"
+cd nerd-fonts
+./install hack-nerd
