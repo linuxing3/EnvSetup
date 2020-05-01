@@ -1,24 +1,51 @@
 #!/bin/bash
 
-cd /tmp
-
 # install unzip just in case the user doesn't already have it.
 sudo apt-get install unzip -y
-wget "https://github.com/IBM/type/archive/master.zip"
 
-unzip master.zip
-rm master.zip
+fonts="FiraCode Hack JetBrainsMono RobotoMono SourceCodePro IBMPlexMono"
+version="2.1.0"
 
-cd type-master
+fontface=$(dialog --title " Nerd Fonts 一键安装自动脚本" \
+  --checklist "请输入:" 20 70 5 \
+  "FiraCode" "Fira Code Nerd fonts" 0 \
+  "Hack" "Hack Nerd Fonts" 0 \
+  "JetBrainsMono" "JetBrains Mono" 0 \
+  "RobotoMono" "Roboto Mono" 0 \
+  "SourceCodePro" "Source Code Pro" 0 \
+  "IBMPlexMono" "IBM Plex Mono" 0 \
+  3>&1 1>&2 2>&3 3>&1)
 
-sudo mkdir -p /usr/share/fonts/truetype/ibm-plex
-sudo mkdir -p /usr/share/fonts/opentype/ibm-plex
+location="/usr/share/fonts/truetype/${fontface}"
+url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${fontface}.zip"
 
-sudo cp /tmp/type-master/fonts/*/desktop/pc/*.ttf /usr/share/fonts/truetype/ibm-plex/.
-sudo cp /tmp/type-master/fonts/*/desktop/mac/*.otf /usr/share/fonts/opentype/ibm-plex/.
+echo "Installling ${fontface}"
+cd
+if [[ ! -d fonts ]]; then
+  mkdir fonts
+fi
+cd fonts
 
-sudo fc-cache -fv
+rm -rf ${fontface}
+mkdir ${fontface}
+cd ${fontface}
 
-git clone "https://github.com/ryanoasis/nerd-fonts"
-cd nerd-fonts
-./install hack-nerd
+echo "Fetching ${fontface} fonts from nerd-fonts releases page"
+wget $url
+unzip ${fontface}.zip
+rm ${fontface}.zip
+
+sudo rm -rf $location
+sudo mkdir -p $location
+
+if [[ -d $location ]]; then
+  sudo cp *.ttf "${location}/"
+  sudo cp */*.ttf "${location}/" 
+  sudo fc-cache -fv
+  dialog --title "Success" --msgbox "Installed ${fontface} ${version}" 5 70
+else
+  dialog --title "Failed" --msgbox "Not Installed ${fontface} ${version}" 5 70
+fi
+
+echo "For all fonts, clone the repository and install"
+echo "git clone https://github.com/ryanoasis/nerd-fonts"
