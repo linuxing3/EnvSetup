@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
+# linuxing's Bash extra Script 
+# by linuxing3 <linuxing3@qq.com>
+# License: GNU GPLv3
+#
+#                                        _
+#    ___ _ __   __ _  ___ ___     __   _(_) 
+#   / __| -_ \ / _- |/ __/ _ \____\ \ / 
+#   \__ \ |_) | (_| | (_|  __/_____\ V /
+#   |___/ .__/ \__._|\___\___|      \_/ 
+#       |_|
+#
+#
 
 export BASH_IT="$HOME/workspace/bash-it"
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# linuxing's Bash Boostrapping Script (LARBS)
+# linuxing's Bash Boostrapping Script (LBBUS)
 # by linuxing3 <linuxing3@qq.com>
 # License: GNU GPLv3
 #
@@ -10,8 +10,11 @@
 #   |___/ .__/ \__._|\___\___|      \_/ 
 #       |_|
 #
-
+#
+#
 set -eo pipefail
+
+source ~/EnvSetup/bash/custom/init.sh
 
 [ -z "$app_name" ] && app_name="EnvSetup"
 [ -z "$repo_uri" ] && repo_uri="https://github.com/linuxing3/EnvSetup.git"
@@ -24,6 +27,7 @@ _remove=
 
 help() {
   cat << EOF
+This Script helps to bootstrap a linux server
 usage: $0 [OPTIONS]
 
     --help               Show this message
@@ -32,68 +36,46 @@ usage: $0 [OPTIONS]
 EOF
 }
 
-for opt in "$@"; do
-  case $opt in
-    --help)
-      help
-      exit 0
-      ;;
-    --install)       _install=1    ;;
-    --remove)        _remove=1 ;;
-    *)
-      echo "unknown option: $opt"
-      help
-      exit 1
-      ;;
-  esac
-done
-
-###############################
-## Basic tools
-###############################
-msg() {
-  printf '%b\n' "$1" >&2
-}
-
-success() {
-  if [ "$ret" -eq '0' ]; then
-    msg "\\33[32m[✔]\\33[0m ${1}${2}"
-  fi
-}
-
-error() {
-  msg "\\33[31m[✘]\\33[0m ${1}${2}"
-  exit 1
-}
-
-exists() {
-  command -v "$1" >/dev/null 2>&1
-}
-
-if type xbps-install >/dev/null 2>&1; then
-	installpkg(){ xbps-install -y "$1" >/dev/null 2>&1 ;}
-	grepseq="\"^[PGV]*,\""
-elif type apt >/dev/null 2>&1; then
-	distro="debian"
-	installpkg(){ sudo apt-get install -y "$1" >/dev/null 2>&1 ;}
-	grepseq="\"^[PGA]*,\""
-elif type apk >/dev/null 2>&1; then
-	distro="alpine"
-	installpkg(){ sudo apk add -y "$1" >/dev/null 2>&1 ;}
-	grepseq="\"^[PGA]*,\""
+if [[ -z $@ ]]; then
+  _install=1
 else
-	distro="arch"
-	installpkg(){ sudo pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 ;}
-	grepseq="\"^[PGA]*,\""
+  for opt in "$@"; do
+    case $opt in
+      --help)
+        help
+        exit 0
+        ;;
+      --install)       _install=1    ;;
+      --remove)        _remove=1 ;;
+      *)
+        echo "unknown option: $opt"
+        help
+        exit 1
+        ;;
+    esac
+  done
 fi
 
-###############################
-## Commands
-###############################
+
 welcomemsg() { \
 	dialog --title "Welcome!" --msgbox "Welcome to Linuxing3's Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop"
 	}
 
+preinstallmsg() { \
+	dialog --title "Let's get this party started!" --yes-label "Let's go!" --no-label "No, nevermind!" --yesno "The rest of the installation will now be totally automated, so you can sit back and relax.\\n\\nIt will take some time, but when done, you can relax even more with your complete system.\\n\\nNow just press <Let's go!> and the system will begin installation!" 13 60 || { clear; exit; }
+	}
+
+installmsg() { \
+  local manual=$(help)
+	dialog --title "Let's install!" --yes-label "Install!" --no-label "No, nevermind!" --yesno "${manual}" 13 60 || { clear; exit; }
+	}
+
+finalize(){ \
+	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully.\\n\\n Linuxing3" 12 80
+	}
+
+###############################
+###############################
 getuserandpass() { \
 	# Prompts user for new username an password.
 	name=$(dialog --inputbox "First, please enter a name for the user account." 10 60 3>&1 1>&2 2>&3 3>&1) || exit
@@ -111,10 +93,6 @@ getuserandpass() { \
 usercheck() { \
 	! (id -u "$name" >/dev/null) 2>&1 ||
 	dialog --colors --title "WARNING!" --yes-label "CONTINUE" --no-label "No wait..." --yesno "The user \`$name\` already exists on this system. LARBS can install for a user already existing, but it will \\Zboverwrite\\Zn any conflicting settings/dotfiles on the user account.\\n\\nLARBS will \\Zbnot\\Zn overwrite your user files, documents, videos, etc., so don't worry about that, but only click <CONTINUE> if you don't mind your settings being overwritten.\\n\\nNote also that LARBS will change $name's password to the one you just gave." 14 70
-	}
-
-preinstallmsg() { \
-	dialog --title "Let's get this party started!" --yes-label "Let's go!" --no-label "No, nevermind!" --yesno "The rest of the installation will now be totally automated, so you can sit back and relax.\\n\\nIt will take some time, but when done, you can relax even more with your complete system.\\n\\nNow just press <Let's go!> and the system will begin installation!" 13 60 || { clear; exit; }
 	}
 
 adduserandpass() { \
@@ -157,31 +135,16 @@ backup() {
   fi
 }
 
-check_commands() {
-  if ! exists "git"; then
-    msg "You must have 'git' installed to continue"
-    installpkg git
-  fi
-  if ! exists "curl"; then
-    msg "You must have 'curl' installed to continue"
-    installpkg curl
-  fi
-  if ! exists "dialog"; then
-    msg "You must have 'dialog' installed to continue"
-    installpkg dialog
-  fi
-}
-
 
 remove() {
-  read -r -p "Backup: [0]yes [1]no?" opt
+  read -r -p "Backup: [0] yes [1] no?" opt
   case $opt in
-    0)
+    y)
       msg "\\033[1;34m==>\\033[0m Trying to backup EnvSetup"
       backup "$HOME/EnvSetup"
       break
       ;;
-    1)
+    n)
       echo "Not backuped"
       break
       ;;
@@ -193,22 +156,25 @@ remove() {
   msg "\\nThanks for using \\033[1;31m$app_name\\033[0m. Chao!"
 }
 
+#--------------------------------------------------
+# Bootstrap
+#--------------------------------------------------
 bootstrap() {
-  read -r -p "Bootstrap now: [0]yes [1]no?" opt
+  read -r -p "Bootstrap now: [y] yes [n] no?  " opt
   case $opt in
-    0)
+    y)
       echo "Bootstrap Now"
       if [ ! -e "$repo_path" ]; then
         msg "\\033[1;34m==>\\033[0m EnvSetup not ready, install it again?"
       else
-        bash ~/EnvSetup/bootstrap.sh
+        bash ~/EnvSetup/bootstrap-ui.sh
       fi
       ;;
-    1)
-      echo "Not bootstrap"
+    n)
+      echo "Not bootstraped"
       ;;
     *)
-      echo "Please answer 0, 1 or 2"
+      echo "Please answer y or no"
       ;;
     esac
 }
@@ -265,39 +231,16 @@ installationloop() { \
 		esac
 	done < /tmp/progs.csv ;}
 
-finalize(){ \
-	dialog --infobox "Preparing welcome message..." 4 50
-	echo "exec_always --no-startup-id notify-send -i ~/.local/share/larbs/larbs.png 'Welcome to LARBS:' 'Press Super+F1 for the manual.' -t 10000"  >> "/home/$name/.config/i3/config"
-	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user, then run the command \"startx\" to start the graphical environment (it will start automatically in tty1).\\n\\n.t Luke" 12 80
-	}
 
 
 ###############################
 ##  main
 ###############################
 
-check_commands
+check_commands dialog git
 
-# Welcome user and pick dotfiles.
-# welcomemsg || error "User exited."
+installmsg
 
-# Get and verify username and password.
-# getuserandpass || error "User exited."
-
-# Give warning if user already exists.
-# usercheck || error "User exited."
-
-# Last chance for user to back out before install.
-preinstallmsg || error "User exited."
-#
-#### The rest of the script requires no user input.
-#
-#adduserandpass || error "Error adding username and/or password."
-
-dialog --title "Pre Installation" --infobox "Installing \`dialog\` and \`git\`." 5 70
-
-#
-dialog --title "Installation" --infobox "Installing..." 5 70
 install 
-#
-#finalize
+
+finalize

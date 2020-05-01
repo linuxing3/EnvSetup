@@ -1,21 +1,27 @@
 #!/usr/bin/env bash
+# linuxing's Bash Boostrapping UI Script (LBBUS)
+# by linuxing3 <linuxing3@qq.com>
+# License: GNU GPLv3
+#
+#                                        _
+#    ___ _ __   __ _  ___ ___     __   _(_) 
+#   / __| -_ \ / _- |/ __/ _ \____\ \ / 
+#   \__ \ |_) | (_| | (_|  __/_____\ V /
+#   |___/ .__/ \__._|\___\___|      \_/ 
+#       |_|
+#
+#
 
-blue(){
-    echo -e "\033[34m\033[01m$1\033[0m"
-}
-green(){
-    echo -e "\033[32m\033[01m$1\033[0m"
-}
-red(){
-    echo -e "\033[31m\033[01m$1\033[0m"
-}
+set -eo pipefail
+
+source ~/EnvSetup/bash/custom/init.sh
 
 function install_vim(){
   green "======================="
   blue "Installing space-vim for you"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/vim.sh
+  bash EnvSetup/bash/bin/install-vim.sh
   cd
 }
 
@@ -24,7 +30,7 @@ function install_bash(){
   blue "Installing oh-my-bash for you"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/bash.sh
+  bash EnvSetup/bash/bin/install-bash.sh
 
   cd
   cat > .bashrc <<-EOF
@@ -63,7 +69,7 @@ function install_tmux(){
   blue "Installing oh-my-tmux for you"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/tmux.sh
+  bash EnvSetup/bash/bin/install-tmux.sh
   cd
 }
 
@@ -72,7 +78,7 @@ function install_emacs(){
   blue "Installing doom emacs for you"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/emacs.sh
+  bash EnvSetup/bash/bin/install-emacs.sh
   cd
 }
 
@@ -82,7 +88,7 @@ function install_python(){
   blue "Installing python+pyenv+pipenv+ansible"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/python.sh
+  bash EnvSetup/bash/bin/install-python.sh
   cd
 }
 
@@ -92,7 +98,7 @@ function install_nvm(){
   blue "Installing nvm+npm"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/nodejs.sh
+  bash EnvSetup/bash/bin/install-nodejs.sh
   cd
 }
 
@@ -159,30 +165,23 @@ function config_network(){
   green "======================="
   blue "Configure network"
   green "======================="
-  bash ~/EnvSetup/bash/bin/setup-wifi-debian.sh
+  bash ~/EnvSetup/bash/bin/configure-debian-wifi.sh
+}
+
+function config_fonts(){
+  green "======================="
+  blue "Configure fonts"
+  green "======================="
+  bash ~/EnvSetup/bash/bin/install-fonts.sh
 }
 
 function config_locale(){
-
-  green "Setting the console font"
-  sudo sed -i 's/^FONTFACE=.*$/FONTFACE=\"Terminus\"\n/g' /etc/default/console-setup
-  sudo sed -i 's/^FONTSIZE=.*$/FONTSIZE=\"12x24\"\n/g' /etc/default/console-setup
-  sudo /etc/init.d/console-setup.sh restart
-
-  green "Setting system locale"
-  sudo apt install -y locales-all fbterm fonts-wqy-zenhei fonts-wqy-microhei
-  sudo localectl set-locale LANG="zh_CN.UTF-8" 
-  sudo localectl set-locale LANGUAGE="zh_CN.UTF-8"
-  source /etc/default/locale
-  green $LANG
-  green $LANGUAGE
+  bash ~/EnvSetup/bash/bin/configure-locale.sh
 }
 
-
 start_menu(){
-
   clear
-  num=$(dialog --title " Vps 一键安装自动脚本 2020-2-27 更新 " \
+  option=$(dialog --title " Vps 一键安装自动脚本 2020-2-27 更新 " \
     --checklist "请输入:" 20 70 5 \
     "vim" "Dark side editor" 0 \
     "bash" "Your shell" 0 \
@@ -194,12 +193,13 @@ start_menu(){
     "trojan" "Trojan proxy Server" 0 \
     "v2ray" "V2ray proxy Server" 0 \
     "nps" "Nps server and client" 0 \
+    "fonts" "Popular nerd fonts" 0 \
     "app" "Configure some command tools" 0 \
     "network" "Configure network" 0 \
     "locale" "Configure locale" 0 \
     3>&1 1>&2 2>&3 3>&1)
-  green "Your choosed the ${num}"
-  case "$num" in
+  green "Your choosed the ${option}"
+  case "$option" in
     vim)
     install_vim
     ;;
@@ -230,6 +230,9 @@ start_menu(){
     nps)
     install_nps
     ;;
+    fonts)
+    config_fonts
+    ;;
     app)
     config_app
     ;;
@@ -246,10 +249,5 @@ start_menu(){
   esac
 }
 
-if ! command -v "dialog" >/dev/null 2>&1; then
-  sudo apt install -y dialog
-else
-  echo "Dialog installed!"
-fi
-
+check_commands dialog
 start_menu
