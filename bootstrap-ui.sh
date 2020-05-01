@@ -171,7 +171,7 @@ function config_locale(){
 
   green "Setting system locale"
   sudo apt install -y locales-all fbterm
-  sudo localectl set-locales LANG="zh_CN.UTF-8" LANGUAGE="zh_CN:zh"
+  sudo localectl set-locale LANG="zh_CN.UTF-8" LANGUAGE="zh_CN:zh"
   source /etc/default/locale
   green $LANG
 }
