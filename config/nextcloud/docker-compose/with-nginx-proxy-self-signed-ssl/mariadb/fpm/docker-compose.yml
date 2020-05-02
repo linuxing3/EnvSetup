@@ -44,7 +44,7 @@ services:
       - 18080:80
       - 18443:443
     volumes:
-      - /etc/xunqinji.top_ecc:/etc/nginx/certs:ro
+      - certs:/etc/nginx/certs:ro
       - vhost.d:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -57,7 +57,7 @@ services:
     image: paulczar/omgwtfssl
     restart: "no"
     volumes:
-      - /etc/xunqinji.top_ecc:/certs
+      - certs:/certs
     environment:
       - SSL_SUBJECT=xunqinji.top
       - CA_SUBJECT=xingwenju@gmail.com
