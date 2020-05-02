@@ -1,0 +1,533 @@
+   Link: preconnect
+   Link: preconnect
+   Link: canonical
+   Link: https://api.w.org/
+   Link: alternate
+   Link: alternate
+   More about SSD Nodes—simple, high-value VPS cloud computing to help you build amazing experiences on the web.
+
+   Serverwise: the SSD Nodes blog
+
+   Tutorials Self-hosting Comparisons Updates VPS Uses Development SaaS Alternatives
+   Tutorials | Mar 24, 2020 | 15 min read
+
+                                            How to install Nextcloud on your server with Docker
+
+   Dwijadas DeyDwijadas Dey Written by Dwijadas Dey
+
+   In this tutorial, we’ll look at how to install Nextcloud using Docker and Docker Compose.
+
+   Specifically, we’ll be installing Nexcloud along with an Nginx reverse proxy and Let’s Encrypt SSL in a CentOS, Ubuntu, or Debian
+   dockerized environment.
+
+Why install Nextcloud + Docker on your VPS?
+
+   Nextcloud is an open source software suite for storing and synchronizing data, sort of like a free alternative to Dropbox or Google
+   Drive.
+   Now in LA! 😎
+
+   Get THE BEST DEALS IN CLOUD HOSTING from Los Angeles!
+
+   Grab a huge 32GB RAM & 320GB of SSD storage for just $109/year!
+
+   Plus, with Nextcloud, you get an open system architecture that gives you additional functionality and full control of your data.
+
+   With Nextcloud, you can:
+
+     Store files, contacts, calendars and more on your server, and synchronize them across various devices
+     Share your data with others to view and collaborate on
+     Expand your Nextcloud installation with apps from the Nextcloud App Store,
+     Or build your own apps and integrate them with Nextcloud.
+
+Nextcloud + Docker: Prerequisites
+
+     A VPS running Ubuntu 18.04, CentOS or Debian
+     A working Docker installation—for information about how to install Docker, check out our getting started with Docker tutorial
+
+  What’s the BEST DEAL in cloud hosting?
+
+   Develop at hyperspeed with a Performance VPS from SSD Nodes. We DOUBLED the amount of blazing-fast NVMe storage on our most popular
+   plan and beefed up the CPU offering on these plans. There’s nothing else like it on the market, at least not at these prices.
+
+   Score a 16GB Performance VPS with 160GB of NVMe storage for just $89/year for a limited time!
+
+   Get limited-time deals!⚡
+
+Step 1. Install Docker
+
+   Ubuntu 18.04/Debian 10
+   For both Ubuntu and Debian servers, the latest versions of Docker CE may not be available in the repositories. We need to install the
+   prerequisite packages:
+
+ sudo apt-get install curl gnupg2 apt-transport-https ca-certificates  software-properties-common
+
+   Next, we add the GPG keys, Docker repositories and finally install Docker. Here is where it gets different for both Ubuntu and Debian:
+
+   Ubuntu:
+
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+ sudo apt update
+
+ sudo apt install docker-ce
+
+   Debian:
+
+ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+
+ sudo apt update
+
+ sudo apt install docker-ce
+
+   CentOS 7
+   The latest version of the Docker CE is not available in CentOS 7 repository. Therefore, we need to install wget and add the Docker CE
+   repository with the following command:
+
+ $ sudo yum update
+ $ sudo yum install wget -y
+ $ wget https://download.docker.com/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker.repo
+
+   Now execute the following command to install Docker CE:
+
+ $ sudo yum install docker-ce –y
+
+   You can also use a one-line install script for Docker. This script is universal and works on CentOS, Ubuntu and Debian:
+
+ curl -sSL https://get.docker.com/ | CHANNEL=stable sh
+
+   NOTE: Whichever method used to install Docker, make sure to start the Docker service and enable it to start during system startup.
+
+ $ sudo systemctl start docker
+ $ sudo systemctl start docker
+
+Step 2. Install Docker Compose
+
+   To install the latest docker-compose , execute the following commands in the terminal:
+
+ $ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+ $ docker-compose --version
+ docker-compose version 1.25.4, build 8d51620a
+
+   At the time of this writing, the latest stable version of docker-compose is 1.25.4, you can choose to substitute 1.25.4 with any other
+   versions you want to install.
+
+Step 3. Install Nextcloud
+
+   Before we start defining services in the docker-compose.yml file, we create a network so that containers can communicate. Run the
+   following command in the terminal:
+
+ $ docker network create nextcloud_network
+
+   Since we want to containerize Nextcloud along with other containers associated with it, we will define and knit all the services
+   together in the docker-compose.yml file incrementally.
+
+   For this tutorial, we’ll define the services one by one, starting with the Nginx reverse proxy:
+
+     Nginx reverse proxy
+     Let’s Encrypt
+     MariaDB
+     Nextcloud
+
+   Create the docker compose file where we will define all the services.
+
+ $ vi docker-compose.yml
+
+Step 4. Configure the Nginx reverse proxy container
+
+   In the file you just created, paste the following:
+
+ version: '3'
+
+ services:
+
+   proxy:
+     image: jwilder/nginx-proxy:alpine
+     labels:
+       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+     container_name: nextcloud-proxy
+     networks:
+       - nextcloud_network
+     ports:
+       - 80:80
+       - 443:443
+     volumes:
+       - ./proxy/conf.d:/etc/nginx/conf.d:rw
+       - ./proxy/vhost.d:/etc/nginx/vhost.d:rw
+       - ./proxy/html:/usr/share/nginx/html:rw
+       - ./proxy/certs:/etc/nginx/certs:ro
+       - /etc/localtime:/etc/localtime:ro
+       - /var/run/docker.sock:/tmp/docker.sock:ro
+     restart: unless-stopped
+
+   Let’s look at the configuration created in the above docker-compose.yml file in detail. The service for proxy uses the image from
+   jwilder/nginx-proxy. The label "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy" is used so that the Let’s Encrypt
+   container knows which nginx proxy container to use for certificate generation.Then, there is network by the name nextcloud_network,
+   which is used by the containers to communicate among themselves. The Volumes section is used by the container to configure the Nginx
+   virtual host and to access certificates generated by Let’s Encrypt companion container. The /etc/localtime:/etc/localtime:ro is used
+   to duplicate the host timezone inside the container.
+
+Step 5. Configure the Let’s Encrypt container
+
+   Now that you have nginx-proxy container set up, you can add the following to your docker-compose.yml file.
+
+   letsencrypt:
+     image: jrcs/letsencrypt-nginx-proxy-companion
+     container_name: nextcloud-letsencrypt
+     depends_on:
+       - proxy
+     networks:
+       - nextcloud_network
+     volumes:
+       - ./proxy/certs:/etc/nginx/certs:rw
+       - ./proxy/vhost.d:/etc/nginx/vhost.d:rw
+       - ./proxy/html:/usr/share/nginx/html:rw
+       - /etc/localtime:/etc/localtime:ro
+       - /var/run/docker.sock:/var/run/docker.sock:ro
+     restart: unless-stopped
+
+   The Lets’ Encrypt container depends on our first service (proxy) and is a part of the network nextcloud_network. The restart:
+   unless-stopped allows the containers to be stopped gracefully unless you manually run docker stop letsencrypt or docker-compose down
+   letsencrypt.
+
+Step 6. Configure the MariaDB container
+
+   For Nextcloud to work correctly, we need to connect it to a MariaDB database. Fortunately, we can add that to our docker-compose.yml
+   file as well:
+
+   db:
+     image: mariadb
+     container_name: nextcloud-mariadb
+     networks:
+       - nextcloud_network
+     volumes:
+       - db:/var/lib/mysql
+       - /etc/localtime:/etc/localtime:ro
+     environment:
+       - MYSQL_ROOT_PASSWORD=secret
+       - MYSQL_PASSWORD=mysql
+       - MYSQL_DATABASE=nextcloud
+       - MYSQL_USER=nextcloud
+     restart: unless-stopped
+
+   The service section for MariaDB is pretty self-explanatory. This container is also part of the network nextcloud_network. We have also
+   defined the environment variable for the database name, username, and password that Nextcloud uses to connect to the database.
+
+Step 7. Configure the Nextcloud Docker container
+
+   We’re finally ready to create the Nextcloud Docker container in our docker-compose.yml file. Add the following to the bottom.
+
+   app:
+     image: nextcloud:latest
+     container_name: nextcloud-app
+     networks:
+       - nextcloud_network
+     depends_on:
+       - letsencrypt
+       - proxy
+       - db
+     volumes:
+       - nextcloud:/var/www/html
+       - ./app/config:/var/www/html/config
+       - ./app/custom_apps:/var/www/html/custom_apps
+       - ./app/data:/var/www/html/data
+       - ./app/themes:/var/www/html/themes
+       - /etc/localtime:/etc/localtime:ro
+     environment:
+       - VIRTUAL_HOST=nextcloud.YOUR-DOMAIN
+       - LETSENCRYPT_HOST=nextcloud.YOUR-DOMAIN
+       - LETSENCRYPT_EMAIL=YOUR-EMAIL
+     restart: unless-stopped
+
+   The nextcloud service depends on the other three containers. To make Nextcloud’s data persistent while upgrading, and get access to
+   backups, we use a named Docker volume nextcloud, similar to the way we used a Docker volume named db for the MariaDB data.
+   Here, we have defined the virtual host, Let’s Encrypt host, and email in the environment variables VIRTUAL_HOST, LETSENCRYPT_HOST, and
+   LETSENCRYPT_``**EMAIL**, respectively. The proxy service creates the subdomain and encrypts it with Let’s Encrypt certificates for the
+   container, given you supply valid domains and emails for those three environment variables.
+
+   At last, we need defined volumes for both Nextcloud and MariaDB for data persistence followed by networks.
+
+ volumes:
+   nextcloud:
+   db:
+
+ networks:
+   nextcloud_network:
+
+   After combining all the service definitions, your final docker-compose.yml should look like following:
+
+ version: '3'
+
+ services:
+
+   proxy:
+     image: jwilder/nginx-proxy:alpine
+     labels:
+       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+     container_name: nextcloud-proxy
+     networks:
+       - nextcloud_network
+     ports:
+       - 80:80
+       - 443:443
+     volumes:
+       - ./proxy/conf.d:/etc/nginx/conf.d:rw
+       - ./proxy/vhost.d:/etc/nginx/vhost.d:rw
+       - ./proxy/html:/usr/share/nginx/html:rw
+       - ./proxy/certs:/etc/nginx/certs:ro
+       - /etc/localtime:/etc/localtime:ro
+       - /var/run/docker.sock:/tmp/docker.sock:ro
+     restart: unless-stopped
+
+   letsencrypt:
+     image: jrcs/letsencrypt-nginx-proxy-companion
+     container_name: nextcloud-letsencrypt
+     depends_on:
+       - proxy
+     networks:
+       - nextcloud_network
+     volumes:
+       - ./proxy/certs:/etc/nginx/certs:rw
+       - ./proxy/vhost.d:/etc/nginx/vhost.d:rw
+       - ./proxy/html:/usr/share/nginx/html:rw
+       - /etc/localtime:/etc/localtime:ro
+       - /var/run/docker.sock:/var/run/docker.sock:ro
+     restart: unless-stopped
+
+   db:
+     image: mariadb
+     container_name: nextcloud-mariadb
+     networks:
+       - nextcloud_network
+     volumes:
+       - db:/var/lib/mysql
+       - /etc/localtime:/etc/localtime:ro
+     environment:
+       - MYSQL_ROOT_PASSWORD=toor
+       - MYSQL_PASSWORD=mysql
+       - MYSQL_DATABASE=nextcloud
+       - MYSQL_USER=nextcloud
+     restart: unless-stopped
+
+   app:
+     image: nextcloud:latest
+     container_name: nextcloud-app
+     networks:
+       - nextcloud_network
+     depends_on:
+       - letsencrypt
+       - proxy
+       - db
+     volumes:
+       - nextcloud:/var/www/html
+       - ./app/config:/var/www/html/config
+       - ./app/custom_apps:/var/www/html/custom_apps
+       - ./app/data:/var/www/html/data
+       - ./app/themes:/var/www/html/themes
+       - /etc/localtime:/etc/localtime:ro
+     environment:
+       - VIRTUAL_HOST=nextcloud.YOUR-DOMAIN
+       - LETSENCRYPT_HOST=nextcloud.YOUR-DOMAIN
+       - LETSENCRYPT_EMAIL=YOUR-EMAIL
+     restart: unless-stopped
+
+ volumes:
+   nextcloud:
+   db:
+
+ networks:
+   nextcloud_network:
+
+Step 7. Get everything running!
+
+   Now run the docker-compose from the terminal to create the containers:
+
+ $ docker-compose up -d
+ Creating nextcloud-mariadb ... done
+ Creating nextcloud-proxy   ... done
+ Creating nextcloud-letsencrypt ... done
+ Creating nextcloud-app         ... done
+
+   To confirm all the containers are running, issue the following command:
+
+ $ docker ps -a
+ CONTAINER ID        IMAGE                                    COMMAND                  CREATED             STATUS              PORTS                                      NAMES
+ 92222232c4be        nextcloud:latest                         "/entrypoint.sh apac…"   9 minutes ago       Up 9 minutes        80/tcp                                     nextcloud-app
+ 89e96fe10ee6        jrcs/letsencrypt-nginx-proxy-companion   "/bin/bash /app/entr…"   9 minutes ago       Up 9 minutes                                                   nextcloud-letsencrypt
+ d059517f519c        jwilder/nginx-proxy:alpine               "/app/docker-entrypo…"   9 minutes ago       Up 9 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   nextcloud-proxy
+ 7e0945eb6608        mariadb                                  "docker-entrypoint.s…"   9 minutes ago       Up 9 minutes        3306/tcp                                   nextcloud-mariadb
+
+   Wait a minute for the SSL certificate generation process to finish, and then load up the domain name you chose in your browser. Enter
+   your chosen admin username and password. Choose MySQL as the database in the configure database section. Type in the username,
+   password, and database name you configured via the MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DATABASE environment variable from earlier.
+   Change the hostname value from localhost to db and click Finish Setup. The system then redirects you to the Nextcloud dashboard.
+
+   The Nextcloud dashboard.The Nextcloud dashboard.
+
+   The containerization of Nextcloud with Docker is complete!
+
+   Now you can upload files and photos to your drive hosted on your VPS and share them with others.
+
+   To extend the functionality of your Nextcloud server, you can now consider installing any number of the available apps, such as
+   Bookmarks, Calendar, Contacts, Tasks, Notes, and more available on the Nextcloud App Store.
+
+   [IMG][IMG]
+
+                                                                 [IMG][IMG]
+
+  Changelog:
+
+   March 24, 2020: Fixed some errors, added steps and added functionality for Ubuntu and Debian.
+
+    Share this post:
+
+   Reddit Hacker News Facebook Twitter Flipboard
+
+   Like what you saw? Subscribe to our weekly newsletter.
+
+   _____________________
+   Subscribe
+
+   _____________________
+
+   A note about tutorials: We encourage our users to try out tutorials, but they aren't fully supported by our team—we can't always
+   provide support when things go wrong. Be sure to check which OS and version it was tested with before you proceed.
+
+   If you want a fully managed experience, with dedicated support for any application you might want to run, contact us for more
+   information.
+
+   Tags:DockerNextcloudself-hostingtutorials
+
+  You might also like:
+
+     Self-hosting Nextcloud with DockerSelf-hosting Nextcloud with Docker
+
+     Self-hosting Nextcloud with Docker: Self-hosting handbook
+     How to use Docker and Nginx to host multiple websitesHow to use Docker and Nginx to host multiple websites
+
+     Host multiple websites on one VPS with Docker and Nginx
+     Docker Nginx multiple websites: a comprehensive tutorialDocker Nginx multiple websites: a comprehensive tutorial
+
+     Hosting multiple SSL-enabled sites with Docker and Nginx
+     [IMG][IMG]
+
+     5 self-hosted, Docker-Friendly apps to install this weekend
+
+Get VPS wisdom in your inbox every Friday. No funny business. Just stuff that makes you smarter.
+
+   _____________________
+   Subscribe
+
+   _____________________
+
+   Features Pricing Company Updates Self-Hosting Comparisons
+
+   Tutorials VPS Uses Use Cases: Developers Development SaaS Alternatives
+
+   Blog About Us Terms of Service Legal DMCA
+
+   Strasmore, Inc.
+   2522 Chambers Road Suite 100
+   Tustin, CA 92780
+
+   Contact us Strasmore
+
+   Twitter Facebook
+
+   © 2011-2020 Strasmore, Inc. All rights reserved. Strasmore and SSD Nodes are registered trademarks of Strasmore, Inc.
+
+   _____________________
+   Search
+
+Stop being a server ignoramus. Enter your email to subscribe to our weekly newsletter.
+
+   _____________________
+   Subscribe
+
+   _____________________
+
+   [IMG][IMG]
+
+References
+
+   Visible links
+   . https://ajax.googleapis.com/
+   . https://fonts.googleapis.com/
+   . https://blog.ssdnodes.com/blog/installing-nextcloud-docker/
+   . https://blog.ssdnodes.com/blog/wp-json/
+   . https://blog.ssdnodes.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.ssdnodes.com%2Fblog%2Finstalling-nextcloud-docker%2F
+   . https://blog.ssdnodes.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.ssdnodes.com%2Fblog%2Finstalling-nextcloud-docker%2F&format=xml
+   . https://www.ssdnodes.com/
+   . https://blog.ssdnodes.com/blog
+   . https://blog.ssdnodes.com/blog/category/tutorials/
+   . https://blog.ssdnodes.com/blog/category/self-hosting/
+   . https://blog.ssdnodes.com/blog/category/comparisons/
+   . https://blog.ssdnodes.com/blog/category/updates/
+   . https://blog.ssdnodes.com/blog/category/uses/
+   . https://blog.ssdnodes.com/blog/category/development/
+   . https://blog.ssdnodes.com/blog/category/alternatives/
+   . https://blog.ssdnodes.com/blog/category/tutorials/
+   . Posts by Dwijadas Dey
+	https://blog.ssdnodes.com/blog/author/dd/
+   . https://nextcloud.com/
+   . https://ssdnodes.com/sale/los-angeles/?blogbanner
+   . https://apps.nextcloud.com/
+   . https://blog.ssdnodes.com/blog/getting-started-docker-vps/
+   . https://www.ssdnodes.com/
+   . https://github.com/jwilder/nginx-proxy
+   . https://apps.nextcloud.com/apps/bookmarks
+   . https://apps.nextcloud.com/apps/calendar
+   . https://apps.nextcloud.com/apps/contacts
+   . https://apps.nextcloud.com/apps/tasks
+   . https://apps.nextcloud.com/apps/notes
+   . https://apps.nextcloud.com/
+   . https://www.ssdnodes.com/?eop
+   . https://www.ssdnodes.com/?eop
+   . https://www.ssdnodes.com/?sb
+   . https://www.ssdnodes.com/?sb
+   . https://www.reddit.com/submit?url=https%3A%2F%2Fblog.ssdnodes.com%2Fblog%2Finstalling-nextcloud-docker%2F&title=How+to+install+Nextcloud+on+your+server+with+Docker
+   . http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fblog.ssdnodes.com%2Fblog%2Finstalling-nextcloud-docker%2F&t=How+to+install+Nextcloud+on+your+server+with+Docker
+   . http://www.facebook.com/sharer/sharer.php?s=100&p[url]=https%3A%2F%2Fblog.ssdnodes.com%2Fblog%2Finstalling-nextcloud-docker%2F
+   . https://twitter.com/intent/tweet?text=How+to+install+Nextcloud+on+your+server+with+Docker+https%3A%2F%2Fblog.ssdnodes.com%2Fblog%2Finstalling-nextcloud-docker%2F
+   . https://share.flipboard.com/bookmarklet/popout?v=How+to+install+Nextcloud+on+your+server+with+Docker&url=https%3A%2F%2Fblog.ssdnodes.com%2Fblog%2Finstalling-nextcloud-docker%2F
+   . https://www.ssdnodes.com/contact-us/
+   . https://blog.ssdnodes.com/blog/tag/docker/
+   . https://blog.ssdnodes.com/blog/tag/nextcloud/
+   . https://blog.ssdnodes.com/blog/tag/self-hosting/
+   . https://blog.ssdnodes.com/blog/tag/tutorials/
+   . https://blog.ssdnodes.com/blog/self-hosting-nextcloud/
+   . https://blog.ssdnodes.com/blog/self-hosting-nextcloud/
+   . https://blog.ssdnodes.com/blog/self-hosting-nextcloud/
+   . https://blog.ssdnodes.com/blog/host-multiple-websites-docker-nginx/
+   . https://blog.ssdnodes.com/blog/host-multiple-websites-docker-nginx/
+   . https://blog.ssdnodes.com/blog/host-multiple-websites-docker-nginx/
+   . https://blog.ssdnodes.com/blog/host-multiple-ssl-websites-docker-nginx/
+   . https://blog.ssdnodes.com/blog/host-multiple-ssl-websites-docker-nginx/
+   . https://blog.ssdnodes.com/blog/host-multiple-ssl-websites-docker-nginx/
+   . https://blog.ssdnodes.com/blog/self-hosted-docker-friendly-apps/
+   . https://blog.ssdnodes.com/blog/self-hosted-docker-friendly-apps/
+   . https://blog.ssdnodes.com/blog/self-hosted-docker-friendly-apps/
+   . https://www.ssdnodes.com/features/
+   . https://www.ssdnodes.com/pricing/
+   . https://blog.ssdnodes.com/blog/category/updates/
+   . https://blog.ssdnodes.com/blog/category/self-hosting/
+   . https://blog.ssdnodes.com/blog/category/comparisons/
+   . https://blog.ssdnodes.com/blog/category/tutorials/
+   . https://blog.ssdnodes.com/blog/category/uses/
+   . https://www.ssdnodes.com/uses/development/
+   . https://blog.ssdnodes.com/blog/category/development/
+   . https://blog.ssdnodes.com/blog/category/alternatives/
+   . https://blog.ssdnodes.com/blog
+   . https://www.ssdnodes.com/about-us/
+   . https://www.ssdnodes.com/legal/#tos
+   . https://www.ssdnodes.com/legal/
+   . https://www.ssdnodes.com/legal/#dmca
+   . https://www.ssdnodes.com/contact-us/
+   . https://www.strasmore.com/
+   . https://twitter.com/ssdnodes
+   . https://facebook.com/ssdnodes
+   . https://ssdnodes.typeform.com/to/JIBTsS
+   . https://ssdnodes.typeform.com/to/JIBTsS
