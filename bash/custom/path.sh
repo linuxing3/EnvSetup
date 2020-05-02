@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
+# linuxing's Bash Path Script 
+# by linuxing3 <linuxing3@qq.com>
+# License: GNU GPLv3
+#
+#                                        _
+#    ___ _ __   __ _  ___ ___     __   _(_) 
+#   / __| -_ \ / _- |/ __/ _ \____\ \ / 
+#   \__ \ |_) | (_| | (_|  __/_____\ V /
+#   |___/ .__/ \__._|\___\___|      \_/ 
+#       |_|
+#
+#
 
 get_subbin() {
     joined_path=$(du "$1" | cut -f2 | tr '\n' ':' | sed 's/:*$//')

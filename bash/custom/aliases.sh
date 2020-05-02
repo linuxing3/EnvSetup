@@ -1,3 +1,16 @@
+#!/usr/bin/env bash
+# linuxing's Bash Aliases Script 
+# by linuxing3 <linuxing3@qq.com>
+# License: GNU GPLv3
+#
+#                                        _
+#    ___ _ __   __ _  ___ ___     __   _(_) 
+#   / __| -_ \ / _- |/ __/ _ \____\ \ / 
+#   \__ \ |_) | (_| | (_|  __/_____\ V /
+#   |___/ .__/ \__._|\___\___|      \_/ 
+#       |_|
+#
+#
 # if user is not root, pass all commands via sudo #
 if [ $UID -ne 0 ]; then
   alias reboot='sudo reboot'

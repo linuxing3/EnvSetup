@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# linuxing's Bash utils Script 
+# linuxing's Bash Utils Script 
 # by linuxing3 <linuxing3@qq.com>
 # License: GNU GPLv3
 #
