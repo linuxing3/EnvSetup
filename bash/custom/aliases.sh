@@ -143,3 +143,27 @@ debian-nps(){
 	cd ~/nps
 	nohup ./nps &
 }
+
+real_addr(){
+  your_domain=$1
+  ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'
+}
+
+alias Port80="netstat -tlpn | awk -F '[: ]+' '\$1==\"tcp\"{print \$5}' | grep -w 80"
+alias Port443="netstat -tlpn | awk -F '[: ]+' '\$1==\"tcp\"{print \$5}' | grep -w 443"
+Port() {
+  netstat -tlpn | awk -F '[: ]+' '$1=="tcp"{print $5}' | grep -w $1
+}
+
+cert() {
+	#申请https证书
+  your_domain=$1
+  if [[ ! -d "~/.acme.sh/" ]]; then
+    curl https://get.acme.sh | sh
+  fi
+	mkdir ~/certs/$your_domain
+	~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
+  ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
+        --key-file   ~/certs/$your_domain/private.key \
+        --fullchain-file ~/certs/$your_domain/fullchain.cer
+}

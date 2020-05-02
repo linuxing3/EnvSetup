@@ -12,53 +12,6 @@
 #
 #
 
-LOG_LEVEL_1=1
-LOG_LEVEL_2=2
-LOG_LEVEL_3=3
-DEFAULT_LOG_LEVEL="$LOG_LEVEL_1"
-
-DEBUG_LEVEL_1=1
-DEBUG_LEVEL_2=2
-DEBUG_LEVEL_3=3
-DEBUG_LEVEL_DEFAULT=$DEBUG_LEVEL_1
-DEBUG_LEVEL_NONE=0
-
-HIDDEN_VALUE="[hidden](please add '--output-insecure' to see this value)"
-
-SYSLOG_ERROR="user.error"
-SYSLOG_INFO="user.info"
-SYSLOG_DEBUG="user.debug"
-
-#error
-SYSLOG_LEVEL_ERROR=3
-#info
-SYSLOG_LEVEL_INFO=6
-#debug
-SYSLOG_LEVEL_DEBUG=7
-#debug2
-SYSLOG_LEVEL_DEBUG_2=8
-#debug3
-SYSLOG_LEVEL_DEBUG_3=9
-
-SYSLOG_LEVEL_DEFAULT=$SYSLOG_LEVEL_ERROR
-#none
-SYSLOG_LEVEL_NONE=0
-
-NOTIFY_LEVEL_DISABLE=0
-NOTIFY_LEVEL_ERROR=1
-NOTIFY_LEVEL_RENEW=2
-NOTIFY_LEVEL_SKIP=3
-
-NOTIFY_LEVEL_DEFAULT=$NOTIFY_LEVEL_RENEW
-
-NOTIFY_MODE_BULK=0
-NOTIFY_MODE_CERT=1
-
-__INTERACTIVE=""
-if [ -t 1 ]; then
-  __INTERACTIVE="1"
-fi
-
 ###############################
 ## Basic colorscheme
 ###############################
@@ -101,329 +54,40 @@ error() {
   exit 1
 }
 
-__green() {
-  printf '\33[1;32m%b\33[0m' "$1"
-}
-
-__red() {
-  printf '\33[1;31m%b\33[0m' "$1"
-}
-
-_printargs() {
-  _exitstatus="$?"
-  if [ -z "$NO_TIMESTAMP" ] || [ "$NO_TIMESTAMP" = "0" ]; then
-    printf -- "%s" "[$(date)] "
-  fi
-  if [ -z "$2" ]; then
-    printf -- "%s" "$1"
-  else
-    printf -- "%s" "$1='$2'"
-  fi
-  printf "\n"
-  # return the saved exit status
-  return "$_exitstatus"
-}
-
-exists() {
-  command -v "$1" >/dev/null 2>&1
-}
-
-_syslog() {
-  _exitstatus="$?"
-  if [ "${SYS_LOG:-$SYSLOG_LEVEL_NONE}" = "$SYSLOG_LEVEL_NONE" ]; then
-    return
-  fi
-  _logclass="$1"
-  shift
-  if [ -z "$__logger_i" ]; then
-    if _contains "$(logger --help 2>&1)" "-i"; then
-      __logger_i="logger -i"
-    else
-      __logger_i="logger"
-    fi
-  fi
-  $__logger_i -t "$PROJECT_NAME" -p "$_logclass" "$(_printargs "$@")" >/dev/null 2>&1
-  return "$_exitstatus"
-}
-
-_log() {
-  [ -z "$LOG_FILE" ] && return
-  _printargs "$@" >>"$LOG_FILE"
-}
-
-_info() {
-  _log "$@"
-  if [ "${SYS_LOG:-$SYSLOG_LEVEL_NONE}" -ge "$SYSLOG_LEVEL_INFO" ]; then
-    _syslog "$SYSLOG_INFO" "$@"
-  fi
-  _printargs "$@"
-}
-
-_err() {
-  _syslog "$SYSLOG_ERROR" "$@"
-  _log "$@"
-  if [ -z "$NO_TIMESTAMP" ] || [ "$NO_TIMESTAMP" = "0" ]; then
-    printf -- "%s" "[$(date)] " >&2
-  fi
-  if [ -z "$2" ]; then
-    __red "$1" >&2
-  else
-    __red "$1='$2'" >&2
-  fi
-  printf "\n" >&2
-  return 1
-}
-
-_usage() {
-  __red "$@" >&2
-  printf "\n" >&2
-}
-
-__debug_bash_helper() {
-  # At this point only do for --debug 3
-  if [ "${DEBUG:-$DEBUG_LEVEL_NONE}" -lt "$DEBUG_LEVEL_3" ]; then
-    return
-  fi
-  # Return extra debug info when running with bash, otherwise return empty
-  # string.
-  if [ -z "${BASH_VERSION}" ]; then
-    return
-  fi
-}
-
-__debug_bash_helper() {
-  # At this point only do for --debug 3
-  if [ "${DEBUG:-$DEBUG_LEVEL_NONE}" -lt "$DEBUG_LEVEL_3" ]; then
-    return
-  fi
-  # Return extra debug info when running with bash, otherwise return empty
-  # string.
-  if [ -z "${BASH_VERSION}" ]; then
-    return
-  fi
-  # We are a bash shell at this point, return the filename, function name, and
-  # line number as a string
-  _dbh_saveIFS=$IFS
-  IFS=" "
-  # Must use eval or syntax error happens under dash. The eval should use
-  # single quotes as older versions of busybox had a bug with double quotes and
-  # eval.
-  # Use 'caller 1' as we want one level up the stack as we should be called
-  # by one of the _debug* functions
-  eval '_dbh_called=($(caller 1))'
-  IFS=$_dbh_saveIFS
-  eval '_dbh_file=${_dbh_called[2]}'
-  if [ -n "${_script_home}" ]; then
-    # Trim off the _script_home directory name
-    eval '_dbh_file=${_dbh_file#$_script_home/}'
-  fi
-  eval '_dbh_function=${_dbh_called[1]}'
-  eval '_dbh_lineno=${_dbh_called[0]}'
-  printf "%-40s " "$_dbh_file:${_dbh_function}:${_dbh_lineno}"
-}
-
-_debug() {
-  if [ "${LOG_LEVEL:-$DEFAULT_LOG_LEVEL}" -ge "$LOG_LEVEL_1" ]; then
-    _log "$@"
-  fi
-  if [ "${SYS_LOG:-$SYSLOG_LEVEL_NONE}" -ge "$SYSLOG_LEVEL_DEBUG" ]; then
-    _syslog "$SYSLOG_DEBUG" "$@"
-  fi
-  if [ "${DEBUG:-$DEBUG_LEVEL_NONE}" -ge "$DEBUG_LEVEL_1" ]; then
-    _bash_debug=$(__debug_bash_helper)
-    _printargs "${_bash_debug}$@" >&2
-  fi
-}
-
-#output the sensitive messages
-_secure_debug() {
-  if [ "${LOG_LEVEL:-$DEFAULT_LOG_LEVEL}" -ge "$LOG_LEVEL_1" ]; then
-    if [ "$OUTPUT_INSECURE" = "1" ]; then
-      _log "$@"
-    else
-      _log "$1" "$HIDDEN_VALUE"
-    fi
-  fi
-  if [ "${SYS_LOG:-$SYSLOG_LEVEL_NONE}" -ge "$SYSLOG_LEVEL_DEBUG" ]; then
-    _syslog "$SYSLOG_DEBUG" "$1" "$HIDDEN_VALUE"
-  fi
-  if [ "${DEBUG:-$DEBUG_LEVEL_NONE}" -ge "$DEBUG_LEVEL_1" ]; then
-    if [ "$OUTPUT_INSECURE" = "1" ]; then
-      _printargs "$@" >&2
-    else
-      _printargs "$1" "$HIDDEN_VALUE" >&2
-    fi
-  fi
-}
-
-_debug2() {
-  if [ "${LOG_LEVEL:-$DEFAULT_LOG_LEVEL}" -ge "$LOG_LEVEL_2" ]; then
-    _log "$@"
-  fi
-  if [ "${SYS_LOG:-$SYSLOG_LEVEL_NONE}" -ge "$SYSLOG_LEVEL_DEBUG_2" ]; then
-    _syslog "$SYSLOG_DEBUG" "$@"
-  fi
-  if [ "${DEBUG:-$DEBUG_LEVEL_NONE}" -ge "$DEBUG_LEVEL_2" ]; then
-    _bash_debug=$(__debug_bash_helper)
-    _printargs "${_bash_debug}$@" >&2
-  fi
-}
-
-_secure_debug2() {
-  if [ "${LOG_LEVEL:-$DEFAULT_LOG_LEVEL}" -ge "$LOG_LEVEL_2" ]; then
-    if [ "$OUTPUT_INSECURE" = "1" ]; then
-      _log "$@"
-    else
-      _log "$1" "$HIDDEN_VALUE"
-    fi
-  fi
-  if [ "${SYS_LOG:-$SYSLOG_LEVEL_NONE}" -ge "$SYSLOG_LEVEL_DEBUG_2" ]; then
-    _syslog "$SYSLOG_DEBUG" "$1" "$HIDDEN_VALUE"
-  fi
-  if [ "${DEBUG:-$DEBUG_LEVEL_NONE}" -ge "$DEBUG_LEVEL_2" ]; then
-    if [ "$OUTPUT_INSECURE" = "1" ]; then
-      _printargs "$@" >&2
-    else
-      _printargs "$1" "$HIDDEN_VALUE" >&2
-    fi
-  fi
-}
-
-_debug3() {
-  if [ "${LOG_LEVEL:-$DEFAULT_LOG_LEVEL}" -ge "$LOG_LEVEL_3" ]; then
-    _log "$@"
-  fi
-  if [ "${SYS_LOG:-$SYSLOG_LEVEL_NONE}" -ge "$SYSLOG_LEVEL_DEBUG_3" ]; then
-    _syslog "$SYSLOG_DEBUG" "$@"
-  fi
-  if [ "${DEBUG:-$DEBUG_LEVEL_NONE}" -ge "$DEBUG_LEVEL_3" ]; then
-    _bash_debug=$(__debug_bash_helper)
-    _printargs "${_bash_debug}$@" >&2
-  fi
-}
-
-_secure_debug3() {
-  if [ "${LOG_LEVEL:-$DEFAULT_LOG_LEVEL}" -ge "$LOG_LEVEL_3" ]; then
-    if [ "$OUTPUT_INSECURE" = "1" ]; then
-      _log "$@"
-    else
-      _log "$1" "$HIDDEN_VALUE"
-    fi
-  fi
-  if [ "${SYS_LOG:-$SYSLOG_LEVEL_NONE}" -ge "$SYSLOG_LEVEL_DEBUG_3" ]; then
-    _syslog "$SYSLOG_DEBUG" "$1" "$HIDDEN_VALUE"
-  fi
-  if [ "${DEBUG:-$DEBUG_LEVEL_NONE}" -ge "$DEBUG_LEVEL_3" ]; then
-    if [ "$OUTPUT_INSECURE" = "1" ]; then
-      _printargs "$@" >&2
-    else
-      _printargs "$1" "$HIDDEN_VALUE" >&2
-    fi
-  fi
-}
-
-_upper_case() {
-  # shellcheck disable=SC2018,SC2019
-  tr 'a-z' 'A-Z'
-}
-
-_lower_case() {
-  # shellcheck disable=SC2018,SC2019
-  tr 'A-Z' 'a-z'
-}
-
-_startswith() {
-  _str="$1"
-  _sub="$2"
-  echo "$_str" | grep "^$_sub" >/dev/null 2>&1
-}
-
-_endswith() {
-  _str="$1"
-  _sub="$2"
-  echo "$_str" | grep -- "$_sub\$" >/dev/null 2>&1
-}
-
-_contains() {
-  _str="$1"
-  _sub="$2"
-  echo "$_str" | grep -- "$_sub" >/dev/null 2>&1
-}
-
-_hasfield() {
-  _str="$1"
-  _field="$2"
-  _sep="$3"
-  if [ -z "$_field" ]; then
-    _usage "Usage: str field  [sep]"
-    return 1
-  fi
-
-  if [ -z "$_sep" ]; then
-    _sep=","
-  fi
-
-  for f in $(echo "$_str" | tr "$_sep" ' '); do
-    if [ "$f" = "$_field" ]; then
-      _debug2 "'$_str' contains '$_field'"
-      return 0 #contains ok
-    fi
-  done
-  _debug2 "'$_str' does not contain '$_field'"
-  return 1 #not contains
-}
-
-# str index [sep]
-_getfield() {
-  _str="$1"
-  _findex="$2"
-  _sep="$3"
-
-  if [ -z "$_findex" ]; then
-    _usage "Usage: str field  [sep]"
-    return 1
-  fi
-
-  if [ -z "$_sep" ]; then
-    _sep=","
-  fi
-
-  _ffi="$_findex"
-  while [ "$_ffi" -gt "0" ]; do
-    _fv="$(echo "$_str" | cut -d "$_sep" -f "$_ffi")"
-    if [ "$_fv" ]; then
-      printf -- "%s" "$_fv"
-      return 0
-    fi
-    _ffi="$(_math "$_ffi" - 1)"
-  done
-
-  printf -- "%s" "$_str"
-
-}
-
-_exists() {
-  cmd="$1"
-  if [ -z "$cmd" ]; then
-    echo "Usage: _exists cmd"
-    return 1
-  fi
-
-  if eval type type >/dev/null 2>&1; then
-    eval type "$cmd" >/dev/null 2>&1
-  elif command >/dev/null 2>&1; then
-    command -v "$cmd" >/dev/null 2>&1
-  else
-    which "$cmd" >/dev/null 2>&1
-  fi
-  ret="$?"
-  _debug3 "$cmd exists=$ret"
-  return $ret
-}
-
 ###############################
 ## Basic packages tools
 ###############################
+#copy from 秋水逸冰 ss scripts
+if [[ -f /etc/redhat-release ]]; then
+    release="centos"
+    systemPackage="yum"
+    systempwd="/usr/lib/systemd/system/"
+elif cat /etc/issue | grep -Eqi "debian"; then
+    release="debian"
+    systemPackage="apt-get"
+    systempwd="/lib/systemd/system/"
+elif cat /etc/issue | grep -Eqi "ubuntu"; then
+    release="ubuntu"
+    systemPackage="apt-get"
+    systempwd="/lib/systemd/system/"
+elif cat /etc/issue | grep -Eqi "centos|red hat|redhat"; then
+    release="centos"
+    systemPackage="yum"
+    systempwd="/usr/lib/systemd/system/"
+elif cat /proc/version | grep -Eqi "debian"; then
+    release="debian"
+    systemPackage="apt-get"
+    systempwd="/lib/systemd/system/"
+elif cat /proc/version | grep -Eqi "ubuntu"; then
+    release="ubuntu"
+    systemPackage="apt-get"
+    systempwd="/lib/systemd/system/"
+elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
+    release="centos"
+    systemPackage="yum"
+    systempwd="/usr/lib/systemd/system/"
+fi
+
 if type xbps-install >/dev/null 2>&1; then
 	installpkg(){ xbps-install -y "$1" >/dev/null 2>&1 ;}
 	grepseq="\"^[PGV]*,\""
