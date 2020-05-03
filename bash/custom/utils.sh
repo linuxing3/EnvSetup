@@ -498,11 +498,23 @@ alias caddystatus="ssh root@xunqinji.top 'bash -s' < local.script.sh"
 alias trojanstatus="ssh root@xunqinji.top ARG1="arg1" ARG2="arg2" 'bash -s' < local_script.sh"
 
 sync_envs_repo() {
+
+  green "Updating xunqinji.top root EnvSetup repo"
   ssh -l root xunqinji.top 'cd /root/EnvSetup && git pull'
+
+  green "Updating xunqinji.top vagrant EnvSetup repo"
   ssh -l vagrant xunqinji.top 'cd /home/vagrant/EnvSetup && git pull'
+
+  green "Updating dongxishijie.xyz root EnvSetup repo"
   ssh -l root dongxishijie.xyz 'cd /root/EnvSetup && git pull'
+
+  green "Updating dongxishijie.xyz vagrant EnvSetup repo"
   ssh -l vagrant dongxishijie.xyz 'cd /home/vagrant/EnvSetup && git pull'
-  ssh -l root -p 8026 xunqinji.top 'cd /root/EnvSetup && git pull'
+
+  green "Updating Office Openwrt EnvSetup repo"
+  echo "tswc0916" | ssh -l root -p 8026 xunqinji.top 'cd /root/EnvSetup && git pull'
+
+  green "Updating Office Vagrant Nodejs EnvSetup repo"
   ssh -l vagrant -p 8027 xunqinji.top 'cd /home/vagrant/EnvSetup && git pull'
 }
 
