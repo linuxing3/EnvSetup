@@ -1,0 +1,9 @@
+---
+# This playbook set a proper apt source and update apt repo.
+# You can provide a optional sources.list as apt source.
+
+- name: apt-get update
+  sudo: yes
+  apt: 
+    update_cache: yes 
+    cache_valid_time: 3600

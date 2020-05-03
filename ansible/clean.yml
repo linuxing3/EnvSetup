@@ -1,0 +1,5 @@
+---
+# This playbook will do some preparation works for "vagrant package"
+
+- name: clean tmp files in box
+  script: scripts/clean.sh

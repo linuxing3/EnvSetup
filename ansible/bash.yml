@@ -1,0 +1,17 @@
+---
+# This playbook will install bash, and the popular oh-my-bash,
+
+- name: install bash
+  apt: pkg=bash state=present
+
+- name: git clone oh-my-bash
+  sudo: no
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+
+- name: set theme for oh-my-zsh
+  sudo: no
+  lineinfile: dest=/home/{{whoami}}/.bashrc
+              regexp='BASH_THEME="font"'
+              line='BASH_THEME="random"'
+              state=present
+              backup=no

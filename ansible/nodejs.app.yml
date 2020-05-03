@@ -1,0 +1,11 @@
+---
+# This playbook install some goodies for nodejs.
+    
+- name: install node packages
+  command: npm i -g yarn
+
+- name: install node packages
+  command: npm i -g serve
+
+- name: install node packages
+  command: npm i -g @gridsome/cli

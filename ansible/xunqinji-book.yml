@@ -1,0 +1,11 @@
+---
+# Playbook to bake box to a hacker's box
+
+- hosts: xunqinji 
+  become: yes
+  vars:
+    whoami: vagrant
+    accept_hostkey: true
+    ansible_sudo_pass: 20090909
+  tasks:
+    - include: nodejs.app.yml

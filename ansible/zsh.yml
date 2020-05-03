@@ -1,0 +1,21 @@
+---
+# This playbook will install zsh, and the popular oh-my-zsh,
+# then set zsh as the default system login shell.
+
+- name: install zsh
+  apt: 
+    name: zsh
+    update_cache: yes
+
+- git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: /home/{{whoami}}/.oh-my-zsh
+
+- name: install zshrc from oh-my-zsh
+  command: /bin/cp /home/{{whoami}}/.oh-my-zsh/templates/zshrc.zsh-template /home/{{whoami}}/.zshrc
+
+- name: set theme for oh-my-zsh
+  lineinfile:
+    path: /home/{{whoami}}/.zshrc
+    regexp: 'ZSH_THEME="robbyrussell"'
+    line: 'ZSH_THEME="ys"'

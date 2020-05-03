@@ -69,7 +69,7 @@ echo "Installing caddy"
 echo "curl https://getcaddy.com | bash -s personal"
 
 echo "Installing nginx"
-sudo apt install -y nginx
+# sudo apt install -y nginx
 
 curl https://getcaddy.com | bash -s personal
 

@@ -1,54 +1,31 @@
+#!/usr/bin/env bash
+# linuxing's Bash Utils Script 
+# by linuxing3 <linuxing3@qq.com>
+# License: GNU GPLv3
+#
+#                                        _
+#    ___ _ __   __ _  ___ ___     __   _(_) 
+#   / __| -_ \ / _- |/ __/ _ \____\ \ / 
+#   \__ \ |_) | (_| | (_|  __/_____\ V /
+#   |___/ .__/ \__._|\___\___|      \_/ 
+#       |_|
+#
+#
+
 ###############################
 ## Basic tools
 ###############################
 
-blue(){
-    echo -e "\033[34m\033[01m$1\033[0m"
-}
-
-green(){
-    echo -e "\033[32m\033[01m$1\033[0m"
-}
-
-red(){
-    echo -e "\033[31m\033[01m$1\033[0m"
-}
-
-msg() {
-  printf '%b\n' "$1" >&2
-}
-
-success() {
-  if [ "$ret" -eq '0' ]; then
-    msg "\\33[32m[✔]\\33[0m ${1}${2}"
-  fi
-}
-
-error() {
-  msg "\\33[31m[✘]\\33[0m ${1}${2}"
-  exit 1
-}
-
-# Usage: exists git
-exists() {
-  command -v "$1" >/dev/null 2>&1
-}
 # Usage: backup fileone 
 backup() {
   if [ -e "$1" ]; then
     echo
-    msg "\\033[1;34m==>\\033[0m Attempting to back up your original vim configuration"
+    msg "\\033[1;34m==>\\033[0m Attempting to back up your original file or directory"
     today=$(date +%Y%m%d_%s)
     mv -v "$1" "$1.$today"
 
     ret="$?"
     success "Your original configuration has been backed up"
-  fi
-}
-
-check_git() {
-  if ! exists "git"; then
-    error "You must have 'git' installed to continue"
   fi
 }
 
@@ -139,7 +116,6 @@ phpserver() {
 
 
 ###############################
-# Compare original and gzipped file size
 # Compare original and gzipped file size
 ###############################
 gz() {
@@ -294,6 +270,9 @@ cl() {
     fi
 }
 
+###############################
+# GTD and other productivity tools
+###############################
 note () {
     # if file doesn't exist, create it
     if [[ ! -f $HOME/.notes ]]; then
@@ -333,7 +312,6 @@ todo() {
     fi
 }
 
-###############################
 docview() {
     if [[ -f $1 ]] ; then
         case $1 in
@@ -354,7 +332,9 @@ docview() {
 
 
 ###############################
-# handle proxies
+# network tools proxies
+###############################
+# proxies
 ###############################
 #export http_proxy=http://127.0.0.1:3127
 #export ftp_proxy=http://127.0.0.1:3127
@@ -383,7 +363,7 @@ mfaProxy() {
 
 
 ###############################
-#push and pull
+# Git tools
 ###############################
 deploy() {
 
@@ -394,11 +374,15 @@ deploy() {
   git push
 }
 
+###############################
+# Docker tools
+###############################
+
 dk() {
     MENU="start pull push run img ps rml rma" 
     select opt in $MENU; do 
 		if [ "$opt" = "start" ]; then 
-			startdocker
+			systemctl start docker
 			break
 		elif [ "$opt" = "pull" ]; then 
 			docker pull $1
@@ -427,103 +411,6 @@ dk() {
 	done
 }
 
-
-###############################
-## FS tools
-###############################
-
-#  dir and cd into it   
-mcd() {  
-    mkdir -pv "$@"  
-    cd "$@"  
-} 
-
-# Create a new directory and enter it
-mkd() {
-	mkdir -p "$@" && cd "$@";
-}
-
-touchexe() {
-	touch "$@" && chmod +x "$@";
-}
-
-# Change working directory to the top-most Finder window location
-cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
-}
-
-ck() {  
-  while true; do  
-    clear;  
-    echo "";  
-    echo "    $(date +%r)";  
-    echo "";  
-    sleep 1;  
-  done  
-}  
-
-fix() {  
-  if [ -d $1 ]; then  
-    find $1 -type d -exec chmod 755 {} \;  
-    find $1 -type f -exec chmod 644 {} \;  
-  else  
-    echo "$1 is not a directory."  
-  fi  
-}  
-
-###############################
-## zip tools
-###############################
-# Create a .tar
-mktar(){ tar cvf  "${1%%/}.tar"     "${1%%/}/"; }  
-
-# Create a .tar.gz
-mktgz(){ tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }  
-
-# Create a .tar.bz2
-mktbz(){ tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
-
-# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
-mktgz2() {
-	local tmpFile="${@%/}.tar";
-	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
-
-	size=$(
-		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
-		stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
-	);
-
-	local cmd="";
-	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
-		cmd="zopfli";
-	else
-		if hash pigz 2> /dev/null; then
-			cmd="pigz";
-		else
-			cmd="gzip";
-		fi;
-	fi;
-
-	echo "Compressing .tar using \`${cmd}\`…";
-	"${cmd}" -v "${tmpFile}" || return 1;
-	[ -f "${tmpFile}" ] && rm "${tmpFile}";
-	echo "${tmpFile}.gz created successfully.";
-}
-
-# Determine size of a file or total size of a directory
-fs() {
-	if du -b /dev/null > /dev/null 2>&1; then
-		local arg=-sbh;
-	else
-		local arg=-sh;
-	fi
-	if [[ -n "$@" ]]; then
-		du $arg -- "$@";
-	else
-		du $arg .[^.]* *;
-	fi;
-}
 
 
 params() {
@@ -592,31 +479,9 @@ search() {
   sed -n "1,\$p" $1 | grep -m10 -nF $2
 }
 
-init-org-home-directory() {
-
-  today=$(date +%Y-%m-%d-%s)
-  cd
-  tar cvf "org.$today.tar" org
-  rm -rf ~/org
-  mkdir -p org
-  cd org
-  for dir in attach journal roam brain
-  do
-    rm -f $dir
-    mkdir -p $dir
-  done
-
-  for file in inbox links snippets tutorials projects
-  do
-    rm -f "$file.org"
-    touch "$file.org"
-    echo "* $file org file created $today\n" >> "$file.org" 
-  done
-  echo "Done! Created org home directory!"
-}
 
 ###############################
-## ssh tools
+## devops tools
 ###############################
 
 alias xqj="ssh -X -l root xunqinji.top -L 22:127.0.0.1:2222"
@@ -628,3 +493,15 @@ alias start_watching1="ssh -l root xunqinji.top '/bin/systemctl restart trojan &
 
 alias stop_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl stop trojan && /bin/systemctl stop v2ray'"
 alias start_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl restart trojan && /bin/systemctl restart v2ray'"
+
+alias caddystatus="ssh root@xunqinji.top 'bash -s' < local.script.sh"
+alias trojanstatus="ssh root@xunqinji.top ARG1="arg1" ARG2="arg2" 'bash -s' < local_script.sh"
+
+show_ports() {
+  local ports=$(netstat -ntlp | grep "${1:nps}" | awk '{ print $4}' | sed 's/://g')
+  for p in $ports
+  do
+    echo "===================================="
+    netcat -z -v -w 1 -n 127.0.0.1 $p
+  done
+}
