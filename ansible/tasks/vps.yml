@@ -1,11 +1,11 @@
 ---
-# Playbook to bake box to a hacker's box
+# Playbook to manage vps
 
 - hosts: xunqinji 
   become: yes
   vars:
-    whoami: vagrant
+    whoami: root
     accept_hostkey: true
     ansible_sudo_pass: 20090909
-  tasks:
-    - include: nodejs.app.yml
+  roles:
+    include: roles/vps

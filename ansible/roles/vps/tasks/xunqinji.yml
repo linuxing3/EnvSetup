@@ -1,0 +1,6 @@
+---
+
+- name: install dialog
+  apt:
+      name: "dialog"
+      state: present

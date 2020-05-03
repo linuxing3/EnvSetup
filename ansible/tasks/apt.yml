@@ -2,7 +2,7 @@
 # This playbook set a proper apt source and update apt repo.
 # You can provide a optional sources.list as apt source.
 
-- name: apt-get update
+- name: update
   sudo: yes
   apt: 
     update_cache: yes 
