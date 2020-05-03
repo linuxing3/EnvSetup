@@ -17,3 +17,8 @@ alias pvs="pyenv shell"
 alias ppvs="pipenv shell"
 alias ppvl="pipenv lock"
 alias ppvi="pipenv install"
+
+
+alias nb="jupyter-notebook"
+alias ipy="ipython"
+alias vno="virtualenv test --no-download --no-pip --no-setup-tools"

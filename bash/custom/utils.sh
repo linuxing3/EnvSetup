@@ -497,6 +497,15 @@ alias start_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl restart troj
 alias caddystatus="ssh root@xunqinji.top 'bash -s' < local.script.sh"
 alias trojanstatus="ssh root@xunqinji.top ARG1="arg1" ARG2="arg2" 'bash -s' < local_script.sh"
 
+sync_envs_repo() {
+  ssh -l root xunqinji.top 'cd /root/EnvSetup && git pull'
+  ssh -l vagrant xunqinji.top 'cd /home/vagrant/EnvSetup && git pull'
+  ssh -l root dongxishijie.xyz 'cd /root/EnvSetup && git pull'
+  ssh -l vagrant dongxishijie.xyz 'cd /home/vagrant/EnvSetup && git pull'
+  ssh -l root -p 8026 xunqinji.top 'cd /root/EnvSetup && git pull'
+  ssh -l vagrant -p 8027 xunqinji.top 'cd /home/vagrant/EnvSetup && git pull'
+}
+
 show_ports() {
   local ports=$(netstat -ntlp | grep "${1:nps}" | awk '{ print $4}' | sed 's/://g')
   for p in $ports
