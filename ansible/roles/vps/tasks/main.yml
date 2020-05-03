@@ -1,0 +1,4 @@
+- name: Manager xunqinji 
+  import_tasks: xunqinji.yml
+
+- import_tasks: dongxishijie.yml
