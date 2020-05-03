@@ -1,0 +1,18 @@
+---
+users:
+  - username: vagrant
+    name: vagrant
+    groups: ['wheel','systemd-journal']
+    uid: 1001
+    home: /home/vagrant
+    profile: |
+      alias ll='ls -lah'
+
+groups_to_create:
+  - name: developers
+    gid: 10000
+
+#users_deleted:
+#  - username: bar
+#    name: Bar User
+#    uid: 1002
