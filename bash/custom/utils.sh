@@ -367,7 +367,7 @@ mfaProxy() {
 ###############################
 deploy() {
 
-  today=$(date +%Y-%m-%d-%H-%M)
+  today=$(date +'%Y-%m-%d-%H:%M')
 
   git add .
   git commit -m "Commited by $USER from $PWD on $today"
@@ -517,8 +517,7 @@ sync_envs_repo() {
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating Office Openwrt EnvSetup repo"
-  echo "tswc0916
-" | ssh -l root -p 8026 xunqinji.top 'cd /root/EnvSetup && git add -A && git commit -m backup && git pull'
+  ssh -p 8026 root:tswc0916@xunqinji.top 'cd /root/EnvSetup && git add -A && git commit -m backup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating Office Vagrant Nodejs EnvSetup repo"
