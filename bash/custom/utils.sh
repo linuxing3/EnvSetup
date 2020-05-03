@@ -517,7 +517,7 @@ sync_envs_repo() {
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating Office Openwrt EnvSetup repo"
-  ssh -p 8026 root:tswc0916@xunqinji.top 'cd /root/EnvSetup && git add -A && git commit -m backup && git pull'
+  ssh -p 8026 root@xunqinji.top 'cd /root/EnvSetup && git add -A && git commit -m backup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating Office Vagrant Nodejs EnvSetup repo"
