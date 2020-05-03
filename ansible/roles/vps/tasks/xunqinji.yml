@@ -1,6 +1,6 @@
 ---
 
-- name: install dialog
+- name: install git
   apt:
-      name: "dialog"
+      name: "git"
       state: present

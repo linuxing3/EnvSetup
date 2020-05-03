@@ -1,7 +1,7 @@
 ---
 # Playbook to bake box to a hacker's box
 
-- hosts: xunqinji 
+- hosts: all 
   become: yes
   roles:
     - vps
