@@ -1,0 +1,8 @@
+- name: import other tasks
+  import_tasks:
+    - apt.yml
+    - base.yml
+    - bash.yml
+    - vim.yml
+    - python.yml
+    - zsh.yml

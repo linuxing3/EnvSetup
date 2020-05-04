@@ -1,5 +1,5 @@
 ---
-# This playbook install some basic ubuntu packages
+# This playbook install some basic debian/ubuntu packages
 
 - name: install core packages
   apt: pkg={{item}} state=present

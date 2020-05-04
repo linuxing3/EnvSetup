@@ -501,27 +501,27 @@ sync_envs_repo() {
 
   green "|-------------------***--------------------------***---------------------------------|"
   green "Updating xunqinji.top root EnvSetup repo"
-  ssh -l root xunqinji.top 'cd /root/EnvSetup && git add -A && git commit -m backup && git pull'
+  ssh -l root xunqinji.top 'cd /root/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating xunqinji.top vagrant EnvSetup repo"
-  ssh -l vagrant xunqinji.top 'cd /home/vagrant/EnvSetup && git add -A && git commit -m backup && git pull'
+  ssh -l vagrant xunqinji.top 'cd /home/vagrant/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating dongxishijie.xyz root EnvSetup repo"
-  ssh -l root dongxishijie.xyz 'cd /root/EnvSetup && git add -A && git commit -m backup && git pull'
+  ssh -l root dongxishijie.xyz 'cd /root/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating dongxishijie.xyz vagrant EnvSetup repo"
-  ssh -l vagrant dongxishijie.xyz 'cd /home/vagrant/EnvSetup && git add -A && git commit -m backup && git pull'
+  ssh -l vagrant dongxishijie.xyz 'cd /home/vagrant/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating Office Openwrt EnvSetup repo"
-  ssh -p 8026 root@xunqinji.top 'cd /root/EnvSetup && git add -A && git commit -m backup && git pull'
+  ssh -p 8026 root@xunqinji.top 'cd /root/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating Office Vagrant Nodejs EnvSetup repo"
-  ssh -l vagrant -p 8027 xunqinji.top 'cd /home/vagrant/EnvSetup && git add -A && git commit -m backup && git pull'
+  ssh -l vagrant -p 8027 xunqinji.top 'cd /home/vagrant/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 }
 

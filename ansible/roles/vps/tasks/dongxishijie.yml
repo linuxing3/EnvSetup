@@ -1,4 +1,4 @@
-- name: install dialog
+- name: install ranger
   apt:
-      name: "dialog"
+      name: "ranger"
       state: present

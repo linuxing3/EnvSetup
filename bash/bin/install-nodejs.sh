@@ -13,7 +13,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | b
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 
 while true; do
-  read -r -p "    Install from [0]official [1]unofficial: " opt
+  read -r -p "    Install from [0]unofficial [1]official:  " opt
   case $opt in
     0)
       echo "update NVM_NODEJS_ORG_MIRROR to https://unofficial-builds.nodejs.org/download/release"

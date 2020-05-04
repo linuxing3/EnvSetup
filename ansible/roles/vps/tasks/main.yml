@@ -1,4 +1,17 @@
-- name: Manager xunqinji 
+- name: install dialog
+  apt:
+      name: "dialog"
+      state: present
+
+- name: install ncdu
+  apt:
+      name: "ncdu"
+      state: present
+
+- name: import env settings 
+  import_tasks: env.yml
+
+- name: Manage xunqinji 
   import_tasks: xunqinji.yml
 
 - import_tasks: dongxishijie.yml
