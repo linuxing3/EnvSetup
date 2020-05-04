@@ -11,10 +11,34 @@ echo "==========================================================="
 
 sudo apt-get install -y vim neovim 
 
+customize_space() {
+  sed -i 's/gruvbox/SpaceVim/g' ~/.SpaceVim.d/init.toml
+  echo "
+
+[[layers]]
+  name = 'fzf'
+
+[[layers]]
+  name = 'lang#python'
+  enable_typeinfo=true
+  format_one_save=1
+
+[[layers]]
+  name = 'lang#sh'
+
+[[layers]]
+  name = 'format'
+
+[[layers]]
+  name = 'debug'
+" >> ~/.SpaceVim.d/init.toml
+}
+
 option=$(dialog --title " Spacevim 一键安装自动脚本" \
   --checklist "请输入:" 20 70 5 \
-  "1" "SpaceVim, Dark side editor" 0 \
-  "2" "space-vim, yet another dist" 0 \
+  "1" "SpaceVim, Full dark side editor" 0 \
+  "2" "space-vim, yet another dist, but ligther" 0 \
+  "3" "fisa-vim, with python support" 0 \
   3>&1 1>&2 2>&3 3>&1)
 
 cd
@@ -23,9 +47,13 @@ cp .vimrc .vimrc.old
 case "$option" in
   1)
   curl -fsSL https://spacevim.org/install.sh | bash
+  customize_space
   ;;
   2)
   curl -fsSL https://raw.githubusercontent.com/liuchengxu/space-vim/master/install.sh | bash
+  ;;
+  3)
+  curl -fsSL https://raw.githubusercontent.com/fisadev/fisa-vim-config/v12.0.1/config.vim  -o ~/.vimrc
   ;;
   *)
   echo "Skipped!"
