@@ -60,7 +60,8 @@ alias nowdate='date +"%d-%m-%Y"'
 alias vi=vim
 alias svi='sudo vi'
 alias vis='vim "+set si"'
-alias vif='vim `fzf`'
+alias fv='vim `fzf`'
+alias fn='nvim `fzf`'
 alias naf='nano `fzf`'
 #
 ##11: Control output of networking tool called ping
@@ -71,7 +72,33 @@ alias ping='ping -c 5'
 ## Do not wait interval 1 second, go fast #
 alias fastping='ping -c 100 -s.2'
 #
+#
+##11: Control etworking tool called ping
+#
 alias ports='netstat -tulanp'
+alias Port80="netstat -tlpn | awk -F '[: ]+' '\$1==\"tcp\"{print \$5}' | grep -w 80"
+alias Port443="netstat -tlpn | awk -F '[: ]+' '\$1==\"tcp\"{print \$5}' | grep -w 443"
+Port() {
+  netstat -tlpn | awk -F '[: ]+' '$1=="tcp"{print $5}' | grep -w $1
+}
+
+real_addr(){
+  your_domain=$1
+  ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'
+}
+
+cert() {
+	#申请https证书
+  your_domain=$1
+  if [[ ! -d "~/.acme.sh/" ]]; then
+    curl https://get.acme.sh | sh
+  fi
+	mkdir ~/certs/$your_domain
+	~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
+  ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
+        --key-file   ~/certs/$your_domain/private.key \
+        --fullchain-file ~/certs/$your_domain/fullchain.cer
+}
 #
 #
 ##14: Control firewall (iptables) output
@@ -145,26 +172,3 @@ debian-nps(){
 	nohup ./nps &
 }
 
-real_addr(){
-  your_domain=$1
-  ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'
-}
-
-alias Port80="netstat -tlpn | awk -F '[: ]+' '\$1==\"tcp\"{print \$5}' | grep -w 80"
-alias Port443="netstat -tlpn | awk -F '[: ]+' '\$1==\"tcp\"{print \$5}' | grep -w 443"
-Port() {
-  netstat -tlpn | awk -F '[: ]+' '$1=="tcp"{print $5}' | grep -w $1
-}
-
-cert() {
-	#申请https证书
-  your_domain=$1
-  if [[ ! -d "~/.acme.sh/" ]]; then
-    curl https://get.acme.sh | sh
-  fi
-	mkdir ~/certs/$your_domain
-	~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
-  ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
-        --key-file   ~/certs/$your_domain/private.key \
-        --fullchain-file ~/certs/$your_domain/fullchain.cer
-}

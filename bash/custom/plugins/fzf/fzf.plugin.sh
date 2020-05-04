@@ -15,12 +15,16 @@ export FZF_DEFAULT_OPTS="--height 40% --layout reverse --border\
   |  head -100' "
 
 # Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='~~'
+#export FZF_COMPLETION_TRIGGER='**'
 
 # Options to fzf command
-export FZF_COMPLETION_OPTS='+c -x'
+#export FZF_COMPLETION_OPTS='+c -x'
 
-
-alias fzfvim="vim \$(fzf)"
-alias fzfgit="git checkout \$(git branch -r | fzf)"
-alias fzfdir="cd \$(find * -type d | fzf)"
+alias fiv='vim `fzf`'
+alias fvf='vim `fzf`'
+alias fv='vim `fzf`'
+alias fn='nvim `fzf`'
+alias fnv='nvim `fzf`'
+alias fnf='nvim `fzf`'
+alias fgit="git checkout \$(git branch -r | fzf)"
+alias fdir="cd \$(find * -type d | fzf)"
