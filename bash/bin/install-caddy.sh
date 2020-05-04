@@ -86,10 +86,7 @@ xunqinji.top:80 {
 	encode zstd gzip
   file_server browse
   root * /var/www/html
-  reverse_proxy /ray localhost:36722 {
-      websocket
-      header_upstream -Origin
-  }
+  reverse_proxy /ray localhost:36722 
 }
 " >> /etc/caddy/Caddyfile2
 
@@ -105,6 +102,9 @@ xunqinji.top:80 {
     --comment "Caddy web server" \
     caddy
   "
+  echo "Usage:"
+  echo "/usr/bin/caddy run --environ --adapter caddyfile --config /etc/caddy/Caddyfile"
+  echo "/usr/bin/caddy reload --environ --adapter caddyfile --config /etc/caddy/Caddyfile"
   echo "Enjoy!"
 }
 
