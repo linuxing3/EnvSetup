@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+zz() {
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+}
+
 export FZ_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 
 # export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(bat --theme zenburn {} | cat {} ) 2> /dev/null | head -500'"

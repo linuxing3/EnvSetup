@@ -108,7 +108,7 @@ fi
 check_commands() {
   for command in $@
   do
-  if ! exists "${command}"; then
+  if ! command -v "${command}" > /dev/null 2>&1; then
     msg "You must have ${command}' installed to continue"
     installpkg "${command}"
   fi
