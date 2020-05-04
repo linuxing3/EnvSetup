@@ -4,4 +4,50 @@
 - hosts: all 
   become: yes
   roles:
+    - common
     - vps
+
+- hosts: localhost
+  vars:
+    pip_install_packages:
+      - name: docker
+      - name: awscli
+
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+- hosts: localhost
+  users:
+    - username: vagrant
+      name: vagrant
+      groups: ['wheel','systemd-journal']
+      uid: 1001
+      home: /home/vagrant
+      profile: |
+        alias ll='ls -lah'
+
+  groups_to_create:
+    - name: developers
+      gid: 10000
+
+  #users_deleted:
+  #  - username: bar
+  #    name: Bar User
+  #    uid: 1002
+
+
+- hosts: localhost
+  roles:
+    - { role: geerlingguy.dotfiles }
+
+- hosts: localhost
+  vars:
+	nodejs_npm_global_packages:
+	  - name: jslint
+	  - name: node-sass
+	  - name: tsc
+	  - name: httpserver
+	  - name: yarn
+  roles:
+    - geerlingguy.nodejs
