@@ -60,7 +60,7 @@ alias nowdate='date +"%d-%m-%Y"'
 alias vi=vim
 alias svi='sudo vi'
 alias vis='vim "+set si"'
-alias edit='vim `fzf`'
+alias vif='vim `fzf`'
 alias naf='nano `fzf`'
 #
 ##11: Control output of networking tool called ping
