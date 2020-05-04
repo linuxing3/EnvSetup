@@ -18,4 +18,4 @@
   lineinfile:
     path: /home/{{whoami}}/.zshrc
     regexp: 'ZSH_THEME="robbyrussell"'
-    line: 'ZSH_THEME="ys"'
+    line: 'ZSH_THEME="mariana"'

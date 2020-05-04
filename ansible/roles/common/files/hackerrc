@@ -1,0 +1,39 @@
+## Man page
+# Less Colors for Man Pages
+# see http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
+export PAGER="`which less` -s"
+export LESS_TERMCAP_mb=$'\E[01;34m'
+export LESS_TERMCAP_md=$'\E[01;34m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;33m'
+
+## Editors
+# set vim as the default EDITOR
+export EDITOR=vim
+
+## Alias
+# a simple json pretty printter
+# see http://stackoverflow.com/questions/352098/how-to-pretty-print-json-from-the-command-line
+alias jsonpp="python -mjson.tool"
+
+## some tiny funcs
+function what
+{
+    file `which $1`
+}
+
+function backup
+{
+    echo "Backing up $1"
+
+    if [ -d $1 ]; then
+        cp -r $1 $1.$(date +%F_%T)
+    else
+        cp $1 $1.$(date +%F_%T)
+    fi
+
+    echo "Done"
+}

@@ -11,7 +11,7 @@
 - name: import env settings 
   import_tasks: env.yml
 
-- name: Manager xunqinji 
+- name: Manage xunqinji 
   import_tasks: xunqinji.yml
 
 - import_tasks: dongxishijie.yml

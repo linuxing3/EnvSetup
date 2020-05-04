@@ -10,6 +10,7 @@
 - name: install ipython and pip for python
   apt: 
     name: ipython
+    state: present
 
 - name: install pyenv
   command: curl https://pyenv.run | bash
