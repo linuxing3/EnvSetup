@@ -81,13 +81,17 @@ install_caddy2() {
   touch /etc/caddy/Caddyfile2
 
   sudo echo "
-  xunqinji.top:80
+xunqinji.top:80 {
+	templates
+	encode zstd gzip
+  file_server browse
   root * /var/www/html
-  file_server
   reverse_proxy /ray localhost:36722 {
       websocket
       header_upstream -Origin
-  }" >> /etc/caddy/Caddyfile2
+  }
+}
+" >> /etc/caddy/Caddyfile2
 
   echo "You are installing caddy 2, the user and group caddy will be created for you"
   echo "If not, your can do it on your own"
