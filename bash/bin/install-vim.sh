@@ -9,7 +9,7 @@ echo "==========================================================="
 echo "vim, one of the best editors"
 echo "==========================================================="
 
-sudo apt-get install -y vim
+sudo apt-get install -y vim neovim 
 
 option=$(dialog --title " Spacevim 一键安装自动脚本" \
   --checklist "请输入:" 20 70 5 \
