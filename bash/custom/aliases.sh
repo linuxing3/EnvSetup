@@ -177,5 +177,16 @@ debian-nps(){
 }
 
 # 22.  docker shortcuts
-alias dra="sudo docker ps -a | awk '{ print \$1 }' | xargs sudo docker rm"
-alias dria="sudo docker images | awk '{ print \$3 }' | xargs sudo docker rmi"
+dps() {
+  sudo docker build . -t $1:$2
+}
+alias figup="sudo docker-compose up -d"
+alias figdown="sudo docker-compose down"
+alias drit="sudo docker run -it"
+alias deit="sudo docker exe -it"
+alias dpl="sudo docker pull"
+alias dps="sudo docker ps -a"
+alias dis="sudo docker images"
+alias dra="sudo docker ps -a | awk 'NR!=1{ print \$1 }' | xargs sudo docker rm"
+alias dsa="sudo docker ps -a | awk 'NR!=1{ print \$1 }' | xargs sudo docker stop"
+alias dria="sudo docker images | awk 'NR!=1{ print \$3 }' | xargs sudo docker rmi"
