@@ -22,11 +22,9 @@ start_config() {
 
 case "$1" in
   start)
-	echo "Starting OpenBSD Secure Shell server" "sshd"
 	start_config
 	;;
   stop)
-	echo "Stopping OpenBSD Secure Shell server" "sshd"
 	pkill npc
 	;;
 
