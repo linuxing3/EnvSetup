@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  trojan-server:
+   image: trojangfw/trojan
+   ports:
+     - "443:443"
+   volumes:
+     - /home/ubuntu/EnvSetup/config/trojan/docker:/config
+   links:
+     - web-server
+
+  web-server:
+   image: nginx:alpine
+   volumes:
+     - /home/ubuntu/EnvSetup/config/trojan/docker/nginx.conf:/etc/nginx/nginx.conf
+     - /home/ubuntu/EnvSetup/config/trojan/docker/nginx.vh.default.conf:/etc/nginx/nginx.vh.default.conf
