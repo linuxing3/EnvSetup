@@ -15,6 +15,10 @@
 if [ $UID -ne 0 ]; then
   alias reboot='sudo reboot'
   alias update='sudo apt-get upgrade'
+  alias apt='sudo apt-get'
+  alias docker='sudo docker'
+  alias systemctl='sudo systemctl'
+  alias service='sudo service'
 fi
 #
 alias c='clear'
@@ -172,3 +176,6 @@ debian-nps(){
 	nohup ./nps &
 }
 
+# 22.  docker shortcuts
+alias dra="sudo docker ps -a | awk '{ print \$1 }' | xargs sudo docker rm"
+alias dria="sudo docker images | awk '{ print \$3 }' | xargs sudo docker rmi"
