@@ -1,4 +1,4 @@
-# 网络建站思路
+# 网络运维的思路和架构V2ray
 
 经过不断调整，基本尝试了VPS服务器上部署服务的诸多技巧，颇有心得，谨以为记。
 
@@ -41,9 +41,13 @@ Tips:
 
 主要站点配置文件
 
-`/www/server/nginx/nginx.conf`
+`/www/server/nginx/conf/nginx.conf`
 
-其中通过`include`引入虚拟主机的配置文件
+其中通过`include`引入虚拟主机的配置文件,还有其他的一些文件
+
+`/www/server/nginx/conf/enable_php.conf`
+`/www/server/nginx/conf/proxy.conf`
+`/www/server/nginx/conf/fastcgi.conf`
 
 ### 虚拟主机配置
 
@@ -53,7 +57,7 @@ Tips:
 
 虚拟站点配置文件
 
-`/www/server/panel/nginx/vhosts/*.nginx.conf`
+`/www/server/panel/vhosts/nginx/*.conf`
 
 Tips:
 使用反向代理到v2ray的36772
