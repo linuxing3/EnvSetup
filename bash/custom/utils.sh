@@ -533,3 +533,20 @@ show_ports() {
     netcat -z -v -w 1 -n 127.0.0.1 $p
   done
 }
+
+deploy_hugo_gh() {
+  local INPUT_DESTINATION_REPO="linuxing3/linuxing3.github.io"
+  local GITHUB_ACTOR=linuxing3
+  local TS=$(date +"%Y%m%d% %H:%M")
+  hugo -D
+  cd public
+  git init
+  git remote add origin "https://github.com/${INPUT_DESTINATION_REPO}.git"
+  git config user.name "${GITHUB_ACTOR}"
+  git config user.email "${GITHUB_ACTOR}@qq.com"
+  git add --all
+  git commit -m "Automated deployment by ${USER} at ${TS}"
+  # git push origin --delete master
+  git push -u origin master
+  cd
+}
