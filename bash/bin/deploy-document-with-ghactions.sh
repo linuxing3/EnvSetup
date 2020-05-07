@@ -6,6 +6,7 @@ type hugo
 # create site
 hugo new site docs/site
 cp docs/*.org docs/site/content/
+cp docs/*.md docs/site/content/
 
 # install them
 cd docs/site
