@@ -1,4 +1,4 @@
-name: deploy document with hugo
+name: deploy documents with hugo
 
 on:
   push:
