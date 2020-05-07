@@ -1,4 +1,4 @@
-ame: deploy document with hugo
+name: deploy document with hugo
 
 on:
   push:
@@ -20,9 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: install hugo 
+      - name: install hugo and build sites
         run: |
-          bash bin/deploy.sh
+          bash bash/bin/deploy-document-with-ghactions.sh
       - name: SSH connection to Actions
         uses: P3TERX/debugger-action@master
         if: env.SSH_ACTIONS == 'true'
