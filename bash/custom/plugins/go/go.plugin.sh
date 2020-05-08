@@ -6,7 +6,7 @@ ggg() {
 	elif [ -e /usr/local/bin/go/bin/go ]; then
 		export GOROOT=/usr/local/bin/go
 	fi
-	export GO111MODULE="on"
+	export GO111MODULE=on
 	if [ ! -d "$HOME/workspace/go-project" ]; then
 		mkdir -p "$HOME/workspace/go-project"
 	fi
