@@ -22,6 +22,7 @@ install_shfmt() {
 install_gofish() {
 	curl -fsSL https://raw.githubusercontent.com/fishworks/gofish/master/scripts/install.sh | bash
 }
+
 install_go() {
 	wget https://dl.google.com/go/go$GO_VERSION.$OS-$ARCH.tar.gz
 	sudo tar -C /usr/lib -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
@@ -36,11 +37,23 @@ install_go() {
 	echo "You can enalbe go environment with ggg!!!"
 }
 
+setup_go_emacs() {
+  go get -u github.com/motemen/gore/cmd/gore
+  go get -u github.com/stamblerre/gocode
+  go get -u golang.org/x/tools/cmd/godoc
+  go get -u golang.org/x/tools/cmd/goimports
+  go get -u golang.org/x/tools/cmd/gorename
+  go get -u golang.org/x/tools/cmd/guru
+  go get -u github.com/cweill/gotests/...
+  go get -u github.com/fatih/gomodifytags
+}
+
 option=$(dialog --title " Hugo 一键安装自动脚本" \
 	--checklist "请输入:" 20 70 5 \
 	"1" "Install shfmt" 0 \
 	"2" "Install gofish package manager" 0 \
 	"3" "Install go from official site" 0 \
+	"4" "Install go tools" 0 \
 	3>&1 1>&2 2>&3 3>&1)
 case "$option" in
 1)
@@ -51,6 +64,9 @@ case "$option" in
 	;;
 3)
 	install_go
+	;;
+4)
+	setup_go_emacs
 	;;
 *)
 	echo "Skipped!"
