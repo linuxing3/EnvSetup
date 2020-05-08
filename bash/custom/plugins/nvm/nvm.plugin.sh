@@ -13,3 +13,5 @@ nnmirror() {
 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 	export NVM_NODEJS_ORG_MIRROR="https://unofficial-builds.nodejs.org/download/release"
 }
+
+nnn

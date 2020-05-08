@@ -13,3 +13,5 @@ ggg() {
 	export GOPATH=$HOME/workspace/go-project
 	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 }
+
+ggg
