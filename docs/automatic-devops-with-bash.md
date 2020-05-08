@@ -1,12 +1,16 @@
 # 自动化运维脚本之bash篇
 
-bash脚本短小精悍，表现力强，适用普遍，可以在本机和远程服务器上进行快速的运维操作， 堪称运维工程师的不二选择。
+bash脚本短小精悍，表现力强，适用普遍，可以在本机和远程服务器上进行快速的运维操作，
+堪称运维工程师的不二选择。
 
-通过编写bash脚本，可以很快地整合工作流，从日常重复性劳动中解脱出来，当然这也需要一定的编程基础。
+通过编写bash脚本，可以很快地整合工作流，从日常重复性劳动中解脱出来，当然这也需要
+一定的编程基础。
 
-在我的脚本中，主要针对常用的vim、emacs、bash、nginx、tmux、nps、trojan、v2ray等，采取了自动下载和自动安装的功能，
+在我的脚本中，主要针对常用的vim、emacs、bash、nginx、tmux、nps、trojan、v2ray等，
+采取了自动下载和自动安装的功能，
 
-其中一部分是直接借用了其他人的一键脚本，比如on-my-bash、oh-my-tmux、SpaceVim、Doom Emacs等等。
+其中一部分是直接借用了其他人的一键脚本，比如on-my-bash、oh-my-tmux、SpaceVim、
+Doom Emacs等等。
 
 
 # 入口文件
@@ -113,7 +117,8 @@ start_menu(){
 
 如果你按下`vv`，将实际执行`pyenv`的初始化脚本，加载`pyenv virtualenvs -`
 
-下一步可以执行`pyenv install`、`pyenv global 3.8.2`、`pyenv virtualenv-create v1`、`pyenv activate v1`等一系列脚本。
+下一步可以执行`pyenv install`、`pyenv global 3.8.2`、`pyenv virtualenv-create
+v1`、`pyenv activate v1`等一系列脚本。
 
 我最常用的命令比如推动代码仓库到远程，设置成bash函数`deploy`，每次减少一定的代码量。
 
