@@ -4,7 +4,7 @@
 
 ## Bash
 
-[bash document](./docs/automatic-devops-with-bash.md)
+[bash document](/automatic-devops-with-bash)
 
 bash脚本短小精悍，表现力强，适用普遍，可以在本机和远程服务器上进行快速的运维操作，
 堪称运维工程师的不二选择。
@@ -19,15 +19,11 @@ bash脚本短小精悍，表现力强，适用普遍，可以在本机和远程�
 Doom Emacs等等。
 
 
-## Github Actions
-
-[Github actions](./.github/workflows/vps.env.sync.yml)
-
 ## Proxies
 
-[proxy document](./docs/vps-management-style.md)
+[proxy document](/vps-management-style)
 
 
 ## Windows management and setup
 
-[windows document](./docs/windows-management-style.md)
+[windows document](/windows-management-style)
