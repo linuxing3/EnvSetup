@@ -71,4 +71,3 @@ Import `Add_PS1_Run_as_administrator.reg` to your registry to enable context men
   - My Office
   - FitbitCoach
   - Netflix
-

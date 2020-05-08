@@ -1,17 +1,16 @@
-# 自动化运维脚本之bash篇
+# 自动化运维脚本之 bash 篇
 
-bash脚本短小精悍，表现力强，适用普遍，可以在本机和远程服务器上进行快速的运维操作，
+bash 脚本短小精悍，表现力强，适用普遍，可以在本机和远程服务器上进行快速的运维操作，
 堪称运维工程师的不二选择。
 
-通过编写bash脚本，可以很快地整合工作流，从日常重复性劳动中解脱出来，当然这也需要
+通过编写 bash 脚本，可以很快地整合工作流，从日常重复性劳动中解脱出来，当然这也需要
 一定的编程基础。
 
-在我的脚本中，主要针对常用的vim、emacs、bash、nginx、tmux、nps、trojan、v2ray等，
+在我的脚本中，主要针对常用的 vim、emacs、bash、nginx、tmux、nps、trojan、v2ray 等，
 采取了自动下载和自动安装的功能，
 
-其中一部分是直接借用了其他人的一键脚本，比如on-my-bash、oh-my-tmux、SpaceVim、
-Doom Emacs等等。
-
+其中一部分是直接借用了其他人的一键脚本，比如 on-my-bash、oh-my-tmux、SpaceVim、
+Doom Emacs 等等。
 
 # 入口文件
 
@@ -93,6 +92,7 @@ start_menu(){
   esac
 }
 ```
+
 # 模块安装文件
 
 ## vim
@@ -111,16 +111,15 @@ start_menu(){
 
 同时，将个人设置统一防止在`EnvSetup/bash/custom`下，包括常用的别名、函数、帮助器、颜色配置。
 
-将git、vim、emacs、pyenv、nvm等设置也集成在模块插件的目录下，方便按需调用。
+将 git、vim、emacs、pyenv、nvm 等设置也集成在模块插件的目录下，方便按需调用。
 
-比如如果你在`.bashrc`中启用了python插件，插件将自动将`./local/pyenv`加入到路径中去
+比如如果你在`.bashrc`中启用了 python 插件，插件将自动将`./local/pyenv`加入到路径中去
 
 如果你按下`vv`，将实际执行`pyenv`的初始化脚本，加载`pyenv virtualenvs -`
 
-下一步可以执行`pyenv install`、`pyenv global 3.8.2`、`pyenv virtualenv-create
-v1`、`pyenv activate v1`等一系列脚本。
+下一步可以执行`pyenv install`、`pyenv global 3.8.2`、`pyenv virtualenv-create v1`、`pyenv activate v1`等一系列脚本。
 
-我最常用的命令比如推动代码仓库到远程，设置成bash函数`deploy`，每次减少一定的代码量。
+我最常用的命令比如推动代码仓库到远程，设置成 bash 函数`deploy`，每次减少一定的代码量。
 
 路径的设置可以更加智能，特别是个人的常用路径，包括将子目录列入路径。大概配置如下：
 
@@ -168,7 +167,7 @@ echo "\$domain
 
 ## caddy/nginx
 
-新版的caddy已经可以作为软件包下载，配置方式略微不同。
+新版的 caddy 已经可以作为软件包下载，配置方式略微不同。
 
 ```sh
 
@@ -198,7 +197,7 @@ install_caddy2() {
 	encode zstd gzip
   file_server browse
   root * /var/www/html
-  reverse_proxy /ray localhost:36722 
+  reverse_proxy /ray localhost:36722
 }
 " >> /etc/caddy/Caddyfile
 
@@ -221,14 +220,13 @@ run() {
 
 很好的内网穿透软件，一开始在下载使用时碰到一些问题，后来记录了一个脚本，进行自动安装。
 
-
 ```sh
 #!/usr/bin/env bash
 # 判断系统版本
 a=""
 a=$(arch)
-if [[ "${a}" ==  "x86_64" ]]; then 
-  version="amd64" 
+if [[ "${a}" ==  "x86_64" ]]; then
+  version="amd64"
 elif [[ "${a}" == "i686" ]]; then
   version="386"
 elif [[ "${a}" == "armv7l" ]]; then
@@ -284,7 +282,7 @@ install_nps() {
 install_npc() {
 	echo "----------------------------------------------------------"
 	echo "Trying to install npc"
-  
+
 	cd
 	rm -rf npc
 	mkdir npc
@@ -329,7 +327,7 @@ EOF
   else
     dir="/home/${user}"
   fi
-	echo "Uninstall npc is" 
+	echo "Uninstall npc is"
   sudo systemctl stop Npc
   sudo ./npc uninstall
 
@@ -346,9 +344,9 @@ EOF
 
 ## 字体下载
 
-建议使用`NerdFont`，包括许多不错的图标，字形也很好看。个人推荐SourceCodePro,FiraCode, Hack, JetBrainsMono, RobotoMono, SourceCodePro IBMPlexMono。
+建议使用`NerdFont`，包括许多不错的图标，字形也很好看。个人推荐 SourceCodePro,FiraCode, Hack, JetBrainsMono, RobotoMono, SourceCodePro IBMPlexMono。
 
-其中中文显示最秀气的应该是IBMPlexMono字体，中文用户可作为首选。
+其中中文显示最秀气的应该是 IBMPlexMono 字体，中文用户可作为首选。
 
 下载链接: https://github.com/ryanoasis/nerd-fonts/releases/download/
 
@@ -395,7 +393,7 @@ sudo mkdir -p $location
 
 if [[ -d $location ]]; then
   sudo cp *.ttf "${location}/"
-  sudo cp */*.ttf "${location}/" 
+  sudo cp */*.ttf "${location}/"
   sudo fc-cache -fv
   dialog --title "Success" --msgbox "Installed ${fontface} ${version}" 5 70
 else

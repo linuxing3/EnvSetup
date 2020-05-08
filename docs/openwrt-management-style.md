@@ -1,6 +1,5 @@
 # Openwrt management
 
-
 ## Build Openwrt
 
 ### With `github actions`
@@ -25,4 +24,3 @@ jobs:
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
 ```
-
