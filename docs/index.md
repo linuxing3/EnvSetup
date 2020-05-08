@@ -4,7 +4,7 @@
 
 ## Bash
 
-[bash document](https://github.com/linuxing3/EnvSetup/blob/master/docs/automatic-devops-with-bash.md)
+[bash document](./docs/automatic-devops-with-bash.md)
 
 bash脚本短小精悍，表现力强，适用普遍，可以在本机和远程服务器上进行快速的运维操作，
 堪称运维工程师的不二选择。
@@ -21,13 +21,13 @@ Doom Emacs等等。
 
 ## Github Actions
 
-[Github actions](https://github.com/linuxing3/EnvSetup/blob/master/.github/workflows/vps.env.sync.yml)
+[Github actions](./.github/workflows/vps.env.sync.yml)
 
 ## Proxies
 
-[proxy document](https://github.com/linuxing3/EnvSetup/blob/master/docs/vps-management-style.md)
+[proxy document](./docs/vps-management-style.md)
 
 
 ## Windows management and setup
 
-[windows document](https://github.com/linuxing3/EnvSetup/blob/master/docs/windows-management-style.md)
+[windows document](./docs/windows-management-style.md)
