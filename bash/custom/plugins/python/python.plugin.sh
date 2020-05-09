@@ -8,6 +8,8 @@ vvv() {
 	fi
 }
 
+vvv
+
 alias pv="pyenv"
 alias pvv="pyenv virtualenvs"
 alias pva="pyenv activate"
@@ -21,3 +23,4 @@ alias ppvi="pipenv install"
 alias nb="jupyter-notebook"
 alias ipy="ipython"
 alias vno="virtualenv test --no-download --no-pip --no-setup-tools"
+

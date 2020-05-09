@@ -2,7 +2,7 @@
 
 ![Sync envSetup in my vps](https://github.com/linuxing3/EnvSetup/workflows/Sync%20envSetup%20in%20my%20vps/badge.svg)
 
-## Bash
+## Devops
 
 [bash document](/EnvSetup/automatic-devops-with-bash)
 
@@ -48,3 +48,15 @@ scripts to fit your own requirements.
 ```bash
 curl https://raw.githubusercontent.com/linuxing3/EnvSetup/master/install.sh >> env-setup.sh | chmod +x env-setup.sh | ./env-setup --install
 ```
+
+## Openwrt
+
+[Openwrt ](/EnvSetup/openwrt-management-style)
+
+## Vim, tmux, bash
+
+[Vim ](/EnvSetup/vim-cheatsheet)
+
+[Tmux](/EnvSetup/tmux-cheatsheet)
+
+[Bash](/EnvSetup/bash-cheatsheet)
