@@ -1,3 +1,9 @@
+---
+title: Windows运维
+date: 2020-05-04T09:30:43-30:50
+tags:
+---
+
 # Windows 10 Developer Machine Setup
 
 This is the script for linuxing3 to setup a new dev box. You can modify the

@@ -1,3 +1,9 @@
+---
+title: Tmux Cheatsheet
+date: 2020-05-04T09:30:43-30:50
+tags:
+---
+
 # TMUX CHEATSHEET (中文速查表) - by ziyenano (created on 2018/03/15)
 
 # Version: 1, Last Modified: 2018/03/15 00:30

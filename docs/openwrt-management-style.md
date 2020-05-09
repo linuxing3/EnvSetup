@@ -1,3 +1,8 @@
+---
+title: Openwrt Management
+date: 2020-05-04T09:30:43-30:50
+tags:
+---
 # Openwrt management
 
 ## Build Openwrt
