@@ -241,6 +241,4 @@ check_commands dialog git
 
 installmsg
 
-install 
-
-finalize
+install
