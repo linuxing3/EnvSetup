@@ -5,6 +5,7 @@ WORKDIR /home/vagrant
 RUN useradd vagrant -p 20090909 -m -g root -d /home/vagrant
 RUN apt update && apt upgrade
 RUN apt install -y wget git sudo ruby python
+RUN apt install -y gnupg gnupg2 gnupg1
 RUN wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 RUN echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
 RUN apt update
