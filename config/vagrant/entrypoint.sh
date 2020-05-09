@@ -1,0 +1,1 @@
+/home/vagrant/alpine && vagrant up
