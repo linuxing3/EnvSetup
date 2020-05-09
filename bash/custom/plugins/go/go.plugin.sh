@@ -7,10 +7,10 @@ ggg() {
 		export GOROOT=/usr/local/bin/go
 	fi
 	export GO111MODULE=on
-	if [ ! -d "$HOME/workspace/go-project" ]; then
-		mkdir -p "$HOME/workspace/go-project"
+	if [ ! -d "$HOME/mygo" ]; then
+		mkdir -p "$HOME/mygo"
 	fi
-	export GOPATH=$HOME/workspace/go-project
+	export GOPATH=$HOME/go-project
 	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 }
 

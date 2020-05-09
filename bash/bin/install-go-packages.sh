@@ -23,18 +23,32 @@ install_gofish() {
 	curl -fsSL https://raw.githubusercontent.com/fishworks/gofish/master/scripts/install.sh | bash
 }
 
+install_gvm() {
+	bash < <(curl -s https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer)
+	echo "gvm install go1.4.1"
+}
+
+install_go_from_apt() {
+	sudo add-apt-repository ppa:gophers/go
+	sudo apt-get update
+	sudo apt-get install golang-stable
+}
+
 install_go() {
 	wget https://dl.google.com/go/go$GO_VERSION.$OS-$ARCH.tar.gz
 	sudo tar -C /usr/lib -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
 	type go
+}
+
+setup_go_env() {
 	if [ ! -d "$HOME/workspace/go-project" ]; then
-		mkdir -p "$HOME/workspace/go-project"
-	fi
-	export GO111MODULE="on"
-	export GOROOT=/usr/lib/go
-	export GOPATH=$HOME/workspace/go-project
-	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-	echo "You can enalbe go environment with ggg!!!"
+			mkdir -p "$HOME/workspace/go-project"
+		fi
+		export GO111MODULE="on"
+		export GOROOT=/usr/lib/go
+		export GOPATH=$HOME/workspace/go-project
+		export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+		echo "You can enalbe go environment with ggg!!!"
 }
 
 setup_go_emacs() {
@@ -54,6 +68,7 @@ option=$(dialog --title " Hugo 一键安装自动脚本" \
 	"2" "Install gofish package manager" 0 \
 	"3" "Install go from official site" 0 \
 	"4" "Install go tools" 0 \
+	"5" "Setup go environment" 0 \
 	3>&1 1>&2 2>&3 3>&1)
 case "$option" in
 1)
@@ -67,6 +82,9 @@ case "$option" in
 	;;
 4)
 	setup_go_emacs
+	;;
+5)
+	setup_go_env
 	;;
 *)
 	echo "Skipped!"
