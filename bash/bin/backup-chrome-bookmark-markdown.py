@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-from json import loads
 import argparse
+from json import loads
+import sys
 from platform import system
 from re import match
 from os import environ
@@ -17,7 +18,14 @@ html_escape_table = {
     "<": "&lt;",
 }
  
-output_file_template = """
+org_output_file_template = """
+* Bookmark directory
+{catelog}
+{bookmark_bar}
+{other}
+"""
+
+md_output_file_template = """
  <h3>Bookmark directory</h3>
 {catelog}
 {bookmark_bar}
@@ -33,7 +41,8 @@ parser.add_argument("output_file", type=argparse.FileType('w', encoding='utf-8')
                     help="Read the location of the bookmark, you can specify the file location (relative path, absolute path can be), required")
  
 args = parser.parse_args()
- 
+
+# 判断是否有输入文件，如没有使用系统默认位置的书签文件 
 if args.input_file:
     input_file = args.input_file
 else:
@@ -73,8 +82,11 @@ catelog = list()
 def html_escape(text):
     return ''.join(html_escape_table.get(c, c) for c in text)
  
- 
+
 def html_for_node(node):
+    """从html中提取不同节点
+    URL对应书签
+    """
     # Determine url and children to determine whether it is included in the folder
     if 'url' in node:
         return html_for_url_node(node)
@@ -85,8 +97,14 @@ def html_for_node(node):
  
  
 def html_for_url_node(node):
+    """将html的url节点转化，直接使用format命令即可
+    """
     if not match("javascript:", node['url']):
-        return '- [{}]({})\n'.format(node['name'], node['url'])
+        # Hack这里，可以输出为md，Org等不同格式
+        if sys.argv[1].find(".org") != "":
+            return '*** [[{}][{}]\n'.format(node['name'], node['url'])
+        else:
+            return '- [{}]({})\n'.format(node['name'], node['url'])
     else:
         return ''
  
@@ -106,18 +124,30 @@ def filter_name(n):
  
 #Filter directory name
 def filter_catelog_name(n):
+    """将html的目录和子目录转化，直接使用format命令即可
+    """
     if n['name'] in filter_name_list:
         return ''
     else:
-        catelog.append('- [{0}](#{0})\n'.format(n['name']))
-        return '<h4 id={0}>{0}</h4>'.format(n['name'])
+        # Hack这里，可以输出为md，Org等不同格式
+        if sys.argv[1].find(".org") != "":
+            catelog.append('** [[{0}][#{0}]]\n'.format(n['name']))
+            return '** {0}'.format(n['name'])
+        else:
+            catelog.append('- [{0}](#{0})\n'.format(n['name']))
+            return '<h4 id={0}>{0}</h4>'.format(n['name'])
  
  
+#  读取输入文件
 contents = loads(input_file.read())
 input_file.close()
  
 bookmark_bar = html_for_node(contents['roots']['bookmark_bar'])
 other = html_for_node(contents['roots']['other'])
 catelog_str = ''.join(a for a in catelog)
- 
-output_file.write(output_file_template.format(catelog=catelog_str, bookmark_bar=bookmark_bar, other=other))
+
+# 根据输出文件名，生成不同格式
+if sys.argv[1].find(".org") != "":
+    output_file.write(org_output_file_template.format(catelog=catelog_str, bookmark_bar=bookmark_bar, other=other))
+else:
+    output_file.write(md_output_file_template.format(catelog=catelog_str, bookmark_bar=bookmark_bar, other=other))
