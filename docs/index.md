@@ -4,7 +4,7 @@
 
 ## Devops
 
-[bash document](/EnvSetup/automatic-devops-with-bash)
+[devops document](/EnvSetup/automatic-devops-with-bash)
 
 bash 脚本短小精悍，表现力强，适用普遍，可以在本机和远程服务器上进行快速的运维操作，
 堪称运维工程师的不二选择。
@@ -59,4 +59,8 @@ curl https://raw.githubusercontent.com/linuxing3/EnvSetup/master/install.sh >> e
 
 [Tmux](/EnvSetup/tmux-cheatsheet)
 
+## Languages
+
 [Bash](/EnvSetup/bash-cheatsheet)
+
+[Go](/EnvSetup/go-cheatsheet)
