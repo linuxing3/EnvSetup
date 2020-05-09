@@ -4,15 +4,17 @@ WORKDIR /home/vagrant
 
 RUN useradd vagrant -p 20090909 -m -g root -d /home/vagrant
 RUN apt update && apt upgrade
+RUN apt install wget git sudo ruby python
 RUN wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 RUN echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
-RUN apt update -y
-RUN apt install wget git virtualbox-6.0
+RUN apt update
+RUN apt install -y virtualbox-6.0
+
 RUN wget https://download.virtualbox.org/virtualbox/6.0.10/Oracle_VM_VirtualBox_Extension_Pack-6.0.10.vbox-extpack
 RUN VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.0.10.vbox-extpack
 
 RUN curl -O https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
-RUN apt install ./vagrant_2.2.6_x86_64.deb
+RUN apt install -y  ./vagrant_2.2.6_x86_64.deb
 RUN mkdir -p /home/vagrant/alpine
 RUN chown vagrant:vagrant /home/vagrant/alpine
 RUN chmod -R 755 /home/vagrant/alpine
