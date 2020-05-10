@@ -1,0 +1,3 @@
+[submodule "config/dockerfiles"]
+	path = config/dockerfiles
+	url = https://github.com/jessfraz/dockerfiles
