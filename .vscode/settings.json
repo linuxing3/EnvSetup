@@ -1,4 +1,4 @@
 {
   "editor.fontFamily": "'BlexMono Nerd Font Mono','DejaVu Sans Mono for Powerline', 'Fura Code Nerd Font Mono', monospace",
-  "python.pythonPath": "/usr/bin/python3"
+  "python.pythonPath": ".venv/bin/python"
 }
