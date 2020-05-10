@@ -9,7 +9,7 @@
       "type": "python",
       "request": "launch",
       "program": "${file}",
-      "args": ["~/playground", "~/playground"],
+      "args": ["/root/playground/source", "/root/playground/target"],
       "console": "integratedTerminal"
     }
   ]
