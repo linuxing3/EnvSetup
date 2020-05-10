@@ -1,3 +1,6 @@
 [submodule "config/dockerfiles"]
 	path = config/dockerfiles
 	url = https://github.com/jessfraz/dockerfiles
+[submodule "config/vagrantfiles"]
+	path = config/vagrantfiles
+	url = https://github.com/adlawson/vagrantfiles

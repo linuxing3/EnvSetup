@@ -21,7 +21,7 @@ DIRECTORIES = {
  "文档": [".oxps", ".epub", ".pages", ".docx", ".doc", ".fdf", ".ods",
  ".odt", ".pwi", ".xsn", ".xps", ".dotx", ".docm", ".dox",
  ".rvg", ".rtf", ".rtfd", ".wpd", ".xls", ".xlsx", ".ppt",
- "pptx",".csv",",pdf"],
+ "pptx",".csv",".pdf"],
  "压缩文件": [".a", ".ar", ".cpio", ".iso", ".tar", ".gz", ".rz", ".7z",
  ".dmg", ".rar", ".xar", ".zip"],
  "影音": [".aac", ".aa", ".aac", ".dvf", ".m4a", ".m4b", ".m4p", ".mp3",
