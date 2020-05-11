@@ -2,11 +2,18 @@
 # Unblock-File -Path .\windows7_env_setup_path.ps1
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
+$drive="E:\"
+
+$hasDrive = Get-PSDrive -Name H
+if ($hasDrive.Name) {
+  $drive="H:\"
+}
+
 Write-Host ""
 Write-Host "Setting GOPATH AND GOROOT " $computerName  -ForegroundColor Yellow
 Write-Host "------------------------------------" -ForegroundColor Green
-[System.Environment]::SetEnvironmentVariable('GOPATH','H:\workspace\gopath',[System.EnvironmentVariableTarget]::Machine)
-[System.Environment]::SetEnvironmentVariable('GOROOT','H:\bin\go',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('GOPATH', $drive + 'workspace\gopath',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('GOROOT', $drive + 'bin\go',[System.EnvironmentVariableTarget]::Machine)
 
 # -----------------------------------------------------------------------------
 Write-Host ""

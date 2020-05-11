@@ -1,4 +1,4 @@
 {
   "editor.fontFamily": "'BlexMono Nerd Font Mono','DejaVu Sans Mono for Powerline', 'Fura Code Nerd Font Mono', monospace",
-  "python.pythonPath": ".venv/bin/python"
+  "python.pythonPath": "C:\\ProgramData\\Anaconda3\\python.exe"
 }

@@ -84,10 +84,13 @@ def html_escape(text):
  
 
 def html_for_node(node):
-    """从html中提取不同节点
-    URL对应书签
+    """从html中提取不同节点URL对应书签
+    Determine url and children to determine whether it is included in the folder
+
+    parameters:
+    ---------------------------------------------------------
+    node:           string          node definition  
     """
-    # Determine url and children to determine whether it is included in the folder
     if 'url' in node:
         return html_for_url_node(node)
     elif 'children' in node:
@@ -98,6 +101,10 @@ def html_for_node(node):
  
 def html_for_url_node(node):
     """将html的url节点转化，直接使用format命令即可
+    
+    parameters:
+    ---------------------------------------------------------
+    node:           string          node definition  
     """
     if not match("javascript:", node['url']):
         # Hack这里，可以输出为md，Org等不同格式
@@ -110,6 +117,12 @@ def html_for_url_node(node):
  
  
 def html_for_parent_node(node):
+    """ 查找父节点
+    
+    parameters:
+    ---------------------------------------------------------
+    node:           string          node definition  
+    """
     return '{0}\n\n{1}\n'.format(filter_catelog_name(node),
                                  ''.join([filter_name(n) for n in node['children']]))
  
@@ -122,9 +135,12 @@ def filter_name(n):
         return html_for_node(n)
  
  
-#Filter directory name
 def filter_catelog_name(n):
-    """将html的目录和子目录转化，直接使用format命令即可
+    """过滤目录名 Filter directory name
+
+    parameters:
+    ---------------------------------------------------------
+    n:           string          node definition 
     """
     if n['name'] in filter_name_list:
         return ''
