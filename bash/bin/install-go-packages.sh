@@ -56,13 +56,13 @@ install_gogs() {
 
 setup_go_env() {
 	if [ ! -d "$HOME/workspace/go-project" ]; then
-			mkdir -p "$HOME/workspace/go-project"
-		fi
-		export GO111MODULE="on"
-		export GOROOT=/usr/lib/go
-		export GOPATH=$HOME/workspace/go-project
-		export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-		echo "You can enalbe go environment with ggg!!!"
+		mkdir -p "$HOME/workspace/go-project"
+	fi
+	go env -w GO111MODULE="on"
+	go env -w GOROOT=/usr/lib/go
+	go env -w GOPATH=$HOME/gopath
+	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+	echo "You can enalbe go environment with ggg!!!"
 }
 
 setup_go_emacs() {
