@@ -75,9 +75,9 @@ setup_go_emacs() {
   go get -u golang.org/x/tools/cmd/gorename
   go get -u golang.org/x/tools/cmd/guru
 	go get -u golang.org/x/tools/cmd/golsp/...
-	go get -u github.com/saibing/bingo
   go get -u github.com/cweill/gotests/...
   go get -u github.com/fatih/gomodifytags
+  go get -u mvdan.cc/sh/v3/cmd/...
 }
 
 option=$(dialog --title " Hugo 一键安装自动脚本" \
