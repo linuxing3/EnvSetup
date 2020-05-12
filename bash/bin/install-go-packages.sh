@@ -55,8 +55,8 @@ install_gogs() {
 }
 
 setup_go_env() {
-	if [ ! -d "$HOME/workspace/go-project" ]; then
-		mkdir -p "$HOME/workspace/go-project"
+	if [ ! -d "$HOME/gopath" ]; then
+		mkdir -p "$HOME/gopath"
 	fi
 	go env -w GO111MODULE="on"
 	go env -w GOROOT=/usr/lib/go
