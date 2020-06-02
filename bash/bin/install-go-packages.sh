@@ -59,14 +59,14 @@ install_gogs() {
 }
 
 setup_go_env() {
-	if [ ! -d "$HOME/gopath" ]; then
-		mkdir -p "$HOME/gopath"
+	if [ ! -d "$HOME/gopath/github.com" ]; then
+		mkdir -p "$HOME/gopath/github.com"
 	fi
-	go env -w GO111MODULE="on"
-	go env -w GOROOT=/usr/lib/go
-	go env -w GOPATH=$HOME/gopath
+	export GO111MODULE="on"
+	export GOROOT=/usr/lib/go
+	export GOPATH=$HOME/gopath
 	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-	echo "You can enalbe go environment with ggg!!!"
+	echo "You can also enalbe go environment with ggg!!!"
 }
 
 setup_go_emacs() {
