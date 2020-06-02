@@ -9,8 +9,7 @@ if [ $MYARCH == "i686" ]; then
 elif [ $MYARCH == "x86_64" ]; then
 	ARCH="amd64"
 elif [ $MYARCH == "armv7l" ]; then
-	ARCH="armv7"
-	OS="raspi"
+	ARCH="arm64"
 else
 	ARCH="amd64"
 fi
