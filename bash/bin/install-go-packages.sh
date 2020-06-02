@@ -9,17 +9,22 @@ if [ $MYARCH == "i686" ]; then
 elif [ $MYARCH == "x86_64" ]; then
 	ARCH="amd64"
 elif [ $MYARCH == "armv7l" ]; then
-	ARCH="arm64"
+	ARCH="armv6l"
 else
 	ARCH="amd64"
 fi
 
 GO_VERSION=1.14.2
+
 GOGS_VERSION=0.11.91
+GOGS_OS=raspi
+GOGS_ARCH=armv6
+
 SHFMT_VERSION=3.1.1
+SHFMT_ARCH=arm
 
 install_shfmt() {
-	wget -O shfmt "https://github.com/mvdan/sh/releases/download/v${SHFMT_VERSION}/shfmt_v${SHFMT_VERSION}_${OS}_${ARCH}"
+	wget -O shfmt "https://github.com/mvdan/sh/releases/download/v${SHFMT_VERSION}/shfmt_v${SHFMT_VERSION}_${OS}_${SHFMT_ARCH}"
 	sudo mv shfmt /usr/local/bin/
 	type shfmt
 }
@@ -47,7 +52,7 @@ install_go() {
 
 install_gogs() {
 	cd 
-	wget https://github.com/gogs/gogs/releases/download/v$GOGS_VERSION/$OS-$ARCH.zip
+	wget https://github.com/gogs/gogs/releases/download/v$GOGS_VERSION/$GOGS_OS-$GOGS_ARCH.zip
 	sudo zip $OS-$ARCH.zip
 	echo "Installed gogs, to start run"
 	echo "cd gogs && ./gogs web"
