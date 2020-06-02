@@ -106,7 +106,7 @@ case "$option" in
 	setup_gogs
 	;;
 6)
-	setup_gogs_env
+	setup_go_env
 	;;
 *)
 	echo "Skipped!"
