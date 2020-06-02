@@ -25,9 +25,9 @@ DIRECTORIES = {
  "压缩文件": [".a", ".ar", ".cpio", ".iso", ".tar", ".gz", ".rz", ".7z",
  ".dmg", ".rar", ".xar", ".zip"],
  "影音": [".aac", ".aa", ".aac", ".dvf", ".m4a", ".m4b", ".m4p", ".mp3",
- ".msv", "ogg", "oga", ".raw", ".vox", ".wav", ".wma"],
+ ".msv", ".ogg", ".oga", ".raw", ".vox", ".wav", ".wma"],
  "文本": [".txt", ".in", ".out", ".csv", ".md", ".org", ".vcf"],
- "编程": [".py",".html5", ".html", ".htm", ".xhtml",".c",".cpp",".java",".css", ".sh", ".py", ".bash", "go"],
+ "编程": [".py",".html5", ".html", ".htm", ".xhtml",".c",".cpp",".java",".css", ".sh", ".py", ".bash", ".go"],
  "可执行程序": [".exe"],
 }
 
@@ -113,7 +113,7 @@ def origanize_files(path, dest, file_formats):
     file_formats:           dictionary          file formats scheme definition
 
     """ 
-    file_formats_list = flat_fields(file_formats)
+    # file_formats_list = flat_fields(file_formats)
     for entry in os.scandir(path):
         # 1. 
         if entry.is_dir():
