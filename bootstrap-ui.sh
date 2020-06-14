@@ -46,6 +46,7 @@ completions=(
   system
 )
 aliases=(
+  git
   general
   vim
 )
