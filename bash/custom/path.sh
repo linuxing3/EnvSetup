@@ -26,11 +26,13 @@ file_paths=(
 "$HOME/.pyenv/bin"
 )
 
+# PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH
 for dir in "${file_paths[@]}"; do
   if [[ -d $dir ]] && [[ ! "$PATH" == "*$dir*" ]]; then
     subdirs=$(get_subbin $dir)
     # echo "Adding the following $subdirs to path"
-    export PATH="$PATH:$subdirs"
+    export PATH="$subdirs:$PATH"
   fi
 done
 

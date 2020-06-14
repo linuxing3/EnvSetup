@@ -67,6 +67,6 @@ load_bash_it() {
     set +T
 }
 
-if [ -d "$BASH_IT" ]; then
-    load_bash_it
-fi
+# if [ -d "$BASH_IT" ]; then
+#     load_bash_it
+# fi
