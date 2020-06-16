@@ -1,10 +1,11 @@
-mkdir ~/.config/aria
+mkdir ~/downloads
+mkdir -p ~/.config/aria
 touch ~/.config/aria/aria2.session
 touch ~/.config/aria/aria2.conf
 
 echo making config file
 cat > ~/.config/aria/aria2.conf << EOF
-dir=/Volumes/caption/Users/shared/downloads/
+dir=~/downloads/
 disable-ipv6=true
 enable-rpc=true
 rpc-allow-origin-all=true
