@@ -1,20 +1,24 @@
 #!/usr/bin/env bash
 
-PREFIX="ssh -p 11119 root@xunqinji.top"
-TOGGLE_VPS="ssh -p 22 root@xunqinji.top"
-TOGGLE_VPS2="ssh -p 22 root@dongxishijie.xyz"
+XIAORUI="ssh -p 11119 root@xunqinji.top"
+VPS1="ssh -p 22 root@xunqinji.top"
+VPS2="ssh -p 22 root@dongxishijie.xyz"
+NIRCMD="/mnt/c/npc/nircmd.exe" 
+SCRIPT1="/usr/local/bin/game-terminator.sh"
 
 blue() {
 	echo -e "\033[34m\033[01m$1\033[0m"
 }
+
 green() {
 	echo -e "\033[32m\033[01m$1\033[0m"
 }
+
 red() {
 	echo -e "\033[31m\033[01m$1\033[0m"
 }
+
 toggle_item(){
-  clear
   option=$(dialog --title "Toggle killers " \
     --checklist "请输入:" 20 70 5 \
     "1" "Allow YoukuDesktop" 0 \
@@ -28,58 +32,71 @@ toggle_item(){
     "9" "Stop xunqinji proxy" 0 \
     "10" "Start dongxishijie proxy" 0 \
     "11" "Stop dongxishijie proxy" 0 \
+    "12" "Warning with text" 0 \
+    "13" "Warning with voice" 0 \
+    "14" "Playing a music" 0 \
     3>&1 1>&2 2>&3 3>&1)
   echo "Your choosed the ${option}"
   case "$option" in
     1)
-    ssh -p 11119 root@xunqinji.top sed -i '2s/^/#/g' /usr/local/bin/game-terminator.sh
-    ssh -p 11119 root@xunqinji.top cat /usr/local/bin/game-terminator.sh
+    $XIAORUI sed -i '2s/^/#/g' $SCRIPT1
+    $XIAORUI cat $SCRIPT1
     ;;
     2)
-    $PREFIX sed -i '3s/^/#/g' /usr/local/bin/game-terminator.sh
-    $PREFIX cat /usr/local/bin/game-terminator.sh
+    $XIAORUI sed -i '3s/^/#/g' $SCRIPT1
+    $XIAORUI cat $SCRIPT1
     ;;
     3)
-    $PREFIX sed -i '4s/^/#/g' /usr/local/bin/game-terminator.sh
-    $PREFIX cat /usr/local/bin/game-terminator.sh
+    $XIAORUI sed -i '4s/^/#/g' $SCRIPT1
+    $XIAORUI cat $SCRIPT1
     ;;
     4)
-    $PREFIX sed -i '2s/#//g' /usr/local/bin/game-terminator.sh
-    $PREFIX cat /usr/local/bin/game-terminator.sh
+    $XIAORUI sed -i '2s/#//g' $SCRIPT1
+    $XIAORUI cat $SCRIPT1
     ;;
     5)
-    $PREFIX sed -i '3s/#//g' /usr/local/bin/game-terminator.sh
-    $PREFIX cat /usr/local/bin/game-terminator.sh
+    $XIAORUI sed -i '3s/#//g' $SCRIPT1
+    $XIAORUI cat $SCRIPT1
     ;;
     6)
-    $PREFIX sed -i '4s/#//g' /usr/local/bin/game-terminator.sh
-    $PREFIX cat /usr/local/bin/game-terminator.sh
+    $XIAORUI sed -i '4s/#//g' $SCRIPT1
+    $XIAORUI cat $SCRIPT1
     ;;
     7)
-    $PREFIX cat /usr/local/bin/game-terminator.sh
+    $XIAORUI cat $SCRIPT1
     ;;
     8)
-    $TOGGLE_VPS systemctl start trojan
-    $TOGGLE_VPS systemctl start v2ray
-    $TOGGLE_VPS systemctl status trojan
-    $TOGGLE_VPS systemctl status v2ray
+    $VPS1 systemctl start trojan
+    $VPS1 systemctl start v2ray
+    $VPS1 systemctl status trojan
+    $VPS1 systemctl status v2ray
     ;;
     9)
-    $TOGGLE_VPS systemctl stop trojan
-    $TOGGLE_VPS systemctl stop v2ray
-    $TOGGLE_VPS systemctl status trojan
+    $VPS1 systemctl stop trojan
+    $VPS1 systemctl stop v2ray
+    $VPS1 systemctl status trojan
+    $VPS1 systemctl status v2ray
     ;;
     10)
-    $TOGGLE_VPS2 systemctl start trojan
-    $TOGGLE_VPS2 systemctl start v2ray
-    $TOGGLE_VPS2 systemctl status trojan
-    $TOGGLE_VPS2 systemctl status v2ray
+    $VPS2 systemctl start trojan
+    $VPS2 systemctl start v2ray
+    $VPS2 systemctl status trojan
+    $VPS2 systemctl status v2ray
     ;;
     11)
-    $TOGGLE_VPS2 systemctl stop trojan
-    $TOGGLE_VPS2 systemctl stop v2ray
-    $TOGGLE_VPS2 systemctl status trojan
-    $TOGGLE_VPS2 systemctl status v2ray
+    $VPS2 systemctl stop trojan
+    $VPS2 systemctl stop v2ray
+    $VPS2 systemctl status trojan
+    $VPS2 systemctl status v2ray
+    ;;
+    12)
+    $XIAORUI $NIRCMD infobox "Stopping games and videos" "[Daniel] :(" 
+    ;;
+    13)
+    $XIAORUI $NIRCMD speak text "Daniel please stop playing games and videos in morning" 0 100
+    ;;
+    14)
+    $XIAORUI $NIRCMD mediaplay 10000 "c:\\npc\\1.mp3"
     ;;
     *)
     clear
@@ -89,9 +106,9 @@ toggle_item(){
 }
 
 create_script() {
-  sudo touch /usr/local/bin/game-terminator 
-  sudo chmod +x /usr/local/bin/game-terminator 
-  cat >> /usr/local/bin/game-terminator < EOF
+  sudo touch $SCRIPT1 
+  sudo chmod +x $SCRIPT1
+  cat >> $SCRIPT1 < EOF
 /mnt/c/npc/nircmd.exe infobox "Stopping Games and Videos" "Hello, Daniel"                                                                                                     
 taskkill.exe /IM YoukuDesktop.exe /F                                                                                                                                           
 taskkill.exe /IM MinecraftLauncher.exe /F                                                                                                                                      
@@ -99,5 +116,4 @@ taskkill.exe /IM Minecraft.Windows.exe /F
 EOF
 }
 
-echo "Toggle killing apps"
 toggle_item
