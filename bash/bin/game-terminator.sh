@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
+PATH="/root/.deno/bin:/usr/sbin:/usr/bin:/usr/local/bin:/bin:/sbin"
 XIAORUI="ssh -p 11119 root@xunqinji.top"
 VPS1="ssh -p 22 root@xunqinji.top"
 VPS2="ssh -p 22 root@dongxishijie.xyz"
 NIRCMD="/mnt/c/npc/nircmd.exe" 
 SCRIPT1="/usr/local/bin/game-terminator.sh"
+
+SCRIPT2="smart-logger"
 
 blue() {
 	echo -e "\033[34m\033[01m$1\033[0m"
@@ -18,7 +21,7 @@ red() {
 	echo -e "\033[31m\033[01m$1\033[0m"
 }
 
-toggle_item(){
+remote_control(){
   option=$(dialog --title "Toggle killers " \
     --checklist "请输入:" 20 70 5 \
     "1" "Allow YoukuDesktop" 0 \
@@ -35,6 +38,8 @@ toggle_item(){
     "12" "Warning with text" 0 \
     "13" "Warning with voice" 0 \
     "14" "Playing a music" 0 \
+    "15" "Smart Logger" 0 \
+    "16" "Smart Killer" 0 \
     3>&1 1>&2 2>&3 3>&1)
   echo "Your choosed the ${option}"
   case "$option" in
@@ -98,6 +103,12 @@ toggle_item(){
     14)
     $XIAORUI $NIRCMD mediaplay 10000 "c:\\npc\\1.mp3"
     ;;
+    15)
+    $XIAORUI $SCRIPT2 log -f csv /tmp/games
+    ;;
+    16)
+    $XIAORUI $SCRIPT2 send -f csv -k Minecraft /tmp/games
+    ;;
     *)
     clear
     exit 1
@@ -116,4 +127,4 @@ taskkill.exe /IM Minecraft.Windows.exe /F
 EOF
 }
 
-toggle_item
+remote_control
