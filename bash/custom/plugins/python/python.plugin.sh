@@ -32,6 +32,7 @@ vvv() {
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 	fi
+  source `which virtualenvwrapper.sh`
 }
 
 vvv
@@ -48,5 +49,13 @@ alias ppvi="pipenv install"
 
 alias nb="jupyter-notebook"
 alias ipy="ipython"
-alias vno="virtualenv test --no-download --no-pip --no-setup-tools"
 
+alias vno="virtualenv"
+
+alias vwa="workon test"
+alias vwmk="mkvirtualenv"
+alias vwcd="cdvirtualenv"
+alias vwrm="rmvirtualenv"
+
+alias danv="conda env create"
+alias daav="conda activate"
