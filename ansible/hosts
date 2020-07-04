@@ -1,12 +1,23 @@
-[dongxishijie]
-dongxishijie.xyz
+[vagrantvps]
+dongxishijie
+xunqinji
 
-[xunqinji]
-xunqinji.top
+[rootvps]
+root.dongxishijie
+root.xunqinji
+
+[son]
+xingxiaorui
 
 [all]
-dongxishijie.xyz
-xunqinji.top
+xingxiaorui
+dongxishijie
+xunqinji
+root.dongxishijie
+root.xunqinji
 
 [localhost]
+127.0.0.1
+
+[pi]
 127.0.0.1

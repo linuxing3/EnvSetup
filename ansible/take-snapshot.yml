@@ -1,0 +1,10 @@
+---
+
+- name: Take desktop snapshot of xingxiaorui laptop
+  become: true
+  hosts: son
+  tasks:
+
+    - name: take snapshot
+      command:
+        cmd: /mnt/c/npc/nircmd.exe snapshot "c:\\npc\\snap.png"
