@@ -32,7 +32,6 @@ vvv() {
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 	fi
-  source `which virtualenvwrapper.sh`
 }
 
 vvv
