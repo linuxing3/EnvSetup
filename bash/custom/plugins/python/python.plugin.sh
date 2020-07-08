@@ -32,10 +32,7 @@ vvv() {
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 	fi
-  source `which virtualenvwrapper.sh`
 }
-
-vvv
 
 alias pv="pyenv"
 alias pvv="pyenv virtualenvs"
@@ -59,3 +56,7 @@ alias vwrm="rmvirtualenv"
 
 alias danv="conda env create"
 alias daav="conda activate"
+
+# Bootstrap
+vvv
+
