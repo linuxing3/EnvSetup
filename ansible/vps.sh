@@ -1,1 +1,1 @@
-ansible-playbook -i host vps.yml 
+ansible-playbook -i hosts vps.yml 
