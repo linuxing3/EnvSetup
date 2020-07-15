@@ -20,7 +20,9 @@ echo "export PATH=$PATH:$HOME/.pyenv/bin" >> $HOME/.bashrc
 pip3 install --user --no-warn-script-location ansible
 # using pipenv
 pip3 install --user --no-warn-script-location pipenv
+# using pipenv
+pip3 install --user --no-warn-script-location virtualenv virtualenvwrapper
 
-echo "export PATH=$PATH:$HOME/.local/bin" >> $HOME/.bashrc
-
+echo "export PATH=$HOME/.local/bin:$HOME/.pyenv/bin:$PATH" >> $HOME/.bashrc
+source `whiche virtualenvwrapper`
 source $HOME/.bashrc

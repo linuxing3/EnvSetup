@@ -1,0 +1,16 @@
+---
+# Playbook to use vps
+
+- hosts: root.vps
+  become: yes
+  tasks:
+    - name: enable trojan
+      shell: systemctl start trojan
+
+    - name: enable v2ray
+      shell: systemctl start v2ray
+
+#- hosts: root.vps
+#  become: yes
+#  roles:
+#    - vps

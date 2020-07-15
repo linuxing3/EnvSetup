@@ -1,0 +1,7 @@
+- name: install git
+  shell: which git
+
+- name: restart pm2 ipfs
+  shell: . ~/.bashrc && pm2 status 6
+  args:
+    executable: /bin/bash

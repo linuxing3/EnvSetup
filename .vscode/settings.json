@@ -1,4 +1,11 @@
 {
   "editor.fontFamily": "'BlexMono Nerd Font Mono','DejaVu Sans Mono for Powerline', 'Fura Code Nerd Font Mono', monospace",
-  "python.pythonPath": "C:\\ProgramData\\Anaconda3\\python.exe"
+  "python.pythonPath": ".venv/bin/python",
+  "python.linting.pylintEnabled": true,
+  "python.linting.mypyEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.dataScience.jupyterCommandLineArguments": [],
+  "python.dataScience.jupyterServerURI": "http://127.0.0.1:8888/?token=da863067a16cb85d15451a1f3bc0e07e42d5e8812ff4abc7"
+  "python.pythonPath": "/usr/bin/python"
 }

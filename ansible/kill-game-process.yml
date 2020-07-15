@@ -1,0 +1,22 @@
+---
+
+- name: Network Getting Started First Playbook
+  become: true
+  hosts: son
+  tasks:
+
+    - name: Warning first
+      command:
+        cmd: /mnt/c/npc/nircmd.exe speak text "Daniel please stop playing games and videos in morning" 0 100
+
+    - name: Kill game process
+      command:
+        cmd: /mnt/c/Windows/System32/taskkill.exe /IM YoukuDesktop.exe /F                                                                                                                                           
+
+    - name: Kill game process
+      command:
+        cmd: /mnt/c/Windows/System32/taskkill.exe /IM MinecraftLauncher.exe /F                                                                                                                                           
+        
+    - name: Kill game process
+      command:
+        cmd: /mnt/c/Windows/System32/taskkill.exe /IM Minecraft.Windows.exe /F                                                                                                                                           

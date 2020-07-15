@@ -43,6 +43,7 @@ option=$(dialog --title " Spacevim 一键安装自动脚本" \
 
 cd
 cp .vimrc .vimrc.old
+rm -rf ~/.vim
 
 case "$option" in
   1)

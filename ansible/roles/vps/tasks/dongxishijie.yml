@@ -1,4 +1,5 @@
-- name: install ranger
-  apt:
-      name: "ranger"
-      state: present
+- name: enable trojan
+  shell: systemctl start trojan
+
+- name: enable v2ray
+  shell: systemctl start v2ray

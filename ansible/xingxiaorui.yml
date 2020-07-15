@@ -1,0 +1,7 @@
+---
+# Playbook to use xingxiaorui
+
+- hosts: xingxiaorui
+  become: yes
+  roles:
+    - xingxiaorui
