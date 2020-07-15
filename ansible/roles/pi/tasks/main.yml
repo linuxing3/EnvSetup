@@ -2,10 +2,6 @@
   shell: which git
 
 - name: restart pm2 ipfs
-  shell: pm2 restart 6
-
-- name: restart pm2 go admin server
-  shell: pm2 restart 3
-
-- name: restart pm2 jupyter-lab server
-  shell: pm2 restart 5
+  shell: . ~/.bashrc && pm2 status 6
+  args:
+    executable: /bin/bash
