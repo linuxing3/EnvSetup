@@ -91,7 +91,7 @@ setup_go_emacs() {
   go get -u mvdan.cc/sh/v3/cmd/...
 }
 
-option=$(dialog --title " Hugo 一键安装自动脚本" \
+option=$(dialog --title " Go一键安装自动脚本" \
 	--checklist "请输入:" 20 70 5 \
 	"1" "Install shfmt" 0 \
 	"2" "Install gofish package manager" 0 \

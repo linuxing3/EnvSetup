@@ -12,6 +12,6 @@
   sudo: no
   lineinfile: dest=/home/{{whoami}}/.bashrc
               regexp='BASH_THEME="font"'
-              line='BASH_THEME="random"'
+              line='BASH_THEME="mairan"'
               state=present
               backup=no
