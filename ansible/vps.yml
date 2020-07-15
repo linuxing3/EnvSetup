@@ -1,0 +1,7 @@
+---
+# Playbook to use vps
+
+- hosts: root.vps
+  become: yes
+  roles:
+    - vps

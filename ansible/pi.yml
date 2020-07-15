@@ -1,0 +1,7 @@
+---
+# Playbook to use pi
+
+- hosts: homepi.local
+  become: yes
+  roles:
+    - pi
