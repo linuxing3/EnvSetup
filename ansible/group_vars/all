@@ -1,0 +1,12 @@
+---
+httpd_port: 80
+caddy_port: 80
+nginx_proxy_port: 8024
+
+nps_port: 8024
+nps_web_port: 8082
+v2ray_web_port: 6722
+
+ssl_certificate: /etc/letsencrypt/xunqinji.top_ecc/cert.pem
+ssl_certificate_key: /etc/letsencrypt/xunqinji.top_ecc/private.key
+

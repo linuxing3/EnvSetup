@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PATH="/root/.deno/bin:/usr/sbin:/usr/bin:/usr/local/bin:/bin:/sbin"
-XIAORUI="ssh -p 11119 root@xunqinji.top"
+XIAORUI="ssh -p 11114 root@xunqinji.top"
 VPS1="ssh -p 22 root@xunqinji.top"
 VPS2="ssh -p 22 root@dongxishijie.xyz"
 NIRCMD="/mnt/c/npc/nircmd.exe" 

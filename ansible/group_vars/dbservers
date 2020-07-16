@@ -1,0 +1,11 @@
+---
+mysqlservice: mysqld
+mysql_port: 3306
+dbuser: monitor
+dbname: monitor
+upassword: 20090909
+
+postsql_port: 5432
+dbuser: monitor
+dbname: monitor
+upassword: 20090909

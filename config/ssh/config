@@ -1,29 +1,44 @@
-Host xunqinji
-     HostName xunqinji.top
-     User root
-Host dongxishijie
-     HostName dongxishijie.xyz
-     User root
-Host lenovo-openwrt
-     HostName 192.168.1.2
-     User root
-Host xiaomi
-     HostName 192.168.1.1
-     User root
-Host huawei
-     HostName 192.168.1.189
-     Port 8022
-     User u0_a101
-Host pi
-     HostName 192.168.1.200
-     User pi
-Host dulce
-     HostName 192.168.1.1
-     User root
-Host lenovo-debian
-     HostName 192.168.1.105
-     User root
-Host vagrant
-     HostName 127.0.0.1
-     User vagrant
-     Port 2222
+Host homepi.local
+  HostName homepi.local
+  User pi
+  IdentityFile ~/.ssh/id_rsa
+  LocalForward 127.0.0.1:3306 127.0.0.1:3306
+  RemoteForward 127.0.0.1:3306 xunqinji.top:9005
+  RemoteForward 127.0.0.1:6379 xunqinji.top:6379
+  RemoteForward 127.0.0.1:27017 xunqinji.top:27017
+Host vagrant.lenovo.local
+  HostName 127.0.0.1
+  User vagrant
+  Port 2222
+  IdentityFile ~/.ssh/id_rsa
+  RemoteForward 127.0.0.1:3306 xunqinji.top:9005
+  RemoteForward 127.0.0.1:6379 xunqinji.top:6379
+  RemoteForward 127.0.0.1:27017 xunqinji.top:27017
+Host root.lenovo.local
+  HostName 127.0.0.1
+  User root
+  Port 2222
+  IdentityFile ~/.ssh/id_rsa
+  RemoteForward 127.0.0.1:3306 xunqinji.top:9005
+  RemoteForward 127.0.0.1:6379 xunqinji.top:6379
+  RemoteForward 127.0.0.1:27017 xunqinji.top:27017
+Host admin.lenovo.local
+  HostName 127.0.0.1
+  User Administrator
+  IdentityFile ~/.ssh/id_rsa
+Host root.xunqinji.top
+  HostName xunqinji.top
+  User root
+  IdentityFile ~/.ssh/id_rsa
+  LocalForward 127.0.0.1:3306 127.0.0.1:3306
+  LocalForward 127.0.0.1:6379 127.0.0.1:6379
+  LocalForward 127.0.0.1:8000 127.0.0.1:9007
+Host xingxiaorui
+  HostName xunqinji.top
+  User root
+  Port 11114
+  IdentityFile ~/.ssh/id_rsa
+Host root.dongxishijie.xyz
+  HostName dongxishijie.xyz
+  User root
+  IdentityFile ~/.ssh/id_rsa
