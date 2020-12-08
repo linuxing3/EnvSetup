@@ -7,12 +7,13 @@ local_addr=`curl ipv4.icanhazip.com`
 if [ $real_addr == $local_addr ] ; then
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
     ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
-        --key-file   /usr/src/trojan-cert/private.key \
-        --fullchain-file /usr/src/trojan-cert/fullchain.cer
-    if test -s /usr/src/trojan-cert/fullchain.cer; then
-      echo "请将/usr/src/trojan-cert/下的fullchain.cer下载放到客户端trojan-cli文件夹"
-      systemctl restart trojan
-      systemctl start nginx
+        --key-file   /usr/src/trojan-cert/$your_domain.private.key \
+        --fullchain-file /usr/src/trojan-cert/$your_domain.fullchain.cer
+    if test -s /usr/src/trojan-cert/$your_domain.fullchain.cer; then
+      echo "/usr/src/trojan-cert/下:fullchain.cer"
+      echo "systemctl restart trojan"
+      echo "systemctl restart nginx"
+      echo "systemctl restart caddy"
     else
     	echo "申请证书失败"
     fi
