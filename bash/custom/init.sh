@@ -230,9 +230,9 @@ init-org-home-directory() {
   today=$(date +%Y-%m-%d-%s)
   cd
   tar cvf "org.$today.tar" org
-  rm -rf ~/org
-  mkdir -p org
-  cd org
+  rm -rf Dropbox/org
+  mkdir -p Dropbox/org
+  cd Dropbox/org
   for dir in attach journal roam brain
   do
     rm -f $dir

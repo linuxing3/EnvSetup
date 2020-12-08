@@ -5,10 +5,15 @@ read your_domain
 real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
 local_addr=`curl ipv4.icanhazip.com`
 if [ $real_addr == $local_addr ] ; then
+    echo "Start issue certificate with your domain"
+   
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
+
+    echo "Start install certificates in /usr/src/trojan-cert"
     ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
         --key-file   /usr/src/trojan-cert/$your_domain.private.key \
         --fullchain-file /usr/src/trojan-cert/$your_domain.fullchain.cer
+    
     if test -s /usr/src/trojan-cert/$your_domain.fullchain.cer; then
       echo "/usr/src/trojan-cert/下:fullchain.cer"
       echo "systemctl restart trojan"
