@@ -28,7 +28,7 @@ setup_trojan_nginx(){
       sleep 1s
     fi
     
-    sudo apt install nginx
+    sudo apt install -y nginx
     
     sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available.default 
     sudo cp ~/EnvSetup/config/nginx/bt/vhost/0.default.conf /etc/nginx/sites-available/default
@@ -66,13 +66,17 @@ start_menu(){
     green " ======================================="
     echo
     green " 1. 安装trojan"
-    red " 2. 安装web sample"
+    red " 2. 安装nginx"
+    red " 3. 安装web sample"
     blue " 0. 退出脚本"
     echo
     read -p "请输入数字:" num
     case "$num" in
     1)
     install_trojan
+    ;;
+    2)
+    setup_trojan_nginx
     ;;
     2)
     setup_sample
