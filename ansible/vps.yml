@@ -7,8 +7,8 @@
     - name: enable trojan
       shell: systemctl start trojan
 
-    - name: enable v2ray
-      shell: systemctl start v2ray
+    - name: enable nginx
+      shell: systemctl start nginx
 
 #- hosts: root.vps
 #  become: yes

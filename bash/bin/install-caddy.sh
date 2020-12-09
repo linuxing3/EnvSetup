@@ -103,8 +103,8 @@ xunqinji.top:80 {
     caddy
   "
   echo "Usage:"
-  echo "/usr/bin/caddy run --environ --adapter caddyfile --config /etc/caddy/Caddyfile"
-  echo "/usr/bin/caddy reload --environ --adapter caddyfile --config /etc/caddy/Caddyfile"
+  echo "/usr/bin/caddy run --environ --adapter caddyfile --config /etc/caddy/Caddyfile2"
+  echo "/usr/bin/caddy reload --environ --adapter caddyfile --config /etc/caddy/Caddyfile2"
   echo "Enjoy!"
 }
 

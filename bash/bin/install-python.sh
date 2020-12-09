@@ -1,28 +1,36 @@
 echo "==========================================================="
-echo "installing python3"
+echo "安装python开发系统"
 echo "==========================================================="
 
 sudo apt-get install -y python3 python3-pip python3-apt
 sudo apt-get install -y libreadline-dev libssh-dev libbz2-dev
 
-# Make sure to use python 3
+echo "确保使用python 3 版本"
 sudo rm /usr/bin/python
 sudo ln -s /usr/bin/python3 /usr/bin/python
 sudo rm /usr/bin/pip
 sudo ln -s /usr/bin/pip3 /usr/bin/pip
 
 cd
-# using pyenv
+echo "安装pyenv"
 curl https://pyenv.run | bash
-echo "export PATH=$PATH:$HOME/.pyenv/bin" >> $HOME/.bashrc
+echo "==========================================================="
+echo "如果需要完整功能，请安装anaconda套件"
+echo "pyenv install anaconda3-5.3.1"
 
-# using ansible
+echo "安装ansible"
+echo "==========================================================="
 pip3 install --user --no-warn-script-location ansible
-# using pipenv
+
+echo "安装pipenv"
+echo "==========================================================="
 pip3 install --user --no-warn-script-location pipenv
-# using pipenv
+
+echo "安装pipenv"
+echo "==========================================================="
 pip3 install --user --no-warn-script-location virtualenv virtualenvwrapper
 
+echo "==========================================================="
+echo "如果无法找到pyenv等，请添加路径"
 echo "export PATH=$HOME/.local/bin:$HOME/.pyenv/bin:$PATH" >> $HOME/.bashrc
-source `whiche virtualenvwrapper`
-source $HOME/.bashrc
+echo "==========================================================="

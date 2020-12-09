@@ -34,7 +34,7 @@ function install_bash(){
 
   cd
   cp .bashrc .bashrc.default
-  cat > .bashrc <<EOF
+  cat > ~/.bashrc <<EOF
 export OSH=~/.oh-my-bash
 OSH_THEME="mairan"
 CASE_SENSITIVE="true"
@@ -114,7 +114,7 @@ function install_trojan(){
   blue "Installing trojan"
   green "======================="
   cd
-  source <(curl -sL https://git.io/trojan-install)
+  bash EnvSetup/bash/bin/install-trojan.sh
   cd
 }
 

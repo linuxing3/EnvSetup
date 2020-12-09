@@ -25,21 +25,25 @@ dada() {
 # set pyenv virtual init environment
 vvv() {
 	if command -v "pyenv" >/dev/null 2>&1; then
+    echo "pyenv installed"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
   else
+    echo "Please install pyenv first"
     export PATH=$HOME/.pyenv/bin:$PATH
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 	fi
 }
 
+# pyenv的虚拟环境命令
 alias pv="pyenv"
 alias pvv="pyenv virtualenvs"
 alias pva="pyenv activate"
 alias pvg="pyenv global"
 alias pvs="pyenv shell"
 
+# pipenv的虚拟环境命令
 alias ppvs="pipenv shell"
 alias ppvl="pipenv lock"
 alias ppvi="pipenv install"
@@ -47,16 +51,17 @@ alias ppvi="pipenv install"
 alias nb="jupyter-notebook"
 alias ipy="ipython"
 
+# venv的虚拟环境命令
 alias vno="virtualenv"
-
 alias vwa="workon test"
 alias vwmk="mkvirtualenv"
 alias vwcd="cdvirtualenv"
 alias vwrm="rmvirtualenv"
 
+# conda的虚拟环境命令
 alias danv="conda env create"
 alias daav="conda activate"
 
 # Bootstrap
-vvv
+# vvv
 
