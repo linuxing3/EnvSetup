@@ -45,8 +45,9 @@ setup_trojan_nginx(){
 }
 
 setup_sample(){
-    #设置伪装站
-    sleep 5
+    green "=========================================="
+    blue "设置伪装站"
+    green "=========================================="
     rm -rf /var/www/html/*
     cd /var/www/html/
     wget https://github.com/linuxing3/EnvSetup/raw/master/config/nginx/sample-web-template.zip

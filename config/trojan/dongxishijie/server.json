@@ -7,7 +7,7 @@
     "password": null,
     "log_level": 1,
     "ssl": {
-        "cert": "/root/.acme.sh/dongxishijie.xyz_ecc/fullchain.cer",
+        "cert": "/root/.acme.sh/pro.dongxishijie.xyz_ecc/fullchain.cer",
         "cipher": "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384",
         "cipher_tls13": "TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384",
         "alpn": [
@@ -16,8 +16,8 @@
         "reuse_session": true,
         "session_ticket": false,
         "curves": "",
-        "sni": "dongxishijie.xyz",
-        "key": "/root/.acme.sh/dongxishijie.xyz_ecc/dongxishijie.xyz.key",
+        "sni": "pro.dongxishijie.xyz",
+        "key": "/root/.acme.sh/pro.dongxishijie.xyz_ecc/pro.dongxishijie.xyz.key",
         "key_password": "",
         "prefer_server_cipher": true,
         "session_timeout": 600,
@@ -40,5 +40,15 @@
         "username": "root",
         "password": "WBZZO",
         "cafile": ""
+    },
+    "websocket": {
+        "enabled": true,
+        "path": "/bt2009",
+        "host": "pro.dongxishijie.xyz"
+    },
+    "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "idle_timeout": 60
     }
 }
