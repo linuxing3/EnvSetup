@@ -1,4 +1,16 @@
-Host homepi.local
+Host vagrant@vagrant-nodejs
+    HostName 127.0.0.1
+    User vagrant
+    Port 2222
+    LocalForward 127.0.0.1:8000 xunqinji.top:9007
+    LocalForward 127.0.0.1:5432 dongxishijie:9006
+    LocalForward 127.0.0.1:3306 xunqinji.top:9005
+    RemoteForward 127.0.0.1:3306 xunqinji.top:9005
+    RemoteForward 127.0.0.1:5432 dongxishijie.xyz:9006
+    RemoteForward 127.0.0.1:8000 xunqinji.top:9007
+    RemoteForward 127.0.0.1:6379 xunqinji.top:6379
+    RemoteForward 127.0.0.1:27017 xunqinji.top:27017
+Host pi@homepi.local
   HostName homepi.local
   User pi
   IdentityFile ~/.ssh/id_rsa
@@ -6,7 +18,7 @@ Host homepi.local
   RemoteForward 127.0.0.1:3306 xunqinji.top:9005
   RemoteForward 127.0.0.1:6379 xunqinji.top:6379
   RemoteForward 127.0.0.1:27017 xunqinji.top:27017
-Host vagrant.lenovo.local
+Host vagrant@homelenovo.local
   HostName 127.0.0.1
   User vagrant
   Port 2222
@@ -14,7 +26,7 @@ Host vagrant.lenovo.local
   RemoteForward 127.0.0.1:3306 xunqinji.top:9005
   RemoteForward 127.0.0.1:6379 xunqinji.top:6379
   RemoteForward 127.0.0.1:27017 xunqinji.top:27017
-Host root.lenovo.local
+Host root@homelenovo.local
   HostName 127.0.0.1
   User root
   Port 2222
@@ -22,23 +34,35 @@ Host root.lenovo.local
   RemoteForward 127.0.0.1:3306 xunqinji.top:9005
   RemoteForward 127.0.0.1:6379 xunqinji.top:6379
   RemoteForward 127.0.0.1:27017 xunqinji.top:27017
-Host admin.lenovo.local
+Host admin@homelenovo.local
   HostName 127.0.0.1
   User Administrator
   IdentityFile ~/.ssh/id_rsa
-Host root.xunqinji.top
+Host root@xunqinji.top
   HostName xunqinji.top
   User root
   IdentityFile ~/.ssh/id_rsa
   LocalForward 127.0.0.1:3306 127.0.0.1:3306
   LocalForward 127.0.0.1:6379 127.0.0.1:6379
   LocalForward 127.0.0.1:8000 127.0.0.1:9007
-Host xingxiaorui
+Host vagrant@xunqinji.top
+  HostName xunqinji.top
+  User vagrant
+  IdentityFile ~/.ssh/id_rsa
+Host root@xingxiaorui
   HostName xunqinji.top
   User root
   Port 11114
   IdentityFile ~/.ssh/id_rsa
-Host root.dongxishijie.xyz
+Host root@dongxishijie.xyz
   HostName dongxishijie.xyz
+  User root
+  IdentityFile ~/.ssh/id_rsa
+Host vagrant@dongxishijie.xyz
+  HostName dongxishijie.xyz
+  User vagrant
+  IdentityFile ~/.ssh/id_rsa
+Host root@kamatera.ddns.net
+  HostName kamatera.ddns.net
   User root
   IdentityFile ~/.ssh/id_rsa

@@ -1,0 +1,19 @@
+-proxy 
+ - name: xunqinjitop
+   type: trojan
+   server: pro.xunqinji.top
+   port: 443
+   password: mm123456
+   
+ - name: dongxishijie
+   type: trojan
+   server: pro.dongxishijie.xyz
+   port: 443
+   password: mm123456
+
+ - name: kamatera
+   type: trojan
+   server: pro.kamatera.com
+   port: 443
+   password: mm123456
+
