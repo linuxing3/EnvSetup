@@ -177,9 +177,6 @@ debian-nps(){
 }
 
 # 22.  docker shortcuts
-dps() {
-  sudo docker build . -t $1:$2
-}
 alias figup="sudo docker-compose up -d"
 alias figdown="sudo docker-compose down"
 alias drit="sudo docker run -it"
