@@ -24,7 +24,7 @@ install_nps() {
 	rm -rf nps
 	mkdir nps
 	cd nps
-	wget "https://github.com/ehang-io/nps/releases/download/v0.26.6/linux_${version}_server.tar.gz"
+	wget "https://github.com/ehang-io/nps/releases/download/v0.26.9/linux_${version}_server.tar.gz"
 
 	tar -xvf "linux_${version}_server.tar.gz"
 
@@ -65,7 +65,7 @@ install_npc() {
 	mkdir npc
 	cd npc
 
-	wget "https://github.com/ehang-io/nps/releases/download/v0.26.6/linux_${version}_client.tar.gz"
+	wget "https://github.com/ehang-io/nps/releases/download/v0.26.9/linux_${version}_client.tar.gz"
 	tar xvf "linux_${version}_client.tar.gz"
 
 	touch run-npc
@@ -77,7 +77,7 @@ EOF
 	mv conf/npc.conf conf/npc.default.conf
 	cat > conf/npc.conf << EOF
 [common]
-server_addr=35.235.80.5:8024
+server_addr=your_domain:8024
 conn_type=tcp
 vkey=13901229638
 auto_reconnection=true
