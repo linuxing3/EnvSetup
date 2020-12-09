@@ -33,7 +33,8 @@ function install_bash(){
   bash EnvSetup/bash/bin/install-bash.sh
 
   cd
-  cat > .bashrc <<-EOF
+  cp .bashrc .bashrc.default
+  cat > .bashrc <<EOF
 export OSH=~/.oh-my-bash
 OSH_THEME="mairan"
 CASE_SENSITIVE="true"
@@ -52,12 +53,8 @@ aliases=(
 )
 plugins=(
   git
-  emacs
   vim
   fzf
-  nvm
-  go
-  python
   bashmarks
 )
 source \$OSH/oh-my-bash.sh
@@ -117,7 +114,7 @@ function install_trojan(){
   blue "Installing trojan"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/install-trojan.sh
+  source <(curl -sL https://git.io/trojan-install)
   cd
 }
 
@@ -132,7 +129,7 @@ function install_v2ray(){
 
 function install_nps(){
   green "======================="
-  blue "Installing v2ray"
+  blue "Installing nps"
   green "======================="
   cd
   bash EnvSetup/bash/bin/install-nps.sh

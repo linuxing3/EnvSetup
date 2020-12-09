@@ -1,43 +1,44 @@
 {
     "run_type": "server",
     "local_addr": "0.0.0.0",
-    "local_port": 443,
+    "local_port": 10110,
     "remote_addr": "127.0.0.1",
-    "remote_port": 80,
-    "password": [
-        "mm123456",
-        "password2"
-    ],
+    "remote_port": 10111,
+    "password": null,
     "log_level": 1,
     "ssl": {
-        "cert": "/etc/letsencrypt/dongxishijie.xyz_ecc/cert.pem",
-        "key": "/etc/letsencrypt/dongxishijie.xyz_ecc/private.key",
-        "key_password": "",
-        "cipher": "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY13                               05:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SH                               A256:ECDHE-RSA-AES128-SHA256",
-        "prefer_server_cipher": true,
+        "cert": "/root/.acme.sh/dongxishijie.xyz_ecc/fullchain.cer",
+        "cipher": "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384",
+        "cipher_tls13": "TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384",
         "alpn": [
             "http/1.1"
         ],
         "reuse_session": true,
         "session_ticket": false,
+        "curves": "",
+        "sni": "dongxishijie.xyz",
+        "key": "/root/.acme.sh/dongxishijie.xyz_ecc/dongxishijie.xyz.key",
+        "key_password": "",
+        "prefer_server_cipher": true,
         "session_timeout": 600,
         "plain_http_response": "",
-        "curves": "",
         "dhparam": ""
     },
     "tcp": {
-        "prefer_ipv4": false,
         "no_delay": true,
         "keep_alive": true,
+        "reuse_port": false,
         "fast_open": false,
-        "fast_open_qlen": 20
+        "fast_open_qlen": 20,
+        "prefer_ipv4": false
     },
     "mysql": {
-        "enabled": false,
+        "enabled": true,
         "server_addr": "127.0.0.1",
-        "server_port": 3306,
+        "server_port": 51433,
         "database": "trojan",
-        "username": "trojan",
-        "password": ""
+        "username": "root",
+        "password": "WBZZO",
+        "cafile": ""
     }
 }
