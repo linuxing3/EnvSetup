@@ -1,0 +1,10 @@
+trojan:
+  image: gists/trojan-go
+  container_name: trojan-go
+  ports:
+    - "443:443"
+  volumes:
+    - ./config.json:/etc/trojan-go/config.json
+    - ./your.crt:/any/path/your.crt                     # same as ssl path in config.json
+    - ./your.key:/any/path/your.key
+  restart: always
