@@ -9,16 +9,14 @@ if [ $real_addr == $local_addr ] ; then
    
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
 
-    echo "Start install certificates in /usr/src/trojan-cert"
+    echo "Start install certificates in /usr/local/etc/"
     ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
-        --key-file   /usr/src/trojan-cert/$your_domain.private.key \
-        --fullchain-file /usr/src/trojan-cert/$your_domain.fullchain.cer
+        --key-file   /usr/local/etc/xray/ssl/xray_ssl.key \
+        --cert-file /usr/local/etc/xray/ssl/xray_ssl.crt \
+        --fullchain-file /usr/local/etc/xray/ssl/xray_ssl_fullchain.crt
     
-    if test -s /usr/src/trojan-cert/$your_domain.fullchain.cer; then
-      echo "/usr/src/trojan-cert/下:fullchain.cer"
-      echo "systemctl restart trojan"
+    if test -s /usr/local/etc/xray/ssl/xray_ssl.crt; then
       echo "systemctl restart nginx"
-      echo "systemctl restart caddy"
     else
     	echo "申请证书失败"
     fi
