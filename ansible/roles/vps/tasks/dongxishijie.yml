@@ -1,5 +1,5 @@
-- name: enable trojan
-  shell: systemctl start trojan
+- name: restart caddy
+  shell: systemctl restart caddy
 
-- name: enable v2ray
-  shell: systemctl start v2ray
+- name: restart xray
+  shell: systemctl restart xray

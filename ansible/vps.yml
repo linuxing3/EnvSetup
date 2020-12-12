@@ -1,16 +1,18 @@
 ---
 # Playbook to use vps
 
-- hosts: root.vps
+- hosts: vps
   become: yes
+  become_user: root
   tasks:
-    - name: enable trojan
-      shell: systemctl start trojan
+    - name: restart xray
+      shell: systemctl start xray
 
-    - name: enable nginx
-      shell: systemctl start nginx
+    - name: restart caddy
+      shell: systemctl restart caddy
 
 #- hosts: root.vps
 #  become: yes
 #  roles:
 #    - vps
+#    - common

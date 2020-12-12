@@ -6,7 +6,7 @@ cd
 
 echo "installing nvm"
 # install 10/11 is not availabe in stretch
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 # curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 # sudo apt-get udpate
 # sudo apt-get install -y nodejs

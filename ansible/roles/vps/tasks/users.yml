@@ -1,0 +1,12 @@
+- name: creating user
+  groups_to_create:
+    - name: developers
+      gid: 10000
+  users:
+    - username: vagrant
+      name: vagrant
+      groups: ['wheel','systemd-journal', 'developers']
+      uid: 1001
+      home: /home/vagrant
+      profile: |
+        alias ll='ls -lah'

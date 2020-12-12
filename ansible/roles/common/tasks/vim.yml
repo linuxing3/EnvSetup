@@ -4,9 +4,6 @@
 - name: install vim and provide a proper vimrc
   apt: pkg=vim state=present
 
-- name: install ctags
-  apt: pkg=exuberant-ctags state=present
-
-- name: install awesome space-vim
+- name: install awesome SpaceVim
   sudo: no
-  shell: curl -fsSL https://raw.githubusercontent.com/liuchengxu/space-vim/master/install.sh | bash
+  shell: curl -sLf https://spacevim.org/install.sh | bash

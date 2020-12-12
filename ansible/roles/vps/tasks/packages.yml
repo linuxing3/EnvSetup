@@ -1,0 +1,10 @@
+- name: install dialog
+  apt:
+      name: "dialog"
+      state: present
+
+- name: install ncdu
+  apt:
+      name: "ncdu"
+      state: present
+      

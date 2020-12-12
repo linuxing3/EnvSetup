@@ -1,13 +1,9 @@
-- name: install dialog
-  apt:
-      name: "dialog"
-      state: present
+- name: setting users
+  import_tasks: users.yml
 
-- name: install ncdu
-  apt:
-      name: "ncdu"
-      state: present
-
+- name: install core packages
+  import_tasks: packages.yml
+   
 - name: import env settings 
   import_tasks: env.yml
 
