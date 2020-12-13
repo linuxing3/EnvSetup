@@ -20,10 +20,10 @@ install_trojan(){
 }
 
 install_xray() {
-	# automatic install xray
-	bash <(curl -Ls https://raw.githubusercontent.com/atrandys/xray/main/install.sh)
-	# install xray binary
-	# bash <(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh)
+    # automatic install xray
+    bash <(curl -Ls https://raw.githubusercontent.com/atrandys/xray/main/install.sh)
+    # install xray binary
+    # bash <(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh)
     green "=========================================="
     green "$(date +"%Y-%m-%d %H:%M:%S") Changing xray port to 10110"
     green "=========================================="
@@ -65,7 +65,7 @@ stream {
   }
   
   upstream xray {
-	server 127.0.0.1:10115;
+    server 127.0.0.1:10115;
   }
   
   upstream caddy { 
@@ -73,7 +73,7 @@ stream {
   }
   
   upstream ssh {
-	server 127.0.0.1:22;
+    server 127.0.0.1:22;
   }
   
   upstream web { 
@@ -97,15 +97,15 @@ http {
     #tcp_nopush     on;
     keepalive_timeout  120;
     client_max_body_size 20m;
-	# SSL Settings
-	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
-	ssl_prefer_server_ciphers on;
+    # SSL Settings
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+    ssl_prefer_server_ciphers on;
     #gzip  on;
     include /etc/nginx/conf.d/*.conf;
 }
 EOF
 
-	cat > /etc/nginx/conf.d/proxy.conf <<-EOF
+    cat > /etc/nginx/conf.d/proxy.conf <<-EOF
 map \$http_upgrade \$connection_upgrade {
     default upgrade;
     ''      close;
@@ -178,10 +178,10 @@ install_cert() {
     green "$(date +"%Y-%m-%d %H:%M:%S") Start install certificates in /usr/local/etc/"
     if test -s /root/.acme.sh/$your_domain/fullchain.cer; then
         green "$(date +"%Y-%m-%d %H:%M:%S") - 申请https证书成功."
-		~/.acme.sh/acme.sh  --installcert  -d  $your_domain \
-		--key-file  ~/$your_domain.key \
-		--cert-file ~/$your_domain.cer \
-		--fullchain-file ~/$your_domain/fullchain.cer
+        ~/.acme.sh/acme.sh  --installcert  -d  $your_domain \
+           --key-file  ~/$your_domain.key \
+           --cert-file ~/$your_domain.cer \
+           --fullchain-file ~/$your_domain/fullchain.cer
     else
         cert_failed="1"
         red "$(date +"%Y-%m-%d %H:%M:%S") - 申请证书失败，请尝试手动申请证书."
