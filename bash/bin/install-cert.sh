@@ -5,11 +5,11 @@ read your_domain
 real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
 local_addr=`curl ipv4.icanhazip.com`
 if [ $real_addr == $local_addr ] ; then
-    echo "Start issue certificate with your domain"
+    echo "开始签发证书"
    
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
 
-    echo "Start install certificates in ~/acme.sh/$your_domain/"
+    echo "证书安装在~/acme.sh/$your_domain/"
     ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
         --key-file ~/acme.sh/$your_domain/$your_domain.key \
         --cert-file ~/acme.sh/$your_domain/$your_domain.cer \
