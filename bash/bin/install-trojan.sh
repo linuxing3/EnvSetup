@@ -12,41 +12,159 @@ red(){
 
 install_trojan(){
     source <(curl -sL https://git.io/trojan-install)
+    green "=========================================="
+    green "$(date +"%Y-%m-%d %H:%M:%S") Changing trojan port to 10110"
+    green "=========================================="
+    sed -i "s/443/10110" /usr/local/etc/trojan/config.json
+    sed -i "s/80/10111" /usr/local/etc/trojan/config.json
 }
 
-setup_trojan_nginx(){
+install_xray() {
+	# automatic install xray
+	bash <(curl -Ls https://raw.githubusercontent.com/atrandys/xray/main/install.sh)
+	# install xray binary
+	# bash <(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh)
+    green "=========================================="
+    green "$(date +"%Y-%m-%d %H:%M:%S") Changing xray port to 10110"
+    green "=========================================="
+    sed -i "s/443/10115" /usr/local/etc/xray/config.json
+}
+
+setup_nginx_with_xray_and_trojan(){
     green "======================="
     blue "请输入绑定到本VPS的域名"
     green "======================="
     read your_domain
-    real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
-    local_addr=`curl ipv4.icanhazip.com`
-    if [ $real_addr == $local_addr ] ; then
-      green "=========================================="
-      green "       域名解析正常，开始安装trojan"
-      green "=========================================="
-      sleep 1s
-    fi
-    
-    sudo apt install -y nginx
-    
-    sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available.default 
-    sudo cp ~/EnvSetup/config/nginx/bt/vhost/0.default.conf /etc/nginx/sites-available/default
-    sudo sed -i "s/dongxishijie.xyz/$your_domain/g" /etc/nginx/sites-available/default
-    
-    sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
-    sudo cp ~/EnvSetup/config/nginx/bt/nginx.trojan.conf /etc/nginx/nginx.conf
-    sudo sed -i "s/dongxishijie.xyz/$your_domain/g" /etc/nginx/nginx.conf
+ 
+	if [ ! -d "/etc/nginx" ]; then
+		red "$(date +"%Y-%m-%d %H:%M:%S") - 看起来nginx没有安装成功，请重新安装.\n== Install failed."
+		exit 1
+	fi
+	mv /etc/nginx/nginx.conf /etc/nginx/nginx.default.conf
+	cat > /etc/nginx/nginx.conf <<-EOF
+user  www-data;
+worker_processes  1;
+#error_log  /etc/nginx/error.log warn;
+#pid    /var/run/nginx.pid;
+events {
+    worker_connections  1024;
+}
+stream { 
+  map \$ssl_preread_server_name \$backend_name { 
+    $your_domain web; 
+    pro.$your_domain trojan;
+    caddy.$your_domain caddy;
+    xray.$your_domain xray;
+    x3.$your_domain ssh;
+    default web; 
+  } 
+  
+  upstream trojan { 
+    server 127.0.0.1:10110; 
+  }
+  
+  upstream xray {
+	server 127.0.0.1:10115;
+  }
+  
+  upstream caddy { 
+    server 127.0.0.1:44322; 
+  }
+  
+  upstream ssh {
+	server 127.0.0.1:22;
+  }
+  
+  upstream web { 
+    server 127.0.0.1:44321;
+  } 
+  server { 
+    listen 443 reuseport; 
+    listen [::]:443 reuseport; 
+    proxy_pass \$backend_name; 
+    ssl_preread on; 
+  }
+}
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+    log_format  main  '\$remote_addr - \$remote_user [\$time_local] "\$request" '
+                      '\$status \$body_bytes_sent "\$http_referer" '
+                      '"\$http_user_agent" "\$http_x_forwarded_for"';
+    #access_log  /etc/nginx/access.log  main;
+    sendfile        on;
+    #tcp_nopush     on;
+    keepalive_timeout  120;
+    client_max_body_size 20m;
+	# SSL Settings
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+	ssl_prefer_server_ciphers on;
+    #gzip  on;
+    include /etc/nginx/conf.d/*.conf;
+}
+EOF
 
-    sudo mv /usr/local/etc/trojan/config.json /usr/local/etc/trojan/config.json.bak
-    sudo cp ~/EnvSetup/config/trojan/dongxishijie/server.json /usr/local/etc/trojan/config.json
-    sudo sed -i "s/dongxishijie.xyz/$your_domain/g" /usr/local/etc/trojan/config.json
+	cat > /etc/nginx/conf.d/proxy.conf<<-EOF
+# 对代理服务器的请求中的 Connection 头字段的值取决于客户端请求头中的 Upgrade 字段的存在
+# 由于 Upgrade 是一个逐跳（hop-by-hop）头，它不会从客户端传递到代理服务器。
+# 如果代理服务器返回一个 101响应码（交换协议），则客户机和代理服务器之间将建立隧道，客户端通过请求中的 Upgrade 头来请求协议交换。
+
+map \$http_upgrade \$connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+
+server {
+    listen       10111;
+    server_name  pro.$your_domain;
+    location / {
+      if (\$http_host !~ "^$your_domain$") {
+           rewrite ^(.*) https://$your_domain$1 permanent;
+            }
+      if (\$server_port !~ 44321) {
+           rewrite ^(.*) https://$your_domain$1 permanent;
+      }
+
+       proxy_redirect off;
+       proxy_set_header Host \$host;
+       proxy_set_header X-Real-IP \$remote_addr;
+       proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+   }
+
+    # 代理nps
+    # 代理链：pro.$your_domain:443 <-> 10110 <-> 80/10111 <-> 8080  
+    location /nps {
+       proxy_pass http://127.0.0.1:8080;
+    }
+}
+
+server {
+    listen 44321 ssl http2;
+    server_name $your_domain;
+    root /var/www/html;
+    index index.php index.html index.htm;
+    ssl_certificate /root/.acme.sh/$your_domain/fullchain.cer;
+    ssl_certificate_key /root/.acme.sh/$your_domain/$your_domain.key;
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    add_header Strict-Transport-Security "max-age=31536000";
+    
+    # 代理trojan或v2ray，必须websocket支持
+    # 代理链：$your_domain:443 <-> 44321 <-> 10110 
+    location /bt2009 {
+        proxy_pass http://127.0.0.1:10110;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection \$connection_upgrade;
+    }
+}
+EOF
 
 }
 
 setup_sample(){
     green "=========================================="
-    blue "设置伪装站"
+    blue "$(date +"%Y-%m-%d %H:%M:%S") 设置伪装站"
     green "=========================================="
     rm -rf /var/www/html/*
     cd /var/www/html/
@@ -54,10 +172,30 @@ setup_sample(){
     unzip sample-web-template.zip
 }
 
+install_cert() {
+    green "======================="
+    blue "$(date +"%Y-%m-%d %H:%M:%S") - 使用acme.sh申请https证书."
+    green "======================="
+    read your_domain
+    green "curl https://get.acme.sh | sh"
+    ~/.acme.sh/acme.sh  --issue -d $your_domain --standalone
+    green "$(date +"%Y-%m-%d %H:%M:%S") Start install certificates in /usr/local/etc/"
+    if test -s /root/.acme.sh/$your_domain/fullchain.cer; then
+        green "$(date +"%Y-%m-%d %H:%M:%S") - 申请https证书成功."
+		~/.acme.sh/acme.sh  --installcert  -d  $your_domain \
+		--key-file  ~/$your_domain.key \
+		--cert-file ~/$your_domain.cer \
+		--fullchain-file ~/$your_domain/fullchain.cer
+    else
+        cert_failed="1"
+        red "$(date +"%Y-%m-%d %H:%M:%S") - 申请证书失败，请尝试手动申请证书."
+    fi
+}
+
 start_menu(){
     clear
     green " ===================================="
-    green " Trojan 一键安装自动脚本 2020-2-27 更新      "
+    green " Nginx/Trojan/Xray 一键安装自动脚本 2020-2-27 更新      "
     green " 系统：centos7+/debian9+/ubuntu16.04+"
     green " ===================================="
     blue " 声明："
@@ -67,9 +205,10 @@ start_menu(){
     green " ======================================="
     echo
     green " 1. 安装trojan"
-    red " 2. 安装nginx"
-    red " 3. 安装web sample"
-    blue " 0. 退出脚本"
+    red " 2. 安装xray"
+    green " 3. 设置nginx-trojan-xray"
+    blue " 4. 安装web sample"
+    red " 0. 退出脚本"
     echo
     read -p "请输入数字:" num
     case "$num" in
@@ -77,9 +216,12 @@ start_menu(){
     install_trojan
     ;;
     2)
-    setup_trojan_nginx
+    install_xray
     ;;
-    2)
+    3)
+    setup_nginx_with_xray_and_trojan
+    ;;
+    4)
     setup_sample
     ;;
     0)
