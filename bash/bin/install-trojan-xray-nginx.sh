@@ -15,8 +15,8 @@ install_trojan(){
     green "=========================================="
     green "$(date +"%Y-%m-%d %H:%M:%S") Changing trojan port to 10110"
     green "=========================================="
-    sed -i "s/443/10110" /usr/local/etc/trojan/config.json
-    sed -i "s/80/10111" /usr/local/etc/trojan/config.json
+    #sed -i "s/443/10110/g" /usr/local/etc/trojan/config.json
+    #sed -i "s/80/10111/g" /usr/local/etc/trojan/config.json
 }
 
 install_xray() {
@@ -46,6 +46,7 @@ user  www-data;
 worker_processes  1;
 #error_log  /etc/nginx/error.log warn;
 #pid    /var/run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
 events {
     worker_connections  1024;
 }
@@ -104,11 +105,7 @@ http {
 }
 EOF
 
-	cat > /etc/nginx/conf.d/proxy.conf<<-EOF
-# 对代理服务器的请求中的 Connection 头字段的值取决于客户端请求头中的 Upgrade 字段的存在
-# 由于 Upgrade 是一个逐跳（hop-by-hop）头，它不会从客户端传递到代理服务器。
-# 如果代理服务器返回一个 101响应码（交换协议），则客户机和代理服务器之间将建立隧道，客户端通过请求中的 Upgrade 头来请求协议交换。
-
+	cat > /etc/nginx/conf.d/proxy<<-EOF
 map \$http_upgrade \$connection_upgrade {
     default upgrade;
     ''      close;
@@ -131,8 +128,6 @@ server {
        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
    }
 
-    # 代理nps
-    # 代理链：pro.$your_domain:443 <-> 10110 <-> 80/10111 <-> 8080  
     location /nps {
        proxy_pass http://127.0.0.1:8080;
     }
@@ -149,8 +144,6 @@ server {
     ssl_stapling_verify on;
     add_header Strict-Transport-Security "max-age=31536000";
     
-    # 代理trojan或v2ray，必须websocket支持
-    # 代理链：$your_domain:443 <-> 44321 <-> 10110 
     location /bt2009 {
         proxy_pass http://127.0.0.1:10110;
         proxy_http_version 1.1;
