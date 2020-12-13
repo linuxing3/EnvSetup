@@ -105,7 +105,7 @@ http {
 }
 EOF
 
-	cat > /etc/nginx/conf.d/proxy<<-EOF
+	cat > /etc/nginx/conf.d/proxy.conf <<-EOF
 map \$http_upgrade \$connection_upgrade {
     default upgrade;
     ''      close;
@@ -152,7 +152,10 @@ server {
     }
 }
 EOF
-
+setup_sample
+green "======================="
+blue "Done Setting nginx with trojan!"
+green "======================="
 }
 
 setup_sample(){
