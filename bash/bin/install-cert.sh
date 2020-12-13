@@ -9,20 +9,20 @@ if [ $real_addr == $local_addr ] ; then
    
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
 
-    echo "Start install certificates in /usr/local/etc/"
+    echo "Start install certificates in ~/acme.sh/$your_domain/"
     ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
-        --key-file   /usr/local/etc/xray/ssl/xray_ssl.key \
-        --cert-file /usr/local/etc/xray/ssl/xray_ssl.crt \
-        --fullchain-file /usr/local/etc/xray/ssl/xray_ssl_fullchain.crt
+        --key-file ~/acme.sh/$your_domain/$your_domain.key \
+        --cert-file ~/acme.sh/$your_domain/$your_domain.cer \
+        --fullchain-file ~/acme.sh/$your_domain/fullchain.cer
     
-    if test -s /usr/local/etc/xray/ssl/xray_ssl.crt; then
-      echo "systemctl restart nginx"
+    if test -s ~/acme.sh/$your_domain/$your_domain.cer; then
+      echo "申请证书成功"
     else
-    	echo "申请证书失败"
+      echo "申请证书失败"
     fi
 else
     echo "================================"
     echo "域名解析地址与本VPS IP地址不一致"
     echo "本次安装失败，请确保域名解析正常"
     echo "================================"
-fi	
+fi
