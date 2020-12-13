@@ -1,5 +1,5 @@
 #!/bin/bash
-＃字体颜色
+# 字体颜色
 blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
@@ -36,12 +36,12 @@ setup_nginx_with_xray_and_trojan(){
     green "======================="
     read your_domain
  
-	if [ ! -d "/etc/nginx" ]; then
-		red "$(date +"%Y-%m-%d %H:%M:%S") - 看起来nginx没有安装成功，请重新安装.\n== Install failed."
-		exit 1
-	fi
-	mv /etc/nginx/nginx.conf /etc/nginx/nginx.default.conf
-	cat > /etc/nginx/nginx.conf <<-EOF
+    if [ ! -d "/etc/nginx" ]; then
+        red "$(date +"%Y-%m-%d %H:%M:%S") - 看起来nginx没有安装成功，请重新安装.\n== Install failed."
+    exit 1
+    fi
+    mv /etc/nginx/nginx.conf /etc/nginx/nginx.default.conf
+    cat > /etc/nginx/nginx.conf <<-EOF
 user  www-data;
 worker_processes  1;
 #error_log  /etc/nginx/error.log warn;
