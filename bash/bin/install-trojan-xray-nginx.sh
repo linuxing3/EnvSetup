@@ -11,23 +11,30 @@ red(){
 }
 
 install_trojan(){
+    red "使用Jrohy大神的trojan管理程序进行安装"
+    red "https://raw.githubusercontent.com/Jrohy/trojan/master/install.sh"
     source <(curl -sL https://git.io/trojan-install)
     green "=========================================="
     green "$(date +"%Y-%m-%d %H:%M:%S") Changing trojan port to 10110"
     green "=========================================="
-    #sed -i "s/443/10110/g" /usr/local/etc/trojan/config.json
-    #sed -i "s/80/10111/g" /usr/local/etc/trojan/config.json
+    sudo sed -i "s/443/10110/g" /usr/local/etc/trojan/config.json
+    sudo sed -i "s/80/10111/g" /usr/local/etc/trojan/config.json
 }
 
 install_xray() {
-    # automatic install xray
+    red "建议你在windows下使用ProxySu等工具安装，客户端使用最新WinXray"
+    red "一键安装xray"
     bash <(curl -Ls https://raw.githubusercontent.com/atrandys/xray/main/install.sh)
-    # install xray binary
-    # bash <(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh)
+
+    red "一键安装xray二进制文件"
+    red "bash <(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh)"
+
     green "=========================================="
     green "$(date +"%Y-%m-%d %H:%M:%S") Changing xray port to 10110"
     green "=========================================="
-    sed -i "s/443/10115" /usr/local/etc/xray/config.json
+    sudo sed -i "s/443/10115" /usr/local/etc/xray/config.json
+
+    green "安装完毕！"
 }
 
 setup_nginx_with_xray_and_trojan(){
@@ -56,7 +63,6 @@ stream {
     pro.$your_domain trojan;
     caddy.$your_domain caddy;
     xray.$your_domain xray;
-    x3.$your_domain ssh;
     default web; 
   } 
   
@@ -70,10 +76,6 @@ stream {
   
   upstream caddy { 
     server 127.0.0.1:44322; 
-  }
-  
-  upstream ssh {
-    server 127.0.0.1:22;
   }
   
   upstream web { 
@@ -127,10 +129,6 @@ server {
        proxy_set_header X-Real-IP \$remote_addr;
        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
    }
-
-    location /nps {
-       proxy_pass http://127.0.0.1:8080;
-    }
 }
 
 server {
@@ -143,13 +141,10 @@ server {
     ssl_stapling on;
     ssl_stapling_verify on;
     add_header Strict-Transport-Security "max-age=31536000";
-    
-    location /bt2009 {
-        proxy_pass http://127.0.0.1:10110;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade \$http_upgrade;
-        proxy_set_header Connection \$connection_upgrade;
+    location /nps {
+       proxy_pass http://127.0.0.1:8090;
     }
+    
 }
 EOF
 setup_sample
@@ -169,22 +164,37 @@ setup_sample(){
 }
 
 install_cert() {
-    green "======================="
-    blue "$(date +"%Y-%m-%d %H:%M:%S") - 使用acme.sh申请https证书."
-    green "======================="
+    echo "======================="
+    echo "请输入绑定到本VPS的域名"
+    echo "======================="
     read your_domain
-    green "curl https://get.acme.sh | sh"
-    ~/.acme.sh/acme.sh  --issue -d $your_domain --standalone
-    green "$(date +"%Y-%m-%d %H:%M:%S") Start install certificates in /usr/local/etc/"
-    if test -s /root/.acme.sh/$your_domain/fullchain.cer; then
-        green "$(date +"%Y-%m-%d %H:%M:%S") - 申请https证书成功."
-        ~/.acme.sh/acme.sh  --installcert  -d  $your_domain \
-           --key-file  ~/$your_domain.key \
-           --cert-file ~/$your_domain.cer \
-           --fullchain-file ~/$your_domain/fullchain.cer
+    real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
+    local_addr=`curl ipv4.icanhazip.com`
+    if [ $real_addr == $local_addr ] ; then
+        echo "开始签发证书"
+        ~/.acme.sh/acme.sh --issue -d $your_domain --standalone
+
+        echo "======================="
+        echo "请输入安装目录"
+        echo "======================="
+        read cert_path
+        echo "证书安装在~/acme.sh/$cert_path/"
+        sudo mkdir -p $cert_path
+        ~/.acme.sh/acme.sh  --installcert -d  $your_domain   \
+            --key-file $cert_path/$your_domain.key \
+            --cert-file $cert_path/$your_domain.cer \
+            --fullchain-file $cert_path/fullchain.cer
+        
+        if test -s $cert_path/$your_domain.cer; then
+        echo "申请证书成功"
+        else
+        echo "申请证书失败"
+        fi
     else
-        cert_failed="1"
-        red "$(date +"%Y-%m-%d %H:%M:%S") - 申请证书失败，请尝试手动申请证书."
+        echo "================================"
+        echo "域名解析地址与本VPS IP地址不一致"
+        echo "本次安装失败，请确保域名解析正常"
+        echo "================================"
     fi
 }
 
@@ -194,17 +204,13 @@ start_menu(){
     green " Nginx/Trojan/Xray 一键安装自动脚本 2020-2-27 更新      "
     green " 系统：centos7+/debian9+/ubuntu16.04+"
     green " ===================================="
-    blue " 声明："
-    red " *请不要在任何生产环境使用此脚本"
-    red " *请不要有其他程序占用80和443端口"
-    red " *若是第二次使用脚本，请先执行卸载trojan"
-    green " ======================================="
     echo
     green " 1. 安装trojan"
     red " 2. 安装xray"
-    green " 3. 设置nginx-trojan-xray"
-    blue " 4. 安装web sample"
-    red " 0. 退出脚本"
+    blue " 3. 设置nginx-trojan-xray"
+    green " 4. 安装web sample"
+    red " 5. 安装证书"
+    blue " 0. 退出脚本"
     echo
     read -p "请输入数字:" num
     case "$num" in
@@ -219,6 +225,9 @@ start_menu(){
     ;;
     4)
     setup_sample
+    ;;
+    5)
+    install_cert
     ;;
     0)
     exit 1
