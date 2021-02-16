@@ -1,7 +1,4 @@
 # -----------------------------------------------------------------------------
-Write-Host ""
-Write-Host "Add [GOPATH] and [GOROOT] to PATH" $computerName  -ForegroundColor Yellow
-Write-Host "------------------------------------" -ForegroundColor Green
 
 Write-Host "Setting emacs server file env variable" $computerName  -ForegroundColor Yellow
 Write-Host "------------------------------------" -ForegroundColor Green

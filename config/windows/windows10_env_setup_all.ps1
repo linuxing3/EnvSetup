@@ -14,18 +14,18 @@ function Check-Command($cmdname) {
 }
 
 # -----------------------------------------------------------------------------
-$computerName = Read-Host 'Enter New Computer Name'
-Write-Host "Renaming this computer to: " $computerName  -ForegroundColor Yellow
+$computerName = Read-Host '输入新的计算机名称'
+Write-Host "将本机重命名为: " $computerName  -ForegroundColor Yellow
 Rename-Computer -NewName $computerName
 # -----------------------------------------------------------------------------
 Write-Host ""
-Write-Host "Disable Sleep on AC Power..." -ForegroundColor Green
+Write-Host "取消休眠功能" -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
 Powercfg /Change monitor-timeout-ac 20
 Powercfg /Change standby-timeout-ac 0
 # -----------------------------------------------------------------------------
 Write-Host ""
-Write-Host "Add 'This PC' Desktop Icon..." -ForegroundColor Green
+Write-Host "添加关于本机到桌面" -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
 $thisPCIconRegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel"
 $thisPCRegValname = "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" 
@@ -38,14 +38,14 @@ else {
 } 
 # -----------------------------------------------------------------------------
 Write-Host ""
-Write-Host "Removing Edge Desktop Icon..." -ForegroundColor Green
+Write-Host "移除Ddge的桌面图标" -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
 $edgeLink = $env:USERPROFILE + "\Desktop\Microsoft Edge.lnk"
 Remove-Item $edgeLink
 # -----------------------------------------------------------------------------
 # To list all appx packages:
 # Get-AppxPackage | Format-Table -Property Name,Version,PackageFullName
-Write-Host "Removing UWP Rubbish..." -ForegroundColor Green
+Write-Host "删除不用的组件" -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
 $uwpRubbishApps = @(
     "Microsoft.Messaging",
@@ -62,91 +62,87 @@ $uwpRubbishApps = @(
 foreach ($uwp in $uwpRubbishApps) {
     Get-AppxPackage -Name $uwp | Remove-AppxPackage
 }
-# -----------------------------------------------------------------------------
+
 Write-Host ""
-Write-Host "Installing IIS..." -ForegroundColor Green
-Write-Host "------------------------------------" -ForegroundColor Green
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-DefaultDocument -All
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpCompressionDynamic -All
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpCompressionStatic -All
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebSockets -All
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ApplicationInit -All
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45 -All
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ServerSideIncludes
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-BasicAuthentication
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-WindowsAuthentication
-# -----------------------------------------------------------------------------
-Write-Host ""
-Write-Host "Enable Windows 10 Developer Mode..." -ForegroundColor Green
+Write-Host "设置Windows 10 开发者模式." -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /t REG_DWORD /f /v "AllowDevelopmentWithoutDevLicense" /d "1"
 # -----------------------------------------------------------------------------
 Write-Host ""
-Write-Host "Enable Remote Desktop..." -ForegroundColor Green
+Write-Host "启用远程桌面并设置防火墙" -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
 Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\" -Name "fDenyTSConnections" -Value 0
 Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\" -Name "UserAuthentication" -Value 1
 Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 
 if (Check-Command -cmdname 'choco') {
-    Write-Host "Choco is already installed, skip installation."
+    Write-Host "Choco 已安装"
 }
 else {
     Write-Host ""
-    Write-Host "Installing Chocolate for Windows..." -ForegroundColor Green
+    Write-Host "安装Chocolate for Windows..." -ForegroundColor Green
     Write-Host "------------------------------------" -ForegroundColor Green
     Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
 Write-Host ""
-Write-Host "Installing Applications..." -ForegroundColor Green
+Write-Host "安装常用软件和应用" -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
 Write-Host "[WARN] Ma de in China: some software like Google Chrome require the true Internet first" -ForegroundColor Yellow
 
 if (Check-Command -cmdname 'git') {
-    Write-Host "Git is already installed, checking new version..."
+    Write-Host "Git已安装，为你升级"
     choco update git -y
 }
 else {
     Write-Host ""
-    Write-Host "Installing Git for Windows..." -ForegroundColor Green
+    Write-Host "安装Git for Windows..." -ForegroundColor Green
     choco install git -y
 }
 
 if (Check-Command -cmdname 'node') {
-    Write-Host "Node.js is already installed, checking new version..."
+    Write-Host "Node.js已安装，为你升级"
     choco update nodejs -y
 }
 else {
     Write-Host ""
-    Write-Host "Installing Node.js..." -ForegroundColor Green
+    Write-Host "安装Nodejs" -ForegroundColor Green
     choco install nodejs -y
 }
 
-choco install 7zip.install -y
-choco install googlechrome -y
-choco install potplayer -y
-choco install dotnetcore-sdk -y
-choco install ffmpeg -y
+Write-Host ""
+Write-Host "安装常用软件, wget, curl, fd, repgrep, powershell, 7zip" -ForegroundColor Green
 choco install wget -y
-choco install openssl.light -y
+choco install curl -y
+choco install fd -y
+choco install ripgrep -y
+choco install powershell7 -y
+choco install 7zip.install -y
 choco install vscode -y
-choco install vscode-csharp -y
-choco install vscode-icons -y
-choco install vscode-mssql -y
 choco install vscode-powershell -y
-choco install sysinternals -y
-choco install notepadplusplus.install -y
-choco install dotpeek -y
-choco install linqpad -y
-choco install fiddler -y
-choco install beyondcompare -y
-choco install filezilla -y
-choco install lightshot.install -y
-choco install microsoft-teams.install -y
-choco install teamviewer -y
-choco install github-desktop -y
+
+Write-Host ""
+Write-Host "建议安装的常用软件, googlechrome等等" -ForegroundColor Green
+Write-Host "choco install googlechrome -y"
+Write-Host "choco install potplayer -y"
+Write-Host "choco install dotnetcore-sdk" -y
+Write-Host "choco install ffmpeg -y"
+Write-Host "choco install openssl.light" -y
+Write-Host "choco install vscode-csharp" -y
+Write-Host "choco install vscode-icons" -y
+Write-Host "choco install vscode-mssql" -y
+Write-Host "choco install sysinternals -y"
+Write-Host "choco install notepadplusplus.install" -y
+Write-Host "choco install dotpeek -y"
+Write-Host "choco install linqpad -y"
+Write-Host "choco install fiddler -y"
+Write-Host "choco install beyondcompare -y"
+Write-Host "choco install filezilla -y"
+Write-Host "choco install lightshot.install" -y
+Write-Host "choco install microsoft-teams".install -y
+Write-Host "choco install teamviewer -y"
+Write-Host "choco install github-desktop" -y
 
 Write-Host "------------------------------------" -ForegroundColor Green
-Read-Host -Prompt "Setup is done, restart is needed, press [ENTER] to restart computer."
+Read-Host -Prompt "安装完成，按回车重启系统！"
 Restart-Computer
