@@ -26,7 +26,7 @@ else
   GOGS_OS="linux"
 fi
 
-GO_VERSION=1.15.6
+GO_VERSION=1.15.8
 GOGS_VERSION=0.11.91
 SHFMT_VERSION=3.1.1
 
@@ -42,7 +42,7 @@ install_gofish() {
 
 install_gvm() {
 	curl -fsSL https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer | bash
-	echo "gvm install go1.4.1"
+	echo "gvm install go1.15.8"
 }
 
 install_go_from_apt() {
@@ -52,8 +52,22 @@ install_go_from_apt() {
 }
 
 install_go() {
+	echo "$HOME/gopath is the default workspace directory."
+	echo "/usr/lib/go is the directory where Go will be installed to."
 	wget https://dl.google.com/go/go$GO_VERSION.$OS-$ARCH.tar.gz
 	sudo tar -C /usr/lib -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
+	type go
+}
+
+install_go_one_key() {
+	echo "$HOME/.go is the directory where Go will be installed to."
+	echo "$HOME/go is the default workspace directory."
+	wget -q -O - https://git.io/vQhTU | bash
+	type go
+}
+
+remove_go_one_key() {
+	wget -q -O - https://git.io/vQhTU | bash -s -- --remove
 	type go
 }
 

@@ -77,23 +77,16 @@ EOF
 	mv conf/npc.conf conf/npc.default.conf
 	cat > conf/npc.conf << EOF
 [common]
-server_addr=your_domain:8024
+server_addr=127.0.0.1:8024
 conn_type=tcp
 vkey=13901229638
 auto_reconnection=true
-max_conn=1000
-flow_limit=1000
-rate_limit=1000
-basic_username=978
-basic_password=916
-web_username=user
-web_password=mm123456
 crypt=true
 compress=true
 
 [tcp]
 mode=tcp
-server_port=11116
+server_port=9022
 target_addr=127.0.0.1:22
 EOF
 
