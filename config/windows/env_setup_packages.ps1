@@ -4,15 +4,16 @@
 # Copyrigtht: MIT
 # Date: 2020-05-11
 
-# Unblock-File -Path .\windows7_env_setup_packages.ps1
+# Unblock-File -Path %
 Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
-
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
+
+$homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
+[System.Environment]::SetEnvironmentVariable('HOME', homedir,[System.EnvironmentVariableTarget]::Machine)
 
 function Check-Command($cmdname) {
     return [bool](Get-Command -Name $cmdname -ErrorAction SilentlyContinue)
 }
-
 
 if (Check-Command -cmdname 'choco') {
     Write-Host "Choco is already installed, skip installation."
@@ -118,5 +119,4 @@ Write-Host "Installing team tools" -ForegroundColor Green
 #pip install --user pipenv
 
 Write-Host "------------------------------------" -ForegroundColor Green
-Read-Host -Prompt "Setup is done, restart is needed, press [ENTER] to quit."
-#Restart-Computer
+Read-Host -Prompt "软件安装完成！"
