@@ -1,0 +1,13 @@
+version: '3'
+services:
+  xray-postgres:
+    image: "postgres" # use latest official postgres version
+    ports: 
+      - "9432:5432"
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - database-data:/var/lib/postgresql/data/ 
+
+volumes:
+  database-data: 
