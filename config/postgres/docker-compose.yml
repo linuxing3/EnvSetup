@@ -7,7 +7,6 @@ services:
     env_file:
       - database.env # configure postgres
     volumes:
-      - ./init:/docker-entrypoint-initdb.d
       - postgres-data:/var/lib/postgresql/data/ 
   xray-mariadb:
     image: "mariadb" # use latest official mariadb version

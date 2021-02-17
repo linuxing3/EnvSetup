@@ -1,0 +1,41 @@
+{
+  xray {
+    host
+    port
+  }
+}
+
+
+
+mutation MyMutation($host: String = "", $port: Int = 10) {
+  insert_xray(objects: {host: $host, port: $port}) {
+    affected_rows
+  }
+}
+{
+  "host": "dongxishijie",
+  "port": 9000
+}
+
+
+
+mutation MyMutation($host: String = "", $port: Int = 10) {
+  update_xray(where: {host: {_eq: $host}}, _set: {port: $port}) {
+    affected_rows
+  }
+}
+
+{
+  "host": "homepi.local",
+  "port": 8000
+}
+
+mutation MyMutation($id: Int = 10) {
+  delete_xray_by_pk(id: $id) {
+    id
+  }
+}
+
+{
+  "id": 1
+}
