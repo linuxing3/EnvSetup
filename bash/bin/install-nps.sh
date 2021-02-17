@@ -32,10 +32,10 @@ install_nps() {
 	sed -i 's/https_proxy_port=.*$/https_proxy_port=8443/g' conf/nps.conf
 
 	#web
-	sed -i 's/web_host=.*$/web_host=localhost/g ' conf/nps.conf
+	sed -i 's/web_host=.*$/web_host=localhost/g' conf/nps.conf
 	sed -i 's/web_username=.*$/web_username=admin/g' conf/nps.conf
-	sed -i 's/web_password=.*$/web_password=mm123456/g ' conf/nps.conf
-	sed -i 's/web_port = 8090/web_port=8090/g' conf/nps.conf
+	sed -i 's/web_password=.*$/web_password=mm123456/g' conf/nps.conf
+	sed -i 's/web_port=8090/web_port=8090/g' conf/nps.conf
 
 	echo "----------------------------------------------------------"
 	echo "Server Setting Examples"

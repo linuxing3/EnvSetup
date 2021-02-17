@@ -8,7 +8,7 @@ while true; do
   read -r -p "    [1]Help [2]Official [3]Package Manager:  " opt
   case $opt in
     1)
-      rustup do
+      rustup doc
       break
       ;;
     2)

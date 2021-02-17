@@ -57,6 +57,7 @@ install_go() {
 	wget https://dl.google.com/go/go$GO_VERSION.$OS-$ARCH.tar.gz
 	sudo tar -C /usr/local -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
 	type go
+	setup_go_env
 }
 
 install_go_one_key() {
@@ -110,9 +111,10 @@ option=$(dialog --title " Go一键安装自动脚本" \
 	"1" "Install shfmt" 0 \
 	"2" "Install gofish package manager" 0 \
 	"3" "Install go from official site" 0 \
-	"4" "Install go tools" 0 \
-	"5" "Install gogs" 0 \
-	"6" "Setup go environment" 0 \
+	"4" "Install go from official site" 0 \
+	"5" "Install go tools" 0 \
+	"6" "Install gogs" 0 \
+	"7" "Setup go environment" 0 \
 	3>&1 1>&2 2>&3 3>&1)
 case "$option" in
 1)
@@ -125,12 +127,15 @@ case "$option" in
 	install_go
 	;;
 4)
-	setup_go_emacs
+	install_go_one_key
 	;;
 5)
-	setup_gogs
+	setup_go_emacs
 	;;
 6)
+	setup_gogs
+	;;
+7)
 	setup_go_env
 	;;
 *)
