@@ -23,9 +23,6 @@ if [ $? != 0 ]; then
   $cmd neww -n bash-vertical -t $session "bash"
   $cmd splitw -h -p 50 -t $session "bash"
   $cmd neww -n monitor -t $session "top"
-  #$cmd neww -n vagrant-nodejs -t $session "ssh vagrant-nodejs"
-  #$cmd neww -n xunqinji -t $session "ssh -X xunqinji"
-  #$cmd neww -n dongxishijie -t $session "ssh -X dongxishijie"
   $cmd selectw -t $session:1
 fi
 

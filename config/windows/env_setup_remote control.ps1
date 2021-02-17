@@ -4,12 +4,12 @@
 # Copyrigtht: MIT
 # Date: 2020-05-11
 #
-# Unblock-File -Path .\windows7_env_enable_remote_install.ps1
-
-# pre install
+# Unblock-File -Path %
 Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
+$homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
+[System.Environment]::SetEnvironmentVariable('HOME', homedir,[System.EnvironmentVariableTarget]::Machine)
 
 # 1. simple way
 # (Start-Process -FilePath "msiexec.exe" -ArgumentList "/silent" -Wait -Passthru).ExitCode

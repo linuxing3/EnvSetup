@@ -1,0 +1,23 @@
+version: '3'
+services:
+  xray-postgres:
+    image: "postgres" # use latest official postgres version
+    ports: 
+      - "9432:5432"
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/ 
+  xray-mariadb:
+    image: "mariadb" # use latest official mariadb version
+    ports: 
+      - "9306:3306"
+    env_file:
+      - database.env # configure maraidb
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - mysql-data:/var/lib/mysql 
+
+volumes:
+  postgres-data: 
+  mysql-data: 
