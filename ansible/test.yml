@@ -1,7 +1,0 @@
----
-# Playbook to bake box to a hacker's box
-
-- hosts: all 
-  become: yes
-  roles:
-    - vps

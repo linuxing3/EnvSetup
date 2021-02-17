@@ -10,7 +10,7 @@ ggg() {
 		mkdir -p "$HOME/gopath/src/github.com"
 	fi
 	export GO111MODULE=on
-	export GOPATH=$HOME/gopath
+	export GOPATH=$HOME/go
 	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 }
 

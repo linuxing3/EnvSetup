@@ -18,6 +18,9 @@ plugins=(
   emacs
   vim
   fzf
+  go
+  python
+  nvm
   bashmarks
 )
 source $OSH/oh-my-bash.sh
