@@ -3,13 +3,11 @@
 ggg() {
 	if [ -e /usr/lib/go/bin/go ]; then
 		export GOROOT=/usr/lib/go
-	elif [ -e /usr/local/bin/go/bin/go ]; then
-		export GOROOT=/usr/local/bin/go
-	elif [ -e $HOME/.go/bin/go ]; then
-		export GOROOT=$HOME/.go/bin/go
+	elif [ -e /usr/local/go ]; then
+		export GOROOT=/usr/local/go
 	fi
-	if [ ! -d "$HOME/go/src/github.com" ]; then
-		mkdir -p "$HOME/go/src/github.com"
+	if [ ! -d "$HOME/gopath/src/github.com" ]; then
+		mkdir -p "$HOME/gopath/src/github.com"
 	fi
 	export GO111MODULE=on
 	export GOPATH=$HOME/go

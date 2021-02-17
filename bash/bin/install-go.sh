@@ -26,7 +26,7 @@ else
   GOGS_OS="linux"
 fi
 
-GO_VERSION=1.15.8
+GO_VERSION=1.16
 GOGS_VERSION=0.11.91
 SHFMT_VERSION=3.1.1
 
@@ -55,7 +55,7 @@ install_go() {
 	echo "$HOME/gopath is the default workspace directory."
 	echo "/usr/lib/go is the directory where Go will be installed to."
 	wget https://dl.google.com/go/go$GO_VERSION.$OS-$ARCH.tar.gz
-	sudo tar -C /usr/lib -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
+	sudo tar -C /usr/local -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
 	type go
 }
 
@@ -80,18 +80,12 @@ install_gogs() {
 }
 
 setup_go_env() {
-	if [ -e /usr/lib/go/bin/go ]; then
-		export GOROOT=/usr/lib/go
-	elif [ -e /usr/local/bin/go/bin/go ]; then
-		export GOROOT=/usr/local/bin/go
-	elif [ -e $HOME/.go/bin/go ]; then
-		export GOROOT=$HOME/.go/bin/go
+	if [ ! -d "$HOME/gopath/src/github.com" ]; then
+		mkdir -p "$HOME/gopath/src/github.com"
 	fi
-	if [ ! -d "$HOME/go/src/github.com" ]; then
-		mkdir -p "$HOME/go/src/github.com"
-	fi
-	export GO111MODULE=on
-	export GOPATH=$HOME/go
+	export GO111MODULE="on"
+	export GOROOT=/usr/local/go
+	export GOPATH=$HOME/gopath
 	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 	echo "You can also enalbe go environment with ggg!!!"
 }
