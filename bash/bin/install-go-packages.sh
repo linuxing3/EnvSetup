@@ -26,7 +26,7 @@ else
   GOGS_OS="linux"
 fi
 
-GO_VERSION=1.14.2
+GO_VERSION=1.16
 GOGS_VERSION=0.11.91
 SHFMT_VERSION=3.1.1
 
@@ -53,7 +53,7 @@ install_go_from_apt() {
 
 install_go() {
 	wget https://dl.google.com/go/go$GO_VERSION.$OS-$ARCH.tar.gz
-	sudo tar -C /usr/lib -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
+	sudo tar -C /usr/local -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
 	type go
 }
 
@@ -66,11 +66,11 @@ install_gogs() {
 }
 
 setup_go_env() {
-	if [ ! -d "$HOME/gopath/github.com" ]; then
-		mkdir -p "$HOME/gopath/github.com"
+	if [ ! -d "$HOME/gopath/src/github.com" ]; then
+		mkdir -p "$HOME/gopath/src/github.com"
 	fi
 	export GO111MODULE="on"
-	export GOROOT=/usr/lib/go
+	export GOROOT=/usr/local/go
 	export GOPATH=$HOME/gopath
 	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 	echo "You can also enalbe go environment with ggg!!!"
