@@ -20,6 +20,7 @@ get_subbin() {
 file_paths=(
 "$HOME/EnvSetup/bash/bin"
 "$HOME/Dropbox/bin"
+"$HOME/OneDrive/bin"
 "$HOME/bin"
 "$HOME/.local/bin"
 "$HOME/.nvm/bin"
