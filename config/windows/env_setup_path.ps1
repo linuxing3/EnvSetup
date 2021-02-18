@@ -8,13 +8,10 @@
 
 
 # Unblock-File -Path %
+Write-Host "将为您设置系统可执行文件路径。如果出现错误，请先运行以下命令开启验证"
 Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-$homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
-[System.Environment]::SetEnvironmentVariable('HOME', homedir,[System.EnvironmentVariableTarget]::Machine)
-
-Write-Host "将为您设置系统可执行文件路径。如果出现错误，请先运行以下命令开启验证"
 
 # -----------------------------------------------------------------------------
 Write-Host ""
@@ -37,16 +34,10 @@ Write-Host ""
 Write-Host "设置路径PATH" $computerName  -ForegroundColor Yellow
 Write-Host "------------------------------------" -ForegroundColor Green
 $env_reg='Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment'
-$default_Path='%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;%USERPROFILE%\.emacs.d\bin;%USERPROFILE%\.doom.d\bin;%USERPROFILE%\go\bin;%USERPROFILE%\.deno\bin;%USERPROFILE%\OneDrive\bin;%NVM_HOME%;%NVM_SYMLINK%;C:\lib\clangd\bin;C:\lib\Neovim\bin;C:\lib\nginx;C:\lib\npc;C:\lib\nvm;C:\lib\PuTTYPortable\App\putty;C:\lib\PuTTYPortable\App\winscp;C:\lib\PuTTYPortable;C:\lib\rsync;C:\Users\Administrator\AppData\Local\nvim\plugged\fzf\bin;C:\lib\mingw\mingw64\bin;C:\lib\heroku\bin;%GOROOT%\bin;%GOPATH%\bin;'
+$defaultPath='%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;%USERPROFILE%\.emacs.d\bin;%USERPROFILE%\.doom.d\bin;%USERPROFILE%\go\bin;%USERPROFILE%\.deno\bin;%USERPROFILE%\OneDrive\bin;%NVM_HOME%;%NVM_SYMLINK%;C:\lib\clangd\bin;C:\lib\Neovim\bin;C:\lib\nginx;C:\lib\npc;C:\lib\nvm;C:\lib\PuTTYPortable\App\putty;C:\lib\PuTTYPortable\App\winscp;C:\lib\PuTTYPortable;C:\lib\rsync;C:\Users\Administrator\AppData\Local\nvim\plugged\fzf\bin;C:\lib\mingw\mingw64\bin;C:\lib\heroku\bin;%GOROOT%\bin;%GOPATH%\bin;'
 $originalPath = (Get-ItemProperty -Path $env_reg -Name PATH).path
 $originalPath = $defaultPath + $originalPath + ';'
 
-
-Write-Host "------------------------------------" -ForegroundColor Green
-windows10_env_setup_emacs.ps1
-
-Write-Host "------------------------------------" -ForegroundColor Green
-windows10_env_setup_putty.ps1
 
 Write-Host "------------------------------------" -ForegroundColor Green
 Read-Host -Prompt "安装完成！"

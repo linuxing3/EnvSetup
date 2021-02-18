@@ -9,20 +9,20 @@ Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachin
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
 $homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
-[System.Environment]::SetEnvironmentVariable('HOME', homedir,[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('HOME', $homedir,[System.EnvironmentVariableTarget]::Machine)
 
-function Check-Command($cmdname) {
+function CheckCommand($cmdname) {
     return [bool](Get-Command -Name $cmdname -ErrorAction SilentlyContinue)
 }
 
-if (Check-Command -cmdname 'choco') {
-    Write-Host "Choco is already installed, skip installation."
+if (CheckCommand -cmdname 'choco') {
+    Write-Host "Choco is already installed, skip installation." -ForegroundColor Green
 }
 else {
     Write-Host ""
     Write-Host "Installing Chocolate for Windows..." -ForegroundColor Green
     Write-Host "------------------------------------" -ForegroundColor Green
-    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
 Write-Host ""
@@ -30,7 +30,7 @@ Write-Host "Installing Applications..." -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
 Write-Host "For development environment" -ForegroundColor Yellow
 
-if (Check-Command -cmdname 'git') {
+if (CheckCommand -cmdname 'git') {
     Write-Host "Git is already installed, checking new version..."
     #choco upgrade git -y
 }
@@ -40,7 +40,7 @@ else {
     choco install git -y
 }
 
-if (Check-Command -cmdname 'node') {
+if (CheckCommand -cmdname 'node') {
     Write-Host "Node.js is already installed, checking new version..."
     #choco upgrade nodejs -y
 }
@@ -50,7 +50,7 @@ else {
     choco install nodejs -y
 }
 
-if (Check-Command -cmdname 'conda') {
+if (CheckCommand -cmdname 'conda') {
     Write-Host "python is already installed, checking new version..."
     #choco upgrade anaconda3 -y
 }
@@ -61,12 +61,11 @@ else {
 }
 
 Write-Host "Installing fonts" -ForegroundColor Green
-choco install hackfont -y
-choco install firacode -y
-choco install sourcecodepro -y
-choco install cascadiacode -y
-choco install source-han-sans-cn -y
-choco install robotofonts -y
+$fonts = "hackfont", "firacode", "sourcecodepro", "cascadiacode", "source", "robotofonts"
+foreach($font in $fonts){
+    Write-Host $font -BackgroundColor green
+    # choco install $font -y
+}
 
 Write-Host "Installing tools" -ForegroundColor Green
 choco install 7zip.install -y
@@ -80,11 +79,11 @@ choco install wget -y
 Write-Host "Installing ssh tools" -ForegroundColor Green
 choco install emacs greprip -y
 choco install vim-tux.install -y
-choco install spf13-vim -y
+choco install neovim -y
 
 Write-Host "Installing vscode" -ForegroundColor Green
 choco install vscode.install -y
-#choco install vscode-powershell -y
+choco install vscode-powershell -y
 #choco install vscode-python -y
 #choco install vscode-java -y
 #choco install vscode-icons -y

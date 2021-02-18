@@ -10,9 +10,6 @@
 Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-$homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
-[System.Environment]::SetEnvironmentVariable('HOME', homedir,[System.EnvironmentVariableTarget]::Machine)
-
 # -----------------------------------------------------------------------------
 # Seting Putty thmes
 Write-Host "使用regedit添加putty主题"
@@ -59,7 +56,7 @@ $theme_set.keys | ForEach-Object {
 
 Write-Host ""
 $answer=(Read-Host -Prompt "是否写入颜色，回车继续")
-if($answer=='y') {
+if($answer==='y') {
   ForEach ($colour in $theme_set.Keys ) {
     Set-ItemProperty -Path $putty_theme_reg -Name $colour -Value $theme_set[$colour]
   }

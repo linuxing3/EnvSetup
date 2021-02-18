@@ -11,7 +11,7 @@ Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachin
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
 $homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
-[System.Environment]::SetEnvironmentVariable('HOME', homedir,[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('HOME', $homedir,[System.EnvironmentVariableTarget]::Machine)
 
 # -----------------------------------------------------------------------------
 # 

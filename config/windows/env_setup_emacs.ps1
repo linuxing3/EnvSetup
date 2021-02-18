@@ -11,13 +11,13 @@ Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachin
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
 $homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
-[System.Environment]::SetEnvironmentVariable('HOME', homedir,[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('HOME', $homedir,[System.EnvironmentVariableTarget]::Machine)
 
 # -----------------------------------------------------------------------------
 # Seting Emacs server file
 Write-Host "设置Emacs的参数:EMACS_SERVER_FILE, DATA_DRIVE, CLOUD_SERVICE_PROVIDER " $computerName  -ForegroundColor Yellow
 [System.Environment]::SetEnvironmentVariable('EMACS_SERVER_FILE', $HOME + '\.emacs.d\.local\cache\server\server',[System.EnvironmentVariableTarget]::Machine)
-[System.Environment]::SetEnvironmentVariable('DATA_DRIVE', homedir,[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('DATA_DRIVE', $homedir,[System.EnvironmentVariableTarget]::Machine)
 [System.Environment]::SetEnvironmentVariable('CLOUD_SERVICE_PROVIDER', $homedir,[System.EnvironmentVariableTarget]::Machine)
 
 $send_to_emacs_reg='Registry::HKEY_CLASSES_ROOT\directory\shell\Emacsclient'
