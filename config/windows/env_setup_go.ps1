@@ -33,3 +33,15 @@ foreach ($path in $go_root_path) {
   }
 }
 
+
+Write-Host "-------------------------------------------" -ForegroundColor Green
+Write-Host "安装go tools--------------------------------" -ForegroundColor Green
+
+$go_tools = 'goimport', 'gorename', 'guru'
+foreach ($pkg in $go_tools) {
+  go get golang.org/x/tools/cmd/$pkg
+}
+go get -u golang.org/x/tools/...
+go get golang.org/x/tools/cmd/gopls
+go get github.com/spf13/cobra/cobra
+go get github.com/go-delve/delve/cmd/dlv

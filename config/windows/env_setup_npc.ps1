@@ -41,7 +41,7 @@ function download_npc($file) {
   if ($?) {
     # (Expand-Archive -Path $temp -DestinationPath .); (Remove-Item $temp)
     $binary_error="Downloaded npc, please unzip it by yourself"
-    tar -zxvf $temp -C $npc_base
+    tar -xvf $temp -C $npc_base
     Write-Host $binary_error -ForegroundColor Green
   } else {
     $binary_error="Failed to download npc"
