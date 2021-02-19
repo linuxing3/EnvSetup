@@ -102,4 +102,3 @@ if ($shouldUpdateSystemPath -eq 'y') {
   return
 }
 Write-Host '系统路径无需更新!' -ForegroundColor Red
-

@@ -8,19 +8,17 @@
 Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
+$home_path = Resolve-Path '~/OneDrive'
 
-Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+New-PSDrive -Name Vault -PSProvider FileSystem -Root $home_path
 
-Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+Get-PSDrive -PSProvider FileSystem
 
-Start-Service sshd
+Set-Location Vault:
 
-Set-Service -Name sshd -StartupType 'Automatic'
+Set-Location "~/"
 
-Get-NetFirewallRule -Name *ssh*
-
-New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+Remove-PSDrive -Name Vault
 
 Write-Host "------------------------------------" -ForegroundColor Green
 Read-Host -Prompt "安装完成！"
