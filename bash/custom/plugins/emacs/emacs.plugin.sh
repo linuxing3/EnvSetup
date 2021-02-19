@@ -3,7 +3,8 @@
 alias es="emacs --daemon"
 alias ec="emacsclient -c"
 alias eq="emacs -q"
-
+export DATA_DRIVE=$HOME
+export CLOUD_SERVICE_PROVIDER=OneDrive
 doomx() {
     export PATH=$PATH:~/.emacs.d/bin
     doom
