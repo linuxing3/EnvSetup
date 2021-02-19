@@ -95,5 +95,6 @@ if ($answer -eq "y" || $answer -eq "Y") {
   Write-Host "跳过!" -ForegroundColor Green
 }
 
+$setup_path=$homedir
 Write-Host "------------------------------------" -ForegroundColor Green
 Write-Host "完成!" -ForegroundColor Green
