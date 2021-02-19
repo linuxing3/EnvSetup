@@ -19,21 +19,25 @@ $homedir = [System.Environment]::GetEnvironmentVariable('USERPROFILE')
 
 # -----------------------------------------------------------------------------
 #
-Write-Host ""
+Write-Host "------------------------------------" -ForegroundColor Green
 Write-Host "设置路径PATH" $computerName  -ForegroundColor Yellow
 Write-Host "------------------------------------" -ForegroundColor Green
 
-$discoveryDrive = 'B:\', 'C:\', 'D:\', 'E:\', 'F:\', 'G:\', 'H:\', 'I:/', $homedir + '\'
-$discoveryDir = 'lib', 'app', 'var', 'Dropbox', 'Onedrive', 'ICloud', 'GoogleDrive'
+$homedirWithBackSlash = $homedir + '\'
+$discoveryDrive = 'B:\', 'C:\', 'D:\', 'E:\', 'F:\', 'G:\', 'H:\', 'I:\', $homedirWithBackSlash
+$discoveryDir = 'lib', 'app', 'var', 'tools', 'bin', 'usr', 'Dropbox', 'Onedrive', 'ICloud', 'GoogleDrive'
 $appPath = ''
 
 # 
-# 遍历制定目录下的，将【子目录】和【子目录/bin】都加入到路径中
+# 遍历目录下的，将【子目录】和【子目录/bin】都加入到路径中
 foreach ($drive in $discoveryDrive) {
+  Write-Host "查询"  $drive  "盘..."
   foreach ($dir in $discoveryDir) {
     $app_root = $drive + $dir
     if ( Test-Path -Path $app_root -PathType Container ) {
-      "目录存在:" + $app_root 
+      Write-Host "--------------------------------------------------" -ForegroundColor Green
+      Write-Host "             目录存在" $app_root "                 " -ForegroundColor Green  
+      Write-Host "--------------------------------------------------" -ForegroundColor Green
       #  添加这个目录
       $appPath = $app_root + ';' + $appPath
       #  检查子目录
@@ -52,22 +56,28 @@ foreach ($drive in $discoveryDrive) {
   }
 }
 
-Write-Host '将给当前用户加入以下可执行文件路径:'
 $userPathArray = $appPath.Split(';') | Select-Object -Unique
 $uniqueUserPath = [System.String]::Join(';', $userPathArray)
 Write-Host $uniqueUserPath -ForegroundColor Red
-if ($uniqueUserPath -ne "") {
-  Set-ItemProperty -Path $user_env_reg -Name PATH -Value $uniqueUserPath
-  Write-Host "------------------------------------" -ForegroundColor Green
-  Read-Host -Prompt "安装完成！"
-}
-else {
-  Write-Host '路径为空，有错误！' -ForegroundColor Red
+
+# 修改当前用户的路径
+$shouldUpdateUserPath = Read-Host -Prompt "是否需要修改当前用户路径[Y/N]"
+if ($shouldUpdateUserPath -eq 'y') {
+  if ($uniqueUserPath -ne "") {
+    Write-Host "------------------------------------" -ForegroundColor Green
+    Write-Host '将给当前用户加入以下可执行文件路径:'
+    Set-ItemProperty -Path $user_env_reg -Name PATH -Value $uniqueUserPath
+    Write-Host "------------------------------------" -ForegroundColor Green
+    Read-Host -Prompt "安装完成！"
+  }
+  else {
+    Write-Host '路径为空，有错误！' -ForegroundColor Red
+  }
 }
 
-
-$shouldUpdateSystemPath = Read-Host -Prompt "是否需要添加到系统路径[Y/N]"
-if ($shouldUpdateSystemPath -eq 'Y' || $shouldUpdateSystemPath -eq 'y') {
+# 修改系统路径
+$shouldUpdateSystemPath = Read-Host -Prompt "是否需要修改系统路径[Y/N]"
+if ($shouldUpdateSystemPath -eq 'y') {
   
   Write-Host '获取现在的系统可执行文件路径:'
   $systemPath = (Get-ItemProperty -Path $system_env_reg -Name PATH).path
@@ -76,15 +86,14 @@ if ($shouldUpdateSystemPath -eq 'Y' || $shouldUpdateSystemPath -eq 'y') {
   
   # # 如果路径不是空字符串，就更改系统路径
   if ($systemPath -ne "") {
+    Write-Host "------------------------------------" -ForegroundColor Green
     Write-Host '更新Path设置:'
+    Write-Host "------------------------------------" -ForegroundColor Green
     Set-ItemProperty -Path $system_env_reg -Name PATH -Value $systemPath
     Write-Host $systemPath  -ForegroundColor Red
     
     Write-Host '检查Path设置:'
-    $updatedSystemPath = (Get-ItemProperty -Path $system_env_reg -Name PATH).path
-    Write-Host $updatedSystemPath  -ForegroundColor Green
-    
-    Write-Host "------------------------------------" -ForegroundColor Green
+    Write-Host $Env:Path -ForegroundColor Green
     Read-Host -Prompt "安装完成！"
   }
   else {
