@@ -42,7 +42,7 @@ install_gofish() {
 
 install_gvm() {
 	curl -fsSL https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer | bash
-	echo "gvm install go1.15.8"
+	echo "gvm install go 1.16"
 }
 
 install_go_from_apt() {
