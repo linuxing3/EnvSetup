@@ -25,48 +25,61 @@ else {
     Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
-Write-Host ""
-Write-Host "安装其他应用..." -ForegroundColor Green
-Write-Host "------------------------------------" -ForegroundColor Green
-Write-Host "用于开发环境" -ForegroundColor Yellow
+function convert_packages_to_json() {
+    $fonts = "hackfont", "firacode", "sourcecodepro", "cascadiacode", "source", "robotofonts"
+    $libs = 'git', 'nodejs', 'python', 'golang', 'rust', 'deno'
+    $tools = '7zip.install', 'googlechrome', 'potplayer', 'dotnetcore-sdk', 'ffmpeg', 'wget', 'openssl.light'
+    $ssh_tools = 'emacs', 'greprip', 'vim-tux.install', 'neovim', 'putty', 'WinSCP', 'filezilla', 'lightshot.install'
+    $vscode = 'vscode.install', 'vscode-powershell', 'vscode-python', 'vscode-java', 'vscode-icons', 'vscode-prettier', 'vscode-vsonline', 'vscode-chrome', 'vscode-eslint', 'vscode-gitlens', 'vscode-settingssync'
+    $misc = 'sysinternals', 'dotpeek', 'linqpad', 'fiddler', 'beyondcompare'
+    $teams = 'microsoft-teams.install', 'teamviewer', 'github-desktop'
+    $vms = 'vagrant', 'virtualbox'
+    $packagesArray = @(
+        @{name = "libs"; values = $libs },
+        @{name = "fonts"; values = $fonts },
+        @{name = "tools"; values = $tools },
+        @{name = "ssh_tools"; values = $ssh_tools },
+        @{name = "vscode"; values = $vscode },
+        @{name = "misc"; values = $misc },
+        @{name = "teams"; values = $teams },
+        @{name = "vms"; values = $vms }
+    )
+    Set-Content -Path .\packages.json -Value ($packagesArray | ConvertTo-Json)
+}
 
-$fonts = "hackfont", "firacode", "sourcecodepro", "cascadiacode", "source", "robotofonts"
 
-$libs = 'git', 'nodejs', 'python', 'golang', 'rust', 'deno'
+function install_packages {
+    Write-Host ""
+    Write-Host "安装其他应用..." -ForegroundColor Green
+    Write-Host "用于开发环境" -ForegroundColor Yellow
+    Write-Host "------------------------------------" -ForegroundColor Green
 
-$tools = '7zip.install', 'googlechrome', 'potplayer', 'dotnetcore-sdk', 'ffmpeg', 'wget', 'openssl.light'
+    $packagesObject = (Get-Content -Path .\packages.json | ConvertFrom-Json)
 
-$ssh_tools = 'emacs', 'greprip', 'vim-tux.install', 'neovim', 'putty', 'WinSCP', 'filezilla', 'lightshot.install'
-
-$vscode = 'vscode.install', 'vscode-powershell', 'vscode-python', 'vscode-java', 'vscode-icons', 'vscode-prettier', 'vscode-vsonline', 'vscode-chrome'
-'vscode-eslint', 'vscode-gitlens', 'vscode-settingssync'
-
-$misc = 'sysinternals', 'dotpeek', 'linqpad', 'fiddler', 'beyondcompare'
-
-$teams = 'microsoft-teams.install', 'teamviewer', 'github-desktop'
-
-$vms = 'vagrant', 'virtualbox'
-
-$packages = $libs, $fonts, $tools, $ssh_tools, $vscode, $misc, $teams, $vms
-
-foreach ($module in $packages) {
-    $prompt = "是否设置" + $module + "?[Y/N]"
-    $answer = Read-Host -Prompt $prompt
-    if ($answer -eq "y" || $answer -eq "Y") {
-        foreach ($app in $module) {
-            
-            if (CheckCommand -cmdname $app) {
-                Write-Host $app "已安装，跳过!"
-            } else {
-                Write-Host "开始安装!" $app -ForegroundColor Green
+    foreach ($package in $packagesObject) {
+        Write-Host "------------------------------------" -ForegroundColor Green
+        Write-Host "开始安装$($package.name)" -ForegroundColor Green
+        Write-Host "包括$($package.values)..." -ForegroundColor Green
+        Write-Host "------------------------------------" -ForegroundColor Green
+        $answer = Read-Host -Prompt "确认安装？ [Y/N]"
+        if ($answer -eq "y") {
+            foreach ($app in $package.values) {
+                Write-Host "开始安装$($app)..." -ForegroundColor Green
                 # choco install -y $app
             }
-            
         }
     }
-    else {
-        Write-Host "跳过!" -ForegroundColor Green
-    }
+    
+}
+
+$answer = Read-Host -Prompt "是否开始配置开发常用软件？ [Y/N]"
+if ($answer -eq "y") {
+    convert_packages_to_json
+}
+
+$answer = Read-Host -Prompt "是否开始安装开发常用软件？ [Y/N]"
+if ($answer -eq "y") {
+    install_packages
 }
 
 Write-Host "------------------------------------" -ForegroundColor Green

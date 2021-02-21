@@ -66,4 +66,3 @@ if($answer==='y') {
 }
 
 Write-Host "------------------------------------" -ForegroundColor Green
-Read-Host -Prompt "安装完成！"

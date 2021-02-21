@@ -15,4 +15,3 @@ Get-CimInstance -Class Win32_OperatingSystem | Get-Member -MemberType Property
 Get-CimInstance -ClassName Win32_ComputerSystem -Property UserName | Select-Object -Property UserName
 
 Write-Host "------------------------------------" -ForegroundColor Green
-Read-Host -Prompt "安装完成！"

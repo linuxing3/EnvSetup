@@ -66,9 +66,9 @@ foreach ($drive in $discoveryDrive) {
 # 遍历主目录，将【子目录/bin】都加入到路径中
 #  FIXED 检查子目录，获取子对象中必须要用Name获取文件夹的名字
 $subDirsOfHome = Get-ChildItem $homedirWithBackSlash -Directory
+Write-Host "查询主目录..."
 foreach ($subDir in $subDirsofHome) {
 
-  Write-Host "查询主目录..."
   $subBinDir = $homedirWithBackSlash + $subDir.Name + '\bin'
   if ( Test-Path -Path $subBinDir -PathType Container ) {
     Write-Host "--------------------------------------------------" -ForegroundColor Green

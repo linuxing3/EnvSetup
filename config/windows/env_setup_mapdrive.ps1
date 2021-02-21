@@ -21,4 +21,3 @@ Set-Location "~/"
 Remove-PSDrive -Name Vault
 
 Write-Host "------------------------------------" -ForegroundColor Green
-Read-Host -Prompt "安装完成！"

@@ -85,4 +85,4 @@ Start-Service Npc
 # 检查是否成功
 Get-Service -Name Npc
 
-Write-Host "------------------------------------" -ForegroundColor Green
+Write-Hot "------------------------------------" -ForegroundColor Green

@@ -20,4 +20,3 @@ Write-Host "设置NVM Environment variables " $computerName  -ForegroundColor Ye
 [System.Environment]::SetEnvironmentVariable('NVM_SYMBLINK', 'C:\lib\nodejs',[System.EnvironmentVariableTarget]::Machine)
 
 Write-Host "------------------------------------" -ForegroundColor Green
-Read-Host -Prompt "安装完成！"
