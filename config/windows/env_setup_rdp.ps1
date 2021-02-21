@@ -6,7 +6,7 @@
 #
 
 # Unblock-File -Path %
-Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
+
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
 $homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
@@ -16,7 +16,7 @@ $homedir=[System.Environment]::GetEnvironmentVariable('USERPROFILE') + '\'
 Write-Host ""
 Write-Host "启用远程桌面并设置防火墙" -ForegroundColor Green
 Write-Host "------------------------------------" -ForegroundColor Green
-Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
+
 
 # Enable Remote Desktop connections
 Set-ItemProperty ‘HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\‘ -Name “fDenyTSConnections” -Value 0
