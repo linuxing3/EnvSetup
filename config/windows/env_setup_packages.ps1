@@ -65,14 +65,14 @@ function install_packages {
         if ($answer -eq "y") {
             foreach ($app in $package.values) {
                 Write-Host "开始安装$($app)..." -ForegroundColor Green
-                # choco install -y $app
+                choco install -y $app
             }
         }
     }
     
 }
 
-$answer = Read-Host -Prompt "是否开始配置开发常用软件？ [Y/N]"
+$answer = Read-Host -Prompt "是否开始准备开发常用软件？ [Y/N]"
 if ($answer -eq "y") {
     convert_packages_to_json
 }
