@@ -25,12 +25,13 @@ Write-Host "------------------------------------" -ForegroundColor Green
 
 $homedirWithBackSlash = $homedir + '\'
 $discoveryDrive = 'B:\', 'C:\', 'D:\', 'E:\', 'F:\', 'G:\', 'H:\', 'I:\', $homedirWithBackSlash
-$discoveryDir = 'lib', 'app', 'var', 'tools', 'bin', 'usr', 'Dropbox', 'Onedrive', 'ICloud', 'GoogleDrive'
+$discoveryDir = 'lib', 'app', 'var', 'tools', 'bin', 'usr', 'Dropbox', 'Onedrive', 'ICloud', 'GoogleDrive', '.deno', '.cargo', '.emacs.d', '.doom.d', 'go'
 $appPath = ''
 
 # 
 # 遍历目录下的，将【子目录】和【子目录/bin】都加入到路径中
 foreach ($drive in $discoveryDrive) {
+
   Write-Host "查询"  $drive  "盘..."
   foreach ($dir in $discoveryDir) {
     $app_root = $drive + $dir
