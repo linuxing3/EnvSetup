@@ -1,23 +1,6 @@
 export OSH=~/.oh-my-bash
-OSH_THEME="mairan"
+OSH_THEME="random"
 CASE_SENSITIVE="true"
 ENABLE_CORRECTION="true"
 OSH_CUSTOM=~/EnvSetup/bash/custom
-completions=(
-  git
-  composer
-  ssh
-  system
-)
-aliases=(
-  general
-  vim
-)
-plugins=(
-  git
-  bashmarks
-)
 source $OSH/oh-my-bash.sh
-
-PATH=/c/ProgramData/chocolatey/bin:/c/Go/bin/go:/c/Users/Administrator/go/bin:$PATH
-PATH=/c/Users/Administrator/EnvSetup/bash/bin:/c/lib/mingw/mingw64/bin:$PATH

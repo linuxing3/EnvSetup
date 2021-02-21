@@ -14,22 +14,26 @@ Write-Host "将为您设置系统可执行文件路径。如果出现错误，�
 Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-$homedir = [System.Environment]::GetEnvironmentVariable('USERPROFILE')
-[System.Environment]::SetEnvironmentVariable('HOME', $homedir, [System.EnvironmentVariableTarget]::User)
-
-# -----------------------------------------------------------------------------
-#
 Write-Host "------------------------------------" -ForegroundColor Green
 Write-Host "设置路径PATH" $computerName  -ForegroundColor Yellow
 Write-Host "------------------------------------" -ForegroundColor Green
 
+$homedir = [System.Environment]::GetEnvironmentVariable('USERPROFILE')
+[System.Environment]::SetEnvironmentVariable('HOME', $homedir, [System.EnvironmentVariableTarget]::User)
 $homedirWithBackSlash = $homedir + '\'
-$discoveryDrive = 'B:\', 'C:\', 'D:\', 'E:\', 'F:\', 'G:\', 'H:\', 'I:\', $homedirWithBackSlash
-$discoveryDir = 'lib', 'app', 'var', 'tools', 'bin', 'usr', 'Dropbox', 'Onedrive', 'ICloud', 'GoogleDrive', '.deno', '.cargo', '.emacs.d', '.doom.d', 'go'
+
+# 1. PSDrive
+# $psdrives = Get-PSDrive -PSProvider filesystem | Select-Object -Property Root
+# [System.String]::Join(",", $psdrives.Root)
+# 2. Json Setting
+$settings = (Get-Content -Path ..\windows\settings.json | ConvertFrom-Json)
+$discoveryDrive = $settings.drives
+$discoveryDir = $settings.paths
+
 $appPath = ''
 
 # 
-# 遍历目录下的，将【子目录】和【子目录/bin】都加入到路径中
+# 遍历其他盘符目录，将【子目录】和【子目录/bin】都加入到路径中
 foreach ($drive in $discoveryDrive) {
 
   Write-Host "查询"  $drive  "盘..."
@@ -39,17 +43,19 @@ foreach ($drive in $discoveryDrive) {
       Write-Host "--------------------------------------------------" -ForegroundColor Green
       Write-Host "             目录存在" $app_root "                 " -ForegroundColor Green  
       Write-Host "--------------------------------------------------" -ForegroundColor Green
-      #  添加这个目录
+      #  1. 添加这个目录
       $appPath = $app_root + ';' + $appPath
-      #  检查子目录
+      #  FIXED 检查子目录，获取子对象中必须要用Name获取文件夹的名字
       $app_subDirs = Get-ChildItem($app_root) -Directory
       foreach ($item in $app_subDirs) {
         # 检查子目录作为路径
         $binPath = $app_root + '\' + $item.Name
-        #  检查子目录下的bin子目录
-        $subBinPath = $binPath + '\bin'
-        if ( Test-Path -Path $subBinPath -PathType Container) {
-          $binPath = $binPath + ';' + $subBinPath
+        # 2. 添加子目录下的bin子目录
+        foreach ($lookUpDir in '\bin', '\cmd', '\Scripts') {
+          $subBinPath = $binPath + $lookUpDir 
+          if ( Test-Path -Path $subBinPath -PathType Container) {
+            $binPath = $binPath + ';' + $subBinPath
+          }
         }
         $appPath = $binPath + ';' + $appPath
       }
@@ -57,6 +63,22 @@ foreach ($drive in $discoveryDrive) {
   }
 }
 
+# 遍历主目录，将【子目录/bin】都加入到路径中
+#  FIXED 检查子目录，获取子对象中必须要用Name获取文件夹的名字
+$subDirsOfHome = Get-ChildItem $homedirWithBackSlash -Directory
+foreach ($subDir in $subDirsofHome) {
+
+  Write-Host "查询主目录..."
+  $subBinDir = $homedirWithBackSlash + $subDir.Name + '\bin'
+  if ( Test-Path -Path $subBinDir -PathType Container ) {
+    Write-Host "--------------------------------------------------" -ForegroundColor Green
+    Write-Host "             目录存在" $subBinDir "                 " -ForegroundColor Green  
+    Write-Host "--------------------------------------------------" -ForegroundColor Green
+    #  检查子目录
+    $appPath = $subBinDir + ";" + $appPath
+  }
+}
+# 去除重复
 $userPathArray = $appPath.Split(';') | Select-Object -Unique
 $uniqueUserPath = [System.String]::Join(';', $userPathArray)
 Write-Host $uniqueUserPath -ForegroundColor Red
@@ -69,7 +91,7 @@ if ($shouldUpdateUserPath -eq 'y') {
     Write-Host '将给当前用户加入以下可执行文件路径:'
     Set-ItemProperty -Path $user_env_reg -Name PATH -Value $uniqueUserPath
     Write-Host "------------------------------------" -ForegroundColor Green
-    Read-Host -Prompt "安装完成！"
+    Write-Host "安装完成！" -ForegroundColor Green
   }
   else {
     Write-Host '路径为空，有错误！' -ForegroundColor Red
