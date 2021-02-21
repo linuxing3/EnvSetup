@@ -96,14 +96,12 @@ setup_go_emacs() {
   go get -u github.com/motemen/gore/cmd/gore
   go get -u github.com/stamblerre/gocode
 	go get -u golang.org/x/tools/...
-  go get -u golang.org/x/tools/cmd/godoc
-  go get -u golang.org/x/tools/cmd/goimports
-  go get -u golang.org/x/tools/cmd/gorename
-  go get -u golang.org/x/tools/cmd/guru
-	go get -u golang.org/x/tools/cmd/golsp/...
-  go get -u github.com/cweill/gotests/...
-  go get -u github.com/fatih/gomodifytags
-  go get -u mvdan.cc/sh/v3/cmd/...
+	go get github.com/spf13/cobra/cobra
+	go get golang.org/x/tools/cmd/gopls
+	go get github.com/go-delve/delve/cmd/dlv
+  go get golang.org/x/tools/cmd/goimports
+  go get golang.org/x/tools/cmd/gorename
+  go get golang.org/x/tools/cmd/guru
 }
 
 option=$(dialog --title " Go一键安装自动脚本" \
@@ -111,7 +109,7 @@ option=$(dialog --title " Go一键安装自动脚本" \
 	"1" "Install shfmt" 0 \
 	"2" "Install gofish package manager" 0 \
 	"3" "Install go from official site" 0 \
-	"4" "Install go from official site" 0 \
+	"4" "Install go from one key" 0 \
 	"5" "Install go tools" 0 \
 	"6" "Install gogs" 0 \
 	"7" "Setup go environment" 0 \

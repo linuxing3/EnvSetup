@@ -27,7 +27,7 @@ sample_blog() {
 	git init
 	git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
 	echo 'theme = "ananke"' >>config.toml
-	sed -i 's/example\.org/xunqinji\.top\/hugo/g' config.toml
+	sed -i 's/example\.org/linuxing\.github\.io/g' config.toml
 	echo "Done with theme settings!"
 
 	# build
