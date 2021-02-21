@@ -6,7 +6,7 @@ echo "to use this shell script and deno/go on windows"
 echo "========================================================================="
 
 PATH=/c/ProgramData/chocolatey/bin:/c/Go/bin/go:/c/Users/Administrator/go/bin:$PATH
-PATH=/c/Users/Administrator/EnvSetup/bash/bin:$PATH
+PATH=/c/Users/Administrator/EnvSetup/bash/bin:/lib/mingw/mingw64/bin:$PATH
 
 echo "Setting global environment variables"
 export POST_PASSWORD=20090909
