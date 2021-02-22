@@ -1,5 +1,5 @@
 export OSH=~/.oh-my-bash
-OSH_THEME="random"
+OSH_THEME="powerline"
 CASE_SENSITIVE="true"
 ENABLE_CORRECTION="true"
 OSH_CUSTOM=~/EnvSetup/bash/custom

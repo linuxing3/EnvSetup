@@ -5,7 +5,7 @@ echo "We intentionally use git bash to ensure nix like environment"
 echo "to use this shell script and deno/go on windows"
 echo "========================================================================="
 
-PATH=/c/ProgramData/chocolatey/bin:/c/Go/bin/go:/c/Users/Administrator/go/bin:$PATH
+PATH=/c/ProgramData/chocolatey/bin:/c/Users/Administrator/.deno/bin:/c/Go/bin/go:/c/Users/Administrator/go/bin:$PATH
 PATH=/c/Users/Administrator/EnvSetup/bash/bin:/lib/mingw/mingw64/bin:$PATH
 
 echo "Setting global environment variables"
