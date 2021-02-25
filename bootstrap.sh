@@ -37,7 +37,7 @@ function bootstrap() {
 
 	cd 
 	mv .bashrc .bashrc.bak
-	cp EnvSetup/bash/bashrc.default .bashrc
+	cp EnvSetup/bash/custom/bashrc.default .bashrc
 	source .bashrc
 	cd
 

@@ -32,10 +32,10 @@ install_nps() {
 	sed -i 's/https_proxy_port=.*$/https_proxy_port=8443/g' conf/nps.conf
 
 	#web
-	sed -i 's/web_host=.*$/web_host=localhost/g ' conf/nps.conf
+	sed -i 's/web_host=.*$/web_host=localhost/g' conf/nps.conf
 	sed -i 's/web_username=.*$/web_username=admin/g' conf/nps.conf
-	sed -i 's/web_password=.*$/web_password=mm123456/g ' conf/nps.conf
-	sed -i 's/web_port = 8090/web_port=8090/g' conf/nps.conf
+	sed -i 's/web_password=.*$/web_password=mm123456/g' conf/nps.conf
+	sed -i 's/web_port=8090/web_port=8090/g' conf/nps.conf
 
 	echo "----------------------------------------------------------"
 	echo "Server Setting Examples"
@@ -77,23 +77,16 @@ EOF
 	mv conf/npc.conf conf/npc.default.conf
 	cat > conf/npc.conf << EOF
 [common]
-server_addr=your_domain:8024
+server_addr=127.0.0.1:8024
 conn_type=tcp
 vkey=13901229638
 auto_reconnection=true
-max_conn=1000
-flow_limit=1000
-rate_limit=1000
-basic_username=978
-basic_password=916
-web_username=user
-web_password=mm123456
 crypt=true
 compress=true
 
 [tcp]
 mode=tcp
-server_port=11116
+server_port=9022
 target_addr=127.0.0.1:22
 EOF
 

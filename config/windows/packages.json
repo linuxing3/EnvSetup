@@ -1,0 +1,90 @@
+[
+  {
+    "name": "libs",
+    "values": [
+      "git",
+      "nodejs",
+      "python",
+      "golang",
+      "rust",
+      "deno"
+    ]
+  },
+  {
+    "name": "fonts",
+    "values": [
+      "hackfont",
+      "firacode",
+      "sourcecodepro",
+      "cascadiacode",
+      "source",
+      "robotofonts"
+    ]
+  },
+  {
+    "name": "tools",
+    "values": [
+      "7zip.install",
+      "googlechrome",
+      "potplayer",
+      "dotnetcore-sdk",
+      "ffmpeg",
+      "wget",
+      "openssl.light"
+    ]
+  },
+  {
+    "name": "ssh_tools",
+    "values": [
+      "emacs",
+      "greprip",
+      "vim-tux.install",
+      "neovim",
+      "putty",
+      "WinSCP",
+      "filezilla",
+      "lightshot.install"
+    ]
+  },
+  {
+    "name": "vscode",
+    "values": [
+      "vscode.install",
+      "vscode-powershell",
+      "vscode-python",
+      "vscode-java",
+      "vscode-icons",
+      "vscode-prettier",
+      "vscode-vsonline",
+      "vscode-chrome",
+      "vscode-eslint",
+      "vscode-gitlens",
+      "vscode-settingssync"
+    ]
+  },
+  {
+    "name": "misc",
+    "values": [
+      "sysinternals",
+      "dotpeek",
+      "linqpad",
+      "fiddler",
+      "beyondcompare"
+    ]
+  },
+  {
+    "name": "teams",
+    "values": [
+      "microsoft-teams.install",
+      "teamviewer",
+      "github-desktop"
+    ]
+  },
+  {
+    "name": "vms",
+    "values": [
+      "vagrant",
+      "virtualbox"
+    ]
+  }
+]

@@ -4,18 +4,16 @@
 # Copyrigtht: MIT
 # Date: 2020-05-11
 #
-# Unblock-File -Path .\windows7_env_enable_remote_install.ps1
+# Unblock-File -Path %
 
-# pre install
-Write-Host "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
-
 
 # 1. simple way
 # (Start-Process -FilePath "msiexec.exe" -ArgumentList "/silent" -Wait -Passthru).ExitCode
-$setup=Start-Process "setup.exe" -ArgumentList "/s" -Wait
-if ($setup.exitcode -eq 0)
-write-host "Successfully installed" 
+$setup = Start-Process "setup.exe" -ArgumentList "/s" -Wait
+if ($setup.exitcode -eq 0) {
+    write-host "Successfully installed" 
+}
 
 # 2. remote download and install
 $url = ''
@@ -39,8 +37,6 @@ wudo cmd choco install -y radmin-server
 # $ wudo cp foo.txt /mnt/c/Program Files/
 # $ wudo regedit
 
-
-
 # 4. with user input
 # Install Application 1
 Show-InstallationProgress "Installing Application 1..."
@@ -51,6 +47,7 @@ Execute-Process -FilePath "setup2.exe" -Arguments "/S"
 # Get Input from user
 $userResponse = Show-DialogBox -Title "Installation Notice" -Text "Do you wish to continue installing the additional applications?" -Buttons "YesNo" -Icon "Question"
 If ($userResponse -eq "Yes") {
-# Install Application 3
-Show-InstallationProgress "Installing Application 3..."
-Execute-Process -FilePath "setup3.exe" -Arguments "/S"
+    # Install Application 3
+    Show-InstallationProgress "Installing Application 3..."
+    Execute-Process -FilePath "setup3.exe" -Arguments "/S"
+}

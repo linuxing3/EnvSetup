@@ -2,7 +2,9 @@
 # This playbook install space-vim
 
 - name: install vim and provide a proper vimrc
-  apt: pkg=vim state=present
+  apt: 
+    name: vim 
+    state: present
 
 - name: install awesome SpaceVim
   sudo: no

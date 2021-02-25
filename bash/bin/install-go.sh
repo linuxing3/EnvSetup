@@ -26,7 +26,7 @@ else
   GOGS_OS="linux"
 fi
 
-GO_VERSION=1.14.2
+GO_VERSION=1.16
 GOGS_VERSION=0.11.91
 SHFMT_VERSION=3.1.1
 
@@ -42,7 +42,7 @@ install_gofish() {
 
 install_gvm() {
 	curl -fsSL https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer | bash
-	echo "gvm install go1.4.1"
+	echo "gvm install go 1.16"
 }
 
 install_go_from_apt() {
@@ -52,8 +52,23 @@ install_go_from_apt() {
 }
 
 install_go() {
+	echo "$HOME/gopath is the default workspace directory."
+	echo "/usr/lib/go is the directory where Go will be installed to."
 	wget https://dl.google.com/go/go$GO_VERSION.$OS-$ARCH.tar.gz
-	sudo tar -C /usr/lib -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
+	sudo tar -C /usr/local -xzf go$GO_VERSION.$OS-$ARCH.tar.gz
+	type go
+	setup_go_env
+}
+
+install_go_one_key() {
+	echo "$HOME/.go is the directory where Go will be installed to."
+	echo "$HOME/go is the default workspace directory."
+	wget -q -O - https://git.io/vQhTU | bash
+	type go
+}
+
+remove_go_one_key() {
+	wget -q -O - https://git.io/vQhTU | bash -s -- --remove
 	type go
 }
 
@@ -66,11 +81,11 @@ install_gogs() {
 }
 
 setup_go_env() {
-	if [ ! -d "$HOME/gopath/github.com" ]; then
-		mkdir -p "$HOME/gopath/github.com"
+	if [ ! -d "$HOME/gopath/src/github.com" ]; then
+		mkdir -p "$HOME/gopath/src/github.com"
 	fi
 	export GO111MODULE="on"
-	export GOROOT=/usr/lib/go
+	export GOROOT=/usr/local/go
 	export GOPATH=$HOME/gopath
 	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 	echo "You can also enalbe go environment with ggg!!!"
@@ -81,14 +96,12 @@ setup_go_emacs() {
   go get -u github.com/motemen/gore/cmd/gore
   go get -u github.com/stamblerre/gocode
 	go get -u golang.org/x/tools/...
-  go get -u golang.org/x/tools/cmd/godoc
-  go get -u golang.org/x/tools/cmd/goimports
-  go get -u golang.org/x/tools/cmd/gorename
-  go get -u golang.org/x/tools/cmd/guru
-	go get -u golang.org/x/tools/cmd/golsp/...
-  go get -u github.com/cweill/gotests/...
-  go get -u github.com/fatih/gomodifytags
-  go get -u mvdan.cc/sh/v3/cmd/...
+	go get github.com/spf13/cobra/cobra
+	go get golang.org/x/tools/cmd/gopls
+	go get github.com/go-delve/delve/cmd/dlv
+  go get golang.org/x/tools/cmd/goimports
+  go get golang.org/x/tools/cmd/gorename
+  go get golang.org/x/tools/cmd/guru
 }
 
 option=$(dialog --title " Go一键安装自动脚本" \
@@ -96,9 +109,10 @@ option=$(dialog --title " Go一键安装自动脚本" \
 	"1" "Install shfmt" 0 \
 	"2" "Install gofish package manager" 0 \
 	"3" "Install go from official site" 0 \
-	"4" "Install go tools" 0 \
-	"5" "Install gogs" 0 \
-	"6" "Setup go environment" 0 \
+	"4" "Install go from one key" 0 \
+	"5" "Install go tools" 0 \
+	"6" "Install gogs" 0 \
+	"7" "Setup go environment" 0 \
 	3>&1 1>&2 2>&3 3>&1)
 case "$option" in
 1)
@@ -111,12 +125,15 @@ case "$option" in
 	install_go
 	;;
 4)
-	setup_go_emacs
+	install_go_one_key
 	;;
 5)
-	setup_gogs
+	setup_go_emacs
 	;;
 6)
+	setup_gogs
+	;;
+7)
 	setup_go_env
 	;;
 *)

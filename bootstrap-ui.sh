@@ -33,33 +33,8 @@ function install_bash(){
   bash EnvSetup/bash/bin/install-bash.sh
 
   cd
-  cp .bashrc .bashrc.default
-  cat > ~/.bashrc <<EOF
-export OSH=~/.oh-my-bash
-OSH_THEME="mairan"
-CASE_SENSITIVE="true"
-ENABLE_CORRECTION="true"
-OSH_CUSTOM=~/EnvSetup/bash/custom
-completions=(
-  git
-  composer
-  ssh
-  system
-)
-aliases=(
-  git
-  general
-  vim
-)
-plugins=(
-  git
-  vim
-  fzf
-  bashmarks
-)
-source \$OSH/oh-my-bash.sh
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-EOF
+  mv .bashrc .bashrc.default
+  cat EnvSetup/bash/custom/bashrc.default > ~/.bashrc 
 }
 
 function install_tmux(){

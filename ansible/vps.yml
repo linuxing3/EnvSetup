@@ -3,16 +3,5 @@
 
 - hosts: vps
   become: yes
-  become_user: root
-  tasks:
-    - name: restart xray
-      shell: systemctl start xray
-
-    - name: restart caddy
-      shell: systemctl restart caddy
-
-#- hosts: root.vps
-#  become: yes
-#  roles:
-#    - vps
-#    - common
+  roles:
+    - vps
