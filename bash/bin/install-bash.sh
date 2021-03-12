@@ -6,6 +6,9 @@ echo "==========================================================="
 cd
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
+cp .bashrc .bashrc.backup
+cp EnvSetup/bash/bashrc.default .bashrc
+
 PS3='Please enter your choice: '
 select opt in "Install" "Skip"; do
     case $opt in
