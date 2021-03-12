@@ -1,9 +1,25 @@
-dongxishijie.xyz:80 {
-	root /var/www/html
-	gzip
-	browse
-	proxy /bt2009 localhost:2009{
-		     websocket
-		     header_upstream -Origin
-	     }
+:15034 {
+    root * /usr/share/caddy
+    file_server
+}
+
+xray.xunqinji.top:80 {
+    redir https://xray.xunqinji.top{uri}
+    #reverse_proxy /* 127.0.0.1:1443
+}
+
+xunqinji.top:80 {
+    redir https://xray.xunqinji.top{uri}
+}
+
+xunqinji.xyz:80 {
+    redir https://xray.xunqinji.top{uri}
+}
+
+gce.hk.xunqinji.xyz:80 {
+    redir https://xray.xunqinji.top{uri}
+}
+
+nps.xunqinji.top:80 {
+  reverse_proxy /* 127.0.0.1:8080
 }
