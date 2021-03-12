@@ -147,9 +147,20 @@ server {
     
 }
 EOF
+green "======================="
+blue "Changing xray port from 443 to 10115"
+green "======================="
+sudo sed -i "s/443/10115" /usr/local/etc/xray/config.json
+green "======================="
+blue "Setup sample web site for you"
+green "======================="
 setup_sample
 green "======================="
-blue "Done Setting nginx with trojan!"
+blue "Done Setting nginx with trojan and xray!"
+blue "Please run:"
+blue "systemctl restart nginx"
+blue "systemctl restart xray"
+blue "systemctl restart caddy"
 green "======================="
 }
 
