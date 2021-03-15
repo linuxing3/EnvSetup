@@ -17,12 +17,13 @@ fi
 $cmd has -t $session
 
 if [ $? != 0 ]; then
-  $cmd new -d -n dashboard -t $session "bash"
-  $cmd neww -n web -t $session "elinks"
-  $cmd neww -n ranger -t $session "ranger ~/EnvSetup"
-  $cmd neww -n bash-vertical -t $session "bash"
-  $cmd splitw -h -p 50 -t $session "bash"
-  $cmd neww -n monitor -t $session "top"
+  $cmd new -d -n dashboard -s $session "bash"
+  $cmd neww -n editor -t $session "nvim"
+  $cmd neww -n bash -t $session "bash"
+  $cmd neww -n bash -t $session "bash"
+  $cmd neww -n explorer -t $session "ranger"
+  $cmd neww -n docker -t $session "docker ps"
+  $cmd neww -n monitor -t $session "bashtop"
   $cmd selectw -t $session:1
 fi
 
