@@ -11,16 +11,12 @@ fi
 $cmd has -t $session 2> /dev/null
 
 if [ $? -ne 0 ]; then
-    $cmd new -d -n dashboard -s $session "Dashboard"
-    $cmd neww -n bash -t $session "bash-1"
-    $cmd neww -n bash -t $session "bash-2"
-    $cmd neww -n vim -t $session "vim"
-    $cmd neww -n web -t $session "elinks"
-    $cmd neww -n bash -t $session "cowsay -T -W Welcome"
-    $cmd splitw -v -p 20 -t $session "bash"
-    $cmd neww -n bash -t $session "cowsay -T -W Welcome"
-    $cmd splitw -h -p 50 -t $session "bash"
-    $cmd neww -n system -t $session "top"
+    $cmd new -d -n dashboard -s $session "bashtop"
+    $cmd neww -n bash -t $session "bash"
+    $cmd neww -n bash -t $session "bash"
+    $cmd neww -n vim -t $session "nvim"
+    $cmd neww -n bash -t $session "ranger"
+    $cmd neww -n system -t $session "docker ps"
 fi
 
 $cmd att -t $session
