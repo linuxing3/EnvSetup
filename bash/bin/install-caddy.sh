@@ -78,17 +78,35 @@ install_caddy2() {
   sudo apt install caddy
   caddy version
   which caddy
-  touch /etc/caddy/Caddyfile2
+  mv /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak
+  touch /etc/caddy/Caddyfile
 
   sudo echo "
-xunqinji.top:80 {
-	templates
-	encode zstd gzip
-  file_server browse
-  root * /var/www/html
-  reverse_proxy /ray localhost:36722 
+:15034 {
+    root * /usr/share/caddy
+    file_server
 }
-" >> /etc/caddy/Caddyfile2
+
+xray.xunqinji.top:80 {
+    redir https://xray.xunqinji.top{uri}
+}
+
+xunqinji.top:80 {
+    redir https://xray.xunqinji.top{uri}
+}
+
+xunqinji.xyz:80 {
+    redir https://xray.xunqinji.top{uri}
+}
+
+gce.hk.xunqinji.xyz:80 {
+    redir https://xray.xunqinji.top{uri}
+}
+
+nps.xunqinji.top:80 {
+  reverse_proxy /* 127.0.0.1:8080
+}
+" >> /etc/caddy/Caddyfile
 
   echo "You are installing caddy 2, the user and group caddy will be created for you"
   echo "If not, your can do it on your own"
@@ -103,8 +121,8 @@ xunqinji.top:80 {
     caddy
   "
   echo "Usage:"
-  echo "/usr/bin/caddy run --environ --adapter caddyfile --config /etc/caddy/Caddyfile2"
-  echo "/usr/bin/caddy reload --environ --adapter caddyfile --config /etc/caddy/Caddyfile2"
+  echo "/usr/bin/caddy run --environ --adapter caddyfile --config /etc/caddy/Caddyfile"
+  echo "/usr/bin/caddy reload --environ --adapter caddyfile --config /etc/caddy/Caddyfile"
   echo "Enjoy!"
 }
 
