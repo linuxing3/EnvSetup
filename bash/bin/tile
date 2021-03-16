@@ -17,12 +17,11 @@ fi
 $cmd has -t $session
 
 if [ $? != 0 ]; then
-  $cmd new -d -n dashboard -s $session "bash"
+  $cmd new -d -n start -s $session "bash"
   $cmd neww -n editor -t $session "nvim"
   $cmd neww -n bash -t $session "bash"
   $cmd neww -n bash -t $session "bash"
   $cmd neww -n explorer -t $session "ranger"
-  $cmd neww -n docker -t $session "docker ps"
   $cmd neww -n monitor -t $session "bashtop"
   $cmd selectw -t $session:1
 fi
