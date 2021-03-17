@@ -23,16 +23,17 @@ fi
 #
 alias c='clear'
 # 
-alias ll='ls -la'
+# alias ll='ls -la'
 # 
 alias l.='ls -d .*'
+
 if [ "$(command -v exa)" ]; then
-    unalias -m 'll'
-    unalias -m 'l'
-    unalias -m 'la'
-    unalias -m 'ls'
-    alias ls='exa -G  --color auto --icons -a -s type'
-    alias ll='exa -l --color always --icons -a -s type'
+    unalias 'll'
+    unalias 'l'
+    unalias 'la'
+    unalias 'ls'
+    alias ls='exa -G  --color auto  -a -s type'
+    alias ll='exa -l --color always -a -s type'
 fi
 
 if [ "$(command -v bat)" ]; then
