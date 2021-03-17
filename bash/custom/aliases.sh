@@ -44,10 +44,6 @@ if [ "$(command -v fd)" ]; then
   alias find='fd'
 fi
 
-if [ "$(command -v rg)" ]; then
-  alias grep='rg'
-fi
-
 if [ "$(command -v ranger)" ]; then
   alias finder='ranger'
   alias explorer='ranger'
