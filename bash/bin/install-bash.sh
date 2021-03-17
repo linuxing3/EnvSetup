@@ -32,6 +32,7 @@ select opt in "Install" "Extra" "bash-it" "Skip"; do
           "ncdu" "Disk usage" 0 \
           "htop" "Process Monitor" 0 \
           "fd-find" "Better finder" 0 \
+          "fzf" "Better search" 0 \
           "fd" "Other Finder" 0 \
           "exa" "Modern ls" 0 \
           "rip-grep" "Better grep" 0 \

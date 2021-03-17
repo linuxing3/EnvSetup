@@ -35,6 +35,23 @@ if [ "$(command -v exa)" ]; then
     alias ll='exa -l --color always --icons -a -s type'
 fi
 
+if [ "$(command -v bat)" ]; then
+  alias cat='bat'
+fi
+
+if [ "$(command -v fd)" ]; then
+  alias find='fd'
+fi
+
+if [ "$(command -v rg)" ]; then
+  alias grep='rg'
+fi
+
+if [ "$(command -v ranger)" ]; then
+  alias finder='ranger'
+  alias explorer='ranger'
+fi
+
 ## a quick way to get out of current directory ##
 alias cd..='cd ..'
 alias ..='cd ..'
@@ -69,12 +86,13 @@ alias nowdate='date +"%d-%m-%Y"'
 #
 ##10: Set vim as default
 #
-alias vi=vim
-alias svi='sudo vi'
+alias edit=nvim
+alias vi=nvim
+alias svi='sudo nvim'
 alias vis='vim "+set si"'
 alias fv='vim `fzf`'
 alias fn='nvim `fzf`'
-alias naf='nano `fzf`'
+alias fa='nano `fzf`'
 #
 ##11: Control output of networking tool called ping
 #
