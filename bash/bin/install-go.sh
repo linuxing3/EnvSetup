@@ -95,17 +95,18 @@ setup_go_env() {
 	echo "You can also enalbe go environment with ggg!!!"
 }
 
-setup_go_emacs() {
+install_go_tools() {
 	echo "Installing tools for doom emacs and vscode"
   go get -u github.com/motemen/gore/cmd/gore
   go get -u github.com/stamblerre/gocode
 	go get -u golang.org/x/tools/...
-	go get github.com/spf13/cobra/cobra
-	go get golang.org/x/tools/cmd/gopls
-	go get github.com/go-delve/delve/cmd/dlv
-  go get golang.org/x/tools/cmd/goimports
-  go get golang.org/x/tools/cmd/gorename
-  go get golang.org/x/tools/cmd/guru
+	go install github.com/spf13/cobra/cobra
+  go install github.com/anmitsu/goful@latest
+	go install golang.org/x/tools/cmd/gopls
+	go install github.com/go-delve/delve/cmd/dlv
+  go install golang.org/x/tools/cmd/goimports
+  go install golang.org/x/tools/cmd/gorename
+  go install golang.org/x/tools/cmd/guru
 }
 
 option=$(dialog --title " Go一键安装自动脚本" \
@@ -116,7 +117,8 @@ option=$(dialog --title " Go一键安装自动脚本" \
 	"4" "Install go from one key" 0 \
 	"5" "Install go tools" 0 \
 	"6" "Install gogs" 0 \
-	"7" "Setup go environment" 0 \
+	"7" "Install gvm" 0 \
+	"8" "Setup go environment" 0 \
 	3>&1 1>&2 2>&3 3>&1)
 case "$option" in
 1)
@@ -132,12 +134,15 @@ case "$option" in
 	install_go_one_key
 	;;
 5)
-	setup_go_emacs
+	install_go_tools
 	;;
 6)
-	setup_gogs
+  install_gogs
 	;;
 7)
+	install_gvm
+	;;
+8)
 	setup_go_env
 	;;
 *)

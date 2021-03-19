@@ -22,6 +22,7 @@ if [ $? != 0 ]; then
   $cmd neww -n bash -t $session "bash"
   $cmd neww -n bash -t $session "bash"
   $cmd neww -n explorer -t $session "ranger"
+  $cmd neww -n explorer -t $session "goful"
   $cmd neww -n monitor -t $session "bashtop"
   $cmd selectw -t $session:1
 fi
