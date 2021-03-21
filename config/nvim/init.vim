@@ -2,6 +2,8 @@
 " Authors: linuxing3
 " Description: A minimal, but feature rich, example neovim init file.
 
+let g:coc_disable_startup_warning = 1
+
 " ===================================================================
 " Plug Settings
 " ===================================================================
@@ -29,7 +31,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 Plug 'junegunn/fzf.vim'
 Plug 'francoiscabrol/ranger.vim'
+<<<<<<< HEAD
+=======
 Plug 'rbgrouleff/bclose.vim'
+>>>>>>> fd2e860bc7e9c0a0c7430c94b8151b090001f2fd
 
 " editor
 Plug 'wincent/ferret'
@@ -37,7 +42,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pechorin/any-jump.vim'
+" Plug 'pechorin/any-jump.vim'
 Plug 'RRethy/vim-illuminate'
 
 " tools

@@ -101,14 +101,19 @@ install_go_tools() {
   go get -u github.com/stamblerre/gocode
 	go get -u golang.org/x/tools/...
 	go install github.com/spf13/cobra/cobra
-  go install github.com/anmitsu/goful@latest
 	go install golang.org/x/tools/cmd/gopls
 	go install github.com/go-delve/delve/cmd/dlv
   go install golang.org/x/tools/cmd/goimports
   go install golang.org/x/tools/cmd/gorename
   go install golang.org/x/tools/cmd/guru
+  go install github.com/ChimeraCoder/gojson/gojson
 }
 
+install_extra_tools() {
+  echo "docker run -i --rm ghcr.io/tomwright/dasel:latest"
+  curl -s https://api.github.com/repos/tomwright/dasel/releases/latest | grep browser_download_url | grep linux_amd64 | cut -d '"' -f 4 | wget -qi - && mv dasel_linux_amd64 dasel && chmod +x dasel
+  mv ./dasel /usr/local/bin/dasel
+}
 option=$(dialog --title " Go一键安装自动脚本" \
 	--checklist "请输入:" 20 70 5 \
 	"1" "Install shfmt" 0 \

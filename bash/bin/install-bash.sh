@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+version=$(dpkg --print-architecture)
+
 echo "==========================================================="
 echo "installing oh-my-bash"
 echo "==========================================================="
@@ -8,6 +10,42 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master
 
 cp .bashrc .bashrc.backup
 cp EnvSetup/bash/bashrc.default .bashrc
+
+install_others() {
+  echo "==========================================================="
+  echo "others: like prettyping"
+  echo "==========================================================="
+  echo "wget https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping"
+  echo "mv prettyping envsetup/bash/bin/"
+  echo "chmod +x envsetup/bash/bin/prettyping"
+
+  echo "==========================================================="
+  echo "others: like taskbook"
+  echo "==========================================================="
+  echo "npm install --global taskbook"
+}
+
+install_bat() {
+  echo "==========================================================="
+  echo "Install bat, Another cat"
+  echo "==========================================================="
+  wget https://github.com/sharkdp/bat/releases/download/v0.13.0/bat_0.13.0_${version}.deb
+  sudo dpkg -i bat_0.13.0_${version}.deb
+  rm bat_0.13.0_${version}*.deb
+}
+
+install_wtf() {
+  echo "==========================================================="
+  echo "Install wtf, personal information dashboard"
+  echo "==========================================================="
+  file=wtf_0.35.0_linux_${version}
+  wget https://github.com/wtfutil/wtf/releases/download/v0.35.0/${file}.tar.gz
+  tar -xvf ${file}.tar.gz
+  chmod +x ${file}/wtfutil
+  mv ${file}/wtfutil /usr/local/bin/
+  rm -rf $file
+  rm $file.tar.gz
+}
 
 PS3='Please enter your choice: '
 select opt in "Install" "Extra" "bash-it" "Skip"; do
@@ -34,7 +72,8 @@ select opt in "Install" "Extra" "bash-it" "Skip"; do
           "fd-find" "Better finder" 0 \
           "fzf" "Better search" 0 \
           "fd" "Other Finder" 0 \
-          "exa" "Modern ls" 0 \
+          "exa" "Better ls " 0 \
+          "jed" "Another editor " 0 \
           "rip-grep" "Better grep" 0 \
           3>&1 1>&2 2>&3 3>&1)
         for tool in $tools
@@ -45,29 +84,17 @@ select opt in "Install" "Extra" "bash-it" "Skip"; do
         ;;
 
         Extra)
-        echo "==========================================================="
-        echo "Install bat, Another cat"
-        echo "==========================================================="
         cd
-        version=$(dpkg --print-architecture)
-        wget https://github.com/sharkdp/bat/releases/download/v0.13.0/bat_0.13.0_${version}.deb
-        sudo dpkg -i bat_0.13.0_${version}.deb
-        rm bat_0.13.0_${version}*.deb
+
+        go install github.com/linuxing3/goful@latest
+
+        install_bat
+
+        install_wtf
 
         echo "Install startship, cross shell prompts"
         curl -fsSL https://starship.rs/install.sh | bash
 
-        echo "==========================================================="
-        echo "Others: like prettyping"
-        echo "==========================================================="
-        echo "wget https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping"
-        echo "mv prettyping EnvSetup/bash/bin/"
-        echo "chmod +x EnvSetup/bash/bin/prettyping"
-
-        echo "==========================================================="
-        echo "Others: like taskbook"
-        echo "==========================================================="
-        echo "npm install --global taskbook"
         cd
         break
         ;;

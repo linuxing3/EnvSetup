@@ -4,9 +4,13 @@ echo "==========================================================="
 
 cd
 
+echo "installing fnm"
+curl -fsSL https://fnm.vercel.app/install | bash
+
 echo "installing nvm"
 # install 10/11 is not availabe in stretch
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
 # curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 # sudo apt-get udpate
 # sudo apt-get install -y nodejs
