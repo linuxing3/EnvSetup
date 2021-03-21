@@ -81,6 +81,7 @@ while true; do
   read -r -p "    [1] dvm [2] official [3] Packages :  " opt
   case $opt in
     1)
+      install_dvm
       break
       ;;
     2)
