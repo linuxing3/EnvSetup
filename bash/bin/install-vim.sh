@@ -39,6 +39,7 @@ option=$(dialog --title " Spacevim 一键安装自动脚本" \
   "1" "SpaceVim, Full dark side editor" 0 \
   "2" "space-vim, yet another dist, but ligther" 0 \
   "3" "fisa-vim, with python support" 0 \
+  "4" "micro, go editor" 0 \
   3>&1 1>&2 2>&3 3>&1)
 
 cd
@@ -55,6 +56,10 @@ case "$option" in
   ;;
   3)
   curl -fsSL https://raw.githubusercontent.com/fisadev/fisa-vim-config/v12.0.1/config.vim  -o ~/.vimrc
+  ;;
+  3)
+  curl https://getmic.ro | bash
+  mv micro /usr/local/bin/
   ;;
   *)
   echo "Skipped!"
