@@ -26,6 +26,8 @@ select opt in "Install" "Skip"; do
           "htop" "Process Monitor" 0 \
           "fd-find" "Better finder" 0 \
           "fd" "Other Finder" 0 \
+          "exa" "Better ls " 0 \
+          "jed" "Another editor " 0 \
           "rip-grep" "Better grep" 0 \
           3>&1 1>&2 2>&3 3>&1)
         for tool in $tools
