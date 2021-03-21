@@ -10,10 +10,10 @@ PATH=/c/Users/Administrator/EnvSetup/bash/bin:/lib/mingw/mingw64/bin:$PATH
 
 echo "Setting global environment variables"
 export POST_PASSWORD=20090909
-export POST_HOST=homepi.local
+export POST_HOST=127.0.0.1
 export POST_PORT=5432
 export POST_DATABASE=vpsman
-export POST_USERNAME=pi
+export POST_USERNAME=gospider
 export DATABASE_URL="postgresql://$POST_USERNAME:$POST_PASSWORD@$POST_HOST:$POST_PORT/$POST_DATABASE?schema=public"
 
 while true; do

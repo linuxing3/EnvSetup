@@ -34,6 +34,10 @@ install_xray() {
     green "=========================================="
     sudo sed -i "s/443/10115" /usr/local/etc/xray/config.json
 
+    echo "You may update your certs"
+    installCertCommand = "/root/.acme.sh/acme.sh  --installcert  -d domain_name  --certpath /usr/local/etc/xray/ssl/xray_ssl.crt --keypath /usr/local/etc/xray/ssl/xray_ssl.key  --capath  /usr/local/etc/xray/ssl/xray_ssl.crt  --reloadcmd  \"systemctl restart xray\""
+    echo installCertCommand
+
     green "安装完毕！"
 }
 
@@ -195,6 +199,10 @@ install_cert() {
             --key-file $cert_path/$your_domain.key \
             --cert-file $cert_path/$your_domain.cer \
             --fullchain-file $cert_path/fullchain.cer
+
+        echo "xray 证书安装在/usr/local/etc/xray/ssl"
+        installCertCommand = "/root/.acme.sh/acme.sh  --installcert  -d $your_domain  --certpath /usr/local/etc/xray/ssl/xray_ssl.crt --keypath /usr/local/etc/xray/ssl/xray_ssl.key  --capath  /usr/local/etc/xray/ssl/xray_ssl.crt" 
+        echo installCertCommand
         
         if test -s $cert_path/$your_domain.cer; then
         echo "申请证书成功"

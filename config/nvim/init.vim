@@ -31,6 +31,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 Plug 'junegunn/fzf.vim'
 Plug 'francoiscabrol/ranger.vim'
+<<<<<<< HEAD
+=======
+Plug 'rbgrouleff/bclose.vim'
+>>>>>>> fd2e860bc7e9c0a0c7430c94b8151b090001f2fd
 
 " editor
 Plug 'wincent/ferret'
@@ -117,6 +121,12 @@ nmap <F8> :Git pull<CR>
 nmap <F9> :w! ~\OneDrive\config\vim\init.vim<CR>
 nmap <F11> <Plug>(coc-importantation)
 nmap <F12> <Plug>(coc-definition)
+
+" =======================================================
+" Ranger instead of NERDTree only for Unix
+" =======================================================
+let g:NERDTreeHijackNetrw = 0 // add this line if you use NERDTree
+let g:ranger_replace_netrw = 1 // open ranger when vim open a directory
 
 " =======================================================
 " which keys
