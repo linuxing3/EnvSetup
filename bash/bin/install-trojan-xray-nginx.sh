@@ -193,21 +193,28 @@ install_cert() {
         echo "请输入安装目录"
         echo "======================="
         read cert_path
-        echo "证书安装在~/acme.sh/$cert_path/"
+        echo "原始证书安装在~/acme.sh/$cert_path/"
         sudo mkdir -p $cert_path
-        ~/.acme.sh/acme.sh  --installcert -d  $your_domain   \
+        ~/.acme.sh/acme.sh  --installcert -d  $your_domain \
             --key-file $cert_path/$your_domain.key \
             --cert-file $cert_path/$your_domain.cer \
             --fullchain-file $cert_path/fullchain.cer
 
-        echo "xray 证书安装在/usr/local/etc/xray/ssl"
-        installCertCommand = "/root/.acme.sh/acme.sh  --installcert  -d $your_domain  --certpath /usr/local/etc/xray/ssl/xray_ssl.crt --keypath /usr/local/etc/xray/ssl/xray_ssl.key  --capath  /usr/local/etc/xray/ssl/xray_ssl.crt" 
-        echo installCertCommand
+		xray_ssl_path=/usr/local/etc/xray/ssl
+		if [ -d $xray_ssl_path ]; then
+ 	       echo "xray 证书安装在$xray_ssl_path"
+ 	       mv $xray_ssl_path/xray_ssl.crt $xray_ssl_path/xray_ssl.crt.old
+ 	       mv $xray_ssl_path/xray_ssl.key $xray_ssl_pash/xray_ssl.key.old
+ 	       ~/.acme.sh/acme.sh  --installcert -d $your_domain \
+	 	       	--certpath $xray_ssl_path/xray_ssl.crt \
+	 	       	--keypath $xray_ssl_path/xray_ssl.key  \
+	 	       	--capath  $xray_ssl_path/xray_ssl.crt
+        fi
         
         if test -s $cert_path/$your_domain.cer; then
-        echo "申请证书成功"
+        	echo "申请证书成功"
         else
-        echo "申请证书失败"
+        	echo "申请证书失败"
         fi
     else
         echo "================================"

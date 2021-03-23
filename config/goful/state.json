@@ -1,0 +1,50 @@
+{
+  "workspaces": [
+    {
+      "directories": [
+        {
+          "path": "C:\\Users\\Administrator\\.goful",
+          "sort_kind": "Name[^]"
+        },
+        {
+          "path": "C:\\Users\\Administrator\\.goful",
+          "sort_kind": "Name[^]"
+        }
+      ],
+      "layout": 0,
+      "title": "1",
+      "focus": 1
+    },
+    {
+      "directories": [
+        {
+          "path": "C:\\Users\\Administrator\\EnvSetup\\bash\\custom",
+          "sort_kind": "Name[^]"
+        },
+        {
+          "path": "C:\\Users\\Administrator\\EnvSetup\\bash\\custom_win",
+          "sort_kind": "Name[^]"
+        }
+      ],
+      "layout": 0,
+      "title": "2",
+      "focus": 1
+    },
+    {
+      "directories": [
+        {
+          "path": "C:\\Users\\Administrator\\.doom.d",
+          "sort_kind": "Name[^]"
+        },
+        {
+          "path": "C:\\Users\\Administrator\\.cargo",
+          "sort_kind": "Name[^]"
+        }
+      ],
+      "layout": 0,
+      "title": "3",
+      "focus": 0
+    }
+  ],
+  "current": 0
+}

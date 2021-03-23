@@ -5,3 +5,7 @@
 .venv
 ./tags
 tags
+*.log
+./build/
+./release/
+./target/
