@@ -1,0 +1,7 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "CtrlUnderscore": "lua:comment.comment",
+    "F4": "command-edit:goful ",
+    "F6": "command-edit:gorename ",
+    "F7": "command-edit:vsplit "
+}
