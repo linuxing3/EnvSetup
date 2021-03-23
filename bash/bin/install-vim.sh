@@ -60,6 +60,16 @@ case "$option" in
   3)
   curl https://getmic.ro | bash
   mv micro /usr/local/bin/
+  micro -plugin install comment
+  micro -plugin install editorconfig
+  micro -plugin install go
+  micro -plugin install fzf
+  micro -plugin install filemanager
+  micro -plugin install scratch
+  micro -plugin install fmt
+  micro -plugin install snippets
+  micro -plugin install nordcolors
+  micro -plugin install bookmark
   ;;
   *)
   echo "Skipped!"
