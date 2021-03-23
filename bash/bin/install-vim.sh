@@ -57,7 +57,7 @@ case "$option" in
   3)
   curl -fsSL https://raw.githubusercontent.com/fisadev/fisa-vim-config/v12.0.1/config.vim  -o ~/.vimrc
   ;;
-  3)
+  4)
   curl https://getmic.ro | bash
   mv micro /usr/local/bin/
   ;;
