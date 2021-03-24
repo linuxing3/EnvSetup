@@ -128,6 +128,7 @@ check_port() {
         exit 1
     fi
 }
+
 install_nginx() {
     green "$(date +"%Y-%m-%d %H:%M:%S") ==== 安装nginx"
     $systemPackage install -y nginx
@@ -541,8 +542,10 @@ EOF
 
 check_domain() {
     $systemPackage install -y wget curl unzip
+
     blue "Eenter your domain:"
     read your_domain
+
     real_addr=$(ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}')
     local_addr=$(curl ipv4.icanhazip.com)
     if [ $real_addr == $local_addr ]; then
@@ -586,8 +589,6 @@ remove_xray() {
 }
 
 install_trojan() {
-    green "使用Jrohy大神的trojan管理程序进行安装"
-    red "https://raw.githubusercontent.com/Jrohy/trojan/master/install.sh"
     green "=========================================="
     red "清除原有安装"
     green "=========================================="
@@ -603,31 +604,47 @@ install_trojan() {
         rm /usr/local/bin/trojan
     fi
 
-    red "建议和xray使用同样的证书和秘钥"
-    red "/usr/local/etc/xray/ssl/fullchain.cer"
-    red "/usr/local/etc/xray/ssl/private.key"
-
+    green "=========================================="
+    red "建议自己安装证书和秘钥"
+    red "输入域名,建议以pro开头"
+    green "=========================================="
+    read $your_domain
+    trojan_ssl_path=/usr/local/etc/trojan/ssl
+    mkdir -p $trojan_ssl_path
+    chmod -R 777 $trojan_ssl_path
+    ~/.acme.sh/acme.sh --issue -d $your_domain --standalone
+    ~/.acme.sh/acme.sh --installcert -d $your_domain \
+        --key-file $trojan_ssl_path/private.key \
+        --fullchain-file $trojan_ssl_path/fullchain.cer
+        
+    if test -s $trojan_ssl_path/fullchain.cer; then
+        green "申请证书成功, 地址在"
+        green $trojan_ssl_path/private.key
+        green $trojan_ssl_path/fullchain.cer
+    else
+        echo "申请证书失败, 你可以选择程序的证书安装功能"
+    fi    
+    
     sleep 3
-    red "启动安装"
+    green "=========================================="
+    red "启动一键安装脚本"
+    green "使用Jrohy大神的trojan管理程序进行安装, 可以同时使用终端和web端"
+    red "https://raw.githubusercontent.com/Jrohy/trojan/master/install.sh"
+    green "=========================================="
     source <(curl -sL https://git.io/trojan-install)
 
-    green "=========================================="
-    red "Changing trojan port to 10110"
-    green "=========================================="
+    red "进行自定义配置,以结合nginx的sni重写功能使用"
+    red "修改trojan端口为 10110"
 
     sudo sed -i "s/443/10110/g" /usr/local/etc/trojan/config.json
 
-    green "=========================================="
-    red "Changing trojan web port to 8889"
-    green "=========================================="
+    red "修改trojan网络端口为8889"
     sudo sed -i "s/web/web -p 8889/g" /etc/systemd/system/trojan-web.service
     sudo sed -i "s/80/8889/g" /usr/local/etc/trojan/config.json
 
-    green "=========================================="
-    red "Reloading daemon"
-    green "=========================================="
+    red "重新加载daemon..."
 
-    systemctl reload-daemon
+    systemctl daemon-reload
     systemctl stop trojan
     systemctl start trojan
     systemctl stop trojan-web
@@ -655,22 +672,20 @@ install_cert() {
     real_addr=$(ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}')
     local_addr=$(curl ipv4.icanhazip.com)
     if [ $real_addr == $local_addr ]; then
-        echo "开始签发证书"
+        echo "开始签发证书, 包括根域名和pro, xray等子域名"
         echo "原始证书安装在~/acme.sh/$your_domain"
         ~/.acme.sh/acme.sh --issue -d $your_domain --standalone
+        ~/.acme.sh/acme.sh --issue -d pro.$your_domain --standalone
+        ~/.acme.sh/acme.sh --issue -d xray.$your_domain --standalone
 
-        echo "======================="
-        echo "请输入安装目录"
-        echo "======================="
-        read cert_path
-        ~/.acme.sh/acme.sh --installcert -d $your_domain \
-	        --key-file $cert_path/$your_domain.key \
-	        --cert-file $cert_path/$your_domain.cer \
-	        --fullchain-file $cert_path/fullchain.cer \
-	        --ca-file $cert_path/ca.cer
-
-        if test -s $cert_path/$your_domain.cer; then
+        if test -s ~/.acme.sh/$your_domain/$your_domain.cer; then
             echo "申请证书成功"
+            echo "如果需要安装到指定位置,请运行以下命令"
+            echo "~/.acme.sh/acme.sh --installcert -d $your_domain "
+            echo " --key-file $cert_path/$your_domain.key "
+            echo " --cert-file $cert_path/$your_domain.cer "
+            echo " --fullchain-file $cert_path/fullchain.cer "
+            echo " --ca-file $cert_path/ca.cer"
         else
             echo "申请证书失败"
         fi
@@ -718,7 +733,7 @@ function start_menu() {
     5)
         check_release
         check_port
-        install trojan
+        install_trojan
         ;;
     6)
         setup_sample
