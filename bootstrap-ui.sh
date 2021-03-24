@@ -30,11 +30,11 @@ function install_bash(){
   blue "Installing oh-my-bash for you"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/install-bash.sh
+  bash ~/EnvSetup/bash/bin/install-bash.sh
 
   cd
   mv .bashrc .bashrc.default
-  cat EnvSetup/bash/custom/bashrc.default > ~/.bashrc 
+  cp ~/EnvSetup/bash/custom/bashrc.default  ~/.bashrc 
 }
 
 function install_tmux(){
@@ -43,6 +43,15 @@ function install_tmux(){
   green "======================="
   cd
   bash EnvSetup/bash/bin/install-tmux.sh
+  cd
+}
+
+function install_db(){
+  green "======================="
+  blue "Installing development databases for you"
+  green "======================="
+  cd
+  bash EnvSetup/bash/bin/install-db.sh
   cd
 }
 
@@ -55,7 +64,6 @@ function install_emacs(){
   cd
 }
 
-
 function install_python(){
   green "======================="
   blue "Installing python+pyenv+pipenv+ansible"
@@ -65,6 +73,44 @@ function install_python(){
   cd
 }
 
+function install_go(){
+  green "======================="
+  blue "Installing go"
+  green "======================="
+  cd
+  bash EnvSetup/bash/bin/install-go.sh
+  cd
+}
+
+function install_deno(){
+  green "======================="
+  blue "Installing deno"
+  green "======================="
+  cd
+  bash EnvSetup/bash/bin/install-deno.sh
+  cd
+}
+
+function install_docker(){
+  green "======================="
+  blue "Installing docker"
+  green "======================="
+  cd
+  bash EnvSetup/bash/bin/install-docker.sh
+  bash EnvSetup/bash/bin/install-docker-compose.sh
+  cd
+}
+
+
+
+function install_rust(){
+  green "======================="
+  blue "Installing rust"
+  green "======================="
+  cd
+  bash EnvSetup/bash/bin/install-rust.sh
+  cd
+}
 
 function install_nvm(){
   green "======================="
@@ -93,12 +139,12 @@ function install_trojan(){
   cd
 }
 
-function install_v2ray(){
+function install_xray(){
   green "======================="
-  blue "Installing v2ray"
+  blue "Installing xray trojan with nginx"
   green "======================="
   cd
-  bash EnvSetup/bash/bin/install-v2ray.sh
+  bash EnvSetup/bash/bin/install-xray-trojan-nginx.sh
   cd
 }
 
@@ -118,18 +164,27 @@ function config_app(){
   read -p "Input your usename:   " username 
   read -p "Input your password:   " password
   CONFIG_FILES="authinfo condarc esmtprc fbtermrc getmailrc msmtprc offlineimaprc procmail xinitrc"
+  CONFIG_DIRS="calcurse w3m goful"
 
   cd
+  mkdir -p .dotfiles
   for FILE in $CONFIG_FILES
   do
-      echo "Backup $FILE in .dotfiles for you"
-      mkdir -p .dotfiles
+      green "Backup $FILE in .dotfiles for you"
       mv -f ".$FILE" ".dotfiles/$FILE-$(date +%Y%m%d_%s)"
 
-      echo "Add new $FILE for you"
-      cp EnvSetup/config/$FILE ".$FILE"
+      green "Add new $FILE for you"
+      cp "EnvSetup/config/.$FILE" ".$FILE"
       sed -i "s/USERNAME/$username/g" ".$FILE"
       sed -i "s/PASSWORD/$password/g" ".$FILE"
+  done
+
+  for DIR in $CONFIG_DIRS
+  do
+      green "Backup $DIR in .dotfiles for you"
+      mv -f ".$FILE" ".dotfiles/$FILE-$(date +%Y%m%d_%s)"
+      green "Add new $DIR for you"
+      cp -r "EnvSetup/config/.$DIR" ".$DIR"
   done
   cd
 }
@@ -154,17 +209,18 @@ function config_locale(){
 
 start_menu(){
   clear
+  sleep 2
   option=$(dialog --title " Vps 一键安装自动脚本 2020-2-27 更新 " \
     --checklist "请输入:" 20 70 5 \
-    "vim" "Dark side editor" 0 \
     "bash" "Your shell" 0 \
+    "vim" "Dark side editor" 0 \
     "emacs" "Another zen editor" 0 \
     "tmux" "Multi screen" 0 \
     "python" "Fast programming language" 0 \
     "nvm" "nvm+npm" 0 \
     "caddy" "Caddy Web Server" 0 \
     "trojan" "Trojan proxy Server" 0 \
-    "v2ray" "V2ray proxy Server" 0 \
+    "xray" "xray proxy Server" 0 \
     "nps" "Nps server and client" 0 \
     "fonts" "Popular nerd fonts" 0 \
     "app" "Configure some command tools" 0 \
@@ -172,12 +228,13 @@ start_menu(){
     "locale" "Configure locale" 0 \
     3>&1 1>&2 2>&3 3>&1)
   green "Your choosed the ${option}"
+  sleep 2
   case "$option" in
-    vim)
-    install_vim
-    ;;
     bash)
     install_bash
+    ;;
+    vim)
+    install_vim
     ;;
     emacs)
     install_emacs

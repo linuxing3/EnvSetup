@@ -1,8 +1,0 @@
-# Basic settings
-[user]
-     name = linuxing3
-     email = linuxing3@qq.com
-[push]
-    default = matching
-[credential]
-	  helper=store

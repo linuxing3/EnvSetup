@@ -1,10 +1,23 @@
-trojan:
-  image: gists/trojan-go
-  container_name: trojan-go
-  ports:
-    - "443:443"
-  volumes:
-    - ./config.json:/etc/trojan-go/config.json
-    - ./your.crt:/any/path/your.crt                     # same as ssl path in config.json
-    - ./your.key:/any/path/your.key
-  restart: always
+version: 4
+
+services:
+    trojan:
+      image: gists/trojan-go
+      container_name: trojan-go
+      links:
+        - nginx
+      ports:
+        - "443:443"
+      volumes:
+        - ./config.json:/etc/trojan-go/config.json
+        - ./fullchain.cer:/fullchain.cer
+        - ./private.key:/private.key
+      restart: always   
+    nginx:
+      image: nginx
+      container_name: nginx
+      ports:
+        - "80:80"
+      volumes:
+        - ./nginx.json:/etc/nginx.json
+      restart: always

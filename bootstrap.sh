@@ -19,23 +19,23 @@ function bootstrap() {
 	blue "Installing vps for you"
 	green "======================="
 	cd
-	
+
 	sudo apt update -y
 	sudo apt install -y git curl wget tmux
-	
+
 	git clone https://github.com/linuxing3/EnvSetup
-	
+
 	bash EnvSetup/bash/bin/install-core-packages.sh
-	
+
 	bash EnvSetup/bash/bin/install-tmux.sh
 
 	bash EnvSetup/bash/bin/configure-locale.sh
 
 	curl -fsSL https://spacevim.org/install.sh | bash
-	
+
 	bash EnvSetup/bash/bin/install-bash.sh
 
-	cd 
+	cd
 	mv .bashrc .bashrc.bak
 	cp EnvSetup/bash/custom/bashrc.default .bashrc
 	source .bashrc

@@ -3,23 +3,18 @@
     file_server
 }
 
-xray.xunqinji.top:80 {
-    redir https://xray.xunqinji.top{uri}
-    #reverse_proxy /* 127.0.0.1:1443
-}
-
-xunqinji.top:80 {
-    redir https://xray.xunqinji.top{uri}
-}
-
 xunqinji.xyz:80 {
-    redir https://xray.xunqinji.top{uri}
+    redir https://xunqinji.xyz{uri}
 }
 
-gce.hk.xunqinji.xyz:80 {
-    redir https://xray.xunqinji.top{uri}
+gce.xunqinji.xyz:80 {
+  reverse_proxy /* 127.0.0.1:7700
 }
 
-nps.xunqinji.top:80 {
+nps.gce.xunqinji.xyz:80 {
   reverse_proxy /* 127.0.0.1:8080
+}
+
+pro.gce.xunqinji.xyz:80 {
+  reverse_proxy /* 127.0.0.1:8889
 }
