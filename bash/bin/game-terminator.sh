@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 PATH="/root/.deno/bin:/usr/sbin:/usr/bin:/usr/local/bin:/bin:/sbin"
-XIAORUI="ssh -p 11114 root@xunqinji.top"
-VPS1="ssh -p 22 root@xunqinji.top"
-VPS2="ssh -p 22 root@dongxishijie.xyz"
+XIAORUI="ssh -p 11114 root@xunqinji.xyz"
+VPS1="ssh -p 22 root@xunqinji.xyz"
+VPS2="ssh -p 22 root@vultr.xunqinji.xyz"
 NIRCMD="/mnt/c/npc/nircmd.exe" 
 SCRIPT1="/usr/local/bin/game-terminator.sh"
 
@@ -72,27 +72,27 @@ remote_control(){
     ;;
     8)
     $VPS1 systemctl start trojan
-    $VPS1 systemctl start v2ray
+    $VPS1 systemctl start xray
     $VPS1 systemctl status trojan
-    $VPS1 systemctl status v2ray
+    $VPS1 systemctl status xray
     ;;
     9)
     $VPS1 systemctl stop trojan
-    $VPS1 systemctl stop v2ray
+    $VPS1 systemctl stop xray
     $VPS1 systemctl status trojan
-    $VPS1 systemctl status v2ray
+    $VPS1 systemctl status xray
     ;;
     10)
     $VPS2 systemctl start trojan
-    $VPS2 systemctl start v2ray
+    $VPS2 systemctl start xray
     $VPS2 systemctl status trojan
-    $VPS2 systemctl status v2ray
+    $VPS2 systemctl status xray
     ;;
     11)
     $VPS2 systemctl stop trojan
-    $VPS2 systemctl stop v2ray
+    $VPS2 systemctl stop xray
     $VPS2 systemctl status trojan
-    $VPS2 systemctl status v2ray
+    $VPS2 systemctl status xray
     ;;
     12)
     $XIAORUI $NIRCMD infobox "Stopping games and videos" "[Daniel] :(" 

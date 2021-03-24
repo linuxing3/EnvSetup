@@ -607,6 +607,7 @@ install_trojan() {
     green "=========================================="
     red "建议自己安装证书和秘钥"
     red "输入域名,建议以pro开头"
+    red "比如pro.gce.xunqinji.xyz"
     green "=========================================="
     read $your_domain
     trojan_ssl_path=/usr/local/etc/trojan/ssl
@@ -673,6 +674,8 @@ install_cert() {
     local_addr=$(curl ipv4.icanhazip.com)
     if [ $real_addr == $local_addr ]; then
         echo "开始签发证书, 包括根域名和pro, xray等子域名"
+        echo "如果gce.xunqinji.xyz是主要域名"
+        echo "子域名可以包括pro.gce.xunqinji.xyz, xray.gce.xunqinji.xyz"
         echo "原始证书安装在~/acme.sh/$your_domain"
         ~/.acme.sh/acme.sh --issue -d $your_domain --standalone
         ~/.acme.sh/acme.sh --issue -d pro.$your_domain --standalone

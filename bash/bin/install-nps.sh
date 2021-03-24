@@ -34,12 +34,12 @@ install_nps() {
 	#web
 	sed -i 's/web_host=.*$/web_host=localhost/g' conf/nps.conf
 	sed -i 's/web_username=.*$/web_username=admin/g' conf/nps.conf
-	sed -i 's/web_password=.*$/web_password=mm123456/g' conf/nps.conf
+	sed -i 's/web_password=.*$/web_password=mm20090909/g' conf/nps.conf
 	sed -i 's/web_port=8090/web_port=8090/g' conf/nps.conf
 
 	echo "----------------------------------------------------------"
 	echo "Server Setting Examples"
-  sudo mkdir -p /etc/nps/conf
+    sudo mkdir -p /etc/nps/conf
 	sudo cp conf/*.* /etc/nps/conf/
 
 	sudo ./nps install
@@ -97,13 +97,13 @@ EOF
   else
     dir="/home/${user}"
   fi
-	echo "Uninstall npc is" 
+  echo "Uninstall existing npc" 
   sudo systemctl stop Npc
   sudo ./npc uninstall
 
   sudo ./npc install -config "${dir}/npc/conf/npc.conf"
   sudo systemctl enable Npc
-	echo "Testing npc is running"
+  echo "Testing npc is running"
   sudo systemctl stop Npc
   sudo systemctl start Npc
   sudo systemctl status Npc
