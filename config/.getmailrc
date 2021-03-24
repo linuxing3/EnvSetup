@@ -1,0 +1,11 @@
+[retriever]
+type = SimplePOP3SSLRetriever
+server = mail.mfa.gov.cn
+port = 995
+username = xing_wenju
+password = password
+
+[destination]
+type = Maildir
+path = /opt/xing/Mail/
+user = xing

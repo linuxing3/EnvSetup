@@ -1,0 +1,236 @@
+!==========================================================================
+! Solarized color theme - bright
+!==========================================================================
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+
+! Dark
+
+! # #define S_base03        #002b36
+! # #define S_base02        #073642
+! # #define S_base01        #586e75
+! # #define S_base00        #657b83
+! # #define S_base0         #839496
+! # #define S_base1         #93a1a1
+! # #define S_base2         #eee8d5
+! # #define S_base3         #fdf6e3
+
+
+! Light
+
+#define S_base03        #fdf6e3
+#define S_base02        #eee8d5
+#define S_base01        #93a1a1
+#define S_base00        #839496
+#define S_base0         #657b83
+#define S_base1         #586e75
+#define S_base2         #073642
+#define S_base3         #002b36
+
+
+!==========================================================================
+! URxvt theme
+!==========================================================================
+!! urxvt color set 1
+!URxvt.background:   white
+!URxvt.foreground:   black
+!URxvt.colorBD:red
+!URxvt.colorUL:blue
+!XRxvt.color0:                  S_base02
+!XRxvt.color1:                  S_red
+!XRxvt.color2:                  S_green
+!XRxvt.color3:                  S_yellow
+!XRxvt.color4:                  S_blue
+!XRxvt.color5:                  S_magenta
+!XRxvt.color6:                  S_cyan
+!XRxvt.color7:                  S_base2
+!XRxvt.color9:                  S_orange
+!XRxvt.color8:                  S_base03
+!XRxvt.color10:                 S_base01
+!XRxvt.color11:                 S_base00
+!XRxvt.color12:                 S_base0
+!XRxvt.color13:                 S_violet
+!XRxvt.color14:                 S_base1
+!XRxvt.color15:                 S_base3
+!URxvt.color0: #000000
+!URxvt.color1: #CC0000
+!URxvt.color2: #4E9A06
+!URxvt.color3: #C4A000
+!URxvt.color4: #3465A4
+!URxvt.color5: #75507B
+!URxvt.color6: #06989A
+!URxvt.color7: #D3D7CF
+!URxvt.color8: #555753
+!URxvt.color9: #EF2929
+!URxvt.color10: #8AE234
+!URxvt.color11: #FCE94F
+!URxvt.color12: #729FCF
+!URxvt.color13: #AD7FA8
+!URxvt.color18: #34E2E2
+!URxvt.color15: #EEEEEC
+
+! urxvt color set 2
+!URxvt . depth : 32
+! enable pseudo - transparency
+!URxvt.transparent : true
+! opacity
+!URxvt . shading : 15
+! background
+!URxvt.background : #000000
+!URxvt.foreground : #c0c0c0
+! black
+!URxvt.color0 : #000000
+!URxvt.color8 : #2C2C2C
+! red
+!URxvt.color1 : #C42B2B
+!URxvt.color9 : #FF2929
+! green
+!URxvt.color2 : #3BD93B
+!URxvt.color10 : #28FC28
+! yellow
+!URxvt.color3 : #E3E336
+!URxvt.color11 : #FFEA1E
+! blue
+!URxvt.color4 : #4747BB
+!URxvt.color12 : #2121DE
+! magenta
+!URxvt.color5 : #CB40CB
+!URxvt.color13 : #FF00FF
+! cyan
+!URxvt.color6 : #6FD2D2
+!URxvt.color14 : #00FFFF
+! white
+!URxvt.color7 : #C0C0C0
+!URxvt.color15 : #FFFFFF
+
+! urxvt color set 3
+URxvt.foreground:#ffffff
+URxvt.background:[90]#000000
+URxvt.colorBD:Gray95
+URxvt.colorUL:Green
+URxvt.color1:Red2
+URxvt.color4:RoyalBlue
+URxvt.color5:Magenta2
+URxvt.color8:Gray50
+URxvt.color10:Green2
+! scroll set 
+URxvt.scrollBar:false
+URxvt.scrollBar_right:false
+URxvt.scrollBar_floating:false
+URxvt.scrollstyle:plain
+!URxvt.scrollWithBuffer:false
+URxvt.saveLines:5000
+
+! font set
+Xft.dpi:96
+URxvt.font:xft:Monospace:size=12:antialias=true:style=Regular,xft:WenQuanYi Micro Hei Mono:size=12:antialias=true:style=Regular
+URxvt.boldFont:xft:Monospace:size=12:antialias=true:style=Bold, xft:WenQuanYi Micro Hei Mono:size=12:antialias=true:style=Bold
+
+!URxvt.letterSpace: 0
+
+! Input Method set
+URxvt.inputMethod:fcitx
+URxvt.imFont: Monospace
+URxvt.preeditType: Root
+
+! window geometry set
+URxvt.geometry:80x30
+URxvt.title:Rxvt-Unicode-linuxing3
+
+! bg transparent set
+URxvt.inheritPixmap: true
+URxvt.tintCddolor: white
+!URxvt.shading: 80
+
+! Tab set
+!URxvt.perl-ext-common: default,tabbed
+URxvt.perl-ext-common: default,tabbed
+URxvt.tabbed.tab-fg: 0
+URxvt.tabbed.tab-bg: 80
+URxvt.tabbed.tabbar-fg:120
+URxvt.tabbed.tabbar-bg:25
+URxvt.borderLess:False
+URxvt.cursorBlink:True
+
+!Rxvt.menu:/etc/X11/rxvt.menu
+!Rxvt.preeditType:Root
+!Rxvt.transparency:155
+!
+
+!==========================================================================
+! Xterm theme
+!==========================================================================
+
+solarizedBrightXTerm*background:              S_base03
+solarizedBrightXTerm*foreground:              S_violet
+solarizedBrightXTerm*fading:                  40
+solarizedBrightXTerm*fadeColor:               S_base03
+solarizedBrightXTerm*cursorColor:             S_green
+solarizedBrightXTerm*pointerColorBackground:  S_base01
+solarizedBrightXTerm*pointerColorForeground:  S_base1
+
+solarizedBrightXTerm*color0:                  S_base02
+solarizedBrightXTerm*color1:                  S_red
+solarizedBrightXTerm*color2:                  S_green
+solarizedBrightXTerm*color3:                  S_yellow
+solarizedBrightXTerm*color4:                  S_blue
+solarizedBrightXTerm*color5:                  S_magenta
+solarizedBrightXTerm*color6:                  S_cyan
+solarizedBrightXTerm*color7:                  S_base2
+solarizedBrightXTerm*color9:                  S_orange
+solarizedBrightXTerm*color8:                  S_base03
+solarizedBrightXTerm*color10:                 S_base01
+solarizedBrightXTerm*color11:                 S_base00
+solarizedBrightXTerm*color12:                 S_base0
+solarizedBrightXTerm*color13:                 S_violet
+solarizedBrightXTerm*color14:                 S_base1
+solarizedBrightXTerm*color15:                 S_base3
+
+
+XTerm*locale: true
+XTerm*utf8Title: true
+
+XTerm*foreground: #ffffff
+XTerm*background: #000000
+XTerm*color1: Red2
+XTerm*color4: RoyalBlue
+XTerm*color5: Magenta2
+XTerm*color8: Gray50
+XTerm*color10: Green2
+
+XTerm*fontMenu*fontdefault*Label: Default
+!XTerm*faceName: Courier 10 Pitch:antialias=True:pixelsize=23
+XTerm*faceName: Monospace:antialias=True:size=12
+XTerm*faceNameDoublesize: Monospace:antialias=True:size=12
+XTerm*faceSize: 20
+XTerm*faceSize1: 20
+XTerm*faceSize2: 20
+XTerm*faceSize3: 20
+XTerm*faceSize4: 20
+XTerm*faceSize6: 20
+XTerm.cjkWidth:true
+
+XTerm*scrollBar: true
+XTerm*rightScrollBar: true
+XTerm*jumpScroll:  true
+XTerm*SaveLines: 1000
+XTerm*fontMenu*fontdefault*Label: Default
+
+
+UXTerm*faceName: Monospace:antialias=True:size=12
+UXTerm*faceNameDoublesize: Monospace:antialias=True:size=12
+UXTerm*foreground: #ffffff
+UXTerm*background: #000000
+UXTerm*color1: Red2
+UXTerm*color4: RoyalBlue
+UXTerm*color5: Magenta2
+UXTerm*color8: Gray50
+UXTerm*color10: Green2

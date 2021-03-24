@@ -1,0 +1,166 @@
+title: goful
+menu:
+  web:
+    list:
+      - win_msedge
+      - win_chrome
+      - elinks
+    win_msedge:
+      accel: "m"
+      label: "win msedge"
+      path: "msedge.exe"
+    elinks:
+      accel: "e"
+      label: "elinks"
+      path: "elinks"
+    win_chrome:
+      accel: "c"
+      label: "win chrome"
+      path: "chrome.exe"
+  git:
+    list:
+      - add
+      - commit
+      - push
+      - pull
+      - log
+      - status
+    add:
+      accel: "a"
+      label: "add"
+      path: "git add ."
+    commit:
+      accel: "c"
+      label: "commit"
+      path: "git commit -m quick"
+    push:
+      accel: "p"
+      label: "push"
+      path: "git push"
+    pull:
+      accel: "P"
+      label: "pull"
+      path: "git pull"
+    log:
+      accel: "l"
+      label: "log"
+      path: "git log"
+    status:
+      accel: "s"
+      label: "status"
+      path: "git status"
+  editor:
+    list:
+      - separator
+      - win_micro
+      - win_vscode
+      - win_emacs
+      - win_nvim-qt
+      - win_notepad2
+    separator:
+      accel: "-"
+      label: "----win-----"
+      path: ""
+    win_micro:
+      accel: "x"
+      label: "win micro"
+      path: "micro %~f"
+    win_vscode:
+      accel: "o"
+      label: "win vscode"
+      path: "code %~f"
+    win_emacs:
+      accel: "r"
+      label: "win emacs"
+      path: "emacs %~f"
+    win_notepad2:
+      accel: "t"
+      label: "win notepad2"
+      path: "notepad2 %~f"
+    win_nvim-qt:
+      accel: "s"
+      label: "nvim-qt"
+      path: "nvim-qt %~f"
+  external-command:
+    list:
+      - separator
+      - win_micro
+      - win_notepad2
+      - win_nvim-qt
+      - separator
+      - fzf
+    separator:
+      accel: "-"
+      label: "----win-----"
+      path: ""
+    win_micro:
+      accel: "x"
+      label: "win micro"
+      path: "micro %~f"
+    win_notepad2:
+      accel: "t"
+      label: "win notepad2"
+      path: "notepad2 %~f"
+    win_nvim-qt:
+      accel: "s"
+      label: "nvim-qt"
+      path: "nvim-qt %~f"
+    win_bat:
+      accel: "b"
+      label: "win bat"
+      path: "bat %~f"
+    fzf:
+      accel: "f"
+      label: "fzf"
+      path: "fzf"
+    bat:
+      accel: "b"
+      label: "bat"
+      path: "bat %f"
+  bookmark:
+    list:
+      - dropbox
+      - onedrive
+      - envsetup
+      - gosrc
+      - workspace
+      - separator
+      - win_drive_f
+      - win_drive_g
+      - win_drive_h
+    separator:
+      accel: "-"
+      label: "------------"
+      path: ""
+    dropbox:
+      accel: z 
+      label: "~/Dropbox"
+      path: "~/Dropbox"
+    onedrive:
+      accel: o 
+      label: "~/OneDrive"
+      path: "~/OneDrive"
+    envsetup:
+      accel: s
+      label: "~/EnvSetup"
+      path: "~/EnvSetup"
+    gosrc:
+      accel: g
+      label: "go src"
+      path: "~/go/src/github.com"
+    workspace:
+      accel: w 
+      label: "~/workspace"
+      path: "~/workspace"
+    win_drive_f:
+      accel: F 
+      label: "F:/"
+      path: "F:/"
+    win_drive_g:
+      accel: G 
+      label: "G:/"
+      path: "G:/"
+    win_drive_h:
+      accel: H 
+      label: "H:/"
+      path: "H:/"

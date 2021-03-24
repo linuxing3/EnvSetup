@@ -1,0 +1,5 @@
+VERBOSE=yes
+PATH=/bin:/sbin:/usr/bin:/usr/sbin/:/usr/local/bin:/usr/local/sbin
+MAILDIR=/opt/xing/Mail
+DEFAULT=$MAILDIR/inbox
+LOGFILE=/var/log/procmaillog

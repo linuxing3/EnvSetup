@@ -1,0 +1,5 @@
+hostname = SERVER:PORT 
+sender = EMAIL 
+username = USERNAME
+password = PASSWORD
+mda="/usr/bin/procmail -d %T"
