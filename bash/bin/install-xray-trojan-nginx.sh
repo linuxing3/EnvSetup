@@ -663,11 +663,11 @@ install_cert() {
         echo "请输入安装目录"
         echo "======================="
         read cert_path
-        sudo mkdir -p $cert_path
         ~/.acme.sh/acme.sh --installcert -d $your_domain \
-        --key-file $cert_path/$your_domain.key \
-        --cert-file $cert_path/$your_domain.cer \
-        --fullchain-file $cert_path/fullchain.cer
+	        --key-file $cert_path/$your_domain.key \
+	        --cert-file $cert_path/$your_domain.cer \
+	        --fullchain-file $cert_path/fullchain.cer \
+	        --ca-file $cert_path/ca.cer
 
         if test -s $cert_path/$your_domain.cer; then
             echo "申请证书成功"
