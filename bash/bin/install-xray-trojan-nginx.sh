@@ -199,7 +199,7 @@ map \$http_upgrade \$connection_upgrade {
 
 server {
     listen       10111;
-    server_name  pro.$your_domain;
+    server_name  $your_domain;
     location / {
       if (\$http_host !~ "^$your_domain$") {
            rewrite ^(.*) https://$your_domain$1 permanent;
@@ -229,7 +229,7 @@ server {
     
     location /nps {
        proxy_pass http://127.0.0.1:8090;
-    }    
+    }
     location /trojan {
        proxy_pass http://127.0.0.1:8889;
     }    
@@ -591,15 +591,15 @@ install_trojan() {
     green "=========================================="
     red "清除原有安装"
     green "=========================================="
-    if [ -d /home/mariadb ]; then
+    if [[ -d /home/mariadb ]]; then
         rm -rf /home/mariadb
     fi
 
-    if [ -d /usr/local/etc/trojan ]; then
+    if [[ -d /usr/local/etc/trojan ]]; then
         rm -rf /usr/local/etc/trojan
     fi
 
-    if [ -e /usr/local/bin/trojan ]; then
+    if [[ -e /usr/local/bin/trojan ]]; then
         rm /usr/local/bin/trojan
     fi
 
@@ -716,6 +716,8 @@ function start_menu() {
         cat /usr/local/etc/xray/myconfig.json
         ;;
     5)
+        check_release
+        check_port
         install trojan
         ;;
     6)
