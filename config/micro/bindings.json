@@ -5,7 +5,13 @@
     "Alt-s": "lua:snippets.Insert",
     "Alt-w": "lua:snippets.Next",
     "CtrlUnderscore": "lua:comment.comment",
-    "F2": "command-edit:gorename ",
-    "F4": "command-edit:fzf",
-    "Ctrl-p": "command-edit:fzf"
+    "Ctrl-p": "command-edit:fzf",
+    "F2": "command-edit:tab ",
+    "F3": "command-edit:tabswitch",
+    "F4": "command-edit:tree",
+    "F5": "command-edit:fzf",
+    "F6": "command-edit:gorename ",
+    "F7": "command-edit:vsplit ",
+    "F8": "command-edit:hsplit ",
+    "F9": "command-edit:tab ",
 }
