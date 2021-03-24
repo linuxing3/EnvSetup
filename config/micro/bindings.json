@@ -1,7 +1,11 @@
 {
     "Alt-/": "lua:comment.comment",
+    "Alt-a": "lua:snippets.Accept",
+    "Alt-d": "lua:snippets.Cancel",
+    "Alt-s": "lua:snippets.Insert",
+    "Alt-w": "lua:snippets.Next",
     "CtrlUnderscore": "lua:comment.comment",
-    "F4": "command-edit:goful ",
-    "F6": "command-edit:gorename ",
-    "F7": "command-edit:vsplit "
+    "F2": "command-edit:gorename ",
+    "F4": "command-edit:fzf",
+    "Ctrl-p": "command-edit:fzf"
 }

@@ -6,7 +6,7 @@
   "Versions": [
     {
       "Version": "1.0.0",
-      "Url": "https://github.com/linuxing3/go-plugin-goful/archive/v2.0.2.zip",
+      "Url": "https://github.com/linuxing3/go-plugin-goful/archive/v1.0.0.zip",
       "Require": {
         "micro": ">=2.0.0"
       }
