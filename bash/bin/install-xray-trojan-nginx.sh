@@ -20,7 +20,7 @@ logcmd() {
 source /etc/os-release
 RELEASE=$ID
 VERSION=$VERSION_ID
-cat >>/usr/src/atrandys.log <<-EOF
+cat >> /usr/src/atrandys.log<<-EOF
 == Script: atrandys/xray/install.sh
 == Time  : $(date +"%Y-%m-%d %H:%M:%S")
 == OS    : $RELEASE $VERSION
@@ -592,15 +592,15 @@ install_trojan() {
     green "=========================================="
     red "清除原有安装"
     green "=========================================="
-    if [[ -d /home/mariadb ]]; then
+    if [ -d /home/mariadb ]; then
         rm -rf /home/mariadb
     fi
 
-    if [[ -d /usr/local/etc/trojan ]]; then
+    if [ -d /usr/local/etc/trojan ]; then
         rm -rf /usr/local/etc/trojan
     fi
 
-    if [[ -e /usr/local/bin/trojan ]]; then
+    if [ -e /usr/local/bin/trojan ]; then
         rm /usr/local/bin/trojan
     fi
 
