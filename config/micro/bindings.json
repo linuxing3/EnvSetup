@@ -15,4 +15,6 @@
     "F7": "command-edit:vsplit ",
     "F8": "command-edit:hsplit ",
     "F9": "command-edit:tab ",
+    "F11": "command: fjump gopls definition {f}:#{o}",
+    "F12": "command: fexec gopls definition {f}:#{o}|fold -s -79",
 }
