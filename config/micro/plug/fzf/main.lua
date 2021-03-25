@@ -14,6 +14,29 @@ local current_dir = os.Getwd()
 local fzf_view = nil
 local fzf_tab = nil
 
+local onedrivedir = "~/OneDrive"
+local homedir = "~/"
+local gosrcdir = "~/go/src/github.com/linuxing3"
+local workspacedir = "~/workspace"
+
+-- A check for if a path is a dir
+local function is_dir(path)
+	-- Used for checking if dir
+	local golib_os = import("os")
+	-- Returns a FileInfo on the current file/path
+	local file_info, stat_error = golib_os.Stat(path)
+	-- Wrap in nil check for file/dirs without read permissions
+	if file_info ~= nil then
+		-- Returns true/false if it's a dir
+		return file_info:IsDir()
+	else
+		-- Couldn't stat the file/dir, usually because no read permissions
+		micro.InfoBar():Error("Error checking if is dir: ", stat_error)
+		-- Nil since we can't read the path
+		return nil
+	end
+end
+
 -- Returns the basename of a path (aka a name without leading path)
 local function get_basename(path)
 	if path == nil then
@@ -69,8 +92,43 @@ local function entry(bp)
     local doomconfig = "~/.doom.d/config.el"
    	bp:NewTabCmd({doominit})
    	micro.CurPane():VSplitIndex(buffer.NewBufferFromFile(doomconfig), true)
-    -- fzf(bp)
 end
+
+local function onedrive(bp)
+	bp:CdCmd({onedrivedir})
+    fzf(bp)
+end
+
+local function home(bp)
+	bp:CdCmd({homedir})
+    fzf(bp)
+end
+
+local function gosrc(bp)
+	bp:CdCmd({gosrcdir})
+    fzf(bp)
+end
+
+local function workspace(bp)
+	bp:CdCmd({workspacedir})
+    fzf(bp)
+end
+
+
+local pre_dir
+-- -- Workaround for tab getting inserted into opened files
+-- -- Ref https://github.com/zyedidia/micro/issues/992
+function preInsertTab(view)
+	pre_dir = os.Getwd()
+end
+-- 
+-- function preLeaveTab(view)
+	-- current_dir = os.Getwd()
+	-- if current_dir ~= pre_dir then
+	    -- local bp = micro.CurPane()
+		-- bp:CdCmd({pre_dir})
+	-- end
+-- end
 
 function fzf(bp)
     if shell.TermEmuSupported then
@@ -130,4 +188,8 @@ end
 function init()
     config.MakeCommand("fzf", fzf, config.noComplete)
     config.MakeCommand("entry", entry, config.noComplete)
+    config.MakeCommand("onedrive", onedrive, config.noComplete)
+    config.MakeCommand("home", home, config.noComplete)
+    config.MakeCommand("workspace", workspace, config.noComplete)
+    config.MakeCommand("gosrc", gosrc, config.noComplete)
 end
