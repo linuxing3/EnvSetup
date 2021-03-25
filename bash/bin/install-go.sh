@@ -31,6 +31,7 @@ GOGS_VERSION=0.11.91
 SHFMT_VERSION=3.1.1
 
 install_shfmt() {
+    echo "On windows, choco install -y shfmt"
 	wget -O shfmt "https://github.com/mvdan/sh/releases/download/v${SHFMT_VERSION}/shfmt_v${SHFMT_VERSION}_${OS}_${SHFMT_ARCH}"
 	sudo mv shfmt /usr/local/bin/
 	type shfmt
@@ -142,7 +143,7 @@ case "$option" in
 	install_go_tools
 	;;
 6)
-  install_gogs
+    install_gogs
 	;;
 7)
 	install_gvm
