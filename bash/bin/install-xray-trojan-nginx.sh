@@ -310,9 +310,6 @@ install_xray() {
                 "decryption": "none", 
                 "fallbacks": [
                     {
-                      "dest": 10110
-                    }, 
-                    {
                       "dest": 1310 
                     }, 
 		            {
@@ -564,7 +561,7 @@ check_domain() {
     fi
 }
 
-remove_xray() {
+remove_nginx() {
     green "$(date +"%Y-%m-%d %H:%M:%S") - 删除xray."
     systemctl stop xray.service
     systemctl disable xray.service
@@ -578,14 +575,31 @@ remove_xray() {
         apt-get -y autoremove && apt-get -y autoclean
         find / | grep nginx | sudo xargs rm -rf
     fi
+    # rm -rf /root/.acme.sh/
+    green "nginx has been deleted."
+
+}
+
+remove_xray() {
+    green "$(date +"%Y-%m-%d %H:%M:%S") - 删除xray."
+    systemctl stop xray.service
+    systemctl disable xray.service
     rm -rf /usr/local/share/xray/ /usr/local/etc/xray/
     rm -f /usr/local/bin/xray
     rm -rf /etc/systemd/system/xray*
-    rm -rf /etc/nginx
-    rm -rf /usr/share/nginx/html/*
-    rm -rf /root/.acme.sh/
-    green "nginx & xray has been deleted."
+    green "xray has been deleted."
+}
 
+
+remove_trojan() {
+    green "$(date +"%Y-%m-%d %H:%M:%S") - 删除trojan."
+	trojan
+    # systemctl stop trojan.service
+    # systemctl disable trojan.service
+    # rm -rf /usr/local/share/trojan/ /usr/local/etc/trojan/
+    # rm -f /usr/local/bin/trojan
+    # rm -rf /etc/systemd/system/trojan*
+    green "trojan has been deleted."
 }
 
 install_trojan() {
@@ -729,6 +743,7 @@ function start_menu() {
         ;;
     3)
         remove_xray
+        remove_nginx
         ;;
     4)
         cat /usr/local/etc/xray/myconfig.json
