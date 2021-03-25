@@ -33,8 +33,8 @@ remote_control(){
     "7" "Show kids rules" 0 \
     "8" "Start xunqinji proxy" 0 \
     "9" "Stop xunqinji proxy" 0 \
-    "10" "Start dongxishijie proxy" 0 \
-    "11" "Stop dongxishijie proxy" 0 \
+    "10" "Start xunqinji proxy" 0 \
+    "11" "Stop xunqinji proxy" 0 \
     "12" "Warning with text" 0 \
     "13" "Warning with voice" 0 \
     "14" "Playing a music" 0 \

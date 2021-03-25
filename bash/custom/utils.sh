@@ -369,8 +369,8 @@ deploy() {
 
   today=$(date +'%Y-%m-%d-%H:%M')
 
-  git add .
-  git commit -m "Commited by $USER from $PWD on $today"
+  git add -A
+  git commit -a -m "Commited by $USER from $PWD on $today"
   git push
 }
 
@@ -484,44 +484,44 @@ search() {
 ## devops tools
 ###############################
 
-alias xqj="ssh -X -l root xunqinji.top -L 22:127.0.0.1:2222"
-alias dx="ssh -X -l root dongxishijie.xyz -L 22:127.0.0.1:2221"
+alias xqj="ssh -X -l root xunqinji.xyz -L 22:127.0.0.1:2222"
+alias dx="ssh -X -l root xunqinji.xyz -L 22:127.0.0.1:2221"
 alias vag="ssh -X -l root -p 2222 localhost -L 2222:127.0.0.1:22"
 
-alias stop_watching1="ssh -l root xunqinji.top '/bin/systemctl stop trojan && /bin/systemctl stop v2ray'"
-alias start_watching1="ssh -l root xunqinji.top '/bin/systemctl restart trojan && /bin/systemctl restart v2ray'"
+alias stop_watching1="ssh -l root xunqinji.xyz '/bin/systemctl stop trojan && /bin/systemctl stop v2ray'"
+alias start_watching1="ssh -l root xunqinji.xyz '/bin/systemctl restart trojan && /bin/systemctl restart v2ray'"
 
-alias stop_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl stop trojan && /bin/systemctl stop v2ray'"
-alias start_watching2="ssh -l root dongxishijie.xyz '/bin/systemctl restart trojan && /bin/systemctl restart v2ray'"
+alias stop_watching2="ssh -l root xunqinji.xyz '/bin/systemctl stop trojan && /bin/systemctl stop v2ray'"
+alias start_watching2="ssh -l root xunqinji.xyz '/bin/systemctl restart trojan && /bin/systemctl restart v2ray'"
 
-alias caddystatus="ssh root@xunqinji.top 'bash -s' < local.script.sh"
-alias trojanstatus="ssh root@xunqinji.top ARG1="arg1" ARG2="arg2" 'bash -s' < local_script.sh"
+alias caddystatus="ssh root@xunqinji.xyz 'bash -s' < local.script.sh"
+alias trojanstatus="ssh root@xunqinji.xyz ARG1="arg1" ARG2="arg2" 'bash -s' < local_script.sh"
 
 sync_envs_repo() {
 
   green "|-------------------***--------------------------***---------------------------------|"
-  green "Updating xunqinji.top root EnvSetup repo"
-  ssh -l root xunqinji.top 'cd /root/EnvSetup && git pull'
+  green "Updating xunqinji.xyz root EnvSetup repo"
+  ssh -l root xunqinji.xyz 'cd /root/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
-  green "Updating xunqinji.top vagrant EnvSetup repo"
-  ssh -l vagrant xunqinji.top 'cd /home/vagrant/EnvSetup && git pull'
+  green "Updating xunqinji.xyz vagrant EnvSetup repo"
+  ssh -l vagrant xunqinji.xyz 'cd /home/vagrant/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
-  green "Updating dongxishijie.xyz root EnvSetup repo"
-  ssh -l root dongxishijie.xyz 'cd /root/EnvSetup && git pull'
+  green "Updating xunqinji.xyz root EnvSetup repo"
+  ssh -l root xunqinji.xyz 'cd /root/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
-  green "Updating dongxishijie.xyz vagrant EnvSetup repo"
-  ssh -l vagrant dongxishijie.xyz 'cd /home/vagrant/EnvSetup && git pull'
+  green "Updating xunqinji.xyz vagrant EnvSetup repo"
+  ssh -l vagrant xunqinji.xyz 'cd /home/vagrant/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating Office Openwrt EnvSetup repo"
-  ssh -p 8026 root@xunqinji.top 'cd /root/EnvSetup && git pull'
+  ssh -p 8026 root@xunqinji.xyz 'cd /root/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 
   green "Updating Office Vagrant Nodejs EnvSetup repo"
-  ssh -l vagrant -p 8027 xunqinji.top 'cd /home/vagrant/EnvSetup && git pull'
+  ssh -l vagrant -p 8027 xunqinji.xyz 'cd /home/vagrant/EnvSetup && git pull'
   green "|-------------------***--------------------------***---------------------------------|"
 }
 
@@ -545,7 +545,7 @@ deploy_hugo_gh() {
   git config user.name "${GITHUB_ACTOR}"
   git config user.email "${GITHUB_ACTOR}@qq.com"
   git add --all
-  git commit -m "Automated deployment by ${USER} at ${TS}"
+  git commit -a -m "Automated deployment by ${USER} at ${TS}"
   # git push origin --delete master
   git push -u origin master
   cd

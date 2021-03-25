@@ -87,23 +87,23 @@ install_caddy2() {
     file_server
 }
 
-xray.xunqinji.top:80 {
-    redir https://xray.xunqinji.top{uri}
-}
-
-xunqinji.top:80 {
-    redir https://xray.xunqinji.top{uri}
+xray.xunqinji.xyz:80 {
+    redir https://xray.xunqinji.xyz{uri}
 }
 
 xunqinji.xyz:80 {
-    redir https://xray.xunqinji.top{uri}
+    redir https://xray.xunqinji.xyz{uri}
+}
+
+xunqinji.xyz:80 {
+    redir https://xray.xunqinji.xyz{uri}
 }
 
 gce.hk.xunqinji.xyz:80 {
-    redir https://xray.xunqinji.top{uri}
+    redir https://xray.xunqinji.xyz{uri}
 }
 
-nps.xunqinji.top:80 {
+nps.xunqinji.xyz:80 {
   reverse_proxy /* 127.0.0.1:8080
 }
 " >> /etc/caddy/Caddyfile
@@ -173,7 +173,7 @@ install_caddy1() {
   sudo chown root:root /etc/caddy/Caddyfile
   sudo chmod 644 /etc/caddy/Caddyfile
   sudo cat <<EOF | sudo tee /etc/caddy/Caddyfile
-"xunqinji.top:80
+"xunqinji.xyz:80
 {
   log /var/log/caddy.log
   tls xingwenju@gmail.com
@@ -282,7 +282,7 @@ run() {
 
   echo "若上一步启动无问题则可启用开机自启动Caddy, 输入： systemctl enable caddy"
   echo "完成！"
-  echo "请打开http://xunqinji.top,浏览你的新网站吧！"
+  echo "请打开http://xunqinji.xyz,浏览你的新网站吧！"
 }
 
 

@@ -4,13 +4,13 @@ conffile=$basedir/docker-compose.yml
 
 cd $basedir
 
-sed -i 's/dongxishijie\.xyz/xunqinji\.top/g' $conffile
+sed -i 's/xunqinji\.xyz/xunqinji\.top/g' $conffile
 
 sed -i 's/- certs:/- \/etc\/xunqinji\.top_ecc:/g' $conffile
 
 sed -i 's/my@example/xingwenju@gmail/g' $conffile
 
-sed -i 's/servhostname\.local/xunqinji.top/g' $conffile
+sed -i 's/servhostname\.local/xunqinji.xyz/g' $conffile
 
 cat $conffile | more
 # docker-compose up -d

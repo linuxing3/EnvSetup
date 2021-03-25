@@ -66,8 +66,8 @@
         },
         {
           "guid": "{2cacadad-1234-5f56-a8ff-afceeeaa6101}",
-          "name": "vagrant@xunqinji.top",
-          "commandline": "ssh vagrant@xunqinji.top",
+          "name": "vagrant@xunqinji.xyz",
+          "commandline": "ssh vagrant@xunqinji.xyz",
           "hidden": false,
           "colorScheme": "MaterialDark",
           "cursorColor": "#eeeeee",
@@ -76,16 +76,16 @@
         },
         {
           "guid": "{3cacadad-1234-5f56-a8ff-afceeeaa6101}",
-          "name": "root@xunqinji.top",
-          "commandline": "ssh root@xunqinji.top",
+          "name": "root@xunqinji.xyz",
+          "commandline": "ssh root@xunqinji.xyz",
           "hidden": false,
           "colorScheme": "MaterialDark",
           "cursorColor": "#eeeeee"
         },
         {
           "guid": "{4cacadad-1234-5f56-a8ff-afceeeaa6101}",
-          "name": "vagrant@dongxishijie.xyz",
-          "commandline": "ssh vagrant@dongxishijie.xyz",
+          "name": "vagrant@xunqinji.xyz",
+          "commandline": "ssh vagrant@xunqinji.xyz",
           "hidden": false,
           "colorScheme": "MaterialDark",
           "cursorColor": "#eeeeee",
@@ -94,8 +94,8 @@
         },
         {
           "guid": "{5cacadad-1234-5f56-a8ff-afceeeaa6101}",
-          "name": "root@dongxishijie.xyz",
-          "commandline": "ssh root@dongxishijie.xyz",
+          "name": "root@xunqinji.xyz",
+          "commandline": "ssh root@xunqinji.xyz",
           "hidden": false,
           "colorScheme": "Material",
           "cursorColor": "#eeeeee",

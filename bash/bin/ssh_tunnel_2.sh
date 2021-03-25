@@ -17,4 +17,4 @@ echo ------------------------------------------
 echo Connecting to 443 port
 
 echo ------------------------------------------
-ssh -p 443 root@xunqinji.top
+ssh -p 443 root@xunqinji.xyz

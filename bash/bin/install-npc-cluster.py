@@ -17,7 +17,7 @@ def restart():
 @cli.command()
 @click.option("--vkey", "-k", prompt=True, default="qqyzkzldrxycbdzwwsgh",  help="Unique client key")
 @click.option("--port", "-p", prompt=True, default="8024",  help="Unique nps server port")
-@click.option("--server", "-s", prompt=True, default="xunqinji.top", help="Your nps server address")
+@click.option("--server", "-s", prompt=True, default="xunqinji.xyz", help="Your nps server address")
 def connect(server, port, vkey):
     print(server + ":" + port)
     print(vkey)

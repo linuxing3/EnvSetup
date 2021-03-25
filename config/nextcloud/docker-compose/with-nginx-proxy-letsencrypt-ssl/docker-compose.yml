@@ -68,8 +68,8 @@ services:
       - ./app/themes:/var/www/html/themes
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - VIRTUAL_HOST=nextcloud.xunqinji.top
-      - LETSENCRYPT_HOST=nextcloud.xunqinji.top
+      - VIRTUAL_HOST=nextcloud.xunqinji.xyz
+      - LETSENCRYPT_HOST=nextcloud.xunqinji.xyz
       - LETSENCRYPT_EMAIL=xingwenju@gmail.com
     restart: unless-stopped
 

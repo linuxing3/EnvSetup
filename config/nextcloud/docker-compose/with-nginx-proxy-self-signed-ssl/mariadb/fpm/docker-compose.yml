@@ -30,7 +30,7 @@ services:
     volumes:
       - nextcloud:/var/www/html:ro
     environment:
-      - VIRTUAL_HOST=xunqinji.top
+      - VIRTUAL_HOST=xunqinji.xyz
     depends_on:
       - app
     networks:
@@ -59,11 +59,11 @@ services:
     volumes:
       - certs:/certs
     environment:
-      - SSL_SUBJECT=xunqinji.top
+      - SSL_SUBJECT=xunqinji.xyz
       - CA_SUBJECT=xingwenju@gmail.com
-      - SSL_KEY=/certs/xunqinji.top.key
-      - SSL_CSR=/certs/xunqinji.top.csr
-      - SSL_CERT=/certs/xunqinji.top.crt
+      - SSL_KEY=/certs/xunqinji.xyz.key
+      - SSL_CSR=/certs/xunqinji.xyz.csr
+      - SSL_CERT=/certs/xunqinji.xyz.crt
     networks:
       - proxy-tier
 

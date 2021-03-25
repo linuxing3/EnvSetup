@@ -1,13 +1,13 @@
 -proxy 
  - name: xunqinjitop
    type: trojan
-   server: pro.xunqinji.top
+   server: pro.xunqinji.xyz
    port: 443
    password: mm123456
    
- - name: dongxishijie
+ - name: xunqinji
    type: trojan
-   server: pro.dongxishijie.xyz
+   server: pro.xunqinji.xyz
    port: 443
    password: mm123456
 

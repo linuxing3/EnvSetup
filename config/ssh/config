@@ -2,64 +2,64 @@ Host vagrant@vagrant-nodejs
     HostName 127.0.0.1
     User vagrant
     Port 2222
-    LocalForward 127.0.0.1:8000 xunqinji.top:9007
-    LocalForward 127.0.0.1:5432 dongxishijie:9006
-    LocalForward 127.0.0.1:3306 xunqinji.top:9005
-    RemoteForward 127.0.0.1:3306 xunqinji.top:9005
-    RemoteForward 127.0.0.1:5432 dongxishijie.xyz:9006
-    RemoteForward 127.0.0.1:8000 xunqinji.top:9007
-    RemoteForward 127.0.0.1:6379 xunqinji.top:6379
-    RemoteForward 127.0.0.1:27017 xunqinji.top:27017
+    LocalForward 127.0.0.1:8000 xunqinji.xyz:9007
+    LocalForward 127.0.0.1:5432 xunqinji:9006
+    LocalForward 127.0.0.1:3306 xunqinji.xyz:9005
+    RemoteForward 127.0.0.1:3306 xunqinji.xyz:9005
+    RemoteForward 127.0.0.1:5432 xunqinji.xyz:9006
+    RemoteForward 127.0.0.1:8000 xunqinji.xyz:9007
+    RemoteForward 127.0.0.1:6379 xunqinji.xyz:6379
+    RemoteForward 127.0.0.1:27017 xunqinji.xyz:27017
 Host pi@homepi.local
   HostName homepi.local
   User pi
   IdentityFile ~/.ssh/id_rsa
   LocalForward 127.0.0.1:3306 127.0.0.1:3306
-  RemoteForward 127.0.0.1:3306 xunqinji.top:9005
-  RemoteForward 127.0.0.1:6379 xunqinji.top:6379
-  RemoteForward 127.0.0.1:27017 xunqinji.top:27017
+  RemoteForward 127.0.0.1:3306 xunqinji.xyz:9005
+  RemoteForward 127.0.0.1:6379 xunqinji.xyz:6379
+  RemoteForward 127.0.0.1:27017 xunqinji.xyz:27017
 Host vagrant@homelenovo.local
   HostName 127.0.0.1
   User vagrant
   Port 2222
   IdentityFile ~/.ssh/id_rsa
-  RemoteForward 127.0.0.1:3306 xunqinji.top:9005
-  RemoteForward 127.0.0.1:6379 xunqinji.top:6379
-  RemoteForward 127.0.0.1:27017 xunqinji.top:27017
+  RemoteForward 127.0.0.1:3306 xunqinji.xyz:9005
+  RemoteForward 127.0.0.1:6379 xunqinji.xyz:6379
+  RemoteForward 127.0.0.1:27017 xunqinji.xyz:27017
 Host root@homelenovo.local
   HostName 127.0.0.1
   User root
   Port 2222
   IdentityFile ~/.ssh/id_rsa
-  RemoteForward 127.0.0.1:3306 xunqinji.top:9005
-  RemoteForward 127.0.0.1:6379 xunqinji.top:6379
-  RemoteForward 127.0.0.1:27017 xunqinji.top:27017
+  RemoteForward 127.0.0.1:3306 xunqinji.xyz:9005
+  RemoteForward 127.0.0.1:6379 xunqinji.xyz:6379
+  RemoteForward 127.0.0.1:27017 xunqinji.xyz:27017
 Host admin@homelenovo.local
   HostName 127.0.0.1
   User Administrator
   IdentityFile ~/.ssh/id_rsa
-Host root@xunqinji.top
-  HostName xunqinji.top
+Host root@xunqinji.xyz
+  HostName xunqinji.xyz
   User root
   IdentityFile ~/.ssh/id_rsa
   LocalForward 127.0.0.1:3306 127.0.0.1:3306
   LocalForward 127.0.0.1:6379 127.0.0.1:6379
   LocalForward 127.0.0.1:8000 127.0.0.1:9007
-Host vagrant@xunqinji.top
-  HostName xunqinji.top
+Host vagrant@xunqinji.xyz
+  HostName xunqinji.xyz
   User vagrant
   IdentityFile ~/.ssh/id_rsa
 Host root@xingxiaorui
-  HostName xunqinji.top
+  HostName xunqinji.xyz
   User root
   Port 11114
   IdentityFile ~/.ssh/id_rsa
-Host root@dongxishijie.xyz
-  HostName dongxishijie.xyz
+Host root@xunqinji.xyz
+  HostName xunqinji.xyz
   User root
   IdentityFile ~/.ssh/id_rsa
-Host vagrant@dongxishijie.xyz
-  HostName dongxishijie.xyz
+Host vagrant@xunqinji.xyz
+  HostName xunqinji.xyz
   User vagrant
   IdentityFile ~/.ssh/id_rsa
 Host root@kamatera.ddns.net

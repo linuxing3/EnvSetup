@@ -10,5 +10,5 @@
 - name: Manage xunqinji 
   import_tasks: xunqinji.yml
 
-- name: Manage dongxishijie
-  import_tasks: dongxishijie.yml
+- name: Manage xunqinji
+  import_tasks: xunqinji.yml

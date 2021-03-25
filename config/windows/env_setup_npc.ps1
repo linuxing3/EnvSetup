@@ -58,7 +58,7 @@ Write-Host 'For more information, see: https://github.com/ehang-io/nps'
 $config_file=$npc_base+'\npc.conf'
 Set-Content -Path $config_file -Value @"
 [common]
-server_addr=xunqinji.top:8024
+server_addr=xunqinji.xyz:8024
 conn_type=tcp
 vkey=123
 [ssh]

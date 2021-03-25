@@ -13,7 +13,7 @@ mutation MyMutation($host: String = "", $port: Int = 10) {
   }
 }
 {
-  "host": "dongxishijie",
+  "host": "xunqinji",
   "port": 9000
 }
 

@@ -85,9 +85,9 @@
 			<value name="CmdLineHistory" type="multi">
 				<line data="{Shells::PowerShell (Admin)}"/>
 				<line data="{Bash::Git bash}"/>
-				<line data="{SSH::root.dongxishijie.xyz}"/>
-				<line data="{SSH::root.xunqinji.top}"/>
-				<line data="{SSH::vagrant.xunqinji.top}"/>
+				<line data="{SSH::root.xunqinji.xyz}"/>
+				<line data="{SSH::root.xunqinji.xyz}"/>
+				<line data="{SSH::vagrant.xunqinji.xyz}"/>
 				<line data="{Shells::Conda}"/>
 				<line data="{Shells::VsDevCmd}"/>
 				<line data='"C:\Program Files\PowerShell\7\pwsh.exe"'/>
@@ -652,34 +652,34 @@
 					<value name="Cmd1" type="string" data='%comspec% /k "C:\Program Files\Microsoft Visual Studio\2017\BuildTools\Common7\Tools\VsDevCmd.bat"'/>
 				</key>
 				<key name="Task5" modified="2021-02-22 15:20:46" build="191012">
-					<value name="Name" type="string" data="{SSH::root.xunqinji.top}"/>
+					<value name="Name" type="string" data="{SSH::root.xunqinji.xyz}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="2"/>
 					<value name="Cmd1" type="string" data='cmd.exe /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
-					<value name="Cmd2" type="string" data="ssh root@xunqinji.top"/>
+					<value name="Cmd2" type="string" data="ssh root@xunqinji.xyz"/>
 				</key>
 				<key name="Task6" modified="2021-02-22 15:20:46" build="191012">
-					<value name="Name" type="string" data="{SSH::vagrant.xunqinji.top}"/>
+					<value name="Name" type="string" data="{SSH::vagrant.xunqinji.xyz}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="2"/>
 					<value name="Cmd1" type="string" data='cmd.exe /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
-					<value name="Cmd2" type="string" data="ssh -p 9222 vagrant@dongxishijie.xyz"/>
+					<value name="Cmd2" type="string" data="ssh -p 9222 vagrant@xunqinji.xyz"/>
 				</key>
 				<key name="Task7" modified="2021-02-22 15:20:46" build="191012">
-					<value name="Name" type="string" data="{SSH::root.dongxishijie.xyz}"/>
+					<value name="Name" type="string" data="{SSH::root.xunqinji.xyz}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="2"/>
 					<value name="Cmd1" type="string" data='cmd.exe /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
-					<value name="Cmd2" type="string" data="ssh root@dongxishijie.xyz"/>
+					<value name="Cmd2" type="string" data="ssh root@xunqinji.xyz"/>
 				</key>
 				<key name="Task8" modified="2021-02-22 15:20:46" build="191012">
 					<value name="Name" type="string" data="{Shells::cmd}"/>

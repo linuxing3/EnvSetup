@@ -36,8 +36,8 @@ services:
     volumes:
       - nextcloud:/var/www/html:ro
     environment:
-      - VIRTUAL_HOST=dongxishijie.xyz
-      - LETSENCRYPT_HOST=dongxishijie.syz
+      - VIRTUAL_HOST=xunqinji.xyz
+      - LETSENCRYPT_HOST=xunqinji.syz
       - LETSENCRYPT_EMAIL=xingwenju@gmail.com
     depends_on:
       - app
