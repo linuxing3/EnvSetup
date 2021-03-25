@@ -618,28 +618,6 @@ install_trojan() {
         rm /usr/local/bin/trojan
     fi
 
-    green "=========================================="
-    red "建议自己安装证书和秘钥"
-    red "输入域名,建议以pro开头"
-    red "比如pro.gce.xunqinji.xyz"
-    green "=========================================="
-    read $your_domain
-    trojan_ssl_path=/usr/local/etc/trojan/ssl
-    mkdir -p $trojan_ssl_path
-    chmod -R 777 $trojan_ssl_path
-    ~/.acme.sh/acme.sh --issue -d $your_domain --standalone
-    ~/.acme.sh/acme.sh --installcert -d $your_domain \
-        --key-file $trojan_ssl_path/private.key \
-        --fullchain-file $trojan_ssl_path/fullchain.cer
-        
-    if test -s $trojan_ssl_path/fullchain.cer; then
-        green "申请证书成功, 地址在"
-        green $trojan_ssl_path/private.key
-        green $trojan_ssl_path/fullchain.cer
-    else
-        echo "申请证书失败, 你可以选择程序的证书安装功能"
-    fi    
-    
     sleep 3
     green "=========================================="
     red "启动一键安装脚本"
