@@ -66,3 +66,7 @@ curl https://raw.githubusercontent.com/linuxing3/EnvSetup/master/install.sh >> e
 [Go](/EnvSetup/go-cheatsheet)
 
 [Python](/EnvSetup/python-cheatsheet)
+
+[C](/EnvSetup/c)
+
+[Java](/EnvSetup/java)
