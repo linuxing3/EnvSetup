@@ -20,6 +20,11 @@ if [ $UID -ne 0 ]; then
   alias systemctl='sudo systemctl'
   alias service='sudo service'
 fi
+
+export PAGER='bat'
+alias less='bat'
+alias more='bat'
+
 #
 alias c='clear'
 # 
