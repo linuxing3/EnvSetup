@@ -276,39 +276,39 @@ cl() {
 note () {
     # if file doesn't exist, create it
     if [[ ! -f $HOME/.notes ]]; then
-        touch "$HOME/Dropbox/org/.notes"
+        touch "$HOME/OneDrive/org/.notes"
     fi
 
     if ! (($#)); then
         # no arguments, print file
-        cat "$HOME/Dropbox/org/.notes"
+        cat "$HOME/OneDrive/org/.notes"
     elif [[ "$2" == "-c" ]]; then
         # clear file
-        > "$HOME/Dropbox/org/.notes"
+        > "$HOME/OneDrive/org/.notes"
     else
         # add all arguments to file
-        printf "%s\n" "$*" >> "$HOME/Dropbox/org/.notes"
+        printf "%s\n" "$*" >> "$HOME/OneDrive/org/.notes"
     fi
 }
 
 todo() {
     if [[ ! -f $HOME/.todo ]]; then
-        touch "$HOME/Dropbox/org/.todo"
+        touch "$HOME/OneDrive/org/.todo"
     fi
 
     if ! (($#)); then
-        cat "$HOME/Dropbox/org/.todo"
+        cat "$HOME/OneDrive/org/.todo"
     elif [[ "$1" == "-l" ]]; then
-        nl -b a "$HOME/Dropbox/org/.todo"
+        nl -b a "$HOME/OneDrive/org/.todo"
     elif [[ "$1" == "-c" ]]; then
-        > "$HOME/Dropbox/org/.todo"
+        > "$HOME/OneDrive/org/.todo"
     elif [[ "$1" == "-r" ]]; then
-        nl -b a "$HOME/Dropbox/org/.todo"
+        nl -b a "$HOME/OneDrive/org/.todo"
         printf "----------------------------\n"
         read -p "Type a number to remove: " number
-        ex -sc "${number}d" "$HOME/Dropbox/org/.todo"
+        ex -sc "${number}d" "$HOME/OneDrive/org/.todo"
     else
-        printf "%s\n" "$*" >> "$HOME/Dropbox/org/.todo"
+        printf "%s\n" "$*" >> "$HOME/OneDrive/org/.todo"
     fi
 }
 
@@ -379,7 +379,7 @@ deploy() {
 ###############################
 
 dk() {
-    MENU="start pull push run img ps rml rma" 
+    MENU="start pull push run img ps rml rma quit" 
     select opt in $MENU; do 
 		if [ "$opt" = "start" ]; then 
 			systemctl start docker
@@ -397,12 +397,15 @@ dk() {
 			docker images 
 			break
 		elif [ "$opt" = "ps" ]; then 
-			docker ps -lq
+			docker ps -a
 		elif [ "$opt" = "rml" ]; then 
-			docker rm `docker ps -lq` 
+			docker rm `docker ps -aq` 
 			break
 		elif [ "$opt" = "rma" ]; then 
 			docker rm `docker ps -aq` 
+			break
+		elif [ "$opt" = "quit" ]; then 
+      return 1
 			break
 		else 
 			echo bad option 
@@ -549,4 +552,12 @@ deploy_hugo_gh() {
   # git push origin --delete master
   git push -u origin master
   cd
+}
+
+mysql_docker() {
+  red OspGC
+  red source db.sql
+  
+  blue ============================================================
+  docker exec -it -w /var/lib/mysql trojan-mariadb mysql -u root -p
 }
