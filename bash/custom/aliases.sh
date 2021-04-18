@@ -215,3 +215,9 @@ alias dis="sudo docker images"
 alias dra="sudo docker ps -a | awk 'NR!=1{ print \$1 }' | xargs sudo docker rm"
 alias dsa="sudo docker ps -a | awk 'NR!=1{ print \$1 }' | xargs sudo docker stop"
 alias dria="sudo docker images | awk 'NR!=1{ print \$3 }' | xargs sudo docker rmi"
+
+alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
+alias redis='docker exec -it redis redis-cli'
+alias mysql="docker exec -it mysql mysql"
+alias psql="docker exec -it db psql"
+alias etcdctl="docker exec -it etcd etcdctl"
